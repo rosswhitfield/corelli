@@ -17,7 +17,7 @@ ConvertUnits(InputWorkspace='rawLaB6',OutputWorkspace='LaBD',Target='dSpacing')
 Rebin(InputWorkspace='LaBD',OutputWorkspace='LaBD',Params='0.5,-0.004,5')
 
 # Generate fit window workspace
-DReference=[1.2000, 1.3146, 1.3857, 1.6971, 1.8591, 2.0785, 2.4000, 2.9394, 4.1570]
+DReference=[1.1999, 1.3144, 1.3855, 1.6969, 1.8589, 2.0783, 2.3998, 2.9392, 4.1566]
 fitwindict = {}
 fitwindict[4.1570] = (3.85, 4.45)
 fitwindict[2.9394] = (2.78, 3.15)
@@ -59,6 +59,6 @@ GetDetOffsetsMultiPeaks(
         MaskWorkspace='mask')
 
 # Save calibration
-SaveCalFile(Filename='/SNS/users/rwp/cal_2016_02/cal_LaB6_19286_19287_sum4.cal',
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_LaB6_19286_19287_sum4.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')

@@ -55,6 +55,6 @@ GetDetOffsetsMultiPeaks(
         MaskWorkspace='mask')
 
 # Save calibration
-SaveCalFile(Filename='/SNS/users/rwp/cal_2016_02/cal_LaB6_19286_19287_sum4_NO_t0.cal',
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_LaB6_19286_19287_sum4_NO_t0.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
