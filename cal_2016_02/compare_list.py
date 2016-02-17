@@ -16,5 +16,5 @@ np.set_printoptions(precision=2,suppress=True,edgeitems=10)
 #print diff
 i=1
 for line in diff:
-    print "bank"+str(i),line
+    print "bank"+str(i),(i-1)*256*16,i*256*16,line
     i+=1

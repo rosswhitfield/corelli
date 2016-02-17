@@ -1,3 +1,5 @@
+from mantid.simpleapi import *
+
 LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_19284_19285_sum4.cal', WorkspaceName='Si')
 MaskBTP(Workspace='Si_mask',Pixel="1-16,241-256")
 LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_LaB6_19286_19287_sum4.cal', WorkspaceName='LaB6')
