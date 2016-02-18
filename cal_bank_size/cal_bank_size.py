@@ -46,17 +46,93 @@ def calc_difc(position,L1=20.0):
 p=getPixelPosition(0,128,x_shift=0.228238615,y_shift=0.082562778,z_shift=2.572575854,beta=185.07)
 calc_difc(p)
 
-for tube in range(16):
-    for pixel in range(256):
-        p=getPixelPosition(tube,pixel,x_shift=0.228238615,y_shift=0.082562778,z_shift=2.572575854,beta=185.07)
-        print tube*256+pixel,calc_difc(p)
+def get_bank_difc(tube_height, bank_width, x_shift, y_shift, z_shift, alpha, beta, gamma, L1):
+    output=[]
+    for tube in range(16):
+        for pixel in range(256):
+            p=getPixelPosition(tube,pixel,tube_height,bank_width,x_shift,y_shift,z_shift,alpha,beta,gamma)
+            output.append(calc_difc(p,L1))
+    return np.array(output)
 
 from mantid.simpleapi import *
+firstIndex=233472
+lastIndex=237568
 LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='corelli')
 CalculateDIFC(InputWorkspace='corelli',OutputWorkspace='corelli')
-corelli_difc = mtd['corelli'].extractY()
-corelli_difc[233472:237568] # bank 58
+corelli_difc = np.array(mtd['corelli'].extractY().flatten()[firstIndex:lastIndex])
 
 LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_19284_19285_sum4.cal', WorkspaceName='Si')
-new_difc=mtd['Si_cal'].column('difc')
-new_difc[233472:237568]
+MaskBTP(Workspace='Si_mask',Pixel="1-16,241-256")
+mask = mtd['Si_mask'].extractY().flatten()[firstIndex:lastIndex]
+new_difc = mtd['Si_cal'].column('difc')[firstIndex:lastIndex]
+new_difc = np.ma.masked_array(new_difc, mask)
+
+from scipy.optimize import minimize
+from scipy.stats import chisquare
+
+
+# Refine all
+x_0=[0.88138,0.20955,0.228238615,0.082562778,2.572575854,0,185.07,0,20.0]
+def minimisation_func(x):
+    #difc = get_bank_difc(tube_height=0.88138, bank_width=0.20955,x_shift=0.228238615,y_shift=0.082562778,z_shift=2.572575854,alpha=0,beta=185.07,gamma=0,L1=20.0)
+    print x
+    difc = get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=x[3],z_shift=x[4],alpha=x[5],beta=x[6],gamma=x[7],L1=x[8])
+    difc = np.ma.masked_array(difc, mask)
+    return chisquare(f_obs=new_difc, f_exp=difc)[0]
+
+
+results = minimize(minimisation_func, x0=x_0, options={'disp': True})
+
+
+# Refine height, width, x, z, gamma
+x0=[0.88138,0.20955,0.228238615,2.572575854,185.07]
+bnds = ((x0[0]-0.2,x0[0]+0.2),
+        (x0[1]-0.2,x0[1]+0.2),
+        (x0[2]-0.2,x0[2]+0.2),
+        (x0[3]-0.2,x0[3]+0.2),
+        (x0[4]-20,x0[4]+20))
+def minimisation_func(x):
+    #difc = get_bank_difc(tube_height=0.88138, bank_width=0.20955,x_shift=0.228238615,y_shift=0.082562778,z_shift=2.572575854,alpha=0,beta=185.07,gamma=0,L1=20.0)
+    print x
+    difc = get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=0.082562778,z_shift=x[3],alpha=0,beta=x[4],gamma=0,L1=20.0)
+    difc = np.ma.masked_array(difc, mask)
+    return chisquare(f_obs=new_difc, f_exp=difc)[0]
+
+
+results = minimize(minimisation_func, x0=x0, options={'disp': True})
+results = minimize(minimisation_func, x0=x0, bounds=bnds, options={'disp': True})
+
+
+# bank43/B14
+firstIndex=172032
+lastIndex=176128
+
+corelli_difc = np.array(mtd['corelli'].extractY().flatten()[firstIndex:lastIndex])
+mask = mtd['Si_mask'].extractY().flatten()[firstIndex:lastIndex]
+new_difc = mtd['Si_cal'].column('difc')[firstIndex:lastIndex]
+new_difc = np.ma.masked_array(new_difc, mask)
+
+
+
+x0=[0.88138,0.20955,2.560231046,0.082562778,0.339788726,0,262.44,0,20.0]
+results = minimize(minimisation_func, x0=x0, options={'disp': True})
+
+
+x0=[2.560231046,
+    0.339788726,
+    0,
+    262.44,
+    0]
+bnds = ((x0[0]-0.1,x0[0]+0.1),
+        (x0[1]-0.1,x0[1]+0.1),
+        (x0[2]-10,x0[2]+10),
+        (x0[3]-10,x0[3]+10),
+        (x0[4]-10,x0[4]+10))
+def minimisation_func(x):
+    #difc = get_bank_difc(tube_height=0.88138, bank_width=0.20955,x_shift=0.228238615,y_shift=0.082562778,z_shift=2.572575854,alpha=0,beta=185.07,gamma=0,L1=20.0)
+    print x
+    difc = get_bank_difc(tube_height=0.88138, bank_width=0.20955,x_shift=x[0],y_shift=0.0965229,z_shift=x[1],alpha=x[2],beta=x[3],gamma=x[4],L1=20.0)
+    difc = np.ma.masked_array(difc, mask)
+    return chisquare(f_obs=new_difc, f_exp=difc)[0]
+
+results = minimize(minimisation_func, x0=x0, bounds=bnds, options={'disp': True})
