@@ -245,3 +245,25 @@ x0=[0.88138,
 
 
 #R=[  8.78564896e-01,   2.01575686e-01,   6.62672109e-01,   2.54101716e-02,   2.47607766e+00,   4.61583076e+00,   1.95923361e+02,   5.37938698e+00,   2.05353210e+01]
+
+
+
+# LaB6
+LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_LaB6_19286_19287_sum4.cal', WorkspaceName='LaB6')
+MaskBTP(Workspace='LaB6_mask',Pixel="1-16,241-256")
+mask = mtd['LaB6_mask'].extractY().flatten()[firstIndex:lastIndex]
+new_difc = mtd['LaB6_cal'].column('difc')[firstIndex:lastIndex]
+new_difc = np.ma.masked_array(new_difc, mask)
+
+#1 Results
+x=[  8.84242215e-01,   2.05442471e-01,   8.82877843e-01,  2.08684700e-02,   2.41373158e+00,   1.79955909e+00,  2.01169730e+02,   4.16977317e+00,   2.04145571e+01]
+#2 Results
+x=[  8.94730261e-01,   2.06846179e-01,   6.72251116e-01,  6.68520958e-02,   2.47963933e+00,   2.20265792e+00,  1.95571177e+02,   2.20127399e+00,   2.02191801e+01]
+
+
+plt.plot(get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=x[3],z_shift=x[4],alpha=x[5],beta=x[6],gamma=x[7],L1=x[8]),label='results')
+plt.plot(new_difc,label='cal')
+plt.plot(corelli_difc,label='org')
+plt.legend()
+plt.show()
+
