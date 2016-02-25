@@ -1,4 +1,5 @@
 from mantid.simpleapi import *
+import numpy as np
 
 LoadEventNexus(Filename='/SNS/CORELLI/IPTS-15796/nexus/CORELLI_19284.nxs.h5', OutputWorkspace='rawSi')
 LoadInstrument(Workspace="rawSi",Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",RewriteSpectraMap=False)
@@ -48,7 +49,7 @@ fitwinws.addRow(row)
 SumNeighbours(InputWorkspace="siliconD", OutputWorkspace="siliconD", SumX=1, SumY=4)
 GetDetOffsetsMultiPeaks(
         InputWorkspace = 'siliconD',
-        DReference = FinalDReference, 
+        DReference = FinalDReference,
         FitwindowTableWorkspace='fitwinws',
         PeakFunction = "Gaussian",
         BackgroundType = "Linear",
@@ -58,5 +59,12 @@ GetDetOffsetsMultiPeaks(
 
 # Save calibration
 SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_19284_19285_sum4.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
+MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_19284_19285_sum4_mask_lt_3.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
