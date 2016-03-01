@@ -19,10 +19,10 @@ AlignComponents(CalibrationTable="D_cal",MaskWorkspace="D_mask",InstrumentFilena
 print mtd['alignedWorkspace'].getInstrument().getSample().getPos() # [-0.00545487,-0.00859597,0.00441433]
 
 AlignComponents(CalibrationTable="Si_cal",MaskWorkspace="Si_mask",InstrumentFilename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",FitSourcePosition=True)
-print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [-0.020983,0.0420465,-20.0249]
+print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [-0.020983,0.0420465,-20.0249] / -20.0135
 AlignComponents(CalibrationTable="LaB6_cal",MaskWorkspace="LaB6_mask",InstrumentFilename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",FitSourcePosition=True)
-print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.00766962,0.0569411,-20.0237]
+print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.00766962,0.0569411,-20.0237] / -20.0297
 AlignComponents(CalibrationTable="C60_cal",MaskWorkspace="C60_mask",InstrumentFilename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",FitSourcePosition=True)
-print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.00767057,0.0537578,-20.0587]
+print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.00767057,0.0537578,-20.0587] / -20.0659
 AlignComponents(CalibrationTable="D_cal",MaskWorkspace="D_mask",InstrumentFilename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",FitSourcePosition=True)
-print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.068594,0.0570005,-19.9943]
+print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.068594,0.0570005,-19.9943] / -20.0366
