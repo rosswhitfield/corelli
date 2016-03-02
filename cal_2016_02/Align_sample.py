@@ -26,3 +26,40 @@ AlignComponents(CalibrationTable="C60_cal",MaskWorkspace="C60_mask",InstrumentFi
 print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.00767057,0.0537578,-20.0587] / -20.0659
 AlignComponents(CalibrationTable="D_cal",MaskWorkspace="D_mask",InstrumentFilename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",FitSourcePosition=True,Zposition=True)
 print mtd['alignedWorkspace'].getInstrument().getSource().getPos() # [0.068594,0.0570005,-19.9943] / -20.0366
+
+
+# Correct source position first Z=-20.05
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.05,RelativePosition=False)
+AlignComponents(CalibrationTable="Si_cal",MaskWorkspace="Si_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [0.00112348,-0.00538002,-0.00471899]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.05,RelativePosition=False)
+AlignComponents(CalibrationTable="LaB6_cal",MaskWorkspace="LaB6_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.0013651,-0.00702317,-0.00284807]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.05,RelativePosition=False)
+AlignComponents(CalibrationTable="C60_cal",MaskWorkspace="C60_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.00100911,-0.00649803,0.00110101]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.05,RelativePosition=False)
+AlignComponents(CalibrationTable="D_cal",MaskWorkspace="D_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.0104108,-0.0088928,-0.00723241]
+
+# Correct source position first Z=-20.03
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.03,RelativePosition=False)
+AlignComponents(CalibrationTable="Si_cal",MaskWorkspace="Si_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [0.00196276,-0.00536183,-0.000867792]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.03,RelativePosition=False)
+AlignComponents(CalibrationTable="LaB6_cal",MaskWorkspace="LaB6_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.000920997,-0.00705747,0.000713426]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.03,RelativePosition=False)
+AlignComponents(CalibrationTable="C60_cal",MaskWorkspace="C60_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.00101407,-0.00650926,0.00349279]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.03,RelativePosition=False)
+AlignComponents(CalibrationTable="D_cal",MaskWorkspace="D_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.00843304,-0.00877422,-0.00257591]
