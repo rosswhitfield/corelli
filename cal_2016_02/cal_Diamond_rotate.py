@@ -31,7 +31,7 @@ fitwinws.addRow(row)
 
 # Calculate offsets
 
-for run in range(20025,20028):
+for run in range(20482,20490):
         LoadEventNexus(Filename='/SNS/CORELLI/IPTS-15796/nexus/CORELLI_'+str(run)+'.nxs.h5', OutputWorkspace='rawDiamond')
         LoadInstrument(Workspace="rawDiamond",Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",RewriteSpectraMap=False)
         SetInstrumentParameter(Workspace="rawDiamond",ParameterName="t0_formula",Value="(23.5 * exp(-incidentEnergy/205.8))")
