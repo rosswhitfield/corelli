@@ -57,3 +57,38 @@ for run in range(20482,20490):
         SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Diamond_'+str(run)+'_sum4_mask_lt_3.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
+
+# Average
+run = 20482
+LoadEventNexus(Filename='/SNS/CORELLI/IPTS-15796/nexus/CORELLI_'+str(run)+'.nxs.h5', OutputWorkspace='rawDiamond')
+LoadInstrument(Workspace="rawDiamond",Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",RewriteSpectraMap=False)
+SetInstrumentParameter(Workspace="rawDiamond",ParameterName="t0_formula",Value="(23.5 * exp(-incidentEnergy/205.8))")
+ModeratorTzero(InputWorkspace="rawDiamond",OutputWorkspace="rawDiamond",EMode="Elastic")
+for run in range(20483,20490):
+        LoadEventNexus(Filename='/SNS/CORELLI/IPTS-15796/nexus/CORELLI_'+str(run)+'.nxs.h5', OutputWorkspace='rawDiamond2')
+        LoadInstrument(Workspace="rawDiamond2",Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",RewriteSpectraMap=False)
+        SetInstrumentParameter(Workspace="rawDiamond2",ParameterName="t0_formula",Value="(23.5 * exp(-incidentEnergy/205.8))")
+        ModeratorTzero(InputWorkspace="rawDiamond2",OutputWorkspace="rawDiamond2",EMode="Elastic")
+        Plus(LHSWorkspace="rawDiamond",RHSWorkspace="rawDiamond2",OutputWorkspace="rawDiamond",ClearRHSWorkspace=True)
+
+MaskBTP(Workspace='rawDiamond',Pixel="1-16,241-256")
+ConvertUnits(InputWorkspace='rawDiamond',OutputWorkspace='diamondD',Target='dSpacing')
+Rebin(InputWorkspace='diamondD',OutputWorkspace='diamondD',Params='0.5,-0.004,2.5')
+SumNeighbours(InputWorkspace="diamondD", OutputWorkspace="diamondD", SumX=1, SumY=4)
+GetDetOffsetsMultiPeaks(
+        InputWorkspace = 'diamondD',
+        DReference = FinalDReference,
+        FitwindowTableWorkspace='fitwinws',
+        PeakFunction = "Gaussian",
+        BackgroundType = "Linear",
+        HighBackground = True,
+        OutputWorkspace = 'offset',
+        MaskWorkspace='mask')
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Diamond_20482-9_sum4.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
+MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Diamond_20482-9_sum4_mask_lt_3.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')

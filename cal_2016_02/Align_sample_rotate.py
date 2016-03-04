@@ -189,3 +189,47 @@ x=[-0.000993467,-0.000863118,0.000750809,0.00292343,0.00445923,0.00442895,0.0027
 y=[0.00599745,0.00684611,0.00693584,0.00634512,0.00570071,0.00523587,0.00497561,0.00499505]
 plt.scatter(x,y,color='green')
 plt.show()
+
+x=[0.00184122,0.00184901,-0.00268209]
+y=[0.00576574,0.0060678,0.00143682]
+plt.scatter(x,y,color='black')
+plt.show()
+
+# Move souce first. Z=-20.04
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si0_cal",MaskWorkspace="Si0_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.0026684,-0.00694497,-0.000500656]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si45_cal",MaskWorkspace="Si45_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.00118079,-0.00677887,-0.0010309]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si90_cal",MaskWorkspace="Si90_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [0.000986816,-0.00692187,-0.00232608]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si125_cal",MaskWorkspace="Si125_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [0.00233288,-0.00698112,-0.00377158]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si180_cal",MaskWorkspace="Si180_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [0.00293039,-0.0069161,-0.00471556]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si225_cal",MaskWorkspace="Si225_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [0.00225814,-0.00682836,-0.00494606]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si270_cal",MaskWorkspace="Si270_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.00106886,-0.0069614,-0.00328831]
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='ws')
+MoveInstrumentComponent(Workspace='ws',ComponentName='moderator',Z=-20.04,RelativePosition=False)
+AlignComponents(CalibrationTable="Si315_cal",MaskWorkspace="Si315_mask",Workspace='ws',FitSamplePosition=True,Xposition=True,Yposition=True,Zposition=True)
+print mtd['ws'].getInstrument().getSample().getPos() # [-0.00406143,-0.00714001,-0.000893758]
+
+x=[-0.0026684,-0.00118079,0.000986816,0.00233288,0.00293039,0.00225814,-0.00106886,-0.00406143]
+y=[-0.000500656,-0.0010309,-0.00232608,-0.00377158,-0.00471556,-0.00494606,-0.00328831,-0.000893758]
+plt.scatter(x,y)
+plt.show()
