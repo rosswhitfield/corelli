@@ -17,3 +17,6 @@ for i in range(10):
                 str(mtd['C60A'].getInstrument().getComponentByName("bank"+str(b)+"/sixteenpack").getRotation().getEulerAngles("YXZ"))+'\n')
 
 f.close()
+
+ExportGeometry(InputWorkspace='C60A',Filename='/SNS/users/rwp/corelli/cal_2016_02/Align_L1_banks.xml',EulerConvention='YXZ',Components='bank55/sixteenpack,bank56/sixteenpack,bank57/sixteenpack,bank58/sixteenpack,bank59/sixteenpack,bank60/sixteenpack,bank61/sixteenpack')
+SaveNexus(InputWorkspace='C60A',Filename='/SNS/users/rwp/corelli/cal_2016_02/Align_L1_banks.nxs')
