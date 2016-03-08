@@ -1,11 +1,11 @@
 #!/usr/bin/env python2
 from mantid.simpleapi import *
 
-LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_19284_19285_sum4_mask_lt_3.cal', WorkspaceName='Si')
+LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_20492-9_sum4_mask_lt_3.cal', WorkspaceName='Si')
 MaskBTP(Workspace='Si_mask',Pixel="1-16,241-256")
 
 componentList1=""
-for i in range(1,91):
+for i in range(1,92):
     componentList1+="bank"+str(i)+"/sixteenpack,"
 
 componentList1=componentList1[:-1]

@@ -1,9 +1,9 @@
 #!/usr/bin/env python2
 from mantid.simpleapi import *
 
-LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_19674-8_sum4_mask_lt_3.cal', WorkspaceName='C60')
+LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3.cal', WorkspaceName='C60')
 MaskBTP(Workspace='C60_mask',Pixel="1-16,241-256")
-MaskBTP(Workspace='C60_mask',Bank="15,16,19,20,21,47,52,77,78,81,82,83")
+MaskBTP(Workspace='C60_mask',Bank="15,16,19,20,21,47,51,52,77,78,81,82,83")
 
 componentList1=""
 for i in range(1,92):

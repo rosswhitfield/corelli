@@ -67,6 +67,12 @@ mask = mtd['Si_mask'].extractY().flatten()[firstIndex:lastIndex]
 new_difc = mtd['Si_cal'].column('difc')[firstIndex:lastIndex]
 new_difc = np.ma.masked_array(new_difc, mask)
 
+LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3.cal', WorkspaceName='C60')
+MaskBTP(Workspace='C60_mask',Pixel="1-16,241-256")
+mask = mtd['C60_mask'].extractY().flatten()[firstIndex:lastIndex]
+new_difc = mtd['C60_cal'].column('difc')[firstIndex:lastIndex]
+new_difc = np.ma.masked_array(new_difc, mask)
+
 from scipy.optimize import minimize
 from scipy.stats import chisquare
 
@@ -108,8 +114,8 @@ firstIndex=172032
 lastIndex=176128
 
 corelli_difc = np.array(mtd['corelli'].extractY().flatten()[firstIndex:lastIndex])
-mask = mtd['Si_mask'].extractY().flatten()[firstIndex:lastIndex]
-new_difc = mtd['Si_cal'].column('difc')[firstIndex:lastIndex]
+mask = mtd['C60_mask'].extractY().flatten()[firstIndex:lastIndex]
+new_difc = mtd['C60_cal'].column('difc')[firstIndex:lastIndex]
 new_difc = np.ma.masked_array(new_difc, mask)
 
 
