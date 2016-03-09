@@ -1,6 +1,9 @@
 #!/usr/bin/env python2
 import numpy as np
 import math as m
+from mantid.simpleapi import *
+from scipy.optimize import minimize
+from scipy.stats import chisquare
 
 #tube_height= 0.88138
 #bank_width = 0.20955 # 0.0127*15+0.00127*15
@@ -65,12 +68,6 @@ LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', 
 MaskBTP(Workspace='Si_mask',Pixel="1-16,241-256")
 mask = mtd['Si_mask'].extractY().flatten()[firstIndex:lastIndex]
 new_difc = mtd['Si_cal'].column('difc')[firstIndex:lastIndex]
-new_difc = np.ma.masked_array(new_difc, mask)
-
-LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3.cal', WorkspaceName='C60')
-MaskBTP(Workspace='C60_mask',Pixel="1-16,241-256")
-mask = mtd['C60_mask'].extractY().flatten()[firstIndex:lastIndex]
-new_difc = mtd['C60_cal'].column('difc')[firstIndex:lastIndex]
 new_difc = np.ma.masked_array(new_difc, mask)
 
 from scipy.optimize import minimize
@@ -273,3 +270,82 @@ plt.plot(corelli_difc,label='org')
 plt.legend()
 plt.show()
 
+###############################################################################################################
+
+LoadCalFile(InstrumentFilename='/SNS/users/rwp/CORELLI_Definition_88.14cm.xml', CalFilename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3.cal', WorkspaceName='C60')
+MaskBTP(Workspace='C60_mask',Pixel="1-16,241-256")
+LoadEmptyInstrument(Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",OutputWorkspace='corelli')
+CalculateDIFC(InputWorkspace='corelli',OutputWorkspace='corelli')
+
+# bank55/B26                                                                                                                            
+# B26 2584 1.831 20.28 895.178412 82.562778 2422.580236 0 200.28 0                                                                      
+bank=56
+firstIndex=16*256*(bank-1)
+lastIndex=16*256*bank
+new_difc = mtd['C60_cal'].column('difc')[firstIndex:lastIndex]
+mask = mtd['C60_mask'].extractY().flatten()[firstIndex:lastIndex]
+new_difc = np.ma.masked_array(new_difc, mask)
+corelli_difc = np.array(mtd['corelli'].extractY().flatten()[firstIndex:lastIndex])
+
+startPos=mtd['corelli'].getInstrument().getComponentByName('bank'+str(bank)+'/sixteenpack').getPos()
+startRot=mtd['corelli'].getInstrument().getComponentByName('bank'+str(bank)+'/sixteenpack').getRotation().getEulerAngles("YXZ")
+
+# All
+x0=[0.88138,
+    0.20955,
+    startPos.getX(),
+    startPos.getY(),
+    startPos.getZ(),
+    startRot[1],
+    startRot[0],
+    startRot[2],
+    20.0]
+bnds = ((x0[0]-0.1,x0[0]+0.1),
+        (x0[1]-0.1,x0[1]+0.1),
+        (x0[2]-0.1,x0[2]+0.1),
+        (x0[3]-0.1,x0[3]+0.1),
+        (x0[4]-0.1,x0[4]+0.1),
+        (x0[5]-10,x0[5]+10),
+        (x0[6]-10,x0[6]+10),
+        (x0[7]-10,x0[7]+10),
+        (x0[8]-1,x0[8]+1))
+
+
+# Refine all                                                                                                                            
+def minimisation_func(x):
+    print x
+    difc = get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=x[3],z_shift=x[4],alpha=x[5],beta=x[6],gamma=x[7],L1=x[8])
+    difc = np.ma.masked_array(difc, mask)
+    return chisquare(f_obs=new_difc, f_exp=difc)[0]
+
+results = minimize(minimisation_func, x0=x0, options={'disp': True})
+
+print results
+
+# Y Rot only
+x0=[0.88138,
+    0.20955,
+    startPos.getX(),
+    startPos.getY(),
+    startPos.getZ(),
+    startRot[0],
+    20.0]
+bnds = ((x0[0]-0.1,x0[0]+0.1),
+        (x0[1]-0.1,x0[1]+0.1),
+        (x0[2]-0.1,x0[2]+0.1),
+        (x0[3]-0.1,x0[3]+0.1),
+        (x0[4]-0.1,x0[4]+0.1),
+        (x0[5]-10,x0[5]+10),
+        (x0[6]-1,x0[6]+1))
+
+
+# Refine all                                                                                                                            
+def minimisation_func(x):
+    print x
+    difc = get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=x[3],z_shift=x[4],alpha=0,beta=x[5],gamma=0,L1=x[6])
+    difc = np.ma.masked_array(difc, mask)
+    return chisquare(f_obs=new_difc, f_exp=difc)[0]
+
+results = minimize(minimisation_func, x0=x0, options={'disp': True})
+
+print results
