@@ -280,6 +280,7 @@ CalculateDIFC(InputWorkspace='corelli',OutputWorkspace='corelli')
 # bank55/B26                                                                                                                            
 # B26 2584 1.831 20.28 895.178412 82.562778 2422.580236 0 200.28 0                                                                      
 bank=56
+
 firstIndex=16*256*(bank-1)
 lastIndex=16*256*bank
 new_difc = mtd['C60_cal'].column('difc')[firstIndex:lastIndex]
@@ -300,18 +301,7 @@ x0=[0.88138,
     startRot[0],
     startRot[2],
     20.0]
-bnds = ((x0[0]-0.1,x0[0]+0.1),
-        (x0[1]-0.1,x0[1]+0.1),
-        (x0[2]-0.1,x0[2]+0.1),
-        (x0[3]-0.1,x0[3]+0.1),
-        (x0[4]-0.1,x0[4]+0.1),
-        (x0[5]-10,x0[5]+10),
-        (x0[6]-10,x0[6]+10),
-        (x0[7]-10,x0[7]+10),
-        (x0[8]-1,x0[8]+1))
 
-
-# Refine all                                                                                                                            
 def minimisation_func(x):
     print x
     difc = get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=x[3],z_shift=x[4],alpha=x[5],beta=x[6],gamma=x[7],L1=x[8])
@@ -322,6 +312,10 @@ results = minimize(minimisation_func, x0=x0, options={'disp': True})
 
 print results
 
+x: array([  7.32979450e-01,   1.69606832e-01,   5.44829243e-01,
+         8.05189793e-02,   2.01582493e+00,   3.22557764e+00,
+        -1.63854037e+02,  -5.40646218e-01,   2.05462416e+01])
+
 # Y Rot only
 x0=[0.88138,
     0.20955,
@@ -330,16 +324,7 @@ x0=[0.88138,
     startPos.getZ(),
     startRot[0],
     20.0]
-bnds = ((x0[0]-0.1,x0[0]+0.1),
-        (x0[1]-0.1,x0[1]+0.1),
-        (x0[2]-0.1,x0[2]+0.1),
-        (x0[3]-0.1,x0[3]+0.1),
-        (x0[4]-0.1,x0[4]+0.1),
-        (x0[5]-10,x0[5]+10),
-        (x0[6]-1,x0[6]+1))
 
-
-# Refine all                                                                                                                            
 def minimisation_func(x):
     print x
     difc = get_bank_difc(tube_height=x[0], bank_width=x[1],x_shift=x[2],y_shift=x[3],z_shift=x[4],alpha=0,beta=x[5],gamma=0,L1=x[6])
@@ -349,3 +334,10 @@ def minimisation_func(x):
 results = minimize(minimisation_func, x0=x0, options={'disp': True})
 
 print results
+
+x: array([  7.89503264e-01,   1.83167043e-01,   5.86789809e-01,
+         8.06913120e-02,   2.18216260e+00,  -1.59420511e+02,
+         2.05119698e+01])
+
+bank=55
+
