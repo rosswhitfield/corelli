@@ -127,3 +127,24 @@ SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_20492-9_sum4_mas
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
 
+# MaxChiSq
+MaxChiSq=0.5
+GetDetOffsetsMultiPeaks(
+        InputWorkspace = 'siliconD',
+        DReference = FinalDReference,
+        FitwindowTableWorkspace='fitwinws',
+        PeakFunction = "Gaussian",
+        BackgroundType = "Linear",
+        HighBackground = True,
+        OutputWorkspace = 'offset',
+        MaskWorkspace='mask',
+        MaxChiSq=MaxChiSq)
+# Save calibration
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_20492-9_sum4_MaxChiSq_'+str(MaxChiSq)+'.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
+MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_20492-9_sum4_mask_lt_3_MaxChiSq_'+str(MaxChiSq)+'.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')

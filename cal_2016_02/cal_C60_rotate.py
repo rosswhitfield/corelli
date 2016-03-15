@@ -125,3 +125,59 @@ MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_L1_20.03.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
+
+
+# Save every spectra
+c60d=mtd['C60D']
+x=c60d.readX(0)
+for s in range(c60d.getNumberHistograms()):
+        if c60d.getSpectrum(s).getNumberEvents() == 0:
+                continue
+        y=c60d.readY(s)
+        np.savetxt('c60d/c60d_'+str(s)+'.txt',np.transpose([x[:-1],y]))
+
+#for s in range(c60d.getNumberHistograms()):
+for s in range(55000):
+        print s,c60d.getSpectrum(s).getDetectorIDs()
+
+# BackgroundType = Quadratic
+GetDetOffsetsMultiPeaks(
+        InputWorkspace = 'C60D',
+        DReference = FinalDReference,
+        FitwindowTableWorkspace='fitwinws',
+        PeakFunction = "Gaussian",
+        BackgroundType = "Quadratic",
+        HighBackground = True,
+        OutputWorkspace = 'offset',
+        MaskWorkspace='mask')
+# Save calibration
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_Q.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
+MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_Q.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+
+# MaxChiSq
+MaxChiSq=5
+GetDetOffsetsMultiPeaks(
+        InputWorkspace = 'C60D',
+        DReference = FinalDReference,
+        FitwindowTableWorkspace='fitwinws',
+        PeakFunction = "Gaussian",
+        BackgroundType = "Linear",
+        HighBackground = True,
+        OutputWorkspace = 'offset',
+        MaskWorkspace='mask',
+        MaxChiSq=MaxChiSq)
+# Save calibration
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_MaxChiSq_'+str(MaxChiSq)+'.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
+MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_MaxChiSq_'+str(MaxChiSq)+'.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
