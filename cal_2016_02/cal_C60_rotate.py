@@ -219,3 +219,18 @@ MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_L1_20.03_MaxChiSq_5.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
+
+# Find peaks test
+index=23901
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index)
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference)
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,PeakFunction='Lorentzian',RawPeakParameters=True)
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,PeakFunction='Voigt',RawPeakParameters=True)
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,PeakFunction='PseudoVoigt',RawPeakParameters=True)
+FitWindows=[2.65, 2.81, 2.82, 3.0, 4.0, 4.9, 4.85, 6.0, 7.5, 10.0]
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows)
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,MinimumPeakHeight=20)
+FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,MinimumPeakHeight=20,RawPeakParameters=True)
+
+for r in range(mtd['peaks'].rowCount()):
+        print mtd['peaks'].row(r)
