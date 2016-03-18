@@ -140,70 +140,6 @@ for s in range(c60d.getNumberHistograms()):
 for s in range(55000):
         print s,c60d.getSpectrum(s).getDetectorIDs()
 
-# BackgroundType = Quadratic
-GetDetOffsetsMultiPeaks(
-        InputWorkspace = 'C60D',
-        DReference = FinalDReference,
-        FitwindowTableWorkspace='fitwinws',
-        PeakFunction = "Gaussian",
-        BackgroundType = "Quadratic",
-        HighBackground = True,
-        OutputWorkspace = 'offset',
-        MaskWorkspace='mask')
-# Save calibration
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_Q.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
-MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_Q.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-
-# MaxChiSq
-MaxChiSq=5
-GetDetOffsetsMultiPeaks(
-        InputWorkspace = 'C60D',
-        DReference = FinalDReference,
-        FitwindowTableWorkspace='fitwinws',
-        PeakFunction = "Gaussian",
-        BackgroundType = "Linear",
-        HighBackground = True,
-        OutputWorkspace = 'offset',
-        MaskWorkspace='mask',
-        MaxChiSq=MaxChiSq)
-# Save calibration
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_MaxChiSq_'+str(MaxChiSq)+'.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
-MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_MaxChiSq_'+str(MaxChiSq)+'.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-
-# MinimumPeakHeight
-MinimumPeakHeight=500
-GetDetOffsetsMultiPeaks(
-        InputWorkspace = 'C60D',
-        DReference = FinalDReference,
-        FitwindowTableWorkspace='fitwinws',
-        PeakFunction = "Gaussian",
-        BackgroundType = "Linear",
-        HighBackground = True,
-        OutputWorkspace = 'offset',
-        MaskWorkspace='mask',
-        MinimumPeakHeight=MinimumPeakHeight)
-# Save calibration
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_MinimumPeakHeight_'+str(MinimumPeakHeight)+'.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
-MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_MinimumPeakHeight_'+str(MinimumPeakHeight)+'.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-
 # L1 = 20.03 MaxChiSq=5
 LoadEventNexus(Filename='/SNS/CORELLI/IPTS-15796/nexus/CORELLI_20501.nxs.h5', OutputWorkspace='rawC60')
 LoadInstrument(Workspace="rawC60",Filename="/SNS/users/rwp/CORELLI_Definition_88.14cm.xml",RewriteSpectraMap=False)
@@ -239,38 +175,5 @@ SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_L1
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
 MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_L1_20.03_MaxChiSq_5.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-
-# Find peaks test
-index=23901
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,PeakFunction='Lorentzian',RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,PeakFunction='Voigt',RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,PeakFunction='PseudoVoigt',RawPeakParameters=True)
-FitWindows=[2.65, 2.82, 2.82, 3.0, 4.0, 4.9, 4.85, 6.0, 7.5, 10.0]
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True,MinGuessedPeakWidth=4,MaxGuessedPeakWidth=4)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,PeakFunction='Voigt',RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,MinimumPeakHeight=20,RawPeakParameters=True)
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True,CostFunction='Rwp')
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True,Minimizer="Levenberg-Marquardt")
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True,Minimizer="Simplex")
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True,Minimizer="Damping")
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,RawPeakParameters=True,Minimizer="BFGS")
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,MinimumPeakHeight=20,RawPeakParameters=True,Minimizer="BFGS")
-FindPeaks(InputWorkspace='C60D',PeaksList='peaks',WorkspaceIndex=index,PeakPositions=FinalDReference,FitWindows=FitWindows,MinimumPeakHeight=20,RawPeakParameters=True,Minimizer="BFGS",PeakFunction='Voigt')
-
-for r in range(mtd['peaks'].rowCount()):
-        print mtd['peaks'].row(r)
-
-# BFGS
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_BFGS.cal',
-            OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
-maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
-MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_BFGS.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
