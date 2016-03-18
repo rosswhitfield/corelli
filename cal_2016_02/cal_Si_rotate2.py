@@ -111,7 +111,7 @@ SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_Si_20492-9_sum4_mas
             MaskWorkspace='mask')
 
 # Minimizer
-minimizer="BFGS"
+minimizer="SteepestDescent"
 GetDetOffsetsMultiPeaks(
         InputWorkspace = 'siliconD',
         DReference = FinalDReference,

@@ -131,7 +131,7 @@ for r in range(mtd['peaks'].rowCount()):
         print mtd['peaks'].row(r)
 
 # Minimizer
-minimizer="Levenberg-MarquardtMD"
+minimizer="Conjugate gradient (Fletcher-Reeves imp.)"
 GetDetOffsetsMultiPeaks(
         InputWorkspace = 'C60D',
         DReference = FinalDReference,
