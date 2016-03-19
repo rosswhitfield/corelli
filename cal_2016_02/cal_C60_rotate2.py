@@ -131,7 +131,7 @@ for r in range(mtd['peaks'].rowCount()):
         print mtd['peaks'].row(r)
 
 # Minimizer
-minimizer="Conjugate gradient (Fletcher-Reeves imp.)"
+minimizer="BFGS"
 GetDetOffsetsMultiPeaks(
         InputWorkspace = 'C60D',
         DReference = FinalDReference,
@@ -170,3 +170,26 @@ MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_rwp.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
+
+# Minimizer + Peak Function
+minimizer="BFGS"
+pf = "Voigt"
+GetDetOffsetsMultiPeaks(
+        InputWorkspace = 'C60D',
+        DReference = FinalDReference,
+        FitwindowTableWorkspace='fitwinws',
+        PeakFunction = pf,
+        BackgroundType = "Linear",
+        HighBackground = True,
+        OutputWorkspace = 'offset',
+        MaskWorkspace='mask',
+        Minimizer=minimizer)
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_'+minimizer+'_'+pf+'.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
+MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_02/cal_C60_20501-8_sum4_mask_lt_3_'+minimizer+'_'+pf+'.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='mask')
+
