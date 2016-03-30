@@ -10,7 +10,7 @@ def read_write_mantid_MDHisto(inFile,outFile):
     path = 'MDHistoWorkspace/data/'
 
     # Copy signal
-    data_out = outF.create_group("MDHistoWorkspace/data")
+    data_out = outF.create_group(path)
     signal = inF[path+'signal']
     data_out.copy(signal,'signal')
 

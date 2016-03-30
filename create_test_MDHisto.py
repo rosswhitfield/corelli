@@ -1,3 +1,4 @@
+from mantid.simpleapi import *
 filename = "/SNS/CORELLI/IPTS-12008/nexus/CORELLI_8196.nxs.h5"
 
 LoadEventNexus(OutputWorkspace='ZrO2',Filename=filename)
