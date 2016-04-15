@@ -1,26 +1,9 @@
 #!/usr/bin/env python2
 from mantid.simpleapi import *
-from matplotlib import pyplot as plt
 import numpy as np
 
-LoadMD(Filename = "/SNS/CORELLI/IPTS-15796/shared/20160401-FeS/normData_LT_No2_6K_Large_V2.nxs", OutputWorkspace = 'md')
-
-md=mtd['md']
-
-s = md.getSignalArray()
-
-# x.getX(397) = 1.9873332977294922
-# x.getX(398) = 2.002666473388672
-# y.getX(300) = -4.76837158203125e-07
-# z.getX(7) = -0.10000002384185791
-# z.getX(7) = 0.10000002384185791
-
-s[398,300,7]
-
-
-plt.imshow(s[:,:,7],clim=[0,0.002])
-plt.ion()
-plt.show()
+md = LoadMD(Filename = "/SNS/CORELLI/IPTS-15796/shared/20160401-FeS/normData_LT_No2_6K_Large_V2.nxs")
+s = md.getSignalArray().copy()
 
 #create q array
 x=md.getXDimension()
@@ -33,9 +16,9 @@ z=md.getZDimension()
 z_step = (z.getMaximum() - z.getMinimum())/(z.getNBins())
 qz = np.arange(z.getMinimum()+z_step/2, z.getMaximum()+z_step/2, z_step)
 
-xd=3.7
+xd=3.71
 yd=5.08
-zd=3.7
+zd=3.71
 
 qx *= 2*np.pi/xd
 qy *= 2*np.pi/yd
@@ -52,37 +35,31 @@ def get_q(h,k,l):
                    + (l*2*np.pi/yd)**2
                    + (k*2*np.pi/zd)**2)
 
-a = np.logical_or(q < get_q(1.95,0,0), q > get_q(2.08,0,0))
-new=np.ma.array(s,mask=a)
-plt.imshow(new[:,:,7],clim=[0,0.002])
-plt.show()
+def get_peak(h,k,l,dq,da):
+    """
+    (h k l) of target peak
+    dq is ±% in q
+    da is range in degrees from peak
+    """
+    s1 = 1-dq
+    s2 = 1+dq
+    q_mask = np.logical_or(q < get_q(h*s1, k*s1, l*s1), q > get_q(h*s2, k*s2, l*s2))
+    length=np.sqrt(h**2+k**2+l**2)
+    angle = np.arccos((qx*h + qy*l + qz*k)/(q*length))
+    angle_mask = np.logical_or(q_mask, angle > da*np.pi/180)
+    new=np.ma.array(s,mask=angle_mask)
+    return new
 
-
-# get angle array
-
-h=2
-k=0
-l=0
-
-a = np.logical_or(q < get_q(1.95,0,0), q > get_q(2.08,0,0))
-length=np.sqrt(h**2+k**2+l**2)
-angle = np.arccos((qx*h + qy*l + qz*k)/(q*length))
-b = np.logical_or(a, angle > 20*np.pi/180)
-new=np.ma.array(s,mask=b)
-plt.clf()
-plt.imshow(new[:,:,7],clim=[0,0.002])
-
-
+# 200
+peak_200 = get_peak(2,0,0,0.035,20)
+print peak_200.count(),peak_200.min(),peak_200.max(),peak_200.sum()
+print peak_200[:,:,7].count(),peak_200[:,:,7].min(),peak_200[:,:,7].max(),peak_200[:,:,7].sum()
+md.setSignalArray(np.ma.filled(peak_200,np.nan)) # Apply to workspace
 
 # 00-2
+peak_00n2 = get_peak(0,0,-2,0.035,15)
+print peak_00n2.count(),peak_00n2.min(),peak_00n2.max(),peak_00n2.sum()
+md.setSignalArray(np.ma.filled(peak_00n2,np.nan)) # Apply to workspace
 
-h=0
-k=0
-l=-2
-a = np.logical_or(q < get_q(0,0,-1.96), q > get_q(0,0,-2.08))
-length=np.sqrt(h**2+k**2+l**2)
-angle = np.arccos((qx*h + qy*l + qz*k)/(q*length))
-b = np.logical_or(a, angle > 20*np.pi/180)
-new=np.ma.array(s,mask=b)
-(new-new.min()).sum()
-new.count()
+# back to origonal
+md.setSignalArray(s)
