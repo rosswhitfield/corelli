@@ -5,35 +5,27 @@ import numpy as np
 md = LoadMD(Filename = "/SNS/CORELLI/IPTS-15796/shared/20160401-FeS/normData_LT_No2_6K_Large_V2.nxs")
 s = md.getSignalArray().copy()
 
+lattice = md.getExperimentInfo(0).sample().getOrientedLattice()
+
 #create q array
 x=md.getXDimension()
 x_step = (x.getMaximum() - x.getMinimum())/(x.getNBins())
-qx = np.arange(x.getMinimum()+x_step/2, x.getMaximum()+x_step/2, x_step)
+qx = np.arange(x.getMinimum()+x_step/2, x.getMaximum()+x_step/2, x_step).reshape([x.getNBins(), 1, 1])
 y=md.getYDimension()
 y_step = (y.getMaximum() - y.getMinimum())/(y.getNBins())
-qy = np.arange(y.getMinimum()+y_step/2, y.getMaximum()+y_step/2, y_step)
+qy = np.arange(y.getMinimum()+y_step/2, y.getMaximum()+y_step/2, y_step).reshape([1, y.getNBins(), 1])
 z=md.getZDimension()
 z_step = (z.getMaximum() - z.getMinimum())/(z.getNBins())
-qz = np.arange(z.getMinimum()+z_step/2, z.getMaximum()+z_step/2, z_step)
+qz = np.arange(z.getMinimum()+z_step/2, z.getMaximum()+z_step/2, z_step).reshape([1, 1, z.getNBins()])
 
-xd=3.71
-yd=5.08
-zd=3.71
-
-qx *= 2*np.pi/xd
-qy *= 2*np.pi/yd
-qz *= 2*np.pi/zd
-
-qx.shape = [x.getNBins(), 1, 1]
-qy.shape = [1, y.getNBins(), 1]
-qz.shape = [1, 1, z.getNBins()]
+qx *= lattice.astar()*2*np.pi
+qy *= lattice.cstar()*2*np.pi
+qz *= lattice.bstar()*2*np.pi
 
 q = np.sqrt(qx**2 + qy**2 + qz**2)
 
 def get_q(h,k,l):
-    return np.sqrt((h*2*np.pi/xd)**2
-                   + (l*2*np.pi/yd)**2
-                   + (k*2*np.pi/zd)**2)
+    return lattice.dstar(h,k,l)*2*np.pi
 
 def get_peak(h,k,l,dq,da):
     """
@@ -48,18 +40,53 @@ def get_peak(h,k,l,dq,da):
     angle = np.arccos((qx*h + qy*l + qz*k)/(q*length))
     angle_mask = np.logical_or(q_mask, angle > da*np.pi/180)
     new=np.ma.array(s,mask=angle_mask)
-    return new
+    return np.ma.filled(new,np.nan)
+
+
+
 
 # 200
-peak_200 = get_peak(2,0,0,0.035,20)
-print peak_200.count(),peak_200.min(),peak_200.max(),peak_200.sum()
-print peak_200[:,:,7].count(),peak_200[:,:,7].min(),peak_200[:,:,7].max(),peak_200[:,:,7].sum()
-md.setSignalArray(np.ma.filled(peak_200,np.nan)) # Apply to workspace
+peak_200 = get_peak(2,0,0,0.05,25)
+print np.nanmin(peak_200),np.nanmax(peak_200),np.nansum(peak_200)
+print np.nanmin(peak_200[:,:,7]),np.nanmax(peak_200[:,:,7]),np.nansum(peak_200[:,:,7])
+md.setSignalArray(peak_200) # Apply to workspace
 
 # 00-2
-peak_00n2 = get_peak(0,0,-2,0.035,15)
-print peak_00n2.count(),peak_00n2.min(),peak_00n2.max(),peak_00n2.sum()
-md.setSignalArray(np.ma.filled(peak_00n2,np.nan)) # Apply to workspace
+peak_00n2 = get_peak(0,0,-2,0.05,20)
+print np.nanmin(peak_00n2),np.nanmax(peak_00n2),np.nansum(peak_00n2)
+md.setSignalArray(peak_00n2) # Apply to workspace
+
+# 00-1
+peak_00n1 = get_peak(0,0,-1,0.15,25)
+print np.nanmin(peak_00n1),np.nanmax(peak_00n1),np.nansum(peak_00n1)
+md.setSignalArray(peak_00n1) # Apply to workspace
+
+# 00-3
+peak_00n3 = get_peak(0,0,-3,0.05,20)
+print np.nanmin(peak_00n3),np.nanmax(peak_00n3),np.nansum(peak_00n3)
+md.setSignalArray(peak_00n3) # Apply to workspace
+
+# 201
+peak_201 = get_peak(2,0,1,0.03,20)
+print np.nanmin(peak_201),np.nanmax(peak_201),np.nansum(peak_201)
+md.setSignalArray(peak_201) # Apply to workspace
+
+# 20n1
+peak_20n1 = get_peak(2,0,-1,0.03,20)
+print np.nanmin(peak_20n1),np.nanmax(peak_20n1),np.nansum(peak_20n1)
+md.setSignalArray(peak_20n1) # Apply to workspace
 
 # back to origonal
 md.setSignalArray(s)
+
+def get_bg(array, percent=20):
+    return np.nanpercentile(array,percent)
+
+p200 = np.nansum(peak_200-get_bg(peak_200))
+p00n2 = np.nansum(peak_00n2-get_bg(peak_00n2))
+p00n1 = np.nansum(peak_00n1-get_bg(peak_00n1))
+p00n3 = np.nansum(peak_00n3-get_bg(peak_00n3))
+p201 = np.nansum(peak_201-get_bg(peak_201))
+p20n1 = np.nansum(peak_20n1-get_bg(peak_20n1))
+
+print p00n1, p200, p00n2, p00n3, p201, p20n1
