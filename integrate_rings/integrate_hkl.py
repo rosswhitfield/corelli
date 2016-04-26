@@ -40,53 +40,53 @@ def get_peak(h,k,l,dq,da):
     angle = np.arccos((qx*h + qy*l + qz*k)/(q*length))
     angle_mask = np.logical_or(q_mask, angle > da*np.pi/180)
     new=np.ma.array(s,mask=angle_mask)
-    return np.ma.filled(new,np.nan)
+    return new
 
 
 
 
 # 200
 peak_200 = get_peak(2,0,0,0.05,25)
-print np.nanmin(peak_200),np.nanmax(peak_200),np.nansum(peak_200)
-print np.nanmin(peak_200[:,:,7]),np.nanmax(peak_200[:,:,7]),np.nansum(peak_200[:,:,7])
-md.setSignalArray(peak_200) # Apply to workspace
+print np.min(peak_200),np.max(peak_200),np.sum(peak_200)
+print np.min(peak_200[:,:,7]),np.max(peak_200[:,:,7]),np.sum(peak_200[:,:,7])
+md.setSignalArray(np.ma.filled(peak_200,np.nan)) # Apply to workspace
 
 # 00-2
 peak_00n2 = get_peak(0,0,-2,0.05,20)
-print np.nanmin(peak_00n2),np.nanmax(peak_00n2),np.nansum(peak_00n2)
-md.setSignalArray(peak_00n2) # Apply to workspace
+print np.min(peak_00n2),np.max(peak_00n2),np.sum(peak_00n2)
+md.setSignalArray(np.ma.filled(peak_00n2)) # Apply to workspace
 
 # 00-1
 peak_00n1 = get_peak(0,0,-1,0.15,25)
-print np.nanmin(peak_00n1),np.nanmax(peak_00n1),np.nansum(peak_00n1)
-md.setSignalArray(peak_00n1) # Apply to workspace
+print np.min(peak_00n1),np.max(peak_00n1),np.sum(peak_00n1)
+md.setSignalArray(np.ma.filled(peak_00n1)) # Apply to workspace
 
 # 00-3
 peak_00n3 = get_peak(0,0,-3,0.05,20)
-print np.nanmin(peak_00n3),np.nanmax(peak_00n3),np.nansum(peak_00n3)
-md.setSignalArray(peak_00n3) # Apply to workspace
+print np.min(peak_00n3),np.max(peak_00n3),np.sum(peak_00n3)
+md.setSignalArray(np.ma.filled(peak_00n3)) # Apply to workspace
 
 # 201
 peak_201 = get_peak(2,0,1,0.03,20)
-print np.nanmin(peak_201),np.nanmax(peak_201),np.nansum(peak_201)
-md.setSignalArray(peak_201) # Apply to workspace
+print np.min(peak_201),np.max(peak_201),np.sum(peak_201)
+md.setSignalArray(np.ma.filled(peak_201)) # Apply to workspace
 
 # 20n1
 peak_20n1 = get_peak(2,0,-1,0.03,20)
-print np.nanmin(peak_20n1),np.nanmax(peak_20n1),np.nansum(peak_20n1)
-md.setSignalArray(peak_20n1) # Apply to workspace
+print np.min(peak_20n1),np.max(peak_20n1),np.sum(peak_20n1)
+md.setSignalArray(np.ma.filled(peak_20n1)) # Apply to workspace
 
 # back to origonal
 md.setSignalArray(s)
 
-def get_bg(array, percent=20):
-    return np.nanpercentile(array,percent)
+def get_bg(array, percent=10):
+    return np.nanpercentile(np.ma.filled(array,np.nan),percent)
 
-p200 = np.nansum(peak_200-get_bg(peak_200))
-p00n2 = np.nansum(peak_00n2-get_bg(peak_00n2))
-p00n1 = np.nansum(peak_00n1-get_bg(peak_00n1))
-p00n3 = np.nansum(peak_00n3-get_bg(peak_00n3))
-p201 = np.nansum(peak_201-get_bg(peak_201))
-p20n1 = np.nansum(peak_20n1-get_bg(peak_20n1))
+p200 = np.sum(peak_200-get_bg(peak_200))
+p00n2 = np.sum(peak_00n2-get_bg(peak_00n2))
+p00n1 = np.sum(peak_00n1-get_bg(peak_00n1))
+p00n3 = np.sum(peak_00n3-get_bg(peak_00n3))
+p201 = np.sum(peak_201-get_bg(peak_201))
+p20n1 = np.sum(peak_20n1-get_bg(peak_20n1))
 
 print p00n1, p200, p00n2, p00n3, p201, p20n1
