@@ -1,6 +1,7 @@
 #!/usr/bin/env python2
 from mantid.simpleapi import *
 import numpy as np
+from distutils.version import LooseVersion
 
 md = LoadMD(Filename = "/SNS/CORELLI/IPTS-15796/shared/20160401-FeS/normData_LT_No2_6K_Large_V2.nxs")
 s = md.getSignalArray().copy()
@@ -80,7 +81,20 @@ md.setSignalArray(np.ma.filled(peak_20n1)) # Apply to workspace
 md.setSignalArray(s)
 
 def get_bg(array, percent=10):
-    return np.nanpercentile(np.ma.filled(array,np.nan),percent)
+    if LooseVersion(np.__version__)<LooseVersion("1.9.0"):
+        from scipy.stats import scoreatpercentile
+        flat = array.flatten()
+        return scoreatpercentile(np.delete(flat, np.where(np.isnan(np.ma.filled(flat,np.nan)))),percent)
+    else:
+        return np.nanpercentile(np.ma.filled(array,np.nan),percent)
+
+get_bg(s)
+get_bg(peak_200)
+get_bg(peak_00n2)
+get_bg(peak_00n1)
+get_bg(peak_00n3)
+get_bg(peak_201)
+get_bg(peak_20n1)
 
 p200 = np.sum(peak_200-get_bg(peak_200))
 p00n2 = np.sum(peak_00n2-get_bg(peak_00n2))
