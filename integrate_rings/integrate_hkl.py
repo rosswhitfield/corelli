@@ -77,7 +77,7 @@ peak_20n1 = get_peak(2,0,-1,0.03,20)
 print np.min(peak_20n1),np.max(peak_20n1),np.sum(peak_20n1)
 md.setSignalArray(np.ma.filled(peak_20n1)) # Apply to workspace
 
-# back to origonal
+# back to original
 md.setSignalArray(s)
 
 def get_bg(array, percent=10):
@@ -88,13 +88,7 @@ def get_bg(array, percent=10):
     else:
         return np.nanpercentile(np.ma.filled(array,np.nan),percent)
 
-get_bg(s)
-get_bg(peak_200)
-get_bg(peak_00n2)
-get_bg(peak_00n1)
-get_bg(peak_00n3)
-get_bg(peak_201)
-get_bg(peak_20n1)
+
 
 p200 = np.sum(peak_200-get_bg(peak_200))
 p00n2 = np.sum(peak_00n2-get_bg(peak_00n2))
