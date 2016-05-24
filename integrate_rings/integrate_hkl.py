@@ -37,8 +37,11 @@ def get_peak(h,k,l,dq,da):
     s1 = 1-dq
     s2 = 1+dq
     q_mask = np.logical_or(q < get_q(h*s1, k*s1, l*s1), q > get_q(h*s2, k*s2, l*s2))
-    length=np.sqrt(h**2+k**2+l**2)
-    angle = np.arccos((qx*h + qy*l + qz*k)/(q*length))
+    q1 = h*lattice.astar()*2*np.pi
+    q2 = l*lattice.cstar()*2*np.pi
+    q3 = k*lattice.bstar()*2*np.pi
+    length=np.sqrt(q1**2+q2**2+q3**2)
+    angle = np.arccos((qx*q1 + qy*q2 + qz*q3)/(q*length))
     angle_mask = np.logical_or(q_mask, angle > da*np.pi/180)
     new=np.ma.array(s,mask=angle_mask)
     return new
@@ -47,7 +50,7 @@ def get_peak(h,k,l,dq,da):
 
 
 # 200
-peak_200 = get_peak(2,0,0,0.05,25)
+peak_200 = get_peak(2,0,0,0.03,20)
 print np.min(peak_200),np.max(peak_200),np.sum(peak_200)
 print np.min(peak_200[:,:,7]),np.max(peak_200[:,:,7]),np.sum(peak_200[:,:,7])
 md.setSignalArray(np.ma.filled(peak_200,np.nan)) # Apply to workspace
@@ -58,24 +61,34 @@ print np.min(peak_00n2),np.max(peak_00n2),np.sum(peak_00n2)
 md.setSignalArray(np.ma.filled(peak_00n2)) # Apply to workspace
 
 # 00-1
-peak_00n1 = get_peak(0,0,-1,0.15,25)
+peak_00n1 = get_peak(0,0,-1,0.10,20)
 print np.min(peak_00n1),np.max(peak_00n1),np.sum(peak_00n1)
 md.setSignalArray(np.ma.filled(peak_00n1)) # Apply to workspace
 
 # 00-3
-peak_00n3 = get_peak(0,0,-3,0.05,20)
+peak_00n3 = get_peak(0,0,-3,0.03,10)
 print np.min(peak_00n3),np.max(peak_00n3),np.sum(peak_00n3)
 md.setSignalArray(np.ma.filled(peak_00n3)) # Apply to workspace
 
 # 201
-peak_201 = get_peak(2,0,1,0.03,20)
+peak_201 = get_peak(2,0,1,0.03,15)
 print np.min(peak_201),np.max(peak_201),np.sum(peak_201)
 md.setSignalArray(np.ma.filled(peak_201)) # Apply to workspace
 
 # 20n1
-peak_20n1 = get_peak(2,0,-1,0.03,20)
+peak_20n1 = get_peak(2,0,-1,0.03,15)
 print np.min(peak_20n1),np.max(peak_20n1),np.sum(peak_20n1)
 md.setSignalArray(np.ma.filled(peak_20n1)) # Apply to workspace
+
+# -10-3
+peak_n10n3 = get_peak(-1,0,-3,0.03,10)
+print np.min(peak_n10n3),np.max(peak_n10n3),np.sum(peak_n10n3)
+md.setSignalArray(np.ma.filled(peak_n10n3)) # Apply to workspace
+
+# 10-3
+peak_10n3 = get_peak(1,0,-3,0.03,10)
+print np.min(peak_10n3),np.max(peak_10n3),np.sum(peak_10n3)
+md.setSignalArray(np.ma.filled(peak_10n3)) # Apply to workspace
 
 # back to original
 md.setSignalArray(s)
@@ -96,5 +109,7 @@ p00n1 = np.sum(peak_00n1-get_bg(peak_00n1))
 p00n3 = np.sum(peak_00n3-get_bg(peak_00n3))
 p201 = np.sum(peak_201-get_bg(peak_201))
 p20n1 = np.sum(peak_20n1-get_bg(peak_20n1))
+pn10n3 = np.sum(peak_n10n3-get_bg(peak_n10n3))
+p10n3 = np.sum(peak_10n3-get_bg(peak_10n3))
 
-print p00n1, p200, p00n2, p00n3, p201, p20n1
+print p00n1, p200, p00n2, p00n3, p201, p20n1, pn10n3, p10n3
