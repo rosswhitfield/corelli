@@ -38,7 +38,7 @@ for run in range(20492,20500):
         MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
         ConvertUnits(InputWorkspace='rawSi',OutputWorkspace='siliconD',Target='dSpacing')
         Rebin(InputWorkspace='siliconD',OutputWorkspace='siliconD',Params='0.5,-0.004,3.5')
-        SumNeighbours(InputWorkspace="siliconD", OutputWorkspace="siliconD", SumX=1, SumY=4)
+        SumNeighbours(InputWorkspace="siliconD", OutputWorkspace="siliconD", SumX=1, SumY=16)
         GetDetOffsetsMultiPeaks(
                 InputWorkspace = 'siliconD',
                 DReference = FinalDReference,
@@ -48,12 +48,12 @@ for run in range(20492,20500):
                 HighBackground = True,
                 OutputWorkspace = 'offset',
                 MaskWorkspace='mask')
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_'+str(run)+'_sum4.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_'+str(run)+'_sum16.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
         maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
         MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_'+str(run)+'_sum4_mask_lt_3.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_'+str(run)+'_sum16_mask_lt_3.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
 
@@ -72,7 +72,7 @@ for run in range(20493,20500):
 MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
 ConvertUnits(InputWorkspace='rawSi',OutputWorkspace='siliconD',Target='dSpacing')
 Rebin(InputWorkspace='siliconD',OutputWorkspace='siliconD',Params='0.5,-0.004,3.5')
-SumNeighbours(InputWorkspace="siliconD", OutputWorkspace="siliconD", SumX=1, SumY=4)
+SumNeighbours(InputWorkspace="siliconD", OutputWorkspace="siliconD", SumX=1, SumY=16)
 GetDetOffsetsMultiPeaks(
         InputWorkspace = 'siliconD',
         DReference = FinalDReference,
@@ -82,19 +82,19 @@ GetDetOffsetsMultiPeaks(
         HighBackground = True,
         OutputWorkspace = 'offset',
         MaskWorkspace='mask')
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum4.cal',
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum16.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
 MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum4_mask_lt_3.cal',
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum16_mask_lt_3.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
 
 # Set MaxChiSq. Default 100
 for maxchisq in [0.5, 1, 2, 3, 5, 10, 20, 30, 50]:
         GetDetOffsetsMultiPeaks(
-                InputWorkspace = 'siliconD',
+		InputWorkspace = 'siliconD',
                 DReference = FinalDReference,
                 FitwindowTableWorkspace='fitwinws',
                 PeakFunction = "Gaussian",
@@ -103,11 +103,11 @@ for maxchisq in [0.5, 1, 2, 3, 5, 10, 20, 30, 50]:
                 OutputWorkspace = 'offset',
                 MaskWorkspace='mask',
                 MaxChiSq=maxchisq)
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum4_MaxChiSq'+str(maxchisq)+'.cal',
+	SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum16_MaxChiSq'+str(maxchisq)+'.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
         maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
         MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum4_mask_lt_3_MaxChiSq'+str(maxchisq)+'.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_Si_20492-9_sum16_mask_lt_3_MaxChiSq'+str(maxchisq)+'.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')

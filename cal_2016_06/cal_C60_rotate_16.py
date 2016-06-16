@@ -34,7 +34,7 @@ for run in range(20501,20509):
         MaskBTP(Workspace='rawC60',Pixel="1-16,241-256")
         ConvertUnits(InputWorkspace='rawC60',OutputWorkspace='C60D',Target='dSpacing')
         Rebin(InputWorkspace='C60D',OutputWorkspace='C60D',Params='0.5,-0.004,10')
-        SumNeighbours(InputWorkspace="C60D", OutputWorkspace="C60D", SumX=1, SumY=4)
+        SumNeighbours(InputWorkspace="C60D", OutputWorkspace="C60D", SumX=1, SumY=16)
         GetDetOffsetsMultiPeaks(
                 InputWorkspace = 'C60D',
                 DReference = FinalDReference,
@@ -45,12 +45,12 @@ for run in range(20501,20509):
                 OutputWorkspace = 'offset',
                 MaskWorkspace='mask')
         # Save calibration
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_'+str(run)+'_sum4.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_'+str(run)+'_sum16.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
         maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
         MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_'+str(run)+'_sum4_mask_lt_3.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_'+str(run)+'_sum16_mask_lt_3.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
 
@@ -69,7 +69,7 @@ for run in range(20502,20509):
 MaskBTP(Workspace='rawC60',Pixel="1-16,241-256")
 ConvertUnits(InputWorkspace='rawC60',OutputWorkspace='C60D',Target='dSpacing')
 Rebin(InputWorkspace='C60D',OutputWorkspace='C60D',Params='0.5,-0.004,10')
-SumNeighbours(InputWorkspace="C60D", OutputWorkspace="C60D", SumX=1, SumY=4)
+SumNeighbours(InputWorkspace="C60D", OutputWorkspace="C60D", SumX=1, SumY=16)
 GetDetOffsetsMultiPeaks(
         InputWorkspace = 'C60D',
         DReference = FinalDReference,
@@ -80,15 +80,14 @@ GetDetOffsetsMultiPeaks(
         OutputWorkspace = 'offset',
         MaskWorkspace='mask')
 # Save calibration
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum4.cal',
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum16.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
 MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum4_mask_lt_3.cal',
+SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum16_mask_lt_3.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
-
 
 # Set MaxChiSq. Default 100
 for maxchisq in [1, 2, 3, 5, 10, 20, 30, 50]:
@@ -103,11 +102,12 @@ for maxchisq in [1, 2, 3, 5, 10, 20, 30, 50]:
                 MaskWorkspace='mask',
                 MaxChiSq=maxchisq)
         # Save calibration
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum4_MaxChiSq'+str(maxchisq)+'.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum16_MaxChiSq'+str(maxchisq)+'.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
         maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
         MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
-        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum4_mask_lt_3_MaxChiSq'+str(maxchisq)+'.cal',
+        SaveCalFile(Filename='/SNS/users/rwp/corelli/cal_2016_06/cal_C60_20501-8_sum16_mask_lt_3_MaxChiSq'+str(maxchisq)+'.cal',
                     OffsetsWorkspace="offset",
                     MaskWorkspace='mask')
+
