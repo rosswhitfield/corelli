@@ -37,18 +37,18 @@ for r in runs:
         SetGoniometer(dataR,Axis0="BL9:Mot:Sample:Axis1,0,1,0,1") 
         LoadIsawUB(InputWorkspace=dataR,Filename="/SNS/users/rwp/benzil/benzil_Hexagonal.mat")
         md=ConvertToMD(InputWorkspace=dataR,QDimensions='Q3D',dEAnalysisMode='Elastic', Q3DFrames='HKL',
-                       QConversionScales='HKL',LorentzCorrection='0',Uproj='1,1,0',Vproj='1,-1,0',Wproj='0,0,1',MinValues='-10.1,-10.1,-5.1',MaxValues='10.1,10.1,5.1')
+                       QConversionScales='HKL',LorentzCorrection='0',MinValues='-10.1,-10.1,-5.1',MaxValues='10.1,10.1,5.1')
         a1,b1=MDNormSCD(InputWorkspace='md',FluxWorkspace='flux',SolidAngleWorkspace='sa',
-                      AlignedDim0="[H,H,0],-10.1,10.1,401",
-                      AlignedDim1="[H,-H,0],-10.1,10.1,401",
+                      AlignedDim0="[H,0,0],-10.1,10.1,401",
+                      AlignedDim1="[0,K,0],-10.1,10.1,401",
                       AlignedDim2="[0,0,L],-5.1,5.1,101")
         ub=dataR.sample().getOrientedLattice().getUB()
         SetUB(dataR, UB=ub*-1)
         md=ConvertToMD(InputWorkspace=dataR,QDimensions='Q3D',dEAnalysisMode='Elastic', Q3DFrames='HKL',
-                       QConversionScales='HKL',LorentzCorrection='0',Uproj='1,1,0',Vproj='1,-1,0',Wproj='0,0,1',MinValues='-10.1,-10.1,-5.1',MaxValues='10.1,10.1,5.1')
+                       QConversionScales='HKL',LorentzCorrection='0',MinValues='-10.1,-10.1,-5.1',MaxValues='10.1,10.1,5.1')
         a2,b2=MDNormSCD(InputWorkspace='md',FluxWorkspace='flux',SolidAngleWorkspace='sa',
-                      AlignedDim0="[H,H,0],-10.1,10.1,401",
-                      AlignedDim1="[H,-H,0],-10.1,10.1,401",
+                      AlignedDim0="[H,0,0],-10.1,10.1,401",
+                      AlignedDim1="[0,K,0],-10.1,10.1,401",
                       AlignedDim2="[0,0,L],-5.1,5.1,101")
         if mtd.doesExist('dataMD'):
                 dataMD=dataMD+a1+a2
@@ -61,6 +61,6 @@ for r in runs:
                 normMD=CloneMDWorkspace(b1)
                 normMD+=b2
 normData_100K=dataMD/normMD
-SaveMD(Inputworkspace=dataMD,Filename='/SNS/users/rwp/benzil/benzil_100K_data_hex_2.nxs')
-SaveMD(Inputworkspace=normMD,Filename='/SNS/users/rwp/benzil/benzil_100K_norm_hex_2.nxs')
-SaveMD(Inputworkspace=normData_100K,Filename='/SNS/users/rwp/benzil/benzil_100K_normData_hex_2.nxs')
+SaveMD(Inputworkspace=dataMD,Filename='/SNS/users/rwp/benzil/benzil_100K_data_2.nxs')
+SaveMD(Inputworkspace=normMD,Filename='/SNS/users/rwp/benzil/benzil_100K_norm_2.nxs')
+SaveMD(Inputworkspace=normData_100K,Filename='/SNS/users/rwp/benzil/benzil_100K_normData_2.nxs')
