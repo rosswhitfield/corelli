@@ -42,7 +42,8 @@ print 'pc_bkg=:'+str(pc_bkg)
 runs = range(29533,29536)+range(29556,29589)+range(29589,29625)
 
 #runs = range(29533,29536)+range(29556,29589)
-runs = [29624]
+#runs = [29624]
+#runs = range(29533,29536)+range(29556,29589)
 if mtd.doesExist('normMD'):
     DeleteWorkspace('normMD')
 if mtd.doesExist('dataMD'):
