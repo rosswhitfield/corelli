@@ -2,14 +2,12 @@ from mantid.simpleapi import *
 from mantid.geometry import SymmetryOperationFactory
 import numpy as np
 
-
 # Get UBs
 LoadEmptyInstrument(Filename='/SNS/CORELLI/shared/Calibration/CORELLI_Definition_cal_20160310.xml', OutputWorkspace='ub')
 LoadIsawUB(InputWorkspace='ub', Filename="/SNS/users/rwp/benzil/benzil_Hexagonal.mat")
 ub=mtd['ub'].sample().getOrientedLattice().getUB()
 print "Starting UB :"
 print ub
-
 
 symOps = SymmetryOperationFactory.createSymOps("x,y,z; -y,x-y,z+1/3; -x+y,-x,z+2/3; y,x,-z; x-y,-y,-z+2/3; -x,-x+y,-z+1/3")
 ub_list=[]
@@ -35,8 +33,7 @@ MaskBTP(workspace='sa',Bank='69-72')
 
 
 #load in background
-#bkg=LoadEventNexus('/SNS/CORELLI/IPTS-15796/nexus/CORELLI_28124.nxs.h5')
-bkg=LoadNexus('/SNS/CORELLI/IPTS-15796/shared/autoreduce/CORELLI_28124_elastic.nxs')
+bkg=LoadEventNexus('/SNS/CORELLI/IPTS-15796/nexus/CORELLI_28124.nxs.h5')
 MaskDetectors(Workspace=bkg,MaskedWorkspace='sa')
 pc_bkg=sum(bkg.getRun()['proton_charge'].value)
 print 'pc_bkg=:'+str(pc_bkg)
@@ -50,18 +47,19 @@ runs = range(29715,29755)+range(29589,29625)+range(29533,29536)+range(29556,2958
 #mesh scan at 300K, 70 mins/angle
 #runs=range(29782,29818)
 
+
+runs = [29782]
+
+
 if mtd.doesExist('normMD'):
     DeleteWorkspace('normMD')
 if mtd.doesExist('dataMD'):
     DeleteWorkspace('dataMD')
 
 for r in runs:
-
+        filename='/SNS/CORELLI/IPTS-15526/nexus/CORELLI_'+str(r)+'.nxs.h5'
         print 'Loading run number:'+ str(r)
-        #filename='/SNS/CORELLI/IPTS-15526/nexus/CORELLI_'+str(r)+'.nxs.h5'
-        #dataR=LoadEventNexus(Filename=filename)
-        filename='/SNS/CORELLI/IPTS-15526/shared/autoreduce/CORELLI_'+str(r)+'_elastic.nxs'
-        dataR=LoadNexus(Filename=filename)        
+        dataR=LoadEventNexus(Filename=filename)
         LoadInstrument(Workspace= dataR, Filename='/SNS/CORELLI/shared/Calibration/CORELLI_Definition_cal_20160310.xml',RewriteSpectraMap=False)
         MaskDetectors(Workspace=dataR,MaskedWorkspace='sa')
         pc_data=sum(dataR.getRun()['proton_charge'].value)
@@ -89,8 +87,8 @@ for r in runs:
                 normMD=normMD+b1
             else:
                 normMD=CloneMDWorkspace(b1)
-normData_300K=dataMD/normMD
+normData=dataMD/normMD
 
-SaveMD(Inputworkspace='dataMD_all',Filename=outputdir+'benzil_100K_data_sym_CC.nxs')
-SaveMD(Inputworkspace='normMD_all',Filename=outputdir+'benzil_100K_norm_sym_CC.nxs')
-SaveMD(Inputworkspace='normdata_All',Filename=outputdir+'benzil_100K_normData_sym_CC.nxs')
+SaveMD(Inputworkspace='dataMD',Filename=outputdir+'benzil_100K_data_sym_All_noCC.nxs')
+SaveMD(Inputworkspace='normMD',Filename=outputdir+'benzil_100K_norm_sym_All_noCC.nxs')
+SaveMD(Inputworkspace='normData',Filename=outputdir+'benzil_100K_normData_sym_All_noCC.nxs')
