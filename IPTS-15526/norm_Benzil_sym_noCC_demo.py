@@ -91,4 +91,3 @@ for sym in range(6):
     SaveMD(Inputworkspace='dataMD'+str(sym),Filename='/SNS/users/rwp/benzil/benzil_300K_data_sym_part'+str(sym)+'_All_noCC.nxs')
     SaveMD(Inputworkspace='normMD'+str(sym),Filename='/SNS/users/rwp/benzil/benzil_300K_norm_sym_part'+str(sym)+'_All_noCC.nxs')
     SaveMD(Inputworkspace='normData'+str(sym),Filename='/SNS/users/rwp/benzil/benzil_300K_normData_sym_part'+str(sym)+'_All_noCC.nxs')
-
