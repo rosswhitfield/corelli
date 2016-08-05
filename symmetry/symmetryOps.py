@@ -12,18 +12,18 @@ symOps = sg.getSymmetryOperations()
 
 
 ub=ws.sample().getOrientedLattice().getUB()
-print "Starting UB :"
-print ub
+print("Starting UB :")
+print(ub)
 
 for sym in symOps:
     symTrans = np.array([sym.transformHKL([1,0,0]),
                          sym.transformHKL([0,1,0]),
                          sym.transformHKL([0,0,1])])
     symTrans=np.matrix(symTrans.T)
-    print "Symmetry transform for "+sym.getIdentifier()
-    print symTrans
-    print "New UB:"
+    print("Symmetry transform for "+sym.getIdentifier())
+    print(symTrans)
+    print("New UB:")
     newUB = ub*symTrans
-    print newUB
+    print(newUB)
 
-print "To use SetUB(ws, UB=newUB)"
+print("To use SetUB(ws, UB=newUB)")

@@ -7,7 +7,7 @@ import numpy as np
 ws=CreateSingleValuedWorkspace()
 LoadIsawUB(ws,"/SNS/users/rwp/benzil/benzil_Hexagonal.mat")
 
-sg=SpaceGroupFactory.createSpaceGroup("P 31 2 1")
+sg=SpaceGroupFactory.createSpaceGroup("P 1 2 1")
 symOps = sg.getSymmetryOperations()
 
 
