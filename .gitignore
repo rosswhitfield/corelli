@@ -6,3 +6,5 @@
 !*/
 # Whitelist *.py
 !*.py
+!*.ipynb
+.ipynb_checkpoints/
