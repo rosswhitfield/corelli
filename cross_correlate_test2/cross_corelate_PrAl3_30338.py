@@ -1,7 +1,6 @@
 from mantid.simpleapi import *
 import numpy as np
 #import matplotlib.pyplot as plt
-import math
 
 filename = 'CORELLI_30338'
 
@@ -28,8 +27,8 @@ chopper_per = 1e6/chopper_frq
 print 'Chopper Frequency =', chopper_frq, 'Hz, Period =', chopper_per, 'uS'
 
 bin_size=10. # 10ms bins
-y = int(math.ceil( chopper_per/bin_size ))
-x = int(math.ceil( 1e6/60/bin_size ))
+y = int(np.ceil( chopper_per/bin_size ))
+x = int(np.ceil( 1e6/60/bin_size ))
 out = np.zeros((y,x))
 total_counts=0
 

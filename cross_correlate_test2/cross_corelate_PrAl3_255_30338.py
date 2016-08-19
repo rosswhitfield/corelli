@@ -63,7 +63,7 @@ results = np.zeros((y,x))
 for pi in range(y):
     print pi
     for pj in range(y):
-        ij = ((pi-pj)/chopper_per*3600.)%360
+        ij = ((pi-pj)/chopper_per*360.*bin_size)%360
         if np.searchsorted(sequence_sum,ij)%2==1:
             fact = 1
         else:
