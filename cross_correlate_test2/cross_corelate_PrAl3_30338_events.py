@@ -60,9 +60,8 @@ for pixelID in pixel_list:
         for pk in range(y):
             ij = ((yyy-pk*bin_size)/chopper_per*360.)%360
             if np.searchsorted(sequence_sum,ij)%2==1:
-                fact = 1
+                results[pk,xxx]+=1
             else:
-                fact = -1
-            results[pk,xxx]+=fact
+                results[pk,xxx]-=1
 
 np.save(filename+'_results_events',results)

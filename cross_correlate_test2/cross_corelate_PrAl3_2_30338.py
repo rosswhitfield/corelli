@@ -27,7 +27,7 @@ chopper_per = 1e6/chopper_frq
 
 print 'Chopper Frequency =', chopper_frq, 'Hz, Period =', chopper_per, 'uS'
 
-bin_size=10. # 10ms bins
+bin_size=2. # 10ms bins
 y = int(math.ceil( chopper_per/bin_size ))
 x = int(math.ceil( 1e6/60/bin_size ))
 out = np.zeros((y,x))
@@ -36,8 +36,8 @@ total_counts=0
 
 # get pixels to use
 pixel_list = []
-for bank in range(41,43): #range(41,43):
-    for tube in range(16): #range(16)
+for bank in range(41,42): #range(41,43):
+    for tube in range(1): #range(16)
         for pixels in range(64,192):
             pixel = (bank-1)*256*16 + tube*256+ pixels
             print bank,tube,pixels,pixel
@@ -71,5 +71,5 @@ for pi in range(y):
             results[pi,pk]+=fact*out[pj,pk]
 
 
-np.save(filename+'_out',out)
-np.save(filename+'_results',results)
+np.save(filename+'_out_2',out)
+np.save(filename+'_results_2',results)
