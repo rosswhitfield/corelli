@@ -18,5 +18,5 @@ yy=np.array(range(y))*10
 X,Y = np.meshgrid(xx,yy)
 plt.pcolormesh(X, Y, results, vmin=0, vmax=1000)
 plt.show()
-plt.pcolormesh(X, Y, events, vmin=0, vmax=100)
+plt.pcolormesh(X, Y, events, vmin=0, vmax=1000)
 plt.show()
