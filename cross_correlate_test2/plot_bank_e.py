@@ -118,32 +118,37 @@ plt.show()
 
 # 1D define Ei
 
-mev = 15
+fig = plt.figure(figsize=(12,6))
 
-ei = mev/1e3 * 1.602e-19
-vi = np.sqrt(2*ei/m)
-ti = Lmc/vi
-y = ti*1e6%chopper_per
-
-tof = (L1+L2)/vi
-xi = int(tof*1e6/10)
-
-t1 = L1/vi
-
-de_list = []
-int_list = []
-
-for ix in range(xi-100,xi+100):
+for mev, offset in [(12,45), (15,45), (20,45), (25,40), (30,40)]:
+    print(mev,offset)
+    
+    ei = mev/1e3 * 1.602e-19
+    vi = np.sqrt(2*ei/m)
+    ti = Lmc/vi
+    y = ti*1e6%chopper_per
+    
+    tof = (L1+L2)/vi
+    xi = int(tof*1e6/10)
+    
+    t1 = L1/vi
+    
+    ix = range(xi-100,xi+100)
     t2 = xx[ix]/1e6 - t1
     v2 = L2/t2
     ef = 0.5*m*v2**2
-    de_list.append((ef-ei)/1.602e-19)
-    int_list.append(total[int((y-45)/10),ix])
-    #print(ei,vi,ti,tof,ix,t2,v2,ef,ef-ei)
+    dEs = (ef-ei)/1.602e-19*1000
+    ints = total[int((y-offset)/10),ix]
+    
+    plt.plot(dEs,ints,label="Ei = "+str(mev)+"meV")
 
-plt.plot(de_list,int_list)
-plt.xlim(-0.01,0.01)
-plt.title("Ei = "+str(mev)+"meV")
+
+plt.xlim(-6,6)
+#plt.title("Ei = "+str(mev)+"meV")
+plt.legend()
 plt.ylabel("Intensity")
 plt.xlabel("dE (meV)")
-plt.show()
+plt.savefig("dE_Ei.png")
+#plt.show()
+
+
