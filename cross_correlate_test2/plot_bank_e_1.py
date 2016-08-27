@@ -120,7 +120,7 @@ plt.show()
 
 fig = plt.figure(figsize=(12,6))
 
-for mev, offset in [(12,45), (15,45), (20,45), (25,40), (30,40)]:
+for mev, offset in [(12,45), (15,45), (20,45), (25,40), (30,40), (50,50), (75,50)]: #, (100,48), (150,52)]:
     print(mev,offset)
     
     ei = mev/1e3 * 1.602e-19
@@ -143,7 +143,7 @@ for mev, offset in [(12,45), (15,45), (20,45), (25,40), (30,40)]:
     plt.plot(dEs,ints,label="Ei = "+str(mev)+"meV")
 
 
-plt.xlim(-6,6)
+plt.xlim(-10,10)
 #plt.title("Ei = "+str(mev)+"meV")
 plt.legend()
 plt.ylabel("Intensity")
