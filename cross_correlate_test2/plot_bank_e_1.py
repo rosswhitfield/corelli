@@ -6,7 +6,7 @@ fig = plt.figure(figsize=(12,6))
 total = np.zeros((341,16667))
 for bank in range(31,62):
     results = np.zeros((341,16667))
-    for run in range(30338,30341):
+    for run in range(30338,30346):
         filename = 'CORELLI_'+str(run)+'_results_events_b1_bank'+str(bank)+'.npy'
         temp=np.load(filename)
         results += temp
@@ -120,26 +120,21 @@ plt.show()
 
 fig = plt.figure(figsize=(12,6))
 
-for mev, offset in [(12,45), (15,45), (20,45), (25,40), (30,40), (50,50), (75,50)]: #, (100,48), (150,52)]:
-    print(mev,offset)
-    
+for mev, offset in [(12,45), (15,45), (20,45), (25,40), (30,40), (50,50), (75,50)]:
+    print(mev,offset)    
     ei = mev/1e3 * 1.602e-19
     vi = np.sqrt(2*ei/m)
     ti = Lmc/vi
     y = ti*1e6%chopper_per
-    
     tof = (L1+L2)/vi
     xi = int(tof*1e6)
-    
     t1 = L1/vi
-    
     ix = range(xi-1000,xi+1000)
     t2 = xx[ix]/1e6 - t1
     v2 = L2/t2
     ef = 0.5*m*v2**2
     dEs = (ef-ei)/1.602e-19*1000
     ints = total[int((y-offset)/10),ix]
-    
     plt.plot(dEs,ints,label="Ei = "+str(mev)+"meV")
 
 
