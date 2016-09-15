@@ -65,4 +65,4 @@ for pixelID in pixel_list:
             else:
                 results[pk,xxx]-=1
 
-np.save(filename+'_results_events_b1_bank_r2.584'+str(bank),results)
+np.save(filename+'_results_events_b1_bank_r2.584_'+str(bank),results)
