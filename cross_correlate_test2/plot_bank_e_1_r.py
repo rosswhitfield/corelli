@@ -146,7 +146,7 @@ plt.xlim(-10,10)
 plt.legend()
 plt.ylabel("Intensity")
 plt.xlabel("dE (meV)")
-plt.savefig("dE_Ei.png")
+plt.savefig("dE_Ei_r2.584.png")
 #plt.show()
 
 
