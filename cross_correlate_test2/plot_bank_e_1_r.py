@@ -6,14 +6,11 @@ fig = plt.figure(figsize=(12,6))
 total = np.zeros((341,16667))
 for bank in range(31,62):
     results = np.zeros((341,16667))
-    for run in range(30338,30346):
-        filename = 'CORELLI_'+str(run)+'_results_events_b1_bank_r2.584'+str(bank)+'.npy'
-        try:
-            temp=np.load(filename)
-            results += temp
-            total += temp
-        except:
-            pass
+    for run in [30339, 30340, 30342, 30343]: #range(30338,30346):
+        filename = 'CORELLI_'+str(run)+'_results_events_b1_bank_r2.584_'+str(bank)+'.npy'
+        temp=np.load(filename)
+        results += temp
+        total += temp
     y,x = results.shape
     xx=np.array(range(x))*1
     yy=np.array(range(y))*10
@@ -38,7 +35,7 @@ plt.savefig('results_events_all_bank_r2.584.png')
 
 
 L1=20.0
-L2=2.585
+L2=2.583
 Lmc=17.999347
 
 Lcs=L1-Lmc
