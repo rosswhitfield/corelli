@@ -15,3 +15,22 @@ SNSPowderReduction(Filename=runs,
                    Binning='0.1,-0.001,6',
                    SaveAs='fullprof',
                    OutputDirectory='/SNS/users/rwp/temp/')
+
+SNSPowderReduction(Filename=runs,
+                   Sum=True,
+                   VanadiumNumber='28119',
+                   CalibrationFile='/SNS/users/rwp/cor_cal.h5',
+                   Binning='0.1,-0.001,6',
+                   SaveAs='fullprof',
+                   OutputDirectory='/SNS/users/rwp/temp2/',
+                   FrequencyLogNames="BL9:Chop:Skf1:SetSpeed",
+                   WaveLengthLogNames="BL9:Chop:Skf23:CenterWavelength")
+
+PropertyManagerDataService.remove("__pd_reduction_properties")
+PDDetermineCharacterizations(InputWorkspace='CORELLI_32307.nxs',
+FrequencyLogNames="BL9:Chop:Skf1:SpeedSet,BL9:Chop:Skf1:MotorSpeed,frequency",
+WaveLengthLogNames="BL9:Chop:Skf23:CenterWavelength")
+char=PropertyManagerDataService.retrieve("__pd_reduction_properties")
+print char.getPropertyValue('frequency')
+print char.getPropertyValue('wavelength')
+
