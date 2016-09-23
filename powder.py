@@ -22,25 +22,4 @@ SNSPowderReduction(Filename=runs,
                    CalibrationFile='/SNS/users/rwp/cor_cal.h5',
                    Binning='0.1,-0.001,6',
                    SaveAs='fullprof',
-                   OutputDirectory='/SNS/users/rwp/temp2/',
-                   FrequencyLogNames="BL9:Chop:Skf1:SetSpeed",
-                   WaveLengthLogNames="BL9:Chop:Skf23:CenterWavelength")
-
-
-Load(Filename='/SNS/CORELLI/IPTS-16338/nexus/CORELLI_32307.nxs.h5', OutputWorkspace='CORELLI_32307')
-PropertyManagerDataService.remove("__pd_reduction_properties")
-PDDetermineCharacterizations(InputWorkspace='CORELLI_32307',
-FrequencyLogNames="BL9:Chop:Skf1:SpeedSet,BL9:Chop:Skf1:MotorSpeed,frequency",
-WaveLengthLogNames="BL9:Chop:Skf23:CenterWavelength")
-PDDetermineCharacterizations(InputWorkspace='CORELLI_32307',
-FrequencyLogNames="abc,dfg",
-WaveLengthLogNames="hello,world")
-PDDetermineCharacterizations(InputWorkspace='CORELLI_32307')
-char=PropertyManagerDataService.retrieve("__pd_reduction_properties")
-
-PDDetermineCharacterizations(InputWorkspace='NOM_80842')
-PDDetermineCharacterizations(InputWorkspace='PG3_4844_event')
-
-print char.getPropertyValue('frequency')
-print char.getPropertyValue('wavelength')
-
+                   OutputDirectory='/SNS/users/rwp/temp2/')
