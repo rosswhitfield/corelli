@@ -6,11 +6,11 @@ ccfiledir = "/SNS/CORELLI/IPTS-15796/shared/autoreduce/"
 
 # Vanadium
 runs = range(27823, 27828, 1)
-runs = [27823]
+#runs = [27823]
 
 # PrAl3
-runs = range(30338,30346)
-runs = [30338]
+#runs = range(30338,30346)
+#runs = [30338]
 
 files='+'.join([filedir+'CORELLI_'+str(r)+'.nxs.h5' for r in runs])
 
@@ -56,7 +56,7 @@ def momentumtd(angle,params):
     Rebin(InputWorkspace='qCC', OutputWorkspace='qCC', Params=params, PreserveEvents=False)
     SumSpectra(InputWorkspace='q', OutputWorkspace='q_'+str(angle))
     SumSpectra(InputWorkspace='qCC', OutputWorkspace='qCC_'+str(angle))
-    Divide(LHSWorkspace='qCC_'+str(angle),RHSWorkspace='q_'+str(angle),OutputWorkspace='norm_'+str(angle))
+    Divide(LHSWorkspace='qCC_'+str(angle),RHSWorkspace='q_'+str(angle),OutputWorkspace=str(angle))
 
 momentumtd(40,'1.5,0.01,7')
 momentumtd(90,'3,0.01,15')
