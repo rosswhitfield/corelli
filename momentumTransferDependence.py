@@ -43,6 +43,7 @@ MaskBTP(Workspace='van',Bank="80",Tube="6")
 MaskBTP(Workspace='van',Bank="58",Tube="13-16",Pixel="80-130")   #DB
 MaskBTP(Workspace='van',Bank="59",Tube="1-4",Pixel="80-130")       #DB
 
+SortEvents(InputWorkspace='van',SortBy="Pulse Time + TOF")
 vanCC = CorelliCrossCorrelate('van', 56000)
 
 def momentumtd(angle,params):
@@ -59,5 +60,7 @@ def momentumtd(angle,params):
     Divide(LHSWorkspace='qCC_'+str(angle),RHSWorkspace='q_'+str(angle),OutputWorkspace=str(angle))
 
 momentumtd(40,'1.5,0.01,7')
+momentumtd(65,'2,0.01,12')
 momentumtd(90,'3,0.01,15')
+momentumtd(115,'4,0.01,18')
 momentumtd(140,'4,0.01,20')
