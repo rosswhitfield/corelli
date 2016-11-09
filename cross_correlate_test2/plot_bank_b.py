@@ -6,7 +6,7 @@ fig = plt.figure(figsize=(12,6))
 total = np.zeros((341,16667))
 for bank in range(31,62):
     results = np.zeros((341,16667))
-    for run in range(29782,29787):
+    for run in range(29782,29789):
         filename = 'CORELLI_'+str(run)+'_results_events_b1_bank'+str(bank)+'.npy'
         temp=np.load(filename)
         results += temp
