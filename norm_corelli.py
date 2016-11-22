@@ -147,7 +147,7 @@ formulaSample = 'SC'
 radiusSample = 0.0656
 vanadiumRun = 15673
 radiusV = 0.2
-workDir = '/SNS/users/vel/workspace/'
+workDir = '/tmp/'
 
 for sampleRun in sampleRuns: 
     MDdata = LoadMD('/SNS/CORELLI/IPTS-17467/shared/20161030_(CaSr)3Ti2O7/normData_Sr0p6.nxs')
