@@ -14,6 +14,6 @@ a=(2*25.4+2)/1000
 knownPositions=np.arange(-7.5*a,8.5*a,a)
 funcForm = [1]*16
 
-calibTable = tube.calibrate(ws, tubeSet, knownPositions, funcForm,margin=4)
+calibTable = tube.calibrate(ws, tubeSet, knownPositions, funcForm,margin=6)
 
 ApplyCalibration(Workspace='ws2', PositionTable='CalibTable')
