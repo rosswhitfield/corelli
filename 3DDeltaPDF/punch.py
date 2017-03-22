@@ -46,9 +46,15 @@ X=np.linspace(dimX.getMinimum(),dimX.getMaximum(),dimX.getNBins()+1)
 Y=np.linspace(dimY.getMinimum(),dimY.getMaximum(),dimY.getNBins()+1)
 Z=np.linspace(dimZ.getMinimum(),dimZ.getMaximum(),dimZ.getNBins()+1)
 
+box_width=0.05 # in hkl dimensions
 
 for h in range(int(np.ceil(dimX.getMinimum())), int(np.floor(dimX.getMaximum()))+1):
     for k in range(int(np.ceil(dimY.getMinimum())), int(np.floor(dimY.getMaximum()))+1):
         for l in range(int(np.ceil(dimZ.getMinimum())), int(np.floor(dimZ.getMaximum()))+1):
             hkl=[h,k,l]
-            print(hkl,sg.isAllowedReflection(hkl))
+            if sg.isAllowedReflection(hkl):
+                x_mask=[np.searchsorted(X,h-box_width), np.searchsorted(X,h+box_width)-1]
+                y_mask=[np.searchsorted(Y,k-box_width), np.searchsorted(Y,k+box_width)-1]
+                z_mask=[np.searchsorted(Z,l-box_width), np.searchsorted(Z,l+box_width)-1]
+                print(hkl,x_mask,y_mask,z_mask)
+            
