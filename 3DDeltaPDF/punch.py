@@ -51,10 +51,11 @@ box_width=0.05 # in hkl dimensions
 for h in range(int(np.ceil(dimX.getMinimum())), int(np.floor(dimX.getMaximum()))+1):
     for k in range(int(np.ceil(dimY.getMinimum())), int(np.floor(dimY.getMaximum()))+1):
         for l in range(int(np.ceil(dimZ.getMinimum())), int(np.floor(dimZ.getMaximum()))+1):
-            hkl=[h,k,l]
-            if sg.isAllowedReflection(hkl):
-                x_mask=[np.searchsorted(X,h-box_width), np.searchsorted(X,h+box_width)-1]
-                y_mask=[np.searchsorted(Y,k-box_width), np.searchsorted(Y,k+box_width)-1]
-                z_mask=[np.searchsorted(Z,l-box_width), np.searchsorted(Z,l+box_width)-1]
-                print(hkl,x_mask,y_mask,z_mask)
-            
+            if sg.isAllowedReflection([h,k,l]):
+                x_min=np.searchsorted(X,h-box_width)
+                x_max=np.searchsorted(X,h+box_width)
+                y_min=np.searchsorted(Y,k-box_width)
+                y_max=np.searchsorted(Y,k+box_width)
+                z_min=np.searchsorted(Z,l-box_width)
+                z_max=np.searchsorted(Z,l+box_width)
+                signal[x_min:x_max,y_min:y_max,z_min:z_max]=np.nan
