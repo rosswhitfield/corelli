@@ -46,7 +46,7 @@ X=np.linspace(dimX.getMinimum(),dimX.getMaximum(),dimX.getNBins()+1)
 Y=np.linspace(dimY.getMinimum(),dimY.getMaximum(),dimY.getNBins()+1)
 Z=np.linspace(dimZ.getMinimum(),dimZ.getMaximum(),dimZ.getNBins()+1)
 
-box_width=0.05 # in hkl dimensions
+box_width=0.1 # in hkl dimensions
 
 for h in range(int(np.ceil(dimX.getMinimum())), int(np.floor(dimX.getMaximum()))+1):
     for k in range(int(np.ceil(dimY.getMinimum())), int(np.floor(dimY.getMaximum()))+1):
