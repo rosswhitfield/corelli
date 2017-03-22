@@ -39,7 +39,7 @@ signal[np.isnan(signal)]=0
 signal[np.isinf(signal)]=0
 
 fft=np.fft.fftshift(np.fft.fftn(np.fft.fftshift(signal)))
-out=np.real(fft*np.conj(fft))
+out=(fft*np.conj(fft)).real
 
 # convolve
 signal=ws.getSignalArray().copy()
@@ -49,7 +49,7 @@ G3D = G1D * G1D.reshape((-1,1)) * G1D.reshape((-1,1,1))
 convolved = convolve(signal, G3D)
 
 convolved_fft=np.fft.fftshift(np.fft.fftn(np.fft.fftshift(convolved)))
-convolved_out=np.real(fft*np.conj(fft))
+convolved_out=(convolved_fft*np.conj(convolved_fft)).real
 
 # Create output workspace
 CreateMDHistoWorkspace(SignalInput=out,
