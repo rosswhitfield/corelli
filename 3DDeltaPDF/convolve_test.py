@@ -35,7 +35,7 @@ convolved = convolve(signal, G3D)
 end=time.time()
 print(end-start)
 start=time.time()
-convolved_fft = convolve_fft(signal, G3D, allow_huge=True)
+convolved_fft = convolve_fft(signal, G3D)
 end=time.time()
 print(end-start)
 
