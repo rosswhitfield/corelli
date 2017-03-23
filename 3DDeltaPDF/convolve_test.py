@@ -6,9 +6,10 @@ import matplotlib.pyplot as plt
 import time
 
 filename='/SNS/CORELLI/IPTS-16344/shared/symm_007K_long_all_ub_13feb.nxs'
+filename='/home/rwp/symm_007K_long_all_ub_13feb_small.nxs'
 space_group='F 2 3'
 
-ws=LoadMD(filename)
+ws=LoadMD(filename,LoadHistory=False)
 
 signal=ws.getSignalArray().copy()
 
