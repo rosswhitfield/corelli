@@ -19,7 +19,7 @@ if not np.all(ws.getExperimentInfo(0).run().getLogData('W_MATRIX').value ==
 # Check dimensions
 # Check centered on zero
 # Should also check center bin is 0
-dim_list=[]
+extents=''
 dim_names=['[H,0,0]','[0,K,0]','[0,0,L]']
 for d in range(ws.getNumDims()):
     dim = ws.getDimension(d)
@@ -31,7 +31,7 @@ for d in range(ws.getNumDims()):
         exit()
     #dim_list.append((dim.getNBins(), (dim.getMaximum()-dim.getMinimum())/dim.getNBins()))
     fft_dim=np.fft.fftshift(np.fft.fftfreq(dim.getNBins(), (dim.getMaximum()-dim.getMinimum())/dim.getNBins()))
-    dim_list.append((fft_dim[0],fft_dim[-1]))
+    extents+=str(fft_dim[0])+','+str(fft_dim[-1])+','
 
 signal=ws.getSignalArray().copy()
 
@@ -56,7 +56,7 @@ convolved_out=(convolved_fft*np.conj(convolved_fft)).real
 CreateMDHistoWorkspace(SignalInput=out,
                        ErrorInput=out**2,
                        Dimensionality=3,
-                       Extents=np.array(dim_list).flatten(),
+                       Extents=extents,
                        NumberOfBins=signal.shape,
                        Names='x,y,z',
                        Units='A,A,A',
