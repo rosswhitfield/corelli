@@ -55,15 +55,14 @@ eros = ndi.grey_erosion(signal, footprint=ball(3))
 eros2 = ndi.grey_erosion(image, footprint=disk(3))
 
 
-gf = ndi.gaussian_filter(image, 1)
-
 opened = opening(image)
 closed = closing(image)
 
 
-gf = ndi.gaussian_filter(signal, 1)
-
 opened = opening(signal)
 closed = closing(signal)
 
-
+gf = ndi.gaussian_filter(image, 1)
+opened = opening(gf)
+closed = closing(gf)
+eros = erosion(gf)
