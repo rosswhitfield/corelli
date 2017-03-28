@@ -2,6 +2,8 @@ from mantid.simpleapi import LoadMD
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage.morphology import reconstruction, ball, disk, erosion, closing, opening
+from skimage.feature import peak_local_max
+from skimage.restoration import inpaint
 from scipy import ndimage as ndi
 
 filename='/SNS/CORELLI/IPTS-16344/shared/symm_007K_long_all_ub_13feb.nxs'
@@ -66,3 +68,18 @@ gf = ndi.gaussian_filter(image, 1)
 opened = opening(gf)
 closed = closing(gf)
 eros = erosion(gf)
+
+
+# Finding local maxima
+# http://scikit-image.org/docs/dev/auto_examples/segmentation/plot_peak_local_max.html
+
+coordinates = peak_local_max(image, min_distance=20)
+plt.imshow(np.log(image),cmap=plt.cm.gray)
+plt.plot(coordinates[:, 1], coordinates[:, 0], 'r.')
+plt.show()
+
+
+# Inpainting
+# http://scikit-image.org/docs/dev/auto_examples/filters/plot_inpaint.html
+s=signal[251]
+result = inpaint.inpaint_biharmonic(s, np.isnan(s))
