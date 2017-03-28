@@ -2,6 +2,7 @@ from mantid.simpleapi import LoadMD
 import numpy as np
 import matplotlib.pyplot as plt
 from skimage.morphology import reconstruction, ball, disk, erosion
+from scipy import ndimage as ndi
 
 filename='/SNS/CORELLI/IPTS-16344/shared/symm_007K_long_all_ub_13feb.nxs'
 
@@ -45,3 +46,10 @@ plt.show()
 
 fft=np.fft.fftshift(np.fft.fftn(np.fft.fftshift(eros)))
 out=(fft*np.conj(fft)).real
+
+plt.imshow(np.log(out[251]))
+plt.show()
+
+
+eros = ndi.grey_erosion(signal, footprint=ball(3))
+eros2 = ndi.grey_erosion(image, footprint=disk(3))
