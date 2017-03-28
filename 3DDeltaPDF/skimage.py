@@ -1,7 +1,7 @@
 from mantid.simpleapi import LoadMD
 import numpy as np
 import matplotlib.pyplot as plt
-from skimage.morphology import reconstruction, ball, disk, erosion
+from skimage.morphology import reconstruction, ball, disk, erosion, closing, opening
 from scipy import ndimage as ndi
 
 filename='/SNS/CORELLI/IPTS-16344/shared/symm_007K_long_all_ub_13feb.nxs'
@@ -53,3 +53,17 @@ plt.show()
 
 eros = ndi.grey_erosion(signal, footprint=ball(3))
 eros2 = ndi.grey_erosion(image, footprint=disk(3))
+
+
+gf = ndi.gaussian_filter(image, 1)
+
+opened = opening(image)
+closed = closing(image)
+
+
+gf = ndi.gaussian_filter(signal, 1)
+
+opened = opening(signal)
+closed = closing(signal)
+
+
