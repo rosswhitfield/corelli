@@ -1,4 +1,4 @@
-from mantid.simpleapi import LoadMD, CreateMDHistoWorkspace
+from mantid.simpleapi import LoadMD, CreateMDHistoWorkspace, IntegrateMDHistoWorkspace
 from mantid.geometry import SpaceGroupFactory
 from astropy.convolution import convolve, convolve_fft, Gaussian1DKernel
 import numpy as np
@@ -61,3 +61,22 @@ CreateMDHistoWorkspace(SignalInput=out,
                        Names='x,y,z',
                        Units='A,A,A',
                        OutputWorkspace='output')
+
+
+
+
+integ=IntegrateMDHistoWorkspace(ws, P3Bin='-0.1,0.1')
+signal=integ.getSignalArray().copy()
+
+G1D = Gaussian1DKernel(2).array
+G3D = G1D * G1D.reshape((-1,1)) * G1D.reshape((-1,1,1))
+convolved = convolve(signal, G3D)
+
+signal[np.isnan(signal)]=0
+signal[np.isinf(signal)]=0
+
+axes=(0,1)
+
+fft=np.fft.fftshift(np.fft.fftn(np.fft.fftshift(signal,axes=axes),axes=axes),axes=axes)
+fft=np.fft.fftshift(np.fft.fftn(np.fft.fftshift(convolved,axes=axes),axes=axes),axes=axes)
+plt.imshow(fft[:,:,0].real,vmin=-0.5,vmax=0.5); plt.show()
