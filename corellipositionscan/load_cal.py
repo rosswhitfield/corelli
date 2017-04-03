@@ -1,6 +1,7 @@
 #!/usr/bin/python2
 from __future__ import print_function
 from mantid.simpleapi import LoadEmptyInstrument, MoveInstrumentComponent, mtd
+import numpy as np
 
 LoadEmptyInstrument(Filename='/SNS/users/rwp/CORELLI_Definition_91.07cm.xml', OutputWorkspace='ws')
 ws= mtd['ws']
@@ -29,3 +30,6 @@ for line in lines:
     print(pixel(A, E1, E2, 85))
     print(pixel(A, E1, E2, 432))
     print(pixel(A, E1, E2, 785))
+print("Length mean   = ",np.mean(lengths))
+print("Length median = ",np.median(lengths))
+print("Length std    = ",np.std(lengths))
