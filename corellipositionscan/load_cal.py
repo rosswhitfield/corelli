@@ -14,6 +14,7 @@ def pixel(A, E1, E2, x):
 with open('curvefitmain.txt', "r") as f:
     lines = f.readlines()
 
+lengths=[]
 for line in lines:
     if not 'channel' in line:
         continue
@@ -23,6 +24,7 @@ for line in lines:
     A = float(A)
     E1 = float(E1)
     E2 = float(E2)
+    lengths.append(E2-E1)
     print(roc,channel,A,E1,E2)
     print(pixel(A, E1, E2, 85))
     print(pixel(A, E1, E2, 432))
