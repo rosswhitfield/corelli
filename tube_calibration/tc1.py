@@ -3,7 +3,7 @@ from tube_spec import TubeSpec
 import numpy as np
 run=39611 # 57
 ws = Load('CORELLI_'+str(run))
-ws = LoadInstrument(ws, Filename='/SNS/users/rwp/CORELLI_Definition_91.07cm.xml', RewriteSpectraMap='False')
+LoadInstrument(ws, Filename='/SNS/users/rwp/CORELLI_Definition_91.07cm.xml', RewriteSpectraMap='False')
 ws = Integration(ws)
 CloneWorkspace(InputWorkspace='ws', OutputWorkspace='ws2')
 
