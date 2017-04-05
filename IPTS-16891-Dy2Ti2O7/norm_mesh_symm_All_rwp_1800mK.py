@@ -68,8 +68,6 @@ for sym in symOps:
 #T=1.8 K
 runs =  range(34599,34635,1)
 
-#T=100 mK
-runs =  range(34635,34653,10)
 totalrun = len(runs)
 print "Total number of runs %d" %totalrun
 
@@ -126,9 +124,9 @@ for index, r in enumerate(runs):
                 normMD=CloneMDWorkspace(b1)
 normData_CC=dataMD/normMD
 
-SaveMD('dataMD',Filename=outputdir+'DTO_datacc_48sym_Temp100mK.nxs')
-SaveMD('normMD',Filename=outputdir+'DTO_normcc_48sym_Temp100mK.nxs')
-SaveMD('normData_CC',Filename=outputdir+'DTO_normdatacc_48sym_Temp100mK.nxs')
+SaveMD('dataMD',Filename=outputdir+'DTO_datacc_48sym_Temp1800mK.nxs')
+SaveMD('normMD',Filename=outputdir+'DTO_normcc_48sym_Temp1800mK.nxs')
+SaveMD('normData_CC',Filename=outputdir+'DTO_normdatacc_48sym_Temp1800mK.nxs')
 
 # group the data
 #data6K=GroupWorkspaces(datatoMerge) 
