@@ -109,11 +109,11 @@ for index, r in enumerate(runs):
             print ub
             SetUB(dataR, UB=ub)
             md=ConvertToMD(InputWorkspace=dataR,QDimensions='Q3D',dEAnalysisMode='Elastic', Q3DFrames='HKL',
-                           QConversionScales='HKL',MinValues='-10.1,-10.1,-10.1',MaxValues='10.1,10.1,10.1')
+                           QConversionScales='HKL',MinValues='-7.1,-7.1,-7.1',MaxValues='7.1,7.1,7.1')
             a1,b1=MDNormSCD(InputWorkspace='md',FluxWorkspace='flux',SolidAngleWorkspace='sa',
-                            AlignedDim0="[H,0,0],-10.02,10.02,501",
-                            AlignedDim1="[0,K,0],-10.02,10.02,501",
-                            AlignedDim2="[0,0,L],-10.02,10.02,501")
+                            AlignedDim0="[H,0,0],-7.01,7.01,701",
+                            AlignedDim1="[0,K,0],-7.01,7.01,701",
+                            AlignedDim2="[0,0,L],-7.01,7.01,701")
             if mtd.doesExist('dataMD'):
                 dataMD=dataMD+a1
             else:
@@ -124,9 +124,9 @@ for index, r in enumerate(runs):
                 normMD=CloneMDWorkspace(b1)
 normData_CC=dataMD/normMD
 
-SaveMD('dataMD',Filename=outputdir+'DTO_datacc_48sym_Temp1800mK.nxs')
-SaveMD('normMD',Filename=outputdir+'DTO_normcc_48sym_Temp1800mK.nxs')
-SaveMD('normData_CC',Filename=outputdir+'DTO_normdatacc_48sym_Temp1800mK.nxs')
+SaveMD('dataMD',Filename=outputdir+'DTO_datacc_48sym_Temp1800mK_7.nxs')
+SaveMD('normMD',Filename=outputdir+'DTO_normcc_48sym_Temp1800mK_7.nxs')
+SaveMD('normData_CC',Filename=outputdir+'DTO_normdatacc_48sym_Temp1800mK_7.nxs')
 
 # group the data
 #data6K=GroupWorkspaces(datatoMerge) 

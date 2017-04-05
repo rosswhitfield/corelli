@@ -69,7 +69,7 @@ for sym in symOps:
 runs =  range(34599,34635,1)
 
 #T=100 mK
-runs =  range(34635,34653,10)
+runs =  range(34635,34653,1)
 totalrun = len(runs)
 print "Total number of runs %d" %totalrun
 
