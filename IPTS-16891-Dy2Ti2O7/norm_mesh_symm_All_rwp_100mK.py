@@ -111,11 +111,11 @@ for index, r in enumerate(runs):
             print ub
             SetUB(dataR, UB=ub)
             md=ConvertToMD(InputWorkspace=dataR,QDimensions='Q3D',dEAnalysisMode='Elastic', Q3DFrames='HKL',
-                           QConversionScales='HKL',MinValues='-5.1,-5.1,-5.1',MaxValues='5.1,5.1,5.1')
+                           QConversionScales='HKL',MinValues='-10.1,-10.1,-10.1',MaxValues='10.1,10.1,10.1')
             a1,b1=MDNormSCD(InputWorkspace='md',FluxWorkspace='flux',SolidAngleWorkspace='sa',
-                            AlignedDim0="[H,0,0],-5.01,5.01,501",
-                            AlignedDim1="[0,K,0],-5.01,5.01,501",
-                            AlignedDim2="[0,0,L],-5.01,5.01,501")
+                            AlignedDim0="[H,0,0],-10.02,10.02,501",
+                            AlignedDim1="[0,K,0],-10.02,10.02,501",
+                            AlignedDim2="[0,0,L],-10.02,10.02,501")
             if mtd.doesExist('dataMD'):
                 dataMD=dataMD+a1
             else:

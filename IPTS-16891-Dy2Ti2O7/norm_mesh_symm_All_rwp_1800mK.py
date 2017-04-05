@@ -66,7 +66,7 @@ for sym in symOps:
 #print 'pc_bkg=:'+str(pc_bkg)
 
 #T=1.8 K
-runs =  range(34599,34635,1)
+runs =  range(34599,34635,100)
 
 totalrun = len(runs)
 print "Total number of runs %d" %totalrun
@@ -109,11 +109,11 @@ for index, r in enumerate(runs):
             print ub
             SetUB(dataR, UB=ub)
             md=ConvertToMD(InputWorkspace=dataR,QDimensions='Q3D',dEAnalysisMode='Elastic', Q3DFrames='HKL',
-                           QConversionScales='HKL',MinValues='-5.1,-5.1,-5.1',MaxValues='5.1,5.1,5.1')
+                           QConversionScales='HKL',MinValues='-10.1,-10.1,-10.1',MaxValues='10.1,10.1,10.1')
             a1,b1=MDNormSCD(InputWorkspace='md',FluxWorkspace='flux',SolidAngleWorkspace='sa',
-                            AlignedDim0="[H,0,0],-5.01,5.01,501",
-                            AlignedDim1="[0,K,0],-5.01,5.01,501",
-                            AlignedDim2="[0,0,L],-5.01,5.01,501")
+                            AlignedDim0="[H,0,0],-10.02,10.02,501",
+                            AlignedDim1="[0,K,0],-10.02,10.02,501",
+                            AlignedDim2="[0,0,L],-10.02,10.02,501")
             if mtd.doesExist('dataMD'):
                 dataMD=dataMD+a1
             else:
