@@ -41,13 +41,13 @@ bkg=ConvertUnits(bkg,Target="Momentum",EMode="Elastic")
 bkg=CropWorkspace(bkg,XMin=2.5,XMax=10)
 
 #mesh scan at 100K, 20 mins/angle, combined both 5mins and 20 mins at 100K, additional 30 mins.
-#runs = range(29715,29755)+range(29589,29625)+range(29533,29536)+range(29556,29589)
+runs = range(29715,29755)+range(29589,29625)+range(29533,29536)+range(29556,29589)
 
 #runs = range(29533,29536)+range(29556,29589)
 #runs = [29588]
 
 #mesh scan at 300K, 70 mins/angle
-runs=range(29782,29818)
+#runs=range(29782,29818)
 
 if mtd.doesExist('normMD'):
     DeleteWorkspace('normMD')
@@ -85,8 +85,8 @@ for r in runs:
                             AlignedDim1="[0,K,0],-10.02,10.02,501",
                             AlignedDim2="[0,0,L],-10.02,10.02,501")
             c1=BinMD(InputWorkspace='bkg_md',
-                     AlignedDim0="[H,0,0],-10.02,10.02,401",
-                     AlignedDim1="[0,K,0],-10.02,10.02,401",
+                     AlignedDim0="[H,0,0],-10.02,10.02,501",
+                     AlignedDim1="[0,K,0],-10.02,10.02,501",
                      AlignedDim2="[0,0,L],-10.02,10.02,501")
             if mtd.doesExist('dataMD'):
                 dataMD=dataMD+a1
@@ -107,11 +107,12 @@ for r in runs:
 normData=dataMD/normMD
 bkgNormData=bkgMD/bkg_normMD
 bkg_subtract = normData-bkgNormData
+
 outputdir="/SNS/users/rwp/benzil/"
-SaveMD(Inputworkspace='dataMD',Filename=outputdir+'benzil_300K_data_sym_All_noCC_flat2.nxs')
-SaveMD(Inputworkspace='normMD',Filename=outputdir+'benzil_300K_norm_sym_All_noCC_flat2.nxs')
-SaveMD(Inputworkspace='normData',Filename=outputdir+'benzil_300K_normData_sym_All_noCC_flat2.nxs')
-SaveMD(Inputworkspace='bkgMD',Filename=outputdir+'benzil_300K_bkg_sym_All_noCC_flat2.nxs')
-SaveMD(Inputworkspace='bkg_normMD',Filename=outputdir+'benzil_300K_bkg_norm_sym_All_noCC_flat2.nxs')
-SaveMD(Inputworkspace='bkgNormData',Filename=outputdir+'benzil_300K_bkgNormData_sym_All_noCC_flat2.nxs')
-SaveMD(Inputworkspace='bkg_subtract',Filename=outputdir+'benzil_300K_bkg_subtract_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='dataMD',Filename=outputdir+'benzil_100K_data_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='normMD',Filename=outputdir+'benzil_100K_norm_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='normData',Filename=outputdir+'benzil_100K_normData_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='bkgMD',Filename=outputdir+'benzil_100K_bkg_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='bkg_normMD',Filename=outputdir+'benzil_100K_bkg_norm_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='bkgNormData',Filename=outputdir+'benzil_100K_bkgNormData_sym_All_noCC_flat2.nxs')
+SaveMD(Inputworkspace='bkg_subtract',Filename=outputdir+'benzil_100K_bkg_subtract_sym_All_noCC_flat2.nxs')
