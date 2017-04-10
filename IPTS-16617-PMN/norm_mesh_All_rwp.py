@@ -81,6 +81,5 @@ for index, r in enumerate(runs):
             normMD=normMD+b1
         else:
             normMD=CloneMDWorkspace(b1)
-normData=dataMD/normMD
-
-SaveMD('normData',Filename=outputdir+'PMN_normdata_300K.nxs')
+        normData=dataMD/normMD
+        SaveMD('normData',Filename=outputdir+'PMN_normdata_300K.nxs')
