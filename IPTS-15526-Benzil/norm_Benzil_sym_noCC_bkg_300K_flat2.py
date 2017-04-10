@@ -85,8 +85,8 @@ for r in runs:
                             AlignedDim1="[0,K,0],-10.02,10.02,501",
                             AlignedDim2="[0,0,L],-10.02,10.02,501")
             c1=BinMD(InputWorkspace='bkg_md',
-                     AlignedDim0="[H,0,0],-10.02,10.02,401",
-                     AlignedDim1="[0,K,0],-10.02,10.02,401",
+                     AlignedDim0="[H,0,0],-10.02,10.02,501",
+                     AlignedDim1="[0,K,0],-10.02,10.02,501",
                      AlignedDim2="[0,0,L],-10.02,10.02,501")
             if mtd.doesExist('dataMD'):
                 dataMD=dataMD+a1
