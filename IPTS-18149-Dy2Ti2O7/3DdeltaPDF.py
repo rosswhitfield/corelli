@@ -10,3 +10,7 @@ DeltaPDF3D(InputWorkspace='slice_0', IntermediateWorkspace='i_0', OutputWorkspac
 DeltaPDF3D(InputWorkspace='slice_0.3', IntermediateWorkspace='i_0.3', OutputWorkspace='fft_0.3', SpaceGroup='227', CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
 DeltaPDF3D(InputWorkspace='slice_0.8', IntermediateWorkspace='i_0.8', OutputWorkspace='fft_0.8', SpaceGroup='227', CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
 DeltaPDF3D(InputWorkspace='slice_1.2', IntermediateWorkspace='i_1.2', OutputWorkspace='fft_1.2', SpaceGroup='227', CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
+DeltaPDF3D(InputWorkspace='slice_0', IntermediateWorkspace='i2_0', OutputWorkspace='fft2_0', RemoveReflections=False, CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
+DeltaPDF3D(InputWorkspace='slice_0.3', IntermediateWorkspace='i2_0.3', OutputWorkspace='fft2_0.3', RemoveReflections=False, CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
+DeltaPDF3D(InputWorkspace='slice_0.8', IntermediateWorkspace='i2_0.8', OutputWorkspace='fft2_0.8', RemoveReflections=False, CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
+DeltaPDF3D(InputWorkspace='slice_1.2', IntermediateWorkspace='i2_1.2', OutputWorkspace='fft2_1.2', RemoveReflections=False, CutSphere=True, SphereMin='0.4', SphereMax='4', Convolution=True)
