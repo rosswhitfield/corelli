@@ -65,7 +65,7 @@ for index, r in enumerate(runs):
 
         dataR=ConvertUnits(dataR,Target="Momentum",EMode="Elastic")
         dataR=CropWorkspace(dataR,XMin=2.5,XMax=10)
-        SetGoniometer(dataR,Axis0="BL9:Mot:Sample:Axis2,0,1,0,1")
+        SetGoniometer(dataR,Axis0="BL9:Mot:Sample:Axis1,0,1,0,1")
         LoadIsawUB(InputWorkspace=dataR,Filename=UBfile)
         md=ConvertToMD(InputWorkspace=dataR,QDimensions='Q3D',dEAnalysisMode='Elastic', Q3DFrames='HKL',
                        QConversionScales='HKL',LorentzCorrection='0',MinValues='-10.1,-10.1,-10.1',MaxValues='10.1,10.1,10.1')
