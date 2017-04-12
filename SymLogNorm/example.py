@@ -14,7 +14,7 @@ plt.colorbar()
 plt.show()
 
 
-fig = plt.pcolormesh(x, y, signal[:,:,260], norm=colors.SymLogNorm(linthresh=0.2, linscale=0, vmin=-1.0, vmax=1.0), cmap='RdBu_r')
-trans_data = mtransforms.Affine2D().rotate_deg(30) + fig.get_transform()
-fig.set_transfrom(trans_data)
+fig = plt.pcolormesh(x, y, signal[:,:,260].transpose(), norm=colors.SymLogNorm(linthresh=0.2, linscale=0, vmin=-1.0, vmax=1.0), cmap='RdBu_r')
+trans_data = mtransforms.Affine2D().skew_deg(26.565051177077994, 0) + fig.get_transform()
+fig.set_transform(trans_data)
 plt.show()
