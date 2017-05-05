@@ -1,7 +1,7 @@
 import sys,os
 sys.path.append(os.path.join("/opt/mantidnightly/bin"))
 from mantid.simpleapi import *
-from mantid.geometry import SymmetryOperationFactory
+from mantid.geometry import SymmetryOperationFactory, SpaceGroupFactory
 from mantid import logger
 import numpy as np
 import time
@@ -70,7 +70,7 @@ outputdir = '/SNS/CORELLI/IPTS-16617/shared/'
 
 
 
-outputname = 'Cu1p8_300K_HK0'
+outputname = 'Cu1p8_250K'
 runs = range(38740, 38770,1) # Cu1.8Se, 250K
 UBname = "Cu1p8Se_2nd/Cu1p8Se_UB_rough.mat"
  
@@ -86,7 +86,9 @@ print ub
 
 #symOps = SymmetryOperationFactory.createSymOps(" x, y, z;  -x ,-y, z;  -x,y,-z;  x,-y,-z;-x,-y,-z;  x,y,-z; x,-y,z; -x,y,z")
 #symOps = SymmetryOperationFactory.createSymOps("x, y, z;x,-y,-z; x,y,-z; x,-y,z")
-symOps = SymmetryOperationFactory.createSymOps("x, y, z")#;-x,-y,-z")
+#symOps = SymmetryOperationFactory.createSymOps("x, y, z")#;-x,-y,-z")
+symOps = SpaceGroupFactory.createSpaceGroup('P 2 3').getSymmetryOperations()
+
 ub_list=[]
 for sym in symOps:
     UBtrans = np.zeros((3,3))
@@ -120,16 +122,16 @@ bkg=ConvertUnits(bkg,Target="Momentum",EMode="Elastic")
 bkg=CropWorkspace(bkg,XMin=2.5,XMax=10)
 
 
+outputdir = '/SNS/users/rwp/corelli/IPTS-16617-Cu2Se/'
+
 for r in runs:
     load_Sum(r,ub_list, bkg)
 
-dataMD = mtd['dataMD']
-normMD= mtd['normMD']
+    dataMD = mtd['dataMD']
+    normMD = mtd['normMD']
 
-normData=dataMD/normMD
+    normData=dataMD/normMD
 
-outputdir = '/SNS/users/rwp/corelli/IPTS-16617-Cu2Se/'
-
-SaveMD(Inputworkspace='dataMD',Filename=outputdir+'data_CC_rmbkg_'+outputname+'.nxs')
-SaveMD(Inputworkspace='normMD',Filename=outputdir+'V_CC_rmbkg_'+outputname+'.nxs')
-SaveMD(Inputworkspace='normData',Filename=outputdir+'norm_CC_rmbkg_'+outputname+'.nxs')
+    SaveMD(Inputworkspace='dataMD',Filename=outputdir+'data_CC_rmbkg_'+outputname+'.nxs')
+    SaveMD(Inputworkspace='normMD',Filename=outputdir+'V_CC_rmbkg_'+outputname+'.nxs')
+    SaveMD(Inputworkspace='normData',Filename=outputdir+'norm_CC_rmbkg_'+outputname+'.nxs')
