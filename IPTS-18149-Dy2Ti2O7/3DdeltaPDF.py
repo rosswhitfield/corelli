@@ -28,3 +28,6 @@ SaveMDWorkspaceToVTK('fft_0.2','/SNS/users/rwp/corelli/IPTS-18149-Dy2Ti2O7/DTO_n
 SaveMDWorkspaceToVTK('fft_0.3','/SNS/users/rwp/corelli/IPTS-18149-Dy2Ti2O7/DTO_normdata_48sym_680mK_H0.3T_fft.vts')
 SaveMDWorkspaceToVTK('fft_0.8','/SNS/users/rwp/corelli/IPTS-18149-Dy2Ti2O7/DTO_normdata_48sym_680mK_H0.8T_fft.vts')
 SaveMDWorkspaceToVTK('fft_1.2','/SNS/users/rwp/corelli/IPTS-18149-Dy2Ti2O7/DTO_normdata_48sym_680mK_H1.2T_fft.vts')
+
+for m in [10, 8, 6, 4]:
+ DeltaPDF3D(InputWorkspace='DTO_1.2', IntermediateWorkspace='i_1.2_'+str(m), OutputWorkspace='fft_1.2_'+str(m), SpaceGroup='227', CropSphere=True, SphereMin='0.4', SphereMax=str(m), Convolution=True)
