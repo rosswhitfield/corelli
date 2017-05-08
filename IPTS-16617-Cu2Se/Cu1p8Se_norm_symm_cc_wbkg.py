@@ -1,7 +1,7 @@
 import sys,os
 sys.path.append(os.path.join("/opt/mantidnightly/bin"))
 from mantid.simpleapi import *
-from mantid.geometry import SymmetryOperationFactory
+from mantid.geometry import SymmetryOperationFactory, SpaceGroupFactory
 from mantid import logger
 import numpy as np
 import time
