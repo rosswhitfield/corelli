@@ -48,9 +48,9 @@ def load_Sum(r, ub_list):
             a1,b1=MDNormSCD(InputWorkspace='md',
                             FluxWorkspace='flux',
                             SolidAngleWorkspace='sa',
-                            AlignedDim0="[H,0,0],-6.01,6.01,601",
-                            AlignedDim1="[0,K,0],-6.01,6.01,601",
-                            AlignedDim2="[0,0,L],-6.1,6.1,61")
+                            AlignedDim0="[H,0,0],-6.02,6.02,301",
+                            AlignedDim1="[0,K,0],-6.02,6.02,301",
+                            AlignedDim2="[0,0,L],-6.02,6.02,301")
         
                         
             if mtd.doesExist('dataMD'):
