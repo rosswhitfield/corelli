@@ -1,15 +1,17 @@
 from mantid.simpleapi import LoadEventNexus, Integration
 import numpy as np
-import matplotlib.pyplot as plt
+
+# 47299 23, 56, 85
+# 47300 33, 45, 57
+
+dirc='/SNS/users/rwp/corelli/tube_calibration/'
 
 COR_47299_23 = LoadEventNexus('/SNS/CORELLI/IPTS-18479/nexus/CORELLI_47299.nxs.h5',BankName='bank23')
 COR_47299_23=Integration(COR_47299_23)
-COR_47299_23_Y = COR_47299_23.extractY()
+COR_47299_23_Y = COR_47299_23.extractY()*-1
 
-plt.plot(COR_47299_23_Y)
-plt.show()
-
-np.savetxt('COR_47299_23.txt', np.concatenate((np.array(range(256*16)).reshape((4096, 1)), COR_47299_23_Y*-1),axis=1))
+for tube in range(8):
+    np.savetxt(dirc+'COR_47299_23'+str(tube+1)+'.txt', np.concatenate((np.array(range(256),ndmin=2).T, COR_47299_23_Y[range(256*tube,256*(tube+1))]),axis=1))
 
 
 # Tube 1
