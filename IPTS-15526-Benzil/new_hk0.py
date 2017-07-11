@@ -39,10 +39,10 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817',
                               Wproj='0,0,1',
                               BinningDim0='-7.525,7.525,301',
                               BinningDim1='-13.16875,13.16875,301',
-                              BinningDim2='-0.1,0.1,1',
+                              BinningDim2='-3.1,3.1,31',
                               SymmetryOps="P 31 2 1")
 
-Plot2DMD(mtd['benzil_300k'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_300k.png',vmin=0,vmax=1e-5,cmap='hot')
+#Plot2DMD(mtd['benzil_300k'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_300k.png',vmin=0,vmax=1e-5,cmap='hot')
 SaveMD('benzil_300k','/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_300k.nxs')
 
 SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-15526/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(29782,29818)),
@@ -59,10 +59,10 @@ SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-15526/shared/
                               Wproj='0,0,1',
                               BinningDim0='-7.525,7.525,301',
                               BinningDim1='-13.16875,13.16875,301',
-                              BinningDim2='-0.1,0.1,1',
+                              BinningDim2='-3.1,3.1,31',
                               SymmetryOps="P 31 2 1")
 
-Plot2DMD(mtd['benzil_300k_elastic'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_300k_elastic.png',vmin=0,vmax=1e-5,cmap='hot')
+#Plot2DMD(mtd['benzil_300k_elastic'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_300k_elastic.png',vmin=0,vmax=1e-5,cmap='hot')
 SaveMD('benzil_300k_elastic','/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_300k_elastic.nxs')
 
 runs = range(29715,29755)+range(29589,29625)+range(29533,29536)+range(29556,29589)
@@ -82,10 +82,10 @@ SingleCrystalDiffuseReduction(Filename=','.join('CORELLI_'+str(r) for r in runs)
                               Wproj='0,0,1',
                               BinningDim0='-7.525,7.525,301',
                               BinningDim1='-13.16875,13.16875,301',
-                              BinningDim2='-0.1,0.1,1',
+                              BinningDim2='-3.1,3.1,31',
                               SymmetryOps="P 31 2 1")
 
-Plot2DMD(mtd['benzil_100k'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_100k.png',vmin=0,vmax=1e-5,cmap='hot')
+#Plot2DMD(mtd['benzil_100k'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_100k.png',vmin=0,vmax=1e-5,cmap='hot')
 SaveMD('benzil_100k','/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_100k.nxs')
 
 SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-15526/shared/autoreduce/CORELLI_'+str(r)+'_elastic.nxs' for r in runs),
@@ -102,8 +102,8 @@ SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-15526/shared/
                               Wproj='0,0,1',
                               BinningDim0='-7.525,7.525,301',
                               BinningDim1='-13.16875,13.16875,301',
-                              BinningDim2='-0.1,0.1,1',
+                              BinningDim2='-3.1,3.1,31',
                               SymmetryOps="P 31 2 1")
 
-Plot2DMD(mtd['benzil_100k_elastic'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_100k_elastic.png',vmin=0,vmax=1e-5,cmap='hot')
+#Plot2DMD(mtd['benzil_100k_elastic'],'/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_100k_elastic.png',vmin=0,vmax=1e-5,cmap='hot')
 SaveMD('benzil_100k_elastic','/SNS/users/rwp/corelli/IPTS-15526-Benzil/benzil_100k_elastic.nxs')
