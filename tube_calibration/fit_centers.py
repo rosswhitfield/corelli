@@ -9,4 +9,4 @@ for row in centers:
     x = row[3:]
     A = np.vstack([x, np.ones(len(x))]).T
     m, c = np.linalg.lstsq(A, y)[0]
-    print(m, c,m*255)
+    print(row[1],row[2],m, c,m*255)
