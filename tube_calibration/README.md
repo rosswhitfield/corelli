@@ -13,3 +13,11 @@ python2 create_calibration.py
 ```
 python2 test_calib.py
 ```
+
+# or just run
+
+```
+./run.py 47301 33 calib.txt
+./run.py 47301 45 calib.txt
+./run.py 47301 57 calib.txt
+```

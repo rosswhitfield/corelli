@@ -1,5 +1,4 @@
 #!/usr/bin/env python2
-
 # ./run.py 47301 33 output.txt
 
 from mantid.simpleapi import Load, Integration, LoadEmptyInstrument
@@ -7,19 +6,21 @@ import subprocess
 import sys
 import numpy as np
 
-run=sys.argv[1]
-bank=sys.argv[2]
+run = sys.argv[1]
+bank = int(sys.argv[2])
+output = sys.argv[3]
 
-corelli=LoadEmptyInstrument(InstrumentName='CORELLI')
-inst=corelli.getInstrument()
+corelli = LoadEmptyInstrument(InstrumentName='CORELLI')
+inst = corelli.getInstrument()
 bank_pos = inst.getComponentByName('bank'+str(bank)+'/sixteenpack').getPos()
 
-a=(2*25.4+2)/1000
-y=np.arange(-7.5*a,8.5*a,a)
+a = (2*25.4+2)/1000
+y = np.arange(-7.5*a, 8.5*a, a)
 
-data=Load('CORELLI_'+str(run),BankName='bank'+str(bank))
-data=Integration(data)
-data_Y=data.extractY()*-1
+data = Load('CORELLI_'+str(run), BankName='bank'+str(bank))
+data = Integration(data)
+data_Y = data.extractY()*-1
+
 
 def make_fityk_cmd(run, bank, tube):
     fityk_cmd = """@0 < 'COR_{0}_{1}_{2}.txt'
@@ -52,17 +53,27 @@ $_hwhm = ~1.28083
     return fityk_cmd
 
 
+f = open(output, 'a')
+
+
 for tube in range(16):
-    filename = 'COR_{}_{}_{}'.format(run,bank,tube+1)
-    np.savetxt(filename+'.txt', np.concatenate((np.array(range(256),ndmin=2).T, data_Y[range(256*tube,256*(tube+1))]),axis=1))
-    p = subprocess.Popen(['/usr/bin/cfityk','-n'],stdin=subprocess.PIPE)
+    filename = 'COR_{}_{}_{}'.format(run, bank, tube+1)
+    np.savetxt(filename+'.txt',
+               np.concatenate((np.array(range(256), ndmin=2).T,
+                               data_Y[range(256*tube, 256*(tube+1))]), axis=1))
+    p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
     p.communicate(make_fityk_cmd(run, bank, tube))
-    centers = np.genfromtxt(filename+'.peaks', skip_header=1, skip_footer=1, usecols=2)
+    centers = np.genfromtxt(filename+'.peaks', skip_header=1,
+                            skip_footer=1, usecols=2)
+    if (centers < 10).any() or (centers > 250).any():
+        continue
     A = np.vstack([centers, np.ones(len(centers))]).T
     m, c = np.linalg.lstsq(A, y)[0]
     for pixel in range(256):
-        detID = (bank-1)*256*16+(tube-1)*256+pixel
+        detID = (bank-1)*256*16+(tube)*256+pixel
         det_pos = inst.getDetector(detID).getPos()
         new_y = bank_pos[1] + pixel*m + c
         new_pos = [det_pos[0], new_y, det_pos[2]]
-        print '{},{}'.format(detID, new_pos)
+        f.write('{},{}\n'.format(detID, new_pos))
+
+f.close()
