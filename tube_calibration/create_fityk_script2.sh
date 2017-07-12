@@ -39,3 +39,6 @@ delete %_*
 EOF
     done
 done
+cat <<EOF
+quit
+EOF

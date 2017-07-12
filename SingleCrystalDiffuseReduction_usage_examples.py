@@ -115,7 +115,7 @@ Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_multiple_sym_bkg.
 SaveMD(InputWorkspace='output', Filename='corelli_multiple_sym_bkg.nxs')
 
 # Reading in elastic Corelli autoreduced data
-SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-15526/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(29782,29818,5)),
+SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-15526/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(29782,29818,10)),
                               Background='/SNS/CORELLI/IPTS-15796/shared/autoreduce/CORELLI_28124_elastic.nxs',
                               BackgroundScale=0.95,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',

@@ -3,7 +3,7 @@
 ```
 python2 fityk.py
 ./create_fityk_script2.sh > gen.fit
-fitky gen.fit
+cfitky gen.fit
 ./get_centers.sh
 python2 create_calibration.py
 ```
