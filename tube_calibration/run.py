@@ -8,7 +8,8 @@ import numpy as np
 
 run = sys.argv[1]
 bank = int(sys.argv[2])
-output = sys.argv[3]
+height = int(sys.argv[3])
+output = sys.argv[4]
 
 corelli = LoadEmptyInstrument(InstrumentName='CORELLI')
 inst = corelli.getInstrument()
@@ -26,30 +27,30 @@ def make_fityk_cmd(run, bank, tube):
     fityk_cmd = """@0 < 'COR_{0}_{1}_{2}.txt'
 @0: A = a and not (-1 < x and x < 12.5)
 @0: A = a and not (242.5 < x and x < 256)
-F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
-F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=~240.0, hwhm=~1.28083)
 $_hwhm = ~1.28083
 %*.hwhm = $_hwhm
 @0: guess Quadratic
 @0: fit
-%*.height = ~200
+%*.height = ~{3}
 @0: fit
 @0: info peaks > 'COR_{0}_{1}_{2}.peaks'
-""".format(run, bank, tube+1)
+""".format(run, bank, tube+1, height)
     return fityk_cmd
 
 
