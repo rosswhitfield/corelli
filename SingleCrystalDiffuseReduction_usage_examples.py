@@ -21,7 +21,7 @@ def Plot2DMD(ws,filename,**kwargs):
     intensity=ws.getSignalArray().copy()
     intensity=intensity.squeeze()
     intensity=np.ma.masked_where(np.isnan(intensity),intensity)
-    XX,YY=np.meshgrid(x,y,indexing='ij')
+    XX,YY=np.meshgrid(x,x,indexing='ij')
     plt.clf()
     fig = plt.pcolormesh(XX,YY,intensity,**kwargs)
     plt.xlabel(dimx.name+' ('+dimx.getUnits()+')')
@@ -48,7 +48,7 @@ Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_single.png', vmin
 SaveMD(InputWorkspace='output', Filename='corelli_single.nxs')
 
 # Corelli, multiple files
-SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:5',
+SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
                               UBMatrix="/SNS/CORELLI/IPTS-15526/shared/benzil_Hexagonal.mat",
@@ -79,7 +79,7 @@ Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_single_sym.png', 
 SaveMD(InputWorkspace='output', Filename='corelli_single_sym.nxs')
 
 # Corelli, multiple files with symmetry
-SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:5',
+SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
                               UBMatrix="/SNS/CORELLI/IPTS-15526/shared/benzil_Hexagonal.mat",
@@ -96,7 +96,7 @@ Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_multiple_sym.png'
 SaveMD(InputWorkspace='output', Filename='corelli_multiple_sym.nxs')
 
 # Corelli, multiple files with symmetry and background substraction
-SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:5',
+SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
                               Background='CORELLI_28124',
                               BackgroundScale=0.95,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
@@ -133,7 +133,7 @@ Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_multiple_sym_bkg_
 SaveMD(InputWorkspace='output', Filename='corelli_multiple_sym_bkg_elastic.nxs')
 
 # Defining the axis to be [H,H,0], [H,-H,0], [0,0,L]
-SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:5',
+SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
                               Background='CORELLI_28124',
                               BackgroundScale=0.95,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
@@ -150,10 +150,11 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:5',
                               BinningDim2='-0.1,0.1,1',
                               SymmetryOps="P 31 2 1")
 
-Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_multiple_sym_bkg_HH0.png', vmin=0,vmax=1e-5,aspect=1)
+Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_corelli_multiple_sym_bkg_HH0.png', vmin=0,vmax=1e-5)
 SaveMD(InputWorkspace='output', Filename='corelli_multiple_sym_bkg_HH0.nxs')
 
 # TOPAZ example using TOF filter and DetCal
+"""
 SingleCrystalDiffuseReduction(Filename='TOPAZ_23567:23582:3',
                               Background='TOPAZ_23195',
                               FilterByTofMin=500,
@@ -170,3 +171,4 @@ SingleCrystalDiffuseReduction(Filename='TOPAZ_23567:23582:3',
 
 Plot2DMD(mtd['output'], 'SingleCrystalDiffuseReduction_topaz.png', vmin=0,vmax=5e-5)
 SaveMD(InputWorkspace='output', Filename='topaz_multiple_sym_bkg.nxs')
+"""
