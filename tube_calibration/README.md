@@ -17,7 +17,15 @@ python2 test_calib.py
 # or just run
 
 ```
-./run.py 47301 33 calib.txt
-./run.py 47301 45 calib.txt
-./run.py 47301 57 calib.txt
+./run.py 47301 33 200 calib.txt
+./run.py 47301 45 200 calib.txt
+./run.py 47301 57 200 calib.txt
+```
+
+or
+
+```
+./run.py 47301-47304 33 1000 calib.txt
+./run.py 47301-47304 45 1000 calib.txt
+./run.py 47301-47304 57 1000 calib.txt
 ```
