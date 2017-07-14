@@ -17,7 +17,13 @@ ApplyCalibration(data,'CalibTable')
 
 tube.readCalibrationFile('CalibTable2','/SNS/users/rwp/corelli/tube_calibration/calib2.txt')
 
-data_org2=Load('CORELLI_47301-47304',BankName='bank33,bank45,bank57')
 data2=Load('CORELLI_47301-47304',BankName='bank33,bank45,bank57')
 
 ApplyCalibration(data2,'CalibTable2')
+
+
+tube.readCalibrationFile('CalibTable3','/SNS/users/rwp/corelli/tube_calibration/calib3.txt')
+
+data3=Load('CORELLI_47301-47304',BankName='bank33,bank45,bank57')
+
+ApplyCalibration(data3,'CalibTable3')
