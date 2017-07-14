@@ -68,7 +68,7 @@ for tube in range(16):
                             skip_footer=1, usecols=2)
     if (centers < 10).any() or (centers > 250).any():
         continue
-    z = np.polyfit(centers, y, 3)
+    z = np.polyfit(centers, y, 2)
     poly = np.poly1d(z)
     for pixel in range(256):
         detID = (bank-1)*256*16+(tube)*256+pixel

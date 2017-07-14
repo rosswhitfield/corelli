@@ -29,3 +29,19 @@ or
 ./run.py 47301-47304 45 1000 calib.txt
 ./run.py 47301-47304 57 1000 calib.txt
 ```
+
+or
+
+```
+./run_poly.py 47301-47304 33 1000 calib.txt
+./run_poly.py 47301-47304 45 1000 calib.txt
+./run_poly.py 47301-47304 47 1000 calib.txt
+```
+
+
+# New
+
+```
+./run_poly.py 47307 27 500 calib.txt
+./run_poly.py 47307 28 500 calib.txt
+```

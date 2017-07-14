@@ -27,3 +27,13 @@ tube.readCalibrationFile('CalibTable3','/SNS/users/rwp/corelli/tube_calibration/
 data3=Load('CORELLI_47301-47304',BankName='bank33,bank45,bank57')
 
 ApplyCalibration(data3,'CalibTable3')
+
+
+
+# NEW
+tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration/calib.txt')
+
+data_org=Load('CORELLI_47307',BankName='bank27,bank28,bank59,bank60,bank61')
+data=CloneWorkspace(data_org)
+
+ApplyCalibration(data,'CalibTable')
