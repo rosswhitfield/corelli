@@ -7,6 +7,12 @@ data=LoadEventNexus('/SNS/CORELLI/IPTS-18479/nexus/CORELLI_47301.nxs.h5',BankNam
 ApplyCalibration(data,'CalibTable')
 
 
+tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration/calib.txt')
+
+data_org=Load('CORELLI_47301-47304',BankName='bank33,bank45,bank57')
+data=Load('CORELLI_47301-47304',BankName='bank33,bank45,bank57')
+
+ApplyCalibration(data,'CalibTable')
 
 
 tube.readCalibrationFile('CalibTable2','/SNS/users/rwp/corelli/tube_calibration/calib2.txt')
