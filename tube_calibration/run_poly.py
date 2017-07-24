@@ -67,6 +67,7 @@ for tube in range(16):
     centers = np.genfromtxt(filename+'.peaks', skip_header=1,
                             skip_footer=1, usecols=2)
     if (centers < 10).any() or (centers > 250).any():
+        print("skipping tube ",tube)
         continue
     z = np.polyfit(centers, y, 2)
     poly = np.poly1d(z)
