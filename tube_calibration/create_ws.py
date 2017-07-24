@@ -1,9 +1,7 @@
-from mantid.simpleapi import Load, Integration, LoadEmptyInstrument
+from mantid.simpleapi import Load, Integration, LoadEmptyInstrument, mtd, CloneWorkspace
 import numpy as np
 
-ws_list=np.genfromtxt('list',delimiter=',',dtype=int)
-
-accum = LoadEmptyInstrument(InstrumentName='CORELLI')
+ws_list=np.genfromtxt('/SNS/users/rwp/corelli/tube_calibration/list',delimiter=',',dtype=int)
 
 for run, *banks in ws_list:
     banks=np.asarray(banks)
@@ -13,4 +11,8 @@ for run, *banks in ws_list:
     print(banks)
     data = Load('CORELLI_'+str(run), BankName=banks)
     data = Integration(data)
-    accum =+ data
+    if mtd.doesExist('accum'):
+      accum+=data 
+    else: 
+      accum=CloneWorkspace(data)
+
