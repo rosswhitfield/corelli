@@ -20,7 +20,7 @@ for f in files:
     SetGoniometer(data,Axis0="BL9:Mot:Sample:Axis1,0,1,0,1")
     MDEW = ConvertToMD(InputWorkspace=data, QDimensions="Q3D",
                        dEAnalysisMode="Elastic", QConversionScales="Q in A^-1",
-                       LorentzCorrection='1', MinValues=minVals, MaxValues=maxVals,
+                       LorentzCorrection='0', MinValues=minVals, MaxValues=maxVals,
                        SplitInto='2', SplitThreshold='50',MaxRecursionDepth='11')
     peaks_ws = FindPeaksMD(MDEW, MaxPeaks=num_peaks_to_find,
                            PeakDistanceThreshold=distance_threshold,
