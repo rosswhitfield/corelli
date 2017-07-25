@@ -1,4 +1,4 @@
-from mantid.simpleapi import Load, mtd, CloneWorkspace, Integration, SaveNexus
+from mantid.simpleapi import Load, mtd, CloneWorkspace, Integration, SaveNexus, RemoveLogs
 import numpy as np
 
 ws_list = np.genfromtxt('/SNS/users/rwp/corelli/tube_calibration/list',
@@ -13,6 +13,7 @@ for run, banks, height in ws_list:
     pc=sum(data.getRun()['proton_charge'].value)
     data = Integration(data)
     data/=pc
+    RemoveLogs(data)
     if 'accum' in mtd:
         accum += data
     else:
