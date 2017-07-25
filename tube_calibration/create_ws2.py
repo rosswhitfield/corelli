@@ -5,11 +5,12 @@ ws_list=np.genfromtxt('/SNS/users/rwp/corelli/tube_calibration/list',delimiter='
 for run, banks, height in ws_list:
     banks=np.asarray(banks)
     banks = banks[np.nonzero(banks)]
-    for bank in banks:
-        data = Load(Filename='CORELLI_'+run,BankName='bank'+str(bank),SingleBankPixelsOnly=False)
-        data = Integration(data)
-        if 'accum' in mtd:
-            accum += data
-        else:
-            accum=CloneWorkspace(data)
+    bank_names=','.join('bank'+str(b) for b in banks)
+    data = Load(Filename='CORELLI_'+run,BankName=bank_names,SingleBankPixelsOnly=False,LoadLogs=False)
+    data = Integration(data)
+    if 'accum' in mtd:
+        accum += data
+    else:
+        accum=CloneWorkspace(data)
 
+SaveNexus(accum, '/SNS/users/rwp/corelli/tube_calibration/all_banks.nxs')
