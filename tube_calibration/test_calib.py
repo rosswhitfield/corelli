@@ -37,3 +37,9 @@ data_org=Load('CORELLI_47307',BankName='bank27,bank28,bank59,bank60,bank61')
 data=CloneWorkspace(data_org)
 
 ApplyCalibration(data,'CalibTable')
+
+
+
+tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration/calib_all.txt')
+
+tube.readCalibrationFile('CalibTable2000','/SNS/users/rwp/corelli/tube_calibration/calib_all_2000.txt')
