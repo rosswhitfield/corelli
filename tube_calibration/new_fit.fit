@@ -1,8 +1,12 @@
+define GetCenter(b, c, y) = (y-c)/b
+
 @0 < 'COR_47308_27_10.txt'
 @0: A = a and not (-1 < x and x < 12.5)
 @0: A = a and not (242.5 < x and x < 256)
+
 $b = ~0.003535
 $c = ~-0.45257
+
 F += Lorentzian(height=2000, center=(-0.396-$c)/$b, hwhm=~1.28083)
 F += Lorentzian(height=2000, center=(-0.3432-$c)/$b, hwhm=~1.28083)
 F += Lorentzian(height=2000, center=(-0.2904-$c)/$b, hwhm=~1.28083)
@@ -25,4 +29,5 @@ $_hwhm = ~1.28083
 @0: fit
 %*.height = ~2000
 @0: fit
-@0: info peaks
+info $b > test
+info $c >> test

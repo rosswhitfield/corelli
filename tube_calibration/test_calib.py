@@ -45,3 +45,5 @@ tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration/c
 tube.readCalibrationFile('CalibTable2000','/SNS/users/rwp/corelli/tube_calibration/calib_all_2000.txt')
 
 tube.readCalibrationFile('CalibTableNew','/SNS/users/rwp/corelli/tube_calibration/calib_all_new.txt')
+
+tube.readCalibrationFile('CalibTableNew','/SNS/users/rwp/corelli/tube_calibration/new_linear.txt')
