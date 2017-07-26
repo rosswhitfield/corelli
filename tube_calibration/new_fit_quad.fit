@@ -1,0 +1,35 @@
+@0 < 'COR_47308_27_1.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+
+$a = ~0.00000001 [0:]
+$b = ~0.003535
+$c = ~-0.45257
+
+$c1 = a == 0 ? (-0.396-$c)/$b : (sqrt($b*$b-4*$a*($c+0.396))-$b)/(2*$a)
+
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.396))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.3432))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.2904))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.2376))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.1848))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.132))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.0792))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c+0.0264))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.0264))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.0792))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.132))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.1848))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.2376))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.2904))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.3432))-$b)/(2*$a), hwhm=~1.28083)
+F += Lorentzian(height=2000, center=(sqrt($b*$b-4*$a*($c-0.396))-$b)/(2*$a), hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~2000
+@0: fit
+info $a > test
+info $b >> test
+info $c >> test

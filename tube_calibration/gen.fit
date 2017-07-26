@@ -1,0 +1,1270 @@
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_1.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_1.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_2.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_2.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_3.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_3.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_4.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_4.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_5.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_5.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_6.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_6.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_7.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_7.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_8.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_8.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_9.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_9.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_10.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_10.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_11.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_11.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_12.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_12.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_13.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_13.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_14.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_14.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_15.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_15.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_16.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_33_16.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_1.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_1.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_2.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_2.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_3.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_3.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_4.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_4.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_5.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_5.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_6.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_6.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_7.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_7.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_8.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_8.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_9.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_9.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_10.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_10.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_11.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_11.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_12.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_12.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_13.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_13.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_14.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_14.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_16.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_45_16.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_1.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_1.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_2.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_2.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_3.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_3.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_4.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_4.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_5.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_5.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_6.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_6.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_7.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_7.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_8.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_8.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_9.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_9.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_10.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_10.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_11.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_11.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_12.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_12.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_13.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_13.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_14.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_14.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_15.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_15.peaks'
+delete %_*
+@0 < '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_16.txt'
+@0: A = a and not (-1 < x and x < 12.5)
+@0: A = a and not (242.5 < x and x < 256)
+F += Lorentzian(height=200, center=~15.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~30.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~45.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~61.5, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~75.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~90.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~104.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~120.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~135.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~150.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~165.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~180.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~195.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~210.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~225.0, hwhm=~1.28083)
+F += Lorentzian(height=200, center=~240.0, hwhm=~1.28083)
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: guess Quadratic
+@0: fit
+%*.height = ~200
+@0: fit
+@0: info peaks > '/SNS/users/rwp/corelli/tube_calibration/COR_47301_57_16.peaks'
+delete %_*
+quit
