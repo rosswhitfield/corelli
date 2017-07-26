@@ -12,40 +12,24 @@ def make_fityk_cmd(run, bank, tube):
     fityk_cmd = """@0 < 'COR_{0}_{1}_{2}.txt'
 @0: A = a and not (-1 < x and x < 12.5)
 @0: A = a and not (242.5 < x and x < 256)
-$b = ~0.003535
-$c = ~-0.45257
-F += Lorentzian(height=2000, center=(-0.396-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.3432-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.2904-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.2376-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.1848-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.132-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.0792-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(-0.0264-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.0264-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.0792-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.132-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.1848-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.2376-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.2904-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.3432-$c)/$b, hwhm=~1.28083)
-F += Lorentzian(height=2000, center=(0.396-$c)/$b, hwhm=~1.28083
-F += Lorentzian(height={3}, center=~15.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~30.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~45.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~61.5, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~75.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~90.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~104.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~120.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~135.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~150.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~165.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~180.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~195.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~210.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~225.0, hwhm=~1.28083)
-F += Lorentzian(height={3}, center=~240.0, hwhm=~1.28083)
+$b = ~0.003535 [0.00:20]
+$c = ~-0.45257 [0:20]
+F += Lorentzian(height={3}, center=(-0.396-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.3432-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.2904-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.2376-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.1848-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.132-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.0792-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(-0.0264-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.0264-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.0792-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.132-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.1848-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.2376-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.2904-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.3432-$c)/$b, hwhm=~1.28083)
+F += Lorentzian(height={3}, center=(0.396-$c)/$b, hwhm=~1.28083
 $_hwhm = ~1.28083
 %*.hwhm = $_hwhm
 @0: guess Quadratic
@@ -79,7 +63,9 @@ for run, banks, height in ws_list:
             p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
             p.communicate(make_fityk_cmd(run, bank, tube))
             param = np.genfromtxt(filename+'.param', usecols=4)
-            if np.any(np.isnan(param)+np.isinf(param)+(np.abs(param) > 1)):
+            if np.any(np.isnan(param)+np.isinf(param)):
+                continue
+            if param[0] < 0.003 or param[0] > 0.38 or param[1] < -0.5 or param[1] > -0.35:
                 continue
             for pixel in range(256):
                 detID = (bank-1)*256*16+(tube)*256+pixel
