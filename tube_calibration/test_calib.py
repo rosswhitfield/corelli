@@ -51,3 +51,6 @@ tube.readCalibrationFile('CalibTableNew2','/SNS/users/rwp/corelli/tube_calibrati
 
 
 tube.readCalibrationFile('CalibTableNew3','/SNS/users/rwp/corelli/tube_calibration/new_linear2_smaller_range.txt')
+tube.readCalibrationFile('CalibTableNew4','/SNS/users/rwp/corelli/tube_calibration/new_linear2_smaller_range2.txt')
+
+tube.readCalibrationFile('CalibTableNewQuad','/SNS/users/rwp/corelli/tube_calibration/calib_quad_new.txt')
