@@ -75,6 +75,8 @@ for run, banks, height in ws_list:
             p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
             p.communicate(make_fityk_cmd(run, bank, tube))
             param = np.genfromtxt(filename+'.param3', usecols=4)
+            if np.abs(param[0]) > 50 or param[1] < 270 or np.abs(param[2]-127) > 5:
+                continue            
             for pixel in range(256):
                 detID = (bank-1)*256*16+(tube)*256+pixel
                 det_pos = inst.getDetector(detID).getPos()
