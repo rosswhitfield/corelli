@@ -1,3 +1,6 @@
+define SuperFunction(a, b, c) = 
+
+
 @0 < 'COR_47308_27_1.txt'
 @0: A = a and not (-1 < x and x < 12.5)
 @0: A = a and not (242.5 < x and x < 256)
