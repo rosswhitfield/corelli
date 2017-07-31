@@ -10,8 +10,8 @@ inst = corelli.getInstrument()
 
 def make_fityk_cmd(run, bank, tube):
     fityk_cmd = """@0 < 'COR_{0}_{1}_{2}.txt'
-@0: A = a and not (-1 < x and x < 12.5)
-@0: A = a and not (242.5 < x and x < 256)
+@0: A = a and not (-1 < x and x < 25.5)
+@0: A = a and not (229.5 < x and x < 256)
 $b = ~0.003535 [0.003435:0.003635]
 $c = ~-0.45257 [-0.47:-0.43]
 F += Lorentzian(height={3}, center=(-0.396-$c)/$b, hwhm=~1.28083)
