@@ -3,7 +3,7 @@ outputdir="/SNS/CORELLI/IPTS-15526/shared/"
 
 #Quick mesh scan, 5 mins/angle
 runs = range(29533,29536)#+range(29556,29589)
-runs = range(29556,29589,10)
+runs = range(29556,29589,20)
 
 #mesh scan at 100K, 20 mins/angle
 #runs = range(29589,29614)
