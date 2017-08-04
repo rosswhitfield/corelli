@@ -1,6 +1,7 @@
 from mantid.simpleapi import *
 
 runs = range(29533,29536)#+range(29556,29589)
+runs = range(29556,29589,10)
 
 for r in runs:
     print 'Processing run : %s' %r
