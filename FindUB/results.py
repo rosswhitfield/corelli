@@ -4,7 +4,7 @@ import sys
 UB = sys.argv[1]
 
 runs = range(29533,29536)#+range(29556,29589)
-runs = range(29556,29589,20)
+#runs = range(29556,29589,20)
 
 for r in runs:
     print 'Processing run : %s' %r
