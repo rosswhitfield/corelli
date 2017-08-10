@@ -31,8 +31,8 @@ Once you have the desired UB and cell save it with
 ## Normalisation
 
 The SolidAngle and Flux should be provided by the instrument scientist
-but this example is show
-[next](#create_solid_angle_and_flux_workspace_for_normalization)
+but the example used here is shown
+[below](#create-solid-angle-and-flux-workspace-for-normalization)
 
 [SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
 makes use of
@@ -49,7 +49,7 @@ the
 usage examples
 [here](http://docs.mantidproject.org/nightly/algorithms/MDNormSCD-v1.html#usage)
 
-For the example [above](#Normalisation) the SolidAngle and Flux were
+For the example [above](#normalisation) the SolidAngle and Flux were
 made as below.
 
 ```python
