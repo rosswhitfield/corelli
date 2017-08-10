@@ -4,7 +4,8 @@
 !.gitignore
 # Whitelist all directories
 !*/
-# Whitelist *.py
+# Whitelist *.py and *.md
 !*.py
 !*.ipynb
+!*.md
 .ipynb_checkpoints/
