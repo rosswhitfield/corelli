@@ -21,8 +21,18 @@ Select the cell using either
 * [SelectCellOfType](http://docs.mantidproject.org/nightly/algorithms/SelectCellOfType.html)
 * [SelectCellWithForm](http://docs.mantidproject.org/nightly/algorithms/SelectCellWithForm.html)
 
-[SaveIsawUB](http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html)
+Once you have the desired UB and cell save it with
+* [SaveIsawUB](http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html)
 
 ## Normalisation
 
-[SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
+The SolidAngle and Flux should be provided by the instrument scientist
+but this example is show
+[next](#create_solid_angle_and_flux_workspace_for_normalization)
+
+* [SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
+* [SaveMD](http://docs.mantidproject.org/nightly/algorithms/SaveMD.html)
+
+## Create solid angle and flux workspace for normalization
+
+## Cross-correlation to extract elastic signal
