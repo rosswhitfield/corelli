@@ -72,3 +72,8 @@ Rebin(InputWorkspace='flux', OutputWorkspace='flux', Params='2.5,10,10')
 IntegrateFlux(InputWorkspace='flux', OutputWorkspace='flux')
 SaveNexus(InputWorkspace='flux', Filename='Spectrum.nxs')
 ```
+
+```
+sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e6,limits=[-5,5,-5,5])
+sv.saveImage('plot.png')
+```

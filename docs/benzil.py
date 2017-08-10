@@ -17,15 +17,18 @@ Rebin(InputWorkspace='flux', OutputWorkspace='flux', Params='2.5,10,10')
 IntegrateFlux(InputWorkspace='flux', OutputWorkspace='flux')
 SaveNexus(InputWorkspace='flux', Filename='Spectrum.nxs')
 
+ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
+                                     FilterByTofMin=1000,
+                                     FilterByTofMax=16666,
+                                     SetGoniometer=True,
+                                     Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                                     OutputWorkspace='md')
 
 FindPeaksMD(InputWorkspace='md',DensityThresholdFactor=50000, OutputWorkspace='peaks')
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=15)
 ShowPossibleCells(PeaksWorkspace='peaks')
 SelectCellOfType(PeaksWorkspace='peaks',CellType='Hexagonal',Apply=True)
 SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
-
-
-
 
 SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
                               Background='CORELLI_28124',
