@@ -1,4 +1,21 @@
-
+# Vanadium for normalisation
+Load(Filename='CORELLI_28119-28123', OutputWorkspace='van')
+ConvertUnits(InputWorkspace='van', OutputWorkspace='van', Target='Momentum')
+CropWorkspace(InputWorkspace='van', OutputWorkspace='van', XMin='2.5', XMax='10')
+# Get Solid Angle
+Rebin(InputWorkspace='van', OutputWorkspace='sa', Params='2.5,10,10', PreserveEvents='0')
+SaveNexus(InputWorkspace='sa', Filename='SolidAngle.nxs')
+# Get Flux
+SumSpectra(InputWorkspace='van', OutputWorkspace='flux')
+CompressEvents(InputWorkspace='flux', OutputWorkspace='flux')
+Rebin(InputWorkspace='flux', OutputWorkspace='flux', Params='2.5,10,10')
+flux=mtd['flux']
+for i in range(flux.getNumberHistograms()):
+    el=flux.getSpectrum(i)
+    el.divide(flux.readY(i)[0],0)
+Rebin(InputWorkspace='flux', OutputWorkspace='flux', Params='2.5,10,10')
+IntegrateFlux(InputWorkspace='flux', OutputWorkspace='flux')
+SaveNexus(InputWorkspace='flux', Filename='Spectrum.nxs')
 
 
 FindPeaksMD(InputWorkspace='md',DensityThresholdFactor=50000, OutputWorkspace='peaks')
@@ -13,8 +30,8 @@ SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
 SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
                               Background='CORELLI_28124',
                               BackgroundScale=0.95,
-                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
-                              Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
+                              SolidAngle='SolidAngle.nxs',
+                              Flux='Spectrum.nxs',
                               UBMatrix="benzil.mat",
                               OutputWorkspace='output',
                               SetGoniometer=True,
