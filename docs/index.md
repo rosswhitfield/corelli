@@ -52,7 +52,7 @@ usage examples
 For the example [above](#Normalisation) the SolidAngle and Flux were
 made as below.
 
-```
+```python
 # Vanadium for normalisation
 Load(Filename='CORELLI_28119-28123', OutputWorkspace='van')
 ConvertUnits(InputWorkspace='van', OutputWorkspace='van', Target='Momentum')
