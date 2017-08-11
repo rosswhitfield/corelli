@@ -4,6 +4,11 @@ Information about Corelli can be found [here](https://neutrons.ornl.gov/corelli)
 
 Live data collection information can be found [here](https://monitor.sns.gov/dasmon/corelli)
 
+## Visual Overview of the CORELLI Instrument
+![Corelli](BL-9-CORELLI-Instrument-Diagram.png)
+
+# Single Crystal Diffuse Scattering Reduction
+
 ## Contents:
 * [Elastic scattering using cross-correlation](cc.md)
 * [Finding Peaks](peaks.md)
@@ -11,5 +16,3 @@ Live data collection information can be found [here](https://monitor.sns.gov/das
 * [Diffuse volume reduction](reduction.md)
   * [Creating Solid Angle and Flux workpace](van.md)
 
-## Visual Overview of the CORELLI Instrument
-![Corelli](BL-9-CORELLI-Instrument-Diagram.png)

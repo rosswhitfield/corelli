@@ -1,6 +1,4 @@
-# Single Crystal Diffuse Scattering Reduction
-
-## Normalisation
+# Normalisation and symmetry
 
 The SolidAngle and Flux should be provided by the instrument scientist
 but the example used here is shown [here](van.md)
