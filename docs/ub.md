@@ -1,8 +1,10 @@
 # Finding UB matrix
 
-Using the peaks workspace from [Finding Peaks](peaks.md) using either
-* [FindUBUsingFFT](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingFFT.html)
-* [FindUBUsingLatticeParameters](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingLatticeParameters.html)
+Using the peaks workspace from [Finding Peaks](peaks.md) the UB matrix
+can be determined using either
+[FindUBUsingFFT](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingFFT.html)
+or
+[FindUBUsingLatticeParameters](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingLatticeParameters.html)
 
 ```python
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=15)
@@ -30,9 +32,10 @@ ShowPossibleCells-[Notice] Form #34  Error: 0.0677  Monoclinic    P   Lat Par:  
 ShowPossibleCells-[Notice] Form #31  Error: 0.0000  Triclinic     P   Lat Par:   8.4288   8.4365  13.9873    89.490   89.462   59.968     861.04
 ```
 
-Select the cell using either
-* [SelectCellOfType](http://docs.mantidproject.org/nightly/algorithms/SelectCellOfType.html)
-* [SelectCellWithForm](http://docs.mantidproject.org/nightly/algorithms/SelectCellWithForm.html)
+The cell can be selected using either
+[SelectCellOfType](http://docs.mantidproject.org/nightly/algorithms/SelectCellOfType.html)
+or
+[SelectCellWithForm](http://docs.mantidproject.org/nightly/algorithms/SelectCellWithForm.html)
 
 ```python
 SelectCellOfType(PeaksWorkspace='peaks',CellType='Hexagonal',Apply=True)
@@ -76,10 +79,9 @@ LoadIsawUB(InputWorkspace='ws', Filename='benzil.mat')
 
 ## Verifying UB Matrix
 
-You can check the UB matrix by re-running [Convert to HKL
-MD](md.md#hkl) with the found UB matrix which will create a MD
-workspace in HKL coordinates. The peaks should now align on HKL
-integers.
+You can check the UB matrix by running [Convert to MD/HKL](md.md#hkl)
+with the found UB matrix which will create a MD workspace in HKL
+coordinates. The peaks should now align on HKL integers.
 
 ```python
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',

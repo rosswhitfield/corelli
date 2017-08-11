@@ -6,7 +6,7 @@ Sample](md.md#q-sample).
 
 ## Finding Peaks
 
-[FindPeaksMD](http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html)
+The peak in a MD workspace can be found using [FindPeaksMD](http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html)
 
 ```python
 FindPeaksMD(InputWorkspace='md',DensityThresholdFactor=50000, OutputWorkspace='peaks')

@@ -8,11 +8,15 @@ which is histogram data.
 
 ## Q sample
 
-[ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html)
+A single file can be converted to a MDWorkspace using
+[ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html). A
+series of MD Workspaces can be combined with
+[MergeMD](http://docs.mantidproject.org/nightly/algorithms/MergeMD.html).
 
 
-
+The workflow algorithm
 [ConvertMultipleRunsToSingleCrystalMD](http://docs.mantidproject.org/nightly/algorithms/ConvertMultipleRunsToSingleCrystalMD.html)
+will load the data, convert to MD, and merge to results for you.
 
 ```python
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
