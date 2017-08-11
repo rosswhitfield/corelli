@@ -1,19 +1,6 @@
-* [Elastic scattering using cross-correlation](cc.md)
-* [Finding Peaks](peaks.md)
-* [Finding the UB Matrix](ub.md)
-* [Diffuse reduction](reduction.md)
+# Finding UB matrix
 
-## Convert to MD
-
-[ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html)
-
-## Finding Peaks
-
-[FindPeaksMD](http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html)
-
-## Finding UB matrix
-
-Using the peaks workspace from [Finding Peaks](#finding-peaks) using either
+Using the peaks workspace from [Finding Peaks](peaks.md) using either
 * [FindUBUsingFFT](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingFFT.html)
 * [FindUBUsingLatticeParameters](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingLatticeParameters.html)
 
