@@ -9,3 +9,4 @@
 !*.ipynb
 !*.md
 .ipynb_checkpoints/
+_site/

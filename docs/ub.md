@@ -46,6 +46,8 @@ SelectCellOfType-[Notice] Re-indexed the peaks with the new UB.
 SelectCellOfType-[Notice] Now, 319 are indexed with average error 0.0253924
 ```
 
+## Verifying UB Matrix
+
 Once you have the desired UB and cell save it with
 * [SaveIsawUB](http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html)
 
