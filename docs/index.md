@@ -7,12 +7,12 @@ Live data collection information can be found [here](https://monitor.sns.gov/das
 ## Visual Overview of the CORELLI Instrument
 ![Corelli](BL-9-CORELLI-Instrument-Diagram.png)
 
-# Single Crystal Diffuse Scattering Reduction
+## Single Crystal Diffuse Scattering Reduction
 
-## Contents:
+### Contents:
 * [Elastic scattering using cross-correlation](cc.md)
 * [Finding Peaks](peaks.md)
 * [Finding the UB Matrix](ub.md)
-* [Diffuse volume reduction](reduction.md)
+* [Normalisation and symmetry](reduction.md)
   * [Creating Solid Angle and Flux workpace](van.md)
 

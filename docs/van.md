@@ -11,19 +11,11 @@ usage examples
 Load(Filename='CORELLI_28119-28123', OutputWorkspace='van')
 ConvertUnits(InputWorkspace='van', OutputWorkspace='van', Target='Momentum')
 CropWorkspace(InputWorkspace='van', OutputWorkspace='van', XMin='2.5', XMax='10')
+
 # Get Solid Angle
 Rebin(InputWorkspace='van', OutputWorkspace='sa', Params='2.5,10,10', PreserveEvents='0')
 SaveNexus(InputWorkspace='sa', Filename='SolidAngle.nxs')
-iv=getInstrumentView('sa')
-render = iv.getTab(InstrumentWidget.RENDER)
-render.setScaleType(GraphOptions.Log10)
-render.saveImage('sa.png')
-```
 
-### Solid Angle instrument view
-![SolidAngle](sa.png)
-
-```python
 # Get Flux
 SumSpectra(InputWorkspace='van', OutputWorkspace='flux')
 CompressEvents(InputWorkspace='flux', OutputWorkspace='flux')
@@ -36,3 +28,22 @@ Rebin(InputWorkspace='flux', OutputWorkspace='flux', Params='2.5,10,10')
 IntegrateFlux(InputWorkspace='flux', OutputWorkspace='flux')
 SaveNexus(InputWorkspace='flux', Filename='Spectrum.nxs')
 ```
+
+### Plot the Solid Angle instrument view
+```python
+iv=getInstrumentView('sa')
+render = iv.getTab(InstrumentWidget.RENDER)
+render.setScaleType(GraphOptions.Log10)
+render.saveImage('sa.png')
+```
+
+![SolidAngle](sa.png)
+
+### Plot the flux workspace
+```python
+p=plotSpectrum('flux',0)
+p.exportImage('flux.png',50)
+```
+
+![Flux](flux.png)
+

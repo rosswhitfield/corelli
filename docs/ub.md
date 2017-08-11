@@ -15,8 +15,7 @@ FindUBUsingFFT-[Notice] Lattice Parameters:    8.428795    8.436472   13.987253 
 FindUBUsingFFT-[Notice] Parameter Errors  :    0.003963    0.004302    0.013582    0.062830    0.061831    0.034438    1.070184
 ```
 
-Show possible cells
-* [ShowPossibleCells](http://docs.mantidproject.org/nightly/algorithms/ShowPossibleCells.html)
+Show possible cells using [ShowPossibleCells](http://docs.mantidproject.org/nightly/algorithms/ShowPossibleCells.html)
 
 ```python
 ShowPossibleCells(PeaksWorkspace='peaks')
@@ -46,14 +45,36 @@ SelectCellOfType-[Notice] Re-indexed the peaks with the new UB.
 SelectCellOfType-[Notice] Now, 319 are indexed with average error 0.0253924
 ```
 
-## Verifying UB Matrix
+## Saving and Loading
 
-Once you have the desired UB and cell save it with
-* [SaveIsawUB](http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html)
+Once you have the desired UB save it with [SaveIsawUB](http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html)
 
 ```python
 SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
 ```
+
+```
+$ cat benzil.mat
+ 0.07262451 -0.11609529  0.00529399
+ 0.13675388  0.00487304  0.00455592
+-0.00276429  0.00104644  0.07143654
+     8.4288      8.4365     13.9873     89.4900     90.5385    120.0325    861.0393
+     0.0034      0.0037      0.0118      0.0545      0.0537      0.0293      0.8884
+
+
+The above matrix is the Transpose of the UB Matrix. The UB matrix maps the column
+vector (h,k,l ) to the column vector (q'x,q'y,q'z).
+|Q'|=1/dspacing and its coordinates are a right-hand coordinate system where
+ x is the beam direction and z is vertically upward.(IPNS convention
+```
+
+You can load the UB onto a workspace using [LoadIsawUB](http://docs.mantidproject.org/nightly/algorithms/LoadIsawUB.html)
+
+```python
+LoadIsawUB(InputWorkspace='ws', Filename='benzil.mat')
+```
+
+## Verifying UB Matrix
 
 You can check the UB matrix by rerunning [Convert to
 MD](peaks.md#convert-to-md) with the found UB matrix which will create
