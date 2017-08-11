@@ -11,8 +11,8 @@ Live data collection information can be found [here](https://monitor.sns.gov/das
 
 ### Contents:
 * [Elastic scattering using cross-correlation](cc.md)
+* [Converting to MD](md.md)
 * [Finding Peaks](peaks.md)
 * [Finding the UB Matrix](ub.md)
 * [Normalisation and symmetry](reduction.md)
-  * [Creating Solid Angle and Flux workpace](van.md)
-
+* [Creating Solid Angle and Flux workpace](van.md)

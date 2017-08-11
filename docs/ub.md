@@ -76,9 +76,9 @@ LoadIsawUB(InputWorkspace='ws', Filename='benzil.mat')
 
 ## Verifying UB Matrix
 
-You can check the UB matrix by rerunning [Convert to
-MD](peaks.md#convert-to-md) with the found UB matrix which will create
-a MD workspace in HKL coordinates. The peaks should now align on HKL
+You can check the UB matrix by re-running [Convert to HKL
+MD](md.md#hkl) with the found UB matrix which will create a MD
+workspace in HKL coordinates. The peaks should now align on HKL
 integers.
 
 ```python
