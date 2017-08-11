@@ -16,7 +16,7 @@ series of MD Workspaces can be combined with
 
 The workflow algorithm
 [ConvertMultipleRunsToSingleCrystalMD](http://docs.mantidproject.org/nightly/algorithms/ConvertMultipleRunsToSingleCrystalMD.html)
-will load the data, convert to MD, and merge to results for you.
+will load the data, convert to MD, and merges the results for you.
 
 ```python
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
