@@ -3,9 +3,10 @@ Load(Filename='CORELLI_28119-28123', OutputWorkspace='van')
 ConvertUnits(InputWorkspace='van', OutputWorkspace='van', Target='Momentum')
 CropWorkspace(InputWorkspace='van', OutputWorkspace='van', XMin='2.5', XMax='10')
 Rebin(InputWorkspace='van', OutputWorkspace='van', Params='2.5,10,10')
+#CompressEvents(InputWorkspace='van', OutputWorkspace='van')
 # Get Solid Angle
-Rebin(InputWorkspace='van', OutputWorkspace='sa', Params='2.5,10,10', PreserveEvents='0')
-SaveNexus(InputWorkspace='sa', Filename='SolidAngle.nxs')
+#Rebin(InputWorkspace='van', OutputWorkspace='sa', Params='2.5,10,10', PreserveEvents='0')
+#SaveNexus(InputWorkspace='sa', Filename='SolidAngle.nxs')
 # Get Flux
 SumSpectra(InputWorkspace='van', OutputWorkspace='flux')
 CompressEvents(InputWorkspace='flux', OutputWorkspace='flux')
