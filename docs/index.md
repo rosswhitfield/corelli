@@ -9,6 +9,8 @@ Live data collection information can be found [here](https://monitor.sns.gov/das
 
 ## Single Crystal Diffuse Scattering Reduction
 
+The data reduction for Corelli is done using [Mantid](http://www.mantidproject.org)
+
 ### Contents:
 * [Elastic scattering using cross-correlation](cc.md)
 * [Converting to MD](md.md)

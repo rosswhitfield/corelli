@@ -6,20 +6,40 @@ which contains event data and
 [MDHistoWorkspace](http://docs.mantidproject.org/nightly/concepts/MDHistoWorkspace.html)
 which is histogram data.
 
+For mantid training on MD workspaces see
+[MDWorkspaces](http://www.mantidproject.org/MBC_MDWorkspaces) and
+[MDVisualisation](http://www.mantidproject.org/MBC_MDVisualisation).
+
 A single file can be converted to a MDWorkspace using
 [ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html).
 
 ## Q lab
 
-
-
-## Q sample
-
-
 ```python
 # Load some data
 ws=Load('CORELLI_29792')
 ```
+
+Then convert to MD workspace using
+[ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html).
+
+```python
+ConvertToMD(InputWorkspace='ws',
+            QDimensions='Q3D',
+	    dEAnalysisMode='Elastic',
+	    Q3DFrames='Q_lab',
+	    OutputWorkspace='md',
+	    MinValues='-10,-10,-10',
+	    MaxValues='10,10,10')
+# Plot in Slice Viewer
+sv=plotSlice('md',xydim=('Q_lab_x','Q_lab_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
+sv.setRebinMode(True)
+sv.setRebinNumBins(300,300)
+sv.saveImage('md_lab.png')
+```
+
+## Q sample
+
 
 In order to comvert it too Q sample you need to specify which
 goniometer to use with
@@ -39,8 +59,8 @@ ConvertToMD(InputWorkspace='ws',
 	    dEAnalysisMode='Elastic',
 	    Q3DFrames='Q_sample',
 	    OutputWorkspace='md',
-	    MinValues='-5,-5,-5',
-	    MaxValues='5,5,5')
+	    MinValues='-10,-10,-10',
+	    MaxValues='10,10,10')
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
 sv.setRebinMode(True)
