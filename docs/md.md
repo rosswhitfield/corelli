@@ -16,8 +16,8 @@ For mantid training on MD workspaces see
 * [Q sample](#q-sample)
 * [HKL](#hkl)
 * [Multiple files](#multiple-files)
-  * [Q sample](#q-sample-multi)
-  * [HKL](#hkl-multi)
+  * [Q sample](#q-sample-1)
+  * [HKL](#hkl-1)
 
 A single file can be converted to a MDWorkspace using
 [ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html).
@@ -137,16 +137,31 @@ sv.saveImage('md_hkl.png')
 A series of MD Workspaces can be combined with
 [MergeMD](http://docs.mantidproject.org/nightly/algorithms/MergeMD.html).
 
+## Q sample
+
+```python
+runs=range(29782,29817,10)
+
+for r in runs:
+    data=Load('CORELLI_{}'.format(r))
+    SetGoniometer(data,Axis0='BL9:Mot:Sample:Axis1,0,1,0,1')
+    ConvertToMD(data,QDimensions='Q3D',DEanalysisMode='Elastic',Q3DFrames='Q_sample',
+                OutputWorkspace='md_{}'.format(r),
+                MinValues='-10,-10,-10',MaxValues='10,10,10')
+md=MergeMD(','.join(['md_{}'.format(r) for r in runs]))
+```
+
 The workflow algorithm
 [ConvertMultipleRunsToSingleCrystalMD](http://docs.mantidproject.org/nightly/algorithms/ConvertMultipleRunsToSingleCrystalMD.html)
-will load the data, convert to MD, and merges the results for you.
+will load the data, convert to MD, and merges the results for
+you. This produces the same results as above.
 
 ```python
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
-                                     FilterByTofMin=1000,
-                                     FilterByTofMax=16666,
                                      SetGoniometer=True,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+				     MinValues='-10,-10,-10',
+				     MaxValues='10,10,10'
                                      OutputWorkspace='md')
 
 # Plot in Slice Viewer
