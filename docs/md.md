@@ -8,8 +8,9 @@ which is histogram data.
 
 For mantid training on MD workspaces see
 [MDWorkspaces](http://www.mantidproject.org/MBC_MDWorkspaces) and
-[MDVisualisation](http://www.mantidproject.org/MBC_MDVisualisation).
-
+[MDVisualisation](http://www.mantidproject.org/MBC_MDVisualisation). For
+a complete list of algorithms to work with MD workspaces see
+[MDAlgorithms](http://docs.mantidproject.org/nightly/algorithms/categories/MDAlgorithms.html).
 
 ### Contents:
 * [Q lab](#q-lab)
@@ -18,6 +19,7 @@ For mantid training on MD workspaces see
 * [Multiple files](#multiple-files)
   * [Q sample](#q-sample-1)
   * [HKL](#hkl-1)
+* [Slicing](#slicing)
 * [Histogramming](#histogramming)
 
 A single file can be converted to a MDWorkspace using
@@ -41,6 +43,7 @@ ConvertToMD(InputWorkspace='ws',
 	    OutputWorkspace='md',
 	    MinValues='-10,-10,-10',
 	    MaxValues='10,10,10')
+
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('Q_lab_x','Q_lab_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
 sv.setRebinMode(True)
@@ -73,6 +76,7 @@ ConvertToMD(InputWorkspace='ws',
 	    OutputWorkspace='md',
 	    MinValues='-10,-10,-10',
 	    MaxValues='10,10,10')
+
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
 sv.setRebinMode(True)
@@ -97,6 +101,7 @@ ConvertToMD(InputWorkspace='ws',
 	    OutputWorkspace='md',
 	    MinValues='-10,-10,-10',
 	    MaxValues='10,10,10')
+
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
 sv.setRebinMode(True)
@@ -123,6 +128,7 @@ ConvertToMD(InputWorkspace='ws',
 	    OutputWorkspace='md',
 	    MinValues='-10,-10,-10',
 	    MaxValues='10,10,10')
+
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('[H,0,0]','[0,K,0]'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
 sv.setRebinMode(True)
@@ -174,10 +180,23 @@ sv.saveImage('md_hkl.png')
 
 ![MD](md.png)
 
-# Histogramming
+## Slicing
+
+An MDEventWorkspace can be sliced using the following:
+* [SliceMD](http://docs.mantidproject.org/nightly/algorithms/SliceMD.html)
+* [CutMD](http://docs.mantidproject.org/nightly/algorithms/CutMD.html)
+
+
+## Histogramming
 
 Everything until now has been working with event data in
-MDEventWorkspaces. This section will show you how to histogram the
-event into a MDHistoWorkpsace.
+MDEventWorkspaces. You can convert the event data to histogram
+(MDEventWorkspace to a MDHistoWorkpsace) using
+[BinMD](http://docs.mantidproject.org/nightly/algorithms/BinMD.html).
 
-* [BinMD](http://docs.mantidproject.org/nightly/algorithms/BinMD.html)
+A MDHistoWorkpsace can be sliced using
+[SliceMDHisto](http://docs.mantidproject.org/nightly/algorithms/SliceMDHisto.html),
+[IntegrateMDHistoWorkspace](http://docs.mantidproject.org/nightly/algorithms/IntegrateMDHistoWorkspace.html)
+or
+[ProjectMD](http://docs.mantidproject.org/nightly/algorithms/ProjectMD.html).
+
