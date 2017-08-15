@@ -99,5 +99,5 @@ correlation chopper passing the sensors and the TDC signal actaully
 being recorded.
 
 * * *
-#### Next: [Converting to MD](md.md)
-#### Home: [Index](index.md)
+#### Next: [Converting to MD](md)
+#### Up: [Index](index)

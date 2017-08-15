@@ -12,9 +12,11 @@ Live data collection information can be found [here](https://monitor.sns.gov/das
 The data reduction for Corelli is done using [Mantid](http://www.mantidproject.org)
 
 ### Contents:
-* [Elastic scattering using cross-correlation](cc.md)
-* [Converting to MD](md.md)
-* [Finding Peaks](peaks.md)
-* [Finding the UB Matrix](ub.md)
-* [Normalisation and symmetry](reduction.md)
-* [Creating Solid Angle and Flux workpace](van.md)
+* [Elastic scattering using cross-correlation](cc)
+* [Converting to MD](md)
+* [Finding Peaks](peaks)
+* [Finding the UB Matrix](ub)
+* [Normalisation and symmetry](reduction)
+* [Creating Solid Angle and Flux workpace](van)
+* Complete examples:
+  * [Benzil](benzil)

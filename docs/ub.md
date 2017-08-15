@@ -1,6 +1,6 @@
 # Finding UB matrix
 
-Using the peaks workspace from [Finding Peaks](peaks.md) the UB matrix
+Using the peaks workspace from [Finding Peaks](peaks) the UB matrix
 can be determined using either
 [FindUBUsingFFT](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingFFT.html)
 or
@@ -79,7 +79,7 @@ LoadIsawUB(InputWorkspace='ws', Filename='benzil.mat')
 
 ## Verifying UB Matrix
 
-You can check the UB matrix by running [Convert to MD/HKL](md.md#hkl)
+You can check the UB matrix by running [Convert to MD/HKL](md#hkl)
 with the found UB matrix which will create a MD workspace in HKL
 coordinates. The peaks should now align on HKL integers.
 
@@ -102,5 +102,5 @@ sv.saveImage('hkl.png')
 ![HKL](hkl.png)
 
 * * *
-#### Previous: [Finding Peaks](peaks.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Normalisation and symmetry](reduction.md)
-#### Home: [Index](index.md)
+#### Previous: [Finding Peaks](peaks) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Normalisation and symmetry](reduction)
+#### Up: [Index](index)

@@ -5,7 +5,7 @@ correctly normalised reduction of your data.
 
 The only other thing requires is the SolidAngle and Flux workspaces
 which should be provided by the instrument scientist but the example
-used here is shown [here](van.md)
+used here is shown [here](van)
 
 [SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
 makes use of
@@ -15,5 +15,5 @@ makes use of
 * [SaveMD](http://docs.mantidproject.org/nightly/algorithms/SaveMD.html)
 
 * * *
-#### Previous: [Finding the UB Matrix](ub.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Creating Solid Angle and Flux workpace](van.md)
-#### Home: [Index](index.md)
+#### Previous: [Finding the UB Matrix](ub) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Creating Solid Angle and Flux workpace](van)
+#### Up: [Index](index)

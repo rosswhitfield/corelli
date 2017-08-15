@@ -89,7 +89,7 @@ sv.saveImage('md_sample.png')
 ## HKL
 
 In order to convert to HKL space you will need to find the UB Matrix
-first, see [Finding the UB Matrix](ub.md). We will load the UB from
+first, see [Finding the UB Matrix](ub). We will load the UB from
 file using
 [LoadIsawUB](http://docs.mantidproject.org/nightly/algorithms/LoadIsawUB.html)
 then Convert to MD.
@@ -204,5 +204,5 @@ or
 [ProjectMD](http://docs.mantidproject.org/nightly/algorithms/ProjectMD.html).
 
 * * *
-#### Previous: [Elastic scattering using cross-correlation](cc.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding Peaks](peaks.md)
-#### Home: [Index](index.md)
+#### Previous: [Elastic scattering using cross-correlation](cc) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding Peaks](peaks)
+#### Up: [Index](index)

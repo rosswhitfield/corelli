@@ -2,7 +2,7 @@
 
 You will need convert to the event workspace into a multi-dimensional
 (MD) workspace in Q_sample units. See [Convert To MD/Q
-Sample](md.md#q-sample-1).
+Sample](md#q-sample-1).
 
 ```python
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
@@ -52,5 +52,5 @@ LoadIsawPeaks(Filename='benzil.peaks',OutputWorkspace='peaks')
 ```
 
 * * *
-#### Previous: [Converting to MD](md.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding the UB Matrix](ub.md)
-#### Home: [Index](index.md)
+#### Previous: [Converting to MD](md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding the UB Matrix](ub)
+#### Up: [Index](index)

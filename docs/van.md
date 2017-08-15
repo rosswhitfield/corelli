@@ -48,5 +48,5 @@ p.exportImage('flux.png',50)
 ![Flux](flux.png)
 
 * * *
-#### Previous: [Normalisation and symmetry](reduction.md)
-#### Home: [Index](index.md)
+#### Previous: [Normalisation and symmetry](reduction)
+#### Up: [Index](index)
