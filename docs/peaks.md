@@ -2,14 +2,26 @@
 
 You will need convert to the event workspace into a multi-dimensional
 (MD) workspace in Q_sample units. See [Convert To MD/Q
-Sample](md.md#q-sample).
+Sample](md.md#q-sample-1).
+
+```python
+ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
+                                     SetGoniometer=True,
+                                     Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                                     MinValues='-10,-10,-10',
+                                     MaxValues='10,10,10',
+                                     OutputWorkspace='md')
+```
 
 ## Finding Peaks
 
 The peak in a MD workspace can be found using [FindPeaksMD](http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html)
 
 ```python
-FindPeaksMD(InputWorkspace='md',DensityThresholdFactor=50000, OutputWorkspace='peaks')
+FindPeaksMD(InputWorkspace='md',
+            DensityThresholdFactor=1000,
+            PeakDistanceThreshold=0.5,
+            OutputWorkspace='peaks')
 ```
 
 The output workspace `'peaks'` will be a [PeaksWorkspace](http://docs.mantidproject.org/nightly/concepts/PeaksWorkspace.html)
@@ -20,7 +32,8 @@ sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5
 sv.setRebinMode(True)
 sv.setRebinNumBins(300,300)
 slicer = sv.getSlicer()
-slicer.setPeaksWorkspaces(['peaks'])
+pp=slicer.setPeaksWorkspaces(['peaks'])
+pp.getPeaksPresenter('peaks').setForegroundColor(QtGui.QColor(0, 0, 0, 255))
 sv.saveImage('md_peaks.png')
 ```
 

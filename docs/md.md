@@ -38,11 +38,11 @@ Then convert to MD workspace using
 ```python
 ConvertToMD(InputWorkspace='ws',
             QDimensions='Q3D',
-	    dEAnalysisMode='Elastic',
-	    Q3DFrames='Q_lab',
-	    OutputWorkspace='md',
-	    MinValues='-10,-10,-10',
-	    MaxValues='10,10,10')
+            dEAnalysisMode='Elastic',
+            Q3DFrames='Q_lab',
+            OutputWorkspace='md',
+            MinValues='-10,-10,-10',
+            MaxValues='10,10,10')
 
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('Q_lab_x','Q_lab_z'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
@@ -71,11 +71,11 @@ Then convert to MD workspace using
 ```python
 ConvertToMD(InputWorkspace='ws',
             QDimensions='Q3D',
-	    dEAnalysisMode='Elastic',
-	    Q3DFrames='Q_sample',
-	    OutputWorkspace='md',
-	    MinValues='-10,-10,-10',
-	    MaxValues='10,10,10')
+            dEAnalysisMode='Elastic',
+            Q3DFrames='Q_sample',
+            OutputWorkspace='md',
+            MinValues='-10,-10,-10',
+            MaxValues='10,10,10')
 
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
@@ -101,12 +101,12 @@ LoadIsawUB(ws, Filename='benzil.mat')
 # Conver to MD
 ConvertToMD(InputWorkspace='ws',
             QDimensions='Q3D',
-	    dEAnalysisMode='Elastic',
-	    Q3DFrames='HKL',
-	    QConversionScales='HKL,
-	    OutputWorkspace='md',
-	    MinValues='-10,-10,-10',
-	    MaxValues='10,10,10')
+            dEAnalysisMode='Elastic',
+            Q3DFrames='HKL',
+            QConversionScales='HKL,
+            OutputWorkspace='md',
+            MinValues='-10,-10,-10',
+            MaxValues='10,10,10')
 
 # Plot in Slice Viewer
 sv=plotSlice('md',xydim=('[H,0,0]','[0,K,0]'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
@@ -146,8 +146,8 @@ you. This produces the same results as above.
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
                                      SetGoniometer=True,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-				     MinValues='-10,-10,-10',
-				     MaxValues='10,10,10',
+                                     MinValues='-10,-10,-10',
+                                     MaxValues='10,10,10',
                                      OutputWorkspace='md')
 
 # Plot in Slice Viewer
@@ -169,9 +169,9 @@ with an UB Matrix if will produced a MDWorkspace in HKL.
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
                                      SetGoniometer=True,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-				     UBMatrix='benzil.mat',
-				     MinValues='-10,-10,-10',
-				     MaxValues='10,10,10',
+                                     UBMatrix='benzil.mat',
+                                     MinValues='-10,-10,-10',
+                                     MaxValues='10,10,10',
                                      OutputWorkspace='md')
 
 # Plot in Slice Viewer

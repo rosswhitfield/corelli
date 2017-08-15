@@ -89,7 +89,7 @@ ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
                                      FilterByTofMax=16666,
                                      SetGoniometer=True,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-				     UBMatrix='benzil.mat',
+                                     UBMatrix='benzil.mat',
                                      OutputWorkspace='hkl')
 
 # Plot in Slice Viewer
