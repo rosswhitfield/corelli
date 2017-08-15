@@ -1,5 +1,5 @@
-w1=Load('CORELLI_29782')
-w2=Load('CORELLI_29792')
+w1=Load('/home/rwp/ConvertMutlipleRunsToSingleCrystalMD/release/ExternalData/Testing/Data/SystemTest/CORELLI_29782.nxs')
+w2=Load('/home/rwp/ConvertMutlipleRunsToSingleCrystalMD/release/ExternalData/Testing/Data/SystemTest/CORELLI_29792.nxs')
 
 SetGoniometer(w1,Axis0="BL9:Mot:Sample:Axis1,0,1,0,1")
 SetGoniometer(w2,Axis0="BL9:Mot:Sample:Axis1,0,1,0,1")

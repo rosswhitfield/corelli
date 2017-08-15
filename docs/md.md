@@ -18,6 +18,7 @@ For mantid training on MD workspaces see
 * [Multiple files](#multiple-files)
   * [Q sample](#q-sample-1)
   * [HKL](#hkl-1)
+* [Histogramming](#histogramming)
 
 A single file can be converted to a MDWorkspace using
 [ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html).
@@ -173,3 +174,10 @@ sv.saveImage('md_hkl.png')
 
 ![MD](md.png)
 
+# Histogramming
+
+Everything until now has been working with event data in
+MDEventWorkspaces. This section will show you how to histogram the
+event into a MDHistoWorkpsace.
+
+* [BinMD](http://docs.mantidproject.org/nightly/algorithms/BinMD.html)
