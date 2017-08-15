@@ -45,7 +45,7 @@ ConvertToMD(InputWorkspace='ws',
 	    MaxValues='10,10,10')
 
 # Plot in Slice Viewer
-sv=plotSlice('md',xydim=('Q_lab_x','Q_lab_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
+sv=plotSlice('md',xydim=('Q_lab_x','Q_lab_z'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
 sv.setRebinMode(True)
 sv.setRebinNumBins(300,300)
 sv.saveImage('md_lab.png')
@@ -78,36 +78,13 @@ ConvertToMD(InputWorkspace='ws',
 	    MaxValues='10,10,10')
 
 # Plot in Slice Viewer
-sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
+sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
 sv.setRebinMode(True)
 sv.setRebinNumBins(300,300)
 sv.saveImage('md_sample.png')
 ```
 
 ![MD Q Sample](md_sample.png)
-
-```python
-SetGoniometer(ws, Axis0="BL9:Mot:Sample:Axis1,0,1,0,1")
-```
-
-Then convert to MD workspace using
-[ConvertToMD](http://docs.mantidproject.org/nightly/algorithms/ConvertToMD.html).
-
-```python
-ConvertToMD(InputWorkspace='ws',
-            QDimensions='Q3D',
-	    dEAnalysisMode='Elastic',
-	    Q3DFrames='Q_sample',
-	    OutputWorkspace='md',
-	    MinValues='-10,-10,-10',
-	    MaxValues='10,10,10')
-
-# Plot in Slice Viewer
-sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
-sv.setRebinMode(True)
-sv.setRebinNumBins(300,300)
-sv.saveImage('md_sample.png')
-```
 
 ## HKL
 
@@ -120,17 +97,19 @@ then Convert to MD.
 ```python
 # Load UB
 LoadIsawUB(ws, Filename='benzil.mat')
-Conver tot MD
+
+# Conver to MD
 ConvertToMD(InputWorkspace='ws',
             QDimensions='Q3D',
 	    dEAnalysisMode='Elastic',
-	    Q3DFrames='Q_sample',
+	    Q3DFrames='HKL',
+	    QConversionScales='HKL,
 	    OutputWorkspace='md',
 	    MinValues='-10,-10,-10',
 	    MaxValues='10,10,10')
 
 # Plot in Slice Viewer
-sv=plotSlice('md',xydim=('[H,0,0]','[0,K,0]'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
+sv=plotSlice('md',xydim=('[H,0,0]','[0,K,0]'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
 sv.setRebinMode(True)
 sv.setRebinNumBins(300,300)
 sv.saveImage('md_hkl.png')
@@ -168,11 +147,11 @@ ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
                                      SetGoniometer=True,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
 				     MinValues='-10,-10,-10',
-				     MaxValues='10,10,10'
+				     MaxValues='10,10,10',
                                      OutputWorkspace='md')
 
 # Plot in Slice Viewer
-sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-5,5,-5,5],colorscalelog=True)
+sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
 sv.setRebinMode(True)
 sv.setRebinNumBins(300,300)
 sv.saveImage('md_hkl.png')
