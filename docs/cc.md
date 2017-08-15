@@ -13,6 +13,29 @@ The correlation chopper is most often set to 293.4118Hz
 
 ### Vanadium
 
+```python
+# Load the data
+vanadium=Load('CORELLI_47400')
+# Calculate elastic vanadiumgnal
+vanadium_elastic=CorelliCrossCorrelate(vanadium,TimingOffset=56000)
+
+# Convert to q, rebin and sum all the spectra
+vanadium_q=ConvertUnits(vanadium,Target="MomentumTransfer",EMode="Elastic")
+Rebin(InputWorkspace='vanadium_q', OutputWorkspace='vanadium_q', Params='0.01,0.02,10',PreserveEvents=0)
+SumSpectra(InputWorkspace='vanadium_q', OutputWorkspace='vanadium_q')
+
+# Same for the elastic signal
+vanadium_elastic_q=ConvertUnits(vanadium_elastic,Target="MomentumTransfer",EMode="Elastic")
+Rebin(InputWorkspace='vanadium_elastic_q', OutputWorkspace='vanadium_elastic_q', Params='0.01,0.02,10',PreserveEvents=0)
+SumSpectra(InputWorkspace='vanadium_elastic_q', OutputWorkspace='vanadium_elastic_q')
+
+# Plot the results
+p=plotSpectrum(('vanadium_q','vanadium_elastic_q'),0)
+p.activeLayer().setTitle("Vanadium elastic vs total")
+p.exportImage('vanadium_elastic_vs_total.png',50)
+```
+![Vanadium](vanadium_elastic_vs_total.png)
+
 ### C60
 
 ```python
@@ -63,37 +86,14 @@ p.exportImage('si_elastic_vs_total.png',50)
 ```
 ![Silicon](si_elastic_vs_total.png)
 
-### Diamond
-
-```python
-# Load the data
-diamond=Load('CORELLI_47344')
-# Calculate elastic diamondgnal
-diamond_elastic=CorelliCrossCorrelate(diamond,TimingOffset=56000)
-
-# Convert to q, rebin and sum all the spectra
-diamond_q=ConvertUnits(diamond,Target="MomentumTransfer",EMode="Elastic")
-Rebin(InputWorkspace='diamond_q', OutputWorkspace='diamond_q', Params='0.01,0.02,10',PreserveEvents=0)
-SumSpectra(InputWorkspace='diamond_q', OutputWorkspace='diamond_q')
-
-# Same for the elastic signal
-diamond_elastic_q=ConvertUnits(diamond_elastic,Target="MomentumTransfer",EMode="Elastic")
-Rebin(InputWorkspace='diamond_elastic_q', OutputWorkspace='diamond_elastic_q', Params='0.01,0.02,10',PreserveEvents=0)
-SumSpectra(InputWorkspace='diamond_elastic_q', OutputWorkspace='diamond_elastic_q')
-
-# Plot the results
-p=plotSpectrum(('diamond_q','diamond_elastic_q'),0)
-p.activeLayer().setTitle("Diamond elastic vs total")
-p.exportImage('diamond_elastic_vs_total.png',50)
-```
-![Diamond](diamond_elastic_vs_total.png)
-
-
 ## Auto-reduction
 
+Auto-reduction automatically calculates the elastic signal for
+you. You can find the files at
+`/SNS/CORELLI/IPTS-<number>/shared/autoreduce/CORELLI_<run>_elastic.nxs`
 
 ## Timimg Offset
 
-The timing offset is the time offset between the Top Dead Center (TDC)
-of the correlation chopper pasdiamondng the sensors and the TDC diamondgnal
-actaully being recorded.
+The timing offset is the time between the Top Dead Center (TDC) of the
+correlation chopper passing the sensors and the TDC signal actaully
+being recorded.
