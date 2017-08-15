@@ -13,3 +13,7 @@ makes use of
 
 * [SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
 * [SaveMD](http://docs.mantidproject.org/nightly/algorithms/SaveMD.html)
+
+* * *
+#### Previous: [Finding the UB Matrix](ub.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Creating Solid Angle and Flux workpace](van.md)
+#### Home: [Index](index.md)

@@ -51,3 +51,6 @@ They can loaded back into Mantid using [LoadIsawPeaks](http://docs.mantidproject
 LoadIsawPeaks(Filename='benzil.peaks',OutputWorkspace='peaks')
 ```
 
+* * *
+#### Previous: [Converting to MD](md.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding the UB Matrix](ub.md)
+#### Home: [Index](index.md)

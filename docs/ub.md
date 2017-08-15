@@ -100,3 +100,7 @@ sv.saveImage('hkl.png')
 ```
 
 ![HKL](hkl.png)
+
+* * *
+#### Previous: [Finding Peaks](peaks.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Normalisation and symmetry](reduction.md)
+#### Home: [Index](index.md)

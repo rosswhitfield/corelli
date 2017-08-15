@@ -203,3 +203,6 @@ A MDHistoWorkpsace can be sliced using
 or
 [ProjectMD](http://docs.mantidproject.org/nightly/algorithms/ProjectMD.html).
 
+* * *
+#### Previous: [Elastic scattering using cross-correlation](cc.md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding Peaks](peaks.md)
+#### Home: [Index](index.md)
