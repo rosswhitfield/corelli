@@ -154,19 +154,43 @@ ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
 sv=plotSlice('md',xydim=('Q_sample_x','Q_sample_z'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
 sv.setRebinMode(True)
 sv.setRebinNumBins(300,300)
-sv.saveImage('md_hkl.png')
+sv.saveImage('md.png')
 ```
 
-![MD](md.png)
+![MD Q Sample](md.png)
 
-## Slicing
+## HKL
+
+If you provide
+[ConvertMultipleRunsToSingleCrystalMD](http://docs.mantidproject.org/nightly/algorithms/ConvertMultipleRunsToSingleCrystalMD.html)
+with an UB Matrix if will produced a MDWorkspace in HKL.
+
+```python
+ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
+                                     SetGoniometer=True,
+                                     Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+				     UBMatrix='benzil.mat',
+				     MinValues='-10,-10,-10',
+				     MaxValues='10,10,10',
+                                     OutputWorkspace='md')
+
+# Plot in Slice Viewer
+sv=plotSlice('md',xydim=('[H,0,0]','[0,K,0]'),colormax=1e8,limits=[-10,10,-10,10],colorscalelog=True)
+sv.setRebinMode(True)
+sv.setRebinNumBins(300,300)
+sv.saveImage('md2.png')
+```
+
+![MD HKL](md2.png)
+
+# Slicing
 
 An MDEventWorkspace can be sliced using the following:
 * [SliceMD](http://docs.mantidproject.org/nightly/algorithms/SliceMD.html)
 * [CutMD](http://docs.mantidproject.org/nightly/algorithms/CutMD.html)
 
 
-## Histogramming
+# Histogramming
 
 Everything until now has been working with event data in
 MDEventWorkspaces. You can convert the event data to histogram
