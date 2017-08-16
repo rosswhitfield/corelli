@@ -33,4 +33,7 @@ plt.plot(w2)
 plt.show()
 
 
-np.correlate(w1,w2)
+corr=np.correlate(w1,w2[20:-20])
+
+plt.plot(corr, 'o-')
+plt.show()
