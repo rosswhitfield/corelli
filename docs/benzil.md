@@ -1,5 +1,5 @@
-This is an example 
-
+This is an example for the data reduction done for
+[Benzil](https://en.wikipedia.org/wiki/Benzil).
 
 ### Convert first 5 minutes of each run to MDEventWorkspace in Q Sample
 ```python
