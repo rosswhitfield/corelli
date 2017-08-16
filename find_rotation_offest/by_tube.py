@@ -37,3 +37,12 @@ corr=np.correlate(w1,w2[20:-20])
 
 plt.plot(corr, 'o-')
 plt.show()
+
+
+w1[w1 < 150000]=150000
+w2[w2 < 150000]=150000
+
+corr=np.correlate(w1,w2[20:-20])
+
+plt.plot(corr, 'o-')
+plt.show()
