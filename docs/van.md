@@ -1,5 +1,9 @@
 # Create solid angle and flux workspaces for normalisation
 
+The reduced vanadium solid angle and flux should be provided by the
+instrument scientist for your particular sample environment. This is
+just an exmaple of how they are created.
+
 There is an example of creating the SolidAngle and Flux workspaces in
 the
 [MDNormSCD](http://docs.mantidproject.org/nightly/algorithms/MDNormSCD.html)
@@ -48,5 +52,5 @@ p.exportImage('flux.png',50)
 ![Flux](flux.png)
 
 * * *
-#### Previous: [Normalisation and symmetry](reduction)
+#### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
 #### Up: [Index](index)
