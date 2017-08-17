@@ -25,9 +25,9 @@ s1=bin1.getSignalArray().copy()
 
 x=np.linspace(-1,1,1000)
 X,Y=np.meshgrid(x,x)
-mask = X**2 + Y**2 >1
+mask = (X**2 + Y**2 >1) + (X**2 + Y**2 < 0.5)
 
-s1_mask = s1 < np.percentile(s1,99.995)
+s1_mask = s1 < np.percentile(s1,99.9)
 
 mask[s1_mask[:,:,0]] = True
 #mask[s2[:,:,0]==0] = True
