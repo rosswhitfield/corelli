@@ -4,6 +4,9 @@ import numpy as np
 run1='CORELLI_48505'
 run2='CORELLI_48513'
 
+run1='CORELLI_48508'
+run2='CORELLI_48516'
+
 ws1=Load(run1)
 ws2=Load(run2)
 
@@ -25,7 +28,9 @@ s1=bin1.getSignalArray().copy()
 
 x=np.linspace(-1,1,1000)
 X,Y=np.meshgrid(x,x)
-mask = (X**2 + Y**2 >1) + (X**2 + Y**2 < 0.5)
+mask = (X**2 + Y**2 >1) + (X**2 + Y**2 < 0.25)
+
+s1[mask] = 0
 
 s1_mask = s1 < np.percentile(s1,99.9)
 
@@ -40,7 +45,7 @@ start=ws2.getRun().getLogData('BL9:Mot:Sample:Axis2.RBV').value.mean()
 max_corr=0
 max_angle=0
 
-for angle in np.arange(-0.02,0.02,0.001):
+for angle in np.arange(-0.03,0.03,0.001):
     SetGoniometer(ws2,Axis0=str(start+angle)+',0,1,0,1')
     md2=ConvertToMD(ws2, QDimensions='Q3D', dEAnalysisMode='Elastic', Q3DFrames='Q_sample', MinValues=[-10,-10,-10], MaxValues=[10,10,10])
     bin2=BinMD(md2, AlignedDim0='Q_sample_x,-10,10,1000', AlignedDim1='Q_sample_z,-10,10,1000', AlignedDim2='Q_sample_y,-10,10,1')
@@ -51,5 +56,6 @@ for angle in np.arange(-0.02,0.02,0.001):
     if corr>max_corr:
         max_corr = corr
         max_angle=angle
+    print(corr,angle)
 
 print(max_angle)
