@@ -7,8 +7,8 @@ run2='CORELLI_48513'
 ws1=Load(run1)
 ws2=Load(run2)
 
-SetGoniometer(ws1,Axis0="BL9:Mot:Sample:Axis2.RBV,0,1,0,1")
-SetGoniometer(ws2,Axis0="BL9:Mot:Sample:Axis2.RBV,0,1,0,1")
+SetGoniometer(ws1,Axis0="BL9:Mot:Sample:Axis2,0,1,0,1")
+SetGoniometer(ws2,Axis0="BL9:Mot:Sample:Axis2,0,1,0,1")
 
 md1=ConvertToMD(ws1, QDimensions='Q3D', dEAnalysisMode='Elastic', Q3DFrames='Q_sample', MinValues=[-10,-10,-10], MaxValues=[10,10,10])
 md2=ConvertToMD(ws2, QDimensions='Q3D', dEAnalysisMode='Elastic', Q3DFrames='Q_sample', MinValues=[-10,-10,-10], MaxValues=[10,10,10])
@@ -17,11 +17,11 @@ bin1=BinMD(md1, AlignedDim0='Q_sample_x,-10,10,1000', AlignedDim1='Q_sample_z,-1
 bin2=BinMD(md2, AlignedDim0='Q_sample_x,-10,10,1000', AlignedDim1='Q_sample_z,-10,10,1000', AlignedDim2='Q_sample_y,-10,10,1')
 bin1/=ws1.run().getProtonCharge()
 bin2/=ws2.run().getProtonCharge()
-diff=bin2-bin1
+diff0=bin2-bin1
 
 
 s1=bin1.getSignalArray().copy()
-s2=bin2.getSignalArray().copy()
+#s2=bin2.getSignalArray().copy()
 
 x=np.linspace(-1,1,1000)
 X,Y=np.meshgrid(x,x)
@@ -34,11 +34,15 @@ mask[s1_mask[:,:,0]] = True
 
 
 
+
 s1[mask]=np.nan
 
 start=ws1.getRun().getLogData('BL9:Mot:Sample:Axis2.RBV').value.mean()
 
-for angle in np.arange(-0.03,-0.01,0.001):
+max_corr=0
+max_angle=0
+
+for angle in np.arange(-0.02,0.02,0.001):
     SetGoniometer(ws2,Axis0=str(start+angle)+',0,1,0,1')
     md2=ConvertToMD(ws2, QDimensions='Q3D', dEAnalysisMode='Elastic', Q3DFrames='Q_sample', MinValues=[-10,-10,-10], MaxValues=[10,10,10])
     bin2=BinMD(md2, AlignedDim0='Q_sample_x,-10,10,1000', AlignedDim1='Q_sample_z,-10,10,1000', AlignedDim2='Q_sample_y,-10,10,1')
@@ -46,5 +50,9 @@ for angle in np.arange(-0.03,-0.01,0.001):
     s2=bin2.getSignalArray().copy()
     s2[mask]=np.nan
     corr=np.nansum(s1*s2)
+    if corr>max_corr:
+        max_corr = corr
+        max_angle=angle
     print(angle,corr)
 
+print(max_angle)
