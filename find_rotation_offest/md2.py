@@ -1,3 +1,4 @@
+#!/opt/Mantid/bin/mantidpython
 from __future__ import print_function
 from mantid.simpleapi import Load, SetGoniometer, ConvertToMD, BinMD
 import numpy as np
@@ -30,7 +31,7 @@ mask[s1_mask[:,:,0]] = True
 
 s1[mask]=np.nan
 
-start=ws1.getRun().getLogData('BL9:Mot:Sample:Axis2.RBV').value.mean()
+start=ws2.getRun().getLogData('BL9:Mot:Sample:Axis2.RBV').value.mean()
 
 max_corr=0
 max_angle=0
@@ -49,4 +50,4 @@ for angle in np.arange(-0.02,0.02,0.001):
 
 print("Actual = ",start+max_angle, "Diff = ", max_angle)
 with open(filename,'a') as f:
-    f.write(run1+' '+run2+' '+'Actual = '+str(start+max_angle)+'Diff = '+str(max_angle)
+    f.write(run1+' '+run2+' '+'Actual = '+str(start+max_angle)+' Diff = '+str(max_angle)+'\n')
