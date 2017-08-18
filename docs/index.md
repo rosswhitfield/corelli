@@ -19,6 +19,7 @@ The data reduction for Corelli is done using [Mantid](http://www.mantidproject.o
 * [Normalisation and symmetry](reduction)
   * [Creating Solid Angle and Flux workpace](van)
 * [Exporting Data](export)
+* [3D-deltaPDF](pdf)
 * Visualisation: [Matplotlib](matplotlib)
 * Visualisation: [Paraview](paraview)
 * Example: [Benzil](benzil)

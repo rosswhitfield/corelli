@@ -38,7 +38,9 @@ SaveMDWorkspaceToVTK(InputWorkspace='benzil', Filename='benzil.vts')
 
 Export to numpy array
 ```python
-benzil_np=mtd['benzil'].getSignalArray()
+benzil=mtd['benzil']
+
+benzil_np=benzil.getSignalArray()
 print(benzil_np.shape)
 print(benzil_np.dtype)
 print(type(benzil_np))
@@ -51,5 +53,5 @@ float64
 <type 'numpy.ndarray'>
 ```
 
-#### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Matplotlib](matplotlib)
+#### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [3D-deltaPDF](pdf)
 #### Up: [Index](index)
