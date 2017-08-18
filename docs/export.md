@@ -15,7 +15,14 @@ like to read the data back into Mantid, done with
 ```python
 # Save
 SaveMD(InputWorkspace='benzil', Filename='benzil.nxs')
-# Load MD(Filename='benzil.nxs', OutputWorkspace='benzil')
+# Load
+LoadMD(Filename='benzil.nxs', OutputWorkspace='benzil')
+```
+
+The algorithm history of a workspace can take a long time to parse
+when loading so you can load it without history by
+```python
+LoadMD(Filename='benzil.nxs', OutputWorkspace='benzil', LoadHistory=False)
 ```
 
 ## VTK
@@ -43,3 +50,6 @@ Output:
 float64
 <type 'numpy.ndarray'>
 ```
+
+#### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Matplotlib](matplotlib)
+#### Up: [Index](index)

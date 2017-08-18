@@ -91,5 +91,5 @@ SaveMD(InputWorkspace='benzil', Filename='benzil.nxs')
 ```
 
 * * *
-#### Previous: [Creating Solid Angle and Flux workpace](van)
+#### Previous: [Paraview](paraview)
 #### Up: [Index](index)
