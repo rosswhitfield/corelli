@@ -92,7 +92,7 @@ Auto-reduction automatically calculates the elastic signal for
 you. You can find the files at
 `/SNS/CORELLI/IPTS-<number>/shared/autoreduce/CORELLI_<run>_elastic.nxs`
 
-## Timimg Offset
+## Timing Offset
 
 The timing offset is the time between the Top Dead Center (TDC) of the
 correlation chopper passing the sensors and the TDC signal actaully

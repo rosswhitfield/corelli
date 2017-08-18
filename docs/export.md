@@ -28,15 +28,20 @@ LoadMD(Filename='benzil.nxs', OutputWorkspace='benzil', LoadHistory=False)
 ## VTK
 
 [SaveMDWorkspaceToVTK](http://docs.mantidproject.org/nightly/algorithms/SaveMDWorkspaceToVTK.html)
-with save the file into [VTK](http://www.vtk.org) format.
+will save the file into [VTK](http://www.vtk.org) format. This allows
+the workspace to be read into visualization applications such as
+[ParaView](https://www.paraview.org) or
+[VisIt](https://visit.llnl.gov). See [Paraview](paraview).
 
 ```python
 SaveMDWorkspaceToVTK(InputWorkspace='benzil', Filename='benzil.vts')
 ```
 
-## numpy
+## NumPy
 
-Export to numpy array
+Export to a [NumPy
+array](https://docs.scipy.org/doc/numpy/reference/arrays.ndarray.html)
+
 ```python
 benzil=mtd['benzil']
 
@@ -51,6 +56,43 @@ Output:
 (501, 501, 501)
 float64
 <type 'numpy.ndarray'>
+```
+
+From here you can save and load the array using NumPy [Input and
+output](https://docs.scipy.org/doc/numpy/reference/routines.io.html).
+
+
+You can get the dimension information with
+`.get[X,Y,Z]Dimension()`. For examples the name of each is:
+
+```python
+print(benzil.getXDimension().name)
+print(benzil.getYDimension().name)
+print(benzil.getZDimension().name)
+```
+
+Output
+```
+[H,0,0]
+[0,K,0]
+[0,0,L]
+```
+
+The bins for the X dimensions by:
+
+```python
+print(benzil.getXDimension().getNBins())
+print(benzil.getXDimension().getMinimum())
+print(benzil.getXDimension().getMaximum())
+print(benzil.getXDimension().getBinWidth())
+```
+
+Output
+```
+501
+-10.020000457763672
+10.020000457763672
+0.04000000283122063
 ```
 
 #### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [3D-deltaPDF](pdf)
