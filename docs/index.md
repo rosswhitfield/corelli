@@ -24,3 +24,8 @@ The data reduction for Corelli is done using [Mantid](http://www.mantidproject.o
   * Paraview
 * Examples:
   * [Benzil](benzil)
+
+## Single Crystal Diffuse Scattering Analysis
+
+* [DISCUS](http://tproffen.github.io/DiffuseCode)
+* [Javelin](http://javelin.readthedocs.io)
