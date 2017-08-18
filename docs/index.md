@@ -18,5 +18,9 @@ The data reduction for Corelli is done using [Mantid](http://www.mantidproject.o
 * [Finding the UB Matrix](ub)
 * [Normalisation and symmetry](reduction)
 * [Creating Solid Angle and Flux workpace](van)
+* [Exporting Data](export)
+* Visualisation
+  * Matplotlib
+  * Paraview
 * Examples:
   * [Benzil](benzil)
