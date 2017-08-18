@@ -1,5 +1,7 @@
 # Exporting Data
 
+## NeXus
+
 [SaveMD](http://docs.mantidproject.org/nightly/algorithms/SaveMD.html)
 with save the file as a [NeXus](http://www.nexusformat.org) Data
 Format. It can be read with any [HDF5](https://www.hdfgroup.org)
@@ -16,12 +18,16 @@ SaveMD(InputWorkspace='benzil', Filename='benzil.nxs')
 # Load MD(Filename='benzil.nxs', OutputWorkspace='benzil')
 ```
 
+## VTK
+
 [SaveMDWorkspaceToVTK](http://docs.mantidproject.org/nightly/algorithms/SaveMDWorkspaceToVTK.html)
 with save the file into [VTK](http://www.vtk.org) format.
 
 ```python
 SaveMDWorkspaceToVTK(InputWorkspace='benzil', Filename='benzil.vts')
 ```
+
+## numpy
 
 Export to numpy array
 ```python
