@@ -3,9 +3,12 @@
 Once you have an UB matrix for your series of runs you can perform a
 correctly normalised reduction of your data.
 
+You may require additional masking, the mask is copied from the
+SolidAngle workspace but it may have changed. See [Masking](mask).
+
 The only other thing requires is the SolidAngle and Flux workspaces
 which should be provided by the instrument scientist but an example is
-shown at [Creating Solid Angle and Flux workpace](van)
+shown at [Creating Solid Angle and Flux workpace](van).
 
 [SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
 makes use of

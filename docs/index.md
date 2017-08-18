@@ -17,6 +17,7 @@ The data reduction for Corelli is done using [Mantid](http://www.mantidproject.o
 * [Finding Peaks](peaks)
 * [Finding the UB Matrix](ub)
 * [Normalisation and symmetry](reduction)
+  * [Masking](mask)
   * [Creating Solid Angle and Flux workpace](van)
 * [Exporting Data](export)
 * [3D-ΔPDF](pdf)
