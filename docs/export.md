@@ -95,5 +95,5 @@ Output
 0.04000000283122063
 ```
 
-#### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [3D-deltaPDF](pdf)
+#### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [3D-ΔPDF](pdf)
 #### Up: [Index](index)

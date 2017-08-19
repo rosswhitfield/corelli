@@ -3,5 +3,5 @@
 [Matplotlib](http://matplotlib.org)
 
 * * *
-#### Previous: [3D-deltaPDF](pdf) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Paraview](paraview)
+#### Previous: [3D-ΔPDF](pdf) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Paraview](paraview)
 #### Up: [Index](index)
