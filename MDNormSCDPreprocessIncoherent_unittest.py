@@ -17,3 +17,6 @@ RemoveWorkspaceHistory(flux)
 
 SaveNexus(flux,'flux,nxs')
 SaveNexus(SA,'sa.nxs')
+
+SaveNexusProcessed(flux,'flux2.nxs',CompressNexus=True)
+SaveNexusProcessed(SA,'sa2.nxs',CompressNexus=True)

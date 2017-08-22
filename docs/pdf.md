@@ -1,6 +1,6 @@
 # 3D-ΔPDF
 
-[DeltaPDF3D](http://docs.mantidproject.org/nightly/algorithms/DeltaPDF3D.html)
+[DeltaPDF3D]
 
 ### References
 1. Weber, T and Simonov, A, The three-dimensional pair distribution
@@ -16,3 +16,5 @@ data. Phys. Rev. B (2005), 71, 22, 224205 [doi:
 * * *
 #### Previous: [Exporting Data](export) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Matplotlib](matplotlib)
 #### Up: [Index](index)
+
+[DeltaPDF3D]: http://docs.mantidproject.org/nightly/algorithms/DeltaPDF3D.html

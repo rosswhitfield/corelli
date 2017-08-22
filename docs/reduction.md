@@ -1,7 +1,9 @@
 # Normalisation and symmetry
 
 Once you have an UB matrix for your series of runs you can perform a
-correctly normalised reduction of your data.
+correctly normalised reduction of your data. You can read about
+correct normalisation of data at [Multi dimensional neutron scattering
+data normalization][MDNorm].
 
 You may require additional masking, the mask is copied from the
 SolidAngle workspace but it may have changed. See [Masking](mask).
@@ -10,12 +12,7 @@ The only other thing requires is the SolidAngle and Flux workspaces
 which should be provided by the instrument scientist but an example is
 shown at [Creating Solid Angle and Flux workpace](van).
 
-[SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
-makes use of
-[MDNormSCD](http://docs.mantidproject.org/nightly/algorithms/MDNormSCD.html)
-
-* [SingleCrystalDiffuseReduction](http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html)
-* [SaveMD](http://docs.mantidproject.org/nightly/algorithms/SaveMD.html)
+[SingleCrystalDiffuseReduction] makes use of [MDNormSCD]
 
 ```python
 SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817:10',
@@ -65,3 +62,8 @@ sv.saveImage('output.png')
 * * *
 #### Previous: [Finding the UB Matrix](ub) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Exporting Data](export)
 #### Up: [Index](index)
+
+[MDNorm]: http://docs.mantidproject.org/nightly/concepts/MDNorm.html
+[SingleCrystalDiffuseReduction]: http://docs.mantidproject.org/nightly/algorithms/SingleCrystalDiffuseReduction.html
+[MDNormSCD]: http://docs.mantidproject.org/nightly/algorithms/MDNormSCD.html
+[SaveMD]: http://docs.mantidproject.org/nightly/algorithms/SaveMD.html

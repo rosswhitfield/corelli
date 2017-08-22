@@ -15,7 +15,7 @@ ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
 
 ## Finding Peaks
 
-The peak in a MD workspace can be found using [FindPeaksMD](http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html)
+The peak in a MD workspace can be found using [FindPeaksMD]
 
 ```python
 FindPeaksMD(InputWorkspace='md',
@@ -24,7 +24,7 @@ FindPeaksMD(InputWorkspace='md',
             OutputWorkspace='peaks')
 ```
 
-The output workspace `'peaks'` will be a [PeaksWorkspace](http://docs.mantidproject.org/nightly/concepts/PeaksWorkspace.html)
+The output workspace `'peaks'` will be a [PeaksWorkspace]
 
 The peaks can be overlayed on the MD workspace in Slice Viewer
 ```python
@@ -41,12 +41,12 @@ sv.saveImage('md_peaks.png')
 
 ## Saving and Loading
 
-The PeaksWorkspace can be saved using [SaveIsawPeaks](http://docs.mantidproject.org/nightly/algorithms/SaveIsawPeaks.html)
+The PeaksWorkspace can be saved using [SaveIsawPeaks]
 ```python
 SaveIsawPeaks(InputWorkspace='peaks',Filename='benzil.peaks')
 ```
 
-They can loaded back into Mantid using [LoadIsawPeaks](http://docs.mantidproject.org/nightly/algorithms/LoadIsawPeaks.html)
+They can loaded back into Mantid using [LoadIsawPeaks]
 ```python
 LoadIsawPeaks(Filename='benzil.peaks',OutputWorkspace='peaks')
 ```
@@ -54,3 +54,8 @@ LoadIsawPeaks(Filename='benzil.peaks',OutputWorkspace='peaks')
 * * *
 #### Previous: [Converting to MD](md) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Finding the UB Matrix](ub)
 #### Up: [Index](index)
+
+[FindPeaksMD]: http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html
+[PeaksWorkspace]: http://docs.mantidproject.org/nightly/concepts/PeaksWorkspace.html
+[SaveIsawPeaks]: http://docs.mantidproject.org/nightly/algorithms/SaveIsawPeaks.html
+[LoadIsawPeaks]: http://docs.mantidproject.org/nightly/algorithms/LoadIsawPeaks.html

@@ -2,14 +2,12 @@
 
 ## NeXus
 
-[SaveMD](http://docs.mantidproject.org/nightly/algorithms/SaveMD.html)
-with save the file as a [NeXus](http://www.nexusformat.org) Data
-Format. It can be read with any [HDF5](https://www.hdfgroup.org)
+[SaveMD] with save the file as a [NeXus](http://www.nexusformat.org)
+Data Format. It can be read with any [HDF5](https://www.hdfgroup.org)
 reader such as
 [HDFView](https://support.hdfgroup.org/products/java/hdfview) or
 [h5py](http://www.h5py.org). This is the format needed if you would
-like to read the data back into Mantid, done with
-[LoadMD](http://docs.mantidproject.org/nightly/algorithms/LoadMD.html).
+like to read the data back into Mantid, done with [LoadMD].
 
 
 ```python
@@ -27,9 +25,9 @@ LoadMD(Filename='benzil.nxs', OutputWorkspace='benzil', LoadHistory=False)
 
 ## VTK
 
-[SaveMDWorkspaceToVTK](http://docs.mantidproject.org/nightly/algorithms/SaveMDWorkspaceToVTK.html)
-will save the file into [VTK](http://www.vtk.org) format. This allows
-the workspace to be read into visualization applications such as
+[SaveMDWorkspaceToVTK] will save the file into
+[VTK](http://www.vtk.org) format. This allows the workspace to be read
+into visualization applications such as
 [ParaView](https://www.paraview.org) or
 [VisIt](https://visit.llnl.gov). See [Paraview](paraview).
 
@@ -97,3 +95,7 @@ Output
 
 #### Previous: [Normalisation and symmetry](reduction) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [3D-ΔPDF](pdf)
 #### Up: [Index](index)
+
+[SaveMD]: http://docs.mantidproject.org/nightly/algorithms/SaveMD.html
+[LoadMD]: http://docs.mantidproject.org/nightly/algorithms/LoadMD.html
+[SaveMDWorkspaceToVTK]: http://docs.mantidproject.org/nightly/algorithms/SaveMDWorkspaceToVTK.html

@@ -1,10 +1,10 @@
 # Finding UB matrix
 
+First read about how the [Lattice] is defined in Mantid.
+
 Using the peaks workspace from [Finding Peaks](peaks) the UB matrix
-can be determined using either
-[FindUBUsingFFT](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingFFT.html)
-or
-[FindUBUsingLatticeParameters](http://docs.mantidproject.org/nightly/algorithms/FindUBUsingLatticeParameters.html)
+can be determined using either [FindUBUsingFFT] or
+[FindUBUsingLatticeParameters]
 
 ```python
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=15)
@@ -17,7 +17,7 @@ FindUBUsingFFT-[Notice] Lattice Parameters:    8.428795    8.436472   13.987253 
 FindUBUsingFFT-[Notice] Parameter Errors  :    0.003963    0.004302    0.013582    0.062830    0.061831    0.034438    1.070184
 ```
 
-Show possible cells using [ShowPossibleCells](http://docs.mantidproject.org/nightly/algorithms/ShowPossibleCells.html)
+Show possible cells using [ShowPossibleCells]
 
 ```python
 ShowPossibleCells(PeaksWorkspace='peaks')
@@ -32,10 +32,8 @@ ShowPossibleCells-[Notice] Form #34  Error: 0.0677  Monoclinic    P   Lat Par:  
 ShowPossibleCells-[Notice] Form #31  Error: 0.0000  Triclinic     P   Lat Par:   8.4288   8.4365  13.9873    89.490   89.462   59.968     861.04
 ```
 
-The cell can be selected using either
-[SelectCellOfType](http://docs.mantidproject.org/nightly/algorithms/SelectCellOfType.html)
-or
-[SelectCellWithForm](http://docs.mantidproject.org/nightly/algorithms/SelectCellWithForm.html)
+The cell can be selected using either [SelectCellOfType] or
+[SelectCellWithForm]
 
 ```python
 SelectCellOfType(PeaksWorkspace='peaks',CellType='Hexagonal',Apply=True)
@@ -50,7 +48,7 @@ SelectCellOfType-[Notice] Now, 319 are indexed with average error 0.0253924
 
 ## Saving and Loading
 
-Once you have the desired UB save it with [SaveIsawUB](http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html)
+Once you have the desired UB save it with [SaveIsawUB]
 
 ```python
 SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
@@ -71,7 +69,7 @@ vector (h,k,l ) to the column vector (q'x,q'y,q'z).
  x is the beam direction and z is vertically upward.(IPNS convention
 ```
 
-You can load the UB onto a workspace using [LoadIsawUB](http://docs.mantidproject.org/nightly/algorithms/LoadIsawUB.html)
+You can load the UB onto a workspace using [LoadIsawUB]
 
 ```python
 LoadIsawUB(InputWorkspace='ws', Filename='benzil.mat')
@@ -104,3 +102,12 @@ sv.saveImage('hkl.png')
 * * *
 #### Previous: [Finding Peaks](peaks) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Normalisation and symmetry](reduction)
 #### Up: [Index](index)
+
+[Lattice]: http://docs.mantidproject.org/nightly/concepts/Lattice.html
+[FindUBUsingFFT]: http://docs.mantidproject.org/nightly/algorithms/FindUBUsingFFT.html
+[FindUBUsingLatticeParameters]: http://docs.mantidproject.org/nightly/algorithms/FindUBUsingLatticeParameters.html
+[ShowPossibleCells]: http://docs.mantidproject.org/nightly/algorithms/ShowPossibleCells.html
+[SelectCellOfType]: http://docs.mantidproject.org/nightly/algorithms/SelectCellOfType.html
+[SelectCellWithForm]: http://docs.mantidproject.org/nightly/algorithms/SelectCellWithForm.html
+[SaveIsawUB]: http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html
+[LoadIsawUB]: http://docs.mantidproject.org/nightly/algorithms/LoadIsawUB.html
