@@ -4,8 +4,7 @@ For detail on the cross-correlation method on see [Corelli: Efficient
 single crystal diffraction with elastic
 discrimination](https://doi.org/10.1007/s12043-008-0259-x)
 
-The method is implemented in Mantid with
-[CorelliCrossCorrelate](http://docs.mantidproject.org/nightly/algorithms/CorelliCrossCorrelate.html)
+The method is implemented in Mantid with [CorelliCrossCorrelate]
 
 The correlation chopper is most often set to 293.4118Hz
 
@@ -101,3 +100,5 @@ being recorded.
 * * *
 #### Next: [Converting to MD](md)
 #### Up: [Index](index)
+
+[CorelliCrossCorrelate]: http://docs.mantidproject.org/nightly/algorithms/CorelliCrossCorrelate.html

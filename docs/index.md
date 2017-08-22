@@ -24,6 +24,7 @@ The data reduction for Corelli is done using [Mantid](http://www.mantidproject.o
 * Visualization: [Matplotlib](matplotlib)
 * Visualization: [Paraview](paraview)
 * Example: [Benzil](benzil)
+* [Mantid Algorithms](algorithms)
 
 ## Single Crystal Diffuse Scattering Analysis
 
