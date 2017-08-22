@@ -200,7 +200,7 @@ A MDHistoWorkpsace can be sliced using [SliceMDHisto],
 [SliceMD]: http://docs.mantidproject.org/nightly/algorithms/SliceMD.html
 [CutMD]: http://docs.mantidproject.org/nightly/algorithms/CutMD.html
 [SliceMDHisto]: http://docs.mantidproject.org/nightly/algorithms/SliceMDHisto.html
-[IntegrateMDHistoWorkspace]: (http://docs.mantidproject.org/nightly/algorithms/IntegrateMDHistoWorkspace.html
+[IntegrateMDHistoWorkspace]: http://docs.mantidproject.org/nightly/algorithms/IntegrateMDHistoWorkspace.html
 [ProjectMD]: http://docs.mantidproject.org/nightly/algorithms/ProjectMD.html
 [BinMD]: http://docs.mantidproject.org/nightly/algorithms/BinMD.html
 [MDWorkspaces]: http://www.mantidproject.org/MBC_MDWorkspaces
