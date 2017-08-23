@@ -32,7 +32,7 @@ mask = (X**2 + Y**2 >1) + (X**2 + Y**2 < 0.25)
 
 s1[mask] = 0
 
-s1_mask = s1 < np.percentile(s1,99.9)
+s1_mask = s1 < np.percentile(s1,99.5)
 
 mask[s1_mask[:,:,0]] = True
 #mask[s2[:,:,0]==0] = True
