@@ -14,7 +14,9 @@
 > laboratories, universities and industry, and has won several awards
 > related to high performance computation.
 
-To use paraview first save the data as a VTK file, see [here](export#vtk).
+To use paraview first save the data as a VTK file, see
+[here](export#vtk). The following scripts can be run from ParaView
+(_Tools->Python Shell->Run Script_) or by running in `pvpython`.
 
 ## Slices
 
@@ -23,7 +25,7 @@ To use paraview first save the data as a VTK file, see [here](export#vtk).
 from paraview.simple import *
 
 # create a new 'XML Structured Grid Reader'
-benzilvts = XMLStructuredGridReader(FileName=['/SNS/users/rwp/corelli/docs/benzil.vts'])
+benzilvts = XMLStructuredGridReader(FileName=['benzil.vts'])
 
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
@@ -57,7 +59,7 @@ scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 # current camera placement for renderView1
-renderView1.CameraPosition = [0.0, 0.0, 40]
+renderView1.CameraParallelScale = 10
 
 #### uncomment the following to render all views
 # RenderAllViews()
@@ -121,9 +123,9 @@ SaveAnimation('/tmp/benzil.png', renderView1, ImageResolution=[200, 200],
     FrameWindow=[0, 99])
 ```
 
-A series of images are created that you can convert them to an animated gif, _e.g._
-```sh
-ffmpeg -i /tmp/benzil.%04d.png benzil.gif
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/benzil.%04d.png benzil.gif
 ```
 
 ![Benzil Animation](benzil.gif)
