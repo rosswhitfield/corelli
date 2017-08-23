@@ -31,6 +31,9 @@ renderView1 = GetActiveViewOrCreate('RenderView')
 # uncomment following to set a specific view size
 renderView1.ViewSize = [400, 400]
 
+#change interaction mode for render view
+renderView1.InteractionMode = '2D'
+
 # Properties modified on renderView1
 renderView1.OrientationAxesVisibility = 0
 
@@ -86,10 +89,44 @@ SaveScreenshot('benzil_hk4.png', quality=100, view=renderView1)
 ### Animation
 
 ```python
-animationScene=GetAnimationScene()
+# hide color bar/color legend
+slice1Display.SetScalarBarVisibility(renderView1, False)
 
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 100
+
+# get animation track
+track = GetAnimationTrack('Origin', index=2, proxy=slice1.SliceType)
+
+# create keyframes for this animation track
+
+# create a key frame
+startKeyFrame = CompositeKeyFrame()
+startKeyFrame.KeyValues = [-4]
+
+# create a key frame
+endKeyFrame = CompositeKeyFrame()
+endKeyFrame.KeyTime = 1.0
+endKeyFrame.KeyValues = [4]
+
+# initialize the animation track
+track.KeyFrames = [startKeyFrame, endKeyFrame]
+
+# save animation
+SaveAnimation('/tmp/benzil.png', renderView1, ImageResolution=[200, 200],
+    TransparentBackground=1,
+    FrameWindow=[0, 99])
 ```
 
+A series of images are created that you can convert them to an animated gif, _e.g._
+```sh
+ffmpeg -i /tmp/benzil.%04d.png benzil.gif
+```
+
+![Benzil Animation](benzil.gif)
 
 * * *
 #### Previous: [Matplotlib](matplotlib) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
