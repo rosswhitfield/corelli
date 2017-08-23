@@ -79,9 +79,9 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817',
                               OutputWorkspace='benzil',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-                              BinningDim0='-10.05,10.05,201',
-                              BinningDim1='-10.05,10.05,201',
-                              BinningDim2='-0.1,0.1,1',
+                              BinningDim0='-10.04,10.04,251',
+                              BinningDim1='-10.04,10.04,251',
+                              BinningDim2='-10.04,10.04,251',
                               SymmetryOps="P 31 2 1")
 ```
 
