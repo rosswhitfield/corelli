@@ -88,6 +88,7 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817',
 ### Save the reduced workspace
 ```python
 SaveMD(InputWorkspace='benzil', Filename='benzil.nxs')
+SaveMDWorkspaceToVTK(InputWorkspace='benzil', Filename='benzil.vts')
 ```
 
 * * *
