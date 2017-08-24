@@ -130,6 +130,68 @@ $ ffmpeg -i /tmp/benzil.%04d.png benzil.gif
 
 ![Benzil Animation](benzil.gif)
 
+## Multiple slices
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+mn2O3_elasticvts = XMLStructuredGridReader(FileName=['/home/rwp/Mn2O3_elastic.vts'])
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# Properties modified on renderView1
+renderView1.OrientationAxesVisibility = 0
+
+# create a new 'Slice'
+slice1 = Slice(Input=mn2O3_elasticvts)
+slice1.SliceType.Normal = [1.0, 0.0, 0.0]
+
+# create a new 'Slice'
+slice2 = Slice(Input=mn2O3_elasticvts)
+slice2.SliceType.Normal	= [0.0, 1.0, 0.0]
+slice2.SliceType.Origin = [0.0, 1.0, 0.0]
+
+# create a new 'Slice'
+slice3 = Slice(Input=mn2O3_elasticvts)
+slice3.SliceType.Normal = [0.0, 0.0, 1.0]
+slice3.SliceType.Origin = [0.0, 0.0, 2.0]
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# show data in view
+slice1Display = Show(slice1, renderView1)
+
+# show color bar/color legend
+slice1Display.SetScalarBarVisibility(renderView1, True)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 3e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+renderView1.CameraPosition = [11.737795898991804, -24.3376865349847, -21.500125886192745]
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+SaveScreenshot('Mn2O3_multiSlice.png', quality=100, view=renderView1)
+```
+
+## Surface
+
+## Volume
+
+
+
 * * *
 #### Previous: [Matplotlib](matplotlib) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
 #### Up: [Index](index)

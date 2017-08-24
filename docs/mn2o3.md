@@ -89,6 +89,48 @@ SaveMD(InputWorkspace='Mn2O3', Filename='Mn2O3.nxs')
 SaveMDWorkspaceToVTK(InputWorkspace='Mn2O3', Filename='Mn2O3.vts')
 ```
 
+### Do the same but just for the elastic signal
+```python
+SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-16344/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(36964,36994)),
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
+                              UBMatrix="Mn2O3.mat",
+                              OutputWorkspace='Mn2O3_elastic',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              BinningDim0='-5.02,5.02,251',
+                              BinningDim1='-5.02,5.02,251',
+                              BinningDim2='-5.02,5.02,251',
+			      SymmetryOps='195')
+```
+
+### Save the reduced workspace
+```python
+SaveMD(InputWorkspace='Mn2O3_elastic', Filename='Mn2O3_elastic.nxs')
+SaveMDWorkspaceToVTK(InputWorkspace='Mn2O3_elastic', Filename='Mn2O3_elastic.vts')
+```
+
+### Same again but for a smaller range at higher resolution
+```python
+SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-16344/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(36964,36994)),
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
+                              UBMatrix="Mn2O3.mat",
+                              OutputWorkspace='Mn2O3_elastic_3.5',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              BinningDim0='-3.52,3.52,351',
+                              BinningDim1='-3.52,3.52,351',
+                              BinningDim2='-3.52,3.52,351',
+			      SymmetryOps='195')
+```
+
+### Save the reduced workspace
+```python
+SaveMD(InputWorkspace='Mn2O3_elastic_3.5', Filename='Mn2O3_elastic_3.5.nxs')
+SaveMDWorkspaceToVTK(InputWorkspace='Mn2O3_elastic_3.5', Filename='Mn2O3_elastic_3.5.vts')
+```
+
 * * *
 #### Previous: [15%Ca doped ZrO2](czo)
 #### Up: [Index](index)
