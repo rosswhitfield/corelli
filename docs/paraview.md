@@ -246,6 +246,14 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 
 ![CZO multiSlice](CZO_multiSlice.png)
 
+### Sphere
+
+
+
+## Clipping
+
+
+
 ## Surface
 
 ## Volume
