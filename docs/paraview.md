@@ -248,6 +248,154 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 
 ### Sphere
 
+#### Rotating
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# Properties modified on renderView1
+renderView1.OrientationAxesVisibility = 0
+
+# create a new 'Slice'
+slice1 = Slice(Input=CZOvts)
+slice1.SliceType = 'Sphere'
+slice1.SliceType.Radius = 5.5
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# show data in view
+slice1Display = Show(slice1, renderView1)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 200
+
+# get camera animation track for the view
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame4500 = CameraKeyFrame()
+keyFrame4500.Position = [0.0, 0.0, 30]
+keyFrame4500.PositionPathPoints = [0.0, 0.0, 10.0, 7.771459614569709, 0.0, 6.2932039104983755, 9.781476007338057, 0.0, -2.079116908177593, 4.539904997395469, 0.0, -8.910065241883679, -4.0673664307580015, 0.0, -9.13545457642601, -9.659258262890685, 0.0, -2.5881904510252087, -8.090169943749476, 0.0, 5.877852522924732]
+
+# create a key frame
+keyFrame4501 = CameraKeyFrame()
+keyFrame4501.KeyTime = 1.0
+keyFrame4500.Position = [0.0, 0.0, 30]
+
+# initialize the animation track
+cameraAnimationCue1.Mode = 'Path-based'
+cameraAnimationCue1.KeyFrames = [keyFrame4500, keyFrame4501]
+
+# save animation
+SaveAnimation('/tmp/Mn2O3.png', renderView1, ImageResolution=[200, 200],
+    TransparentBackground=1,
+    FrameWindow=[0, 199])
+```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/Mn2O3.%04d.png Mn2O3_sphere.gif
+```
+
+![Mn2O3 sphere](Mn2O3_sphere.gif)
+
+
+#### Changing size
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# Properties modified on renderView1
+renderView1.OrientationAxesVisibility = 0
+
+# create a new 'Slice'
+slice1 = Slice(Input=CZOvts)
+slice1.SliceType = 'Sphere'
+slice1.SliceType.Radius = 5.0
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# show data in view
+slice1Display = Show(slice1, renderView1)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 200
+
+# get animation track
+slice1SliceTypeRadiusTrack = GetAnimationTrack('Radius', index=0, proxy=slice1.SliceType)
+
+# create a key frame
+startKeyFrame = CompositeKeyFrame()
+startKeyFrame.KeyTime = 0.0
+startKeyFrame.KeyValues = 7.0
+
+# create a key frame
+midKeyFrame = CompositeKeyFrame()
+midKeyFrame.KeyTime = 0.5
+midKeyFrame.KeyValues = 0.5
+
+# create a key frame
+endKeyFrame = CompositeKeyFrame()
+endKeyFrame.KeyTime = 1.0
+endKeyFrame.KeyValues = 7.0
+
+# initialize the animation track
+slice1SliceTypeRadiusTrack.KeyFrames = [startKeyFrame, midKeyFrame, endKeyFrame]
+
+# save animation
+SaveAnimation('/tmp/Mn2O3.png', renderView1, ImageResolution=[200, 200],
+    TransparentBackground=1,
+    FrameWindow=[0, 198])
+```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/Mn2O3.%04d.png Mn2O3_sphere.gif
+```
+
+![Mn2O3 sphere](Mn2O3_sphere.gif)
 
 ## Clipping
 
@@ -257,7 +405,6 @@ from paraview.simple import *
 
 # create a new 'XML Structured Grid Reader'
 mn2O3vts = XMLStructuredGridReader(FileName=['Mn2O3.vts'])
-Hide(mn2O3vts, renderView1)
 
 # get active view
 renderView1 = GetActiveViewOrCreate('RenderView')
@@ -273,18 +420,12 @@ clip1 = Clip(Input=mn2O3vts)
 clip1.ClipType = 'Sphere'
 clip1.InsideOut = 1
 clip1.ClipType.Radius = 5.0
-Hide(clip1, renderView1)
-
-# clip1Display = Show(clip1, renderView1)
-
 
 # create a new 'Clip'
 clip2 = Clip(Input=clip1)
 clip2.ClipType = 'Box'
-clip2.ClipType.Position = [5.0, 5.0, 5.0]
-
-# set active source
-SetActiveSource(clip2)
+clip2.ClipType.Position = [0, 0, 0]
+clip2.ClipType.Scale = [5, 5, 5]
 
 # get color transfer function/color map for 'Scalars_'
 scalars_LUT = GetColorTransferFunction('Scalars_')
@@ -293,12 +434,12 @@ scalars_LUT = GetColorTransferFunction('Scalars_')
 clipDisplay = Show(clip2, renderView1)
 
 # Rescale transfer function
-scalars_LUT.RescaleTransferFunction(0.0, 3e-05)
+scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
 
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [14, 14, 14]
+renderView1.CameraPosition = [12, 12, 12]
 
 #### uncomment the following to render all views
 # RenderAllViews()
@@ -307,6 +448,7 @@ renderView1.CameraPosition = [14, 14, 14]
 SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
 ```
 
+![Mn2O3 clipping](Mn2O3_clipping.png)
 
 ## Surface
 
