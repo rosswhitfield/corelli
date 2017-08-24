@@ -249,9 +249,63 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 ### Sphere
 
 
-
 ## Clipping
 
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+mn2O3vts = XMLStructuredGridReader(FileName=['Mn2O3.vts'])
+Hide(mn2O3vts, renderView1)
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# Properties modified on renderView1
+renderView1.OrientationAxesVisibility = 0
+
+# create a new 'Clip'
+clip1 = Clip(Input=mn2O3vts)
+clip1.ClipType = 'Sphere'
+clip1.InsideOut = 1
+clip1.ClipType.Radius = 5.0
+Hide(clip1, renderView1)
+
+# clip1Display = Show(clip1, renderView1)
+
+
+# create a new 'Clip'
+clip2 = Clip(Input=clip1)
+clip2.ClipType = 'Box'
+clip2.ClipType.Position = [5.0, 5.0, 5.0]
+
+# set active source
+SetActiveSource(clip2)
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# show data in view
+clipDisplay = Show(clip2, renderView1)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 3e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+renderView1.CameraPosition = [14, 14, 14]
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
+```
 
 
 ## Surface
