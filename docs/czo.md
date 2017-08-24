@@ -1,3 +1,5 @@
+# 15%Ca doped ZrO2
+
 This is an example for the data reduction done for 15%Ca doped ZrO2 (Zr0.85Ca0.15O2)
 
 ### Convert first 2 minutes of each run to MDEventWorkspace in Q Sample
@@ -87,6 +89,27 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_34682:34773',
 ```python
 SaveMD(InputWorkspace='CZO', Filename='CZO.nxs')
 SaveMDWorkspaceToVTK(InputWorkspace='CZO', Filename='CZO.vts')
+```
+
+### Same but using the elastic signal
+```python
+SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-17467/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(34682,34774)),
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
+                              UBMatrix="CZO.mat",
+                              OutputWorkspace='CZO_elastic',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              BinningDim0='-10.04,10.04,251',
+                              BinningDim1='-10.04,10.04,251',
+                              BinningDim2='-10.04,10.04,251',
+                              SymmetryOps='195')
+```
+
+### Save the reduced workspace
+```python
+SaveMD(InputWorkspace='CZO_elastic', Filename='CZO_elastic.nxs')
+SaveMDWorkspaceToVTK(InputWorkspace='CZO_elastic', Filename='CZO_elastic.vts')
 ```
 
 * * *

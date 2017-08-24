@@ -1,3 +1,5 @@
+# Benzil
+
 This is an example for the data reduction done for
 [Benzil](https://en.wikipedia.org/wiki/Benzil).
 

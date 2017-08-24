@@ -1,3 +1,5 @@
+# Mn2O3
+
 This is an example for the data reduction done for Mn2O3
 
 ### Convert first 5 minutes of each run to MDEventWorkspace in Q Sample
