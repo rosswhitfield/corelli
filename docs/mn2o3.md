@@ -1,9 +1,8 @@
-This is an example for the data reduction done for
-[Benzil](https://en.wikipedia.org/wiki/Benzil).
+This is an example for the data reduction done for Mn2O3
 
 ### Convert first 5 minutes of each run to MDEventWorkspace in Q Sample
 ```python
-ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817',
+ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_36964:36993',
                                      SetGoniometer=True,
 				     FilterByTimeStop=300,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
@@ -15,14 +14,14 @@ ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817',
 ### Find the peaks in the MD Workspace
 ```python
 FindPeaksMD(InputWorkspace='md',
-            DensityThresholdFactor=1000,
+            DensityThresholdFactor=25000,
             PeakDistanceThreshold=0.5,
             OutputWorkspace='peaks')
 ```
 
 Output:
 ```
-FindPeaksMD-[Notice] Number of peaks found: 1392
+Number of peaks found: 1080
 ```
 
 ### Determine the UB matrix from the peaks
@@ -31,10 +30,10 @@ FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=15)
 ```
 Ouput:
 ```
-FindUBUsingFFT-[Notice] UB = Matrix(3,3)-0.116063,-0.00491169,-0.00104935,0.00473709,-0.00415399,-0.0717701,0.0726847,-0.136834,0.0027504
-FindUBUsingFFT-[Notice] New UB will index 1242 Peaks out of 1392 with tolerance of  0.15
-FindUBUsingFFT-[Notice] Lattice Parameters:    8.430130    8.432962   13.933214   89.424205   89.608702   59.962020   857.446643
-FindUBUsingFFT-[Notice] Parameter Errors  :    0.001625    0.001520    0.006167    0.027374    0.027659    0.013290    0.456602
+UB = Matrix(3,3)-0.0304945,-0.135679,-0.0949406,-0.0992292,-0.00159089,-0.110837,0.107315,0.0648093,-0.0280319
+New UB will index 1080 Peaks out of 1080 with tolerance of  0.15
+Lattice Parameters:    8.165650    8.174817    8.214825  109.942734  108.596272  109.735616   422.801161
+Parameter Errors  :    0.002488    0.002751    0.002806    0.023199    0.028995    0.022224    0.328352
 ```
 
 ### Show possible cell of UB
@@ -43,54 +42,53 @@ ShowPossibleCells(PeaksWorkspace='peaks')
 ```
 Output
 ```
-ShowPossibleCells-[Notice] Num Cells : 5
-ShowPossibleCells-[Notice] Form #12  Error: 0.0712  Hexagonal     P   Lat Par:   8.4301   8.4330  13.9332    89.424   90.391  120.038     857.45
-ShowPossibleCells-[Notice] Form #13  Error: 0.0712  Orthorhombic  C   Lat Par:   8.4267  14.6067  13.9332    89.442   89.815   89.978    1714.89
-ShowPossibleCells-[Notice] Form #29  Error: 0.0130  Monoclinic    C   Lat Par:   8.4330  14.5958  13.9332    89.881   90.576   90.027    1714.89
-ShowPossibleCells-[Notice] Form #34  Error: 0.0723  Monoclinic    P   Lat Par:   8.4330  13.9332   8.4301    89.609  120.038   90.576     857.45
-ShowPossibleCells-[Notice] Form #31  Error: 0.0000  Triclinic     P   Lat Par:   8.4301   8.4330  13.9332    89.424   89.609   59.962     857.45
+Form # 5  Error: 0.0715  Cubic         I   Lat Par:   9.4034   9.4075   9.5592    89.589   90.102   90.007     845.60
+Form #24  Error: 0.0696  Rhombohedral  R   Lat Par:  13.3005  13.4209   8.1656    89.399   89.892  119.510    1268.40
+Form # 6  Error: 0.0400  Tetragonal    I   Lat Par:   9.4034   9.4075   9.5592    89.589   90.102   90.007     845.60
+Form #16  Error: 0.0863  Orthorhombic  F   Lat Par:   9.4075  13.4209  13.3971    90.942   90.289   89.702    1691.20
+Form # 8  Error: 0.0400  Orthorhombic  I   Lat Par:   9.4075   9.4034   9.5592    90.102   89.589   90.007     845.60
+Form #43  Error: 0.0105  Monoclinic    I   Lat Par:   8.2148  13.3005   8.1656    89.892  108.596   89.852     845.60
+Form #44  Error: 0.0000  Triclinic     P   Lat Par:   8.1656   8.1748   8.2148   109.943  108.596  109.736     422.80
 ```
 
 ### Select desired cell
 ```python
-SelectCellOfType(PeaksWorkspace='peaks',CellType='Hexagonal',Apply=True)
+SelectCellWithForm(PeaksWorkspace='peaks',FormNumber=5,Apply=True)
 ```
 Output
 ```
-SelectCellOfType-[Notice] Form #12  Error: 0.0712  Hexagonal     P   Lat Par:   8.4301   8.4330  13.9332    89.424   90.391  120.038     857.45
-SelectCellOfType-[Notice] Transformation Matrix =  0.955394 -0.0304891 -0.0692404 -0.0798105 -0.998756 0.00282608 -1.22455 0.0190936 -0.956639
-SelectCellOfType-[Notice] Re-indexed the peaks with the new UB.
-SelectCellOfType-[Notice] Now, 1173 are indexed with average error 0.0207209
+Form # 5  Error: 0.0715  Cubic         I   Lat Par:   9.4034   9.4075   9.5592    89.589   90.102   90.007     845.60
+Transformation Matrix =  0.498497 -0.34453 -0.508802 0.332157 0.502706 0.605884 0.505526 -0.624468 0.498797
+Re-indexed the peaks with the new UB.
+Now, 1060 are indexed with average error 0.0178275
 ```
 
 ### Save the UB matix
 ```python
-SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
+SaveIsawUB(InputWorkspace='peaks', Filename='Mn2O3.mat')
 ```
 
-### Reduced data to a correctly normalised MDHistoWorkspace with P 31 2 1 symmetry
+### Reduced data to a correctly normalised MDHistoWorkspace with P23 symmetry
 ```python
-SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817',
-                              Background='CORELLI_28124',
-                              BackgroundScale=0.95,
+SingleCrystalDiffuseReduction(Filename='CORELLI_36964:36993',
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
-                              UBMatrix="benzil.mat",
-                              OutputWorkspace='benzil',
+                              UBMatrix="Mn2O3.mat",
+                              OutputWorkspace='Mn2O3',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-                              BinningDim0='-10.04,10.04,251',
-                              BinningDim1='-10.04,10.04,251',
-                              BinningDim2='-10.04,10.04,251',
-                              SymmetryOps="P 31 2 1")
+                              BinningDim0='-5.02,5.02,251',
+                              BinningDim1='-5.02,5.02,251',
+                              BinningDim2='-5.02,5.02,251',
+			      SymmetryOps='195')
 ```
 
 ### Save the reduced workspace
 ```python
-SaveMD(InputWorkspace='benzil', Filename='benzil.nxs')
-SaveMDWorkspaceToVTK(InputWorkspace='benzil', Filename='benzil.vts')
+SaveMD(InputWorkspace='Mn2O3', Filename='Mn2O3.nxs')
+SaveMDWorkspaceToVTK(InputWorkspace='Mn2O3', Filename='Mn2O3.vts')
 ```
 
 * * *
-#### Previous: [Paraview](paraview)
+#### Previous: [15%Ca doped ZrO2](czo)
 #### Up: [Index](index)

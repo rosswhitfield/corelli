@@ -21,7 +21,7 @@ FindPeaksMD(InputWorkspace='md',
 
 Output:
 ```
-FindPeaksMD-[Notice] Number of peaks found: 1392
+FindPeaksMD-[Notice] Number of peaks found: 806
 ```
 
 ### Determine the UB matrix from the peaks
@@ -30,10 +30,10 @@ FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=15)
 ```
 Ouput:
 ```
-FindUBUsingFFT-[Notice] UB = Matrix(3,3)-0.116063,-0.00491169,-0.00104935,0.00473709,-0.00415399,-0.0717701,0.0726847,-0.136834,0.0027504
-FindUBUsingFFT-[Notice] New UB will index 1242 Peaks out of 1392 with tolerance of  0.15
-FindUBUsingFFT-[Notice] Lattice Parameters:    8.430130    8.432962   13.933214   89.424205   89.608702   59.962020   857.446643
-FindUBUsingFFT-[Notice] Parameter Errors  :    0.001625    0.001520    0.006167    0.027374    0.027659    0.013290    0.456602
+UB = Matrix(3,3)-0.194222,-0.0124187,-0.00345943,-0.00139888,-0.0144863,0.189499,-0.0125676,0.193659,0.0142593
+New UB will index 806 Peaks out of 806 with tolerance of  0.15
+Lattice Parameters:    5.137969    5.138837    5.261445   90.091818   90.352532   89.997039   138.916099
+Parameter Errors  :    0.000925    0.000885    0.002787    0.031913    0.032060    0.014280    0.081328
 ```
 
 ### Show possible cell of UB
@@ -42,54 +42,53 @@ ShowPossibleCells(PeaksWorkspace='peaks')
 ```
 Output
 ```
-ShowPossibleCells-[Notice] Num Cells : 5
-ShowPossibleCells-[Notice] Form #12  Error: 0.0712  Hexagonal     P   Lat Par:   8.4301   8.4330  13.9332    89.424   90.391  120.038     857.45
-ShowPossibleCells-[Notice] Form #13  Error: 0.0712  Orthorhombic  C   Lat Par:   8.4267  14.6067  13.9332    89.442   89.815   89.978    1714.89
-ShowPossibleCells-[Notice] Form #29  Error: 0.0130  Monoclinic    C   Lat Par:   8.4330  14.5958  13.9332    89.881   90.576   90.027    1714.89
-ShowPossibleCells-[Notice] Form #34  Error: 0.0723  Monoclinic    P   Lat Par:   8.4330  13.9332   8.4301    89.609  120.038   90.576     857.45
-ShowPossibleCells-[Notice] Form #31  Error: 0.0000  Triclinic     P   Lat Par:   8.4301   8.4330  13.9332    89.424   89.609   59.962     857.45
+Num Cells : 8
+Form # 3  Error: 0.1226  Cubic         P   Lat Par:   5.1388   5.2614   5.1380    90.353   89.997   90.092     138.92
+Form # 2  Error: 0.1226  Rhombohedral  R   Lat Par:   7.3487   7.2666   8.9951    90.100   88.752  119.789     416.75
+Form #21  Error: 0.0220  Tetragonal    P   Lat Par:   5.1388   5.1380   5.2614    90.353   90.092   89.997     138.92
+Form #23  Error: 0.0220  Orthorhombic  C   Lat Par:   7.2670   7.2666   5.2614    90.184   90.314   90.010     277.83
+Form #32  Error: 0.0226  Orthorhombic  P   Lat Par:   5.1380   5.1388   5.2614    90.092   90.353   89.997     138.92
+Form #14  Error: 0.0167  Monoclinic    C   Lat Par:   7.2670   7.2666   5.2614    90.184   90.314   90.010     277.83
+Form #33  Error: 0.0059  Monoclinic    P   Lat Par:   5.1380   5.1388   5.2614    90.092   90.353   89.997     138.92
+Form #31  Error: 0.0000  Triclinic     P   Lat Par:   5.2614   5.1388   5.1380    89.997   89.647   89.908     138.92
 ```
 
 ### Select desired cell
 ```python
-SelectCellOfType(PeaksWorkspace='peaks',CellType='Hexagonal',Apply=True)
+SelectCellOfType(PeaksWorkspace='peaks',CellType='Cubic',Apply=True)
 ```
 Output
 ```
-SelectCellOfType-[Notice] Form #12  Error: 0.0712  Hexagonal     P   Lat Par:   8.4301   8.4330  13.9332    89.424   90.391  120.038     857.45
-SelectCellOfType-[Notice] Transformation Matrix =  0.955394 -0.0304891 -0.0692404 -0.0798105 -0.998756 0.00282608 -1.22455 0.0190936 -0.956639
-SelectCellOfType-[Notice] Re-indexed the peaks with the new UB.
-SelectCellOfType-[Notice] Now, 1173 are indexed with average error 0.0207209
+Form # 3  Error: 0.1226  Cubic         P   Lat Par:   5.1388   5.2614   5.1380    90.353   89.997   90.092     138.92
+Transformation Matrix =  0.0770225 -1.01682 -0.088986 0.0121867 -0.0803965 0.973284 -0.99671 -0.08477 0.00337399
 ```
 
 ### Save the UB matix
 ```python
-SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
+SaveIsawUB(InputWorkspace='peaks', Filename='CZO.mat')
 ```
 
-### Reduced data to a correctly normalised MDHistoWorkspace with P 31 2 1 symmetry
+### Reduced data to a correctly normalised MDHistoWorkspace with P23 symmetry
 ```python
-SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817',
-                              Background='CORELLI_28124',
-                              BackgroundScale=0.95,
+SingleCrystalDiffuseReduction(Filename='CORELLI_34682:34773',
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
-                              UBMatrix="benzil.mat",
-                              OutputWorkspace='benzil',
+                              UBMatrix="CZO.mat",
+                              OutputWorkspace='CZO',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
                               BinningDim0='-10.04,10.04,251',
                               BinningDim1='-10.04,10.04,251',
                               BinningDim2='-10.04,10.04,251',
-                              SymmetryOps="P 31 2 1")
+                              SymmetryOps='195')
 ```
 
 ### Save the reduced workspace
 ```python
-SaveMD(InputWorkspace='benzil', Filename='benzil.nxs')
-SaveMDWorkspaceToVTK(InputWorkspace='benzil', Filename='benzil.vts')
+SaveMD(InputWorkspace='CZO', Filename='CZO.nxs')
+SaveMDWorkspaceToVTK(InputWorkspace='CZO', Filename='CZO.vts')
 ```
 
 * * *
-#### Previous: [Paraview](paraview)
+#### Previous: [Benzil](benzil)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Mn2O3](mn2o3)
 #### Up: [Index](index)
