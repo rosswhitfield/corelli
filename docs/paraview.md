@@ -296,8 +296,19 @@ cameraAnimationCue1 = GetCameraTrack(view=renderView1)
 
 # create a key frame
 keyFrame4500 = CameraKeyFrame()
-keyFrame4500.PositionPathPoints = [-3.55271e-15, 0.0, 30.0, 23.314378843709125, 0.0, 18.879611731495128, 29.344428022014174, 0.0, -6.237350724532776, 13.61971499218641, 0.0, -26.730195725651036, -12.202099292274003, 0.0, -27.406363729278034, -28.977774788672054, 0.0, -7.764571353075629, -24.270509831248432, 0.0, 17.633557568774194]
 
+# Make a circle path
+import numpy as np
+angle=np.arange(0,np.pi*2,np.pi/2)
+angle=np.linspace(0,np.pi*2,200)
+path=np.zeros((200,3))
+radius = 30
+path[:,0] = np.cos(angle)*radius
+path[:,2] = np.sin(angle)*radius
+
+keyFrame4500.PositionPathPoints = path.flatten()
+
+#keyFrame4500.ClosedPositionPath = 1
 
 # create a key frame
 keyFrame4501 = CameraKeyFrame()
