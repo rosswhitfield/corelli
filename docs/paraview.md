@@ -296,30 +296,27 @@ cameraAnimationCue1 = GetCameraTrack(view=renderView1)
 
 # create a key frame
 keyFrame4500 = CameraKeyFrame()
-keyFrame4500.Position = [0.0, 0.0, 30]
-keyFrame4500.PositionPathPoints = [0.0, 0.0, 10.0, 7.771459614569709, 0.0, 6.2932039104983755, 9.781476007338057, 0.0, -2.079116908177593, 4.539904997395469, 0.0, -8.910065241883679, -4.0673664307580015, 0.0, -9.13545457642601, -9.659258262890685, 0.0, -2.5881904510252087, -8.090169943749476, 0.0, 5.877852522924732]
+keyFrame4500.PositionPathPoints = [-3.55271e-15, 0.0, 30.0, 23.314378843709125, 0.0, 18.879611731495128, 29.344428022014174, 0.0, -6.237350724532776, 13.61971499218641, 0.0, -26.730195725651036, -12.202099292274003, 0.0, -27.406363729278034, -28.977774788672054, 0.0, -7.764571353075629, -24.270509831248432, 0.0, 17.633557568774194]
+
 
 # create a key frame
 keyFrame4501 = CameraKeyFrame()
 keyFrame4501.KeyTime = 1.0
-keyFrame4500.Position = [0.0, 0.0, 30]
 
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame4500, keyFrame4501]
 
 # save animation
-SaveAnimation('/tmp/Mn2O3.png', renderView1, ImageResolution=[200, 200],
-    TransparentBackground=1,
-    FrameWindow=[0, 199])
+SaveAnimation('/tmp/Mn2O3.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 199])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
 ```shell
-$ ffmpeg -i /tmp/Mn2O3.%04d.png Mn2O3_sphere.gif
+$ ffmpeg -i /tmp/Mn2O3.%04d.png Mn2O3_sphere2.gif
 ```
 
-![Mn2O3 sphere](Mn2O3_sphere.gif)
+![Mn2O3 sphere](Mn2O3_sphere2.gif)
 
 
 #### Changing size
