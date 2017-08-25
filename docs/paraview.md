@@ -18,6 +18,25 @@ To use paraview first save the data as a VTK file, see
 [here](export#vtk). The following scripts can be run from ParaView
 (_Tools->Python Shell->Run Script_) or by running in `pvpython`.
 
+## Converting to Image Data
+
+By converting the data to Image data performace, particularly for
+volume rendering, can be greatly improved.
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+mn2O3_elastic_35vts = XMLStructuredGridReader(FileName=['Mn2O3_elastic_3.5.vts'])
+
+# create a new 'Resample To Image'
+resampleToImage1 = ResampleToImage(Input=mn2O3_elastic_35vts)
+resampleToImage1.SamplingDimensions = [351, 351, 351]
+
+SaveData('Mn2O3_elastic_3.5.vti', proxy=resampleToImage1)
+```
+
 ## Slices
 
 ```python
@@ -489,6 +508,49 @@ $ ffmpeg -i /tmp/CZO.%04d.png CZO_surface.gif
 
 ## Volume
 
+I suggest first [converting the data to Image Data](#converting-to-image-data).
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Image Data Reader'
+mn2O3_elastic_35vti = XMLImageDataReader(FileName=['Mn2O3_elastic_3.5.vti'])
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+mn2O3_elastic_35vtiDisplay = Show(mn2O3_elastic_35vti, renderView1)
+
+# change representation type
+mn2O3_elastic_35vtiDisplay.SetRepresentationType('Volume')
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+#scalars_LUT.RGBPoints = [-7.929198181955144e-05, 0.231373, 0.298039, 0.752941, 0.03102709207814769, 0.865003, 0.865003, 0.865003, 0.06213347613811493, 0.705882, 0.0156863, 0.14902]
+#scalars_LUT.ScalarRangeInitialized = 1.0
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
+
+# get opacity transfer function/opacity map for 'Scalars_'
+scalars_PWF = GetOpacityTransferFunction('Scalars_')
+# Rescale transfer function
+scalars_PWF.RescaleTransferFunction(0.0, 5e-05)
+
+scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0, 5e-05, 1.0, 0.5, 0.0]
+
+# current camera placement for renderView1
+renderView1.CameraPosition = [15, 8, 15]
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+
+```
 
 
 * * *
