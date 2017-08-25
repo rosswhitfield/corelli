@@ -429,7 +429,10 @@ threshold1.ThresholdRange = [0.0001, 0.00015]
 threshold1Display = Show(threshold1, renderView1)
 
 # Rescale transfer function
-scalars_LUT.RescaleTransferFunction(0.0001, 0.00015)
+scalars_LUT.RescaleTransferFunction(0.0001, 0.00013)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 renderView1.CameraPosition = [12,12,12]
 
@@ -457,30 +460,32 @@ cameraAnimationCue1 = GetCameraTrack(view=renderView1)
 
 # create a key frame
 keyFrame0 = CameraKeyFrame()
-keyFrame0.Position = [18.070469586479813, 11.122508098376553, 24.22512965224545]
-keyFrame0.ViewUp = [-0.1107991150353508, 0.9319516717246805, -0.3452385228750644]
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
-
-keyFrame0.ParallelScale = 17.897536020732225
-keyFrame0.PositionPathPoints = [18.0705, 11.1225, 24.2251, 31.900984004759163, 4.236680533061291, 1.1985675946350902, 22.08006589656667, -5.790182976131775, -22.716481387808596, -4.111426156824759, -11.524582838410515, -29.790404937658643, -27.256188091070268, -8.71526885674823, -14.778884624511525, -30.195637300108398, 0.5550481525734821, 11.189150592783168, -10.750586017268908, 9.413733221835795, 28.862058435123746]
-keyFrame0.FocalPathPoints = [-0.00179458, 0.0, 0.0]
+keyFrame0.Position = [13.62154428344417, 13.623338860089067, 13.623338860089067]
+keyFrame0.ParallelScale = 8.941515994338047
+keyFrame0.PositionPathPoints = [12.0, 12.0, 12.0, 16.8775962300817, 12.0, -1.7739068448856008, 9.242830918992556, 12.0, -14.23271149861878, -5.2441922933858525, 12.0, -16.139964287134976, -15.843385208620813, 12.0, -6.081705774801609, -14.696938456699069, 12.0, 8.485281374238571, -2.654780904989691, 12.0, 16.761626960009046]
+keyFrame0.FocalPathPoints = [0.0, 0.0, 0.0]
 keyFrame0.ClosedPositionPath = 1
 
 # create a key frame
 keyFrame1 = CameraKeyFrame()
 keyFrame1.KeyTime = 1.0
-keyFrame1.Position = [18.070469586479813, 11.122508098376553, 24.22512965224545]
-keyFrame1.ViewUp = [-0.1107991150353508, 0.9319516717246805, -0.3452385228750644]
-keyFrame1.ParallelScale = 17.897536020732225
+keyFrame1.Position = [13.62154428344417, 13.623338860089067, 13.623338860089067]
+keyFrame1.ParallelScale = 8.941515994338047
 
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 100])
-
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/CZO.%04d.png CZO_surface.gif
+```
+
+![CZO surface](CZO_surface.gif)
 
 ## Volume
 
