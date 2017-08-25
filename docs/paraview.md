@@ -540,7 +540,7 @@ scalars_PWF = GetOpacityTransferFunction('Scalars_')
 # Rescale transfer function
 scalars_PWF.RescaleTransferFunction(0.0, 5e-05)
 
-scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0, 5e-05, 1.0, 0.5, 0.0]
+scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0, 2.25e-5, 0.0, 0.5, 0.0, 5e-05, 1.0, 0.5, 0.0]
 
 # current camera placement for renderView1
 renderView1.CameraPosition = [15, 8, 15]
@@ -549,7 +549,7 @@ renderView1.CameraPosition = [15, 8, 15]
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-
+SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView1)
 ```
 
 
