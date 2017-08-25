@@ -248,7 +248,7 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 
 ### Sphere
 
-#### Rotating
+#### Changing radius while rotating
 
 ```python
 #### import the simple module from the paraview
@@ -269,89 +269,7 @@ renderView1.OrientationAxesVisibility = 0
 # create a new 'Slice'
 slice1 = Slice(Input=CZOvts)
 slice1.SliceType = 'Sphere'
-slice1.SliceType.Radius = 5.5
-
-# get color transfer function/color map for 'Scalars_'
-scalars_LUT = GetColorTransferFunction('Scalars_')
-
-# show data in view
-slice1Display = Show(slice1, renderView1)
-
-# Rescale transfer function
-scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
-
-# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
-
-# get animation scene
-animationScene1 = GetAnimationScene()
-
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 200
-
-# get camera animation track for the view
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
-
-# create keyframes for this animation track
-
-# create a key frame
-keyFrame4500 = CameraKeyFrame()
-
-# Make a circle path
-import numpy as np
-angle=np.arange(0,np.pi*2,np.pi/2)
-angle=np.linspace(0,np.pi*2,200)
-path=np.zeros((200,3))
-radius = 30
-path[:,0] = np.cos(angle)*radius
-path[:,2] = np.sin(angle)*radius
-
-keyFrame4500.PositionPathPoints = path.flatten()
-
-#keyFrame4500.ClosedPositionPath = 1
-
-# create a key frame
-keyFrame4501 = CameraKeyFrame()
-keyFrame4501.KeyTime = 1.0
-
-# initialize the animation track
-cameraAnimationCue1.Mode = 'Path-based'
-cameraAnimationCue1.KeyFrames = [keyFrame4500, keyFrame4501]
-
-# save animation
-SaveAnimation('/tmp/Mn2O3.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 199])
-```
-
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
-```shell
-$ ffmpeg -i /tmp/Mn2O3.%04d.png Mn2O3_sphere2.gif
-```
-
-![Mn2O3 sphere](Mn2O3_sphere2.gif)
-
-
-#### Changing size
-
-```python
-#### import the simple module from the paraview
-from paraview.simple import *
-
-# create a new 'XML Structured Grid Reader'
-CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
-
-# get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
-
-# uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
-
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
-
-# create a new 'Slice'
-slice1 = Slice(Input=CZOvts)
-slice1.SliceType = 'Sphere'
-slice1.SliceType.Radius = 5.0
+slice1.SliceType.Radius = 7.0
 
 # get color transfer function/color map for 'Scalars_'
 scalars_LUT = GetColorTransferFunction('Scalars_')
@@ -382,7 +300,7 @@ startKeyFrame.KeyValues = 7.0
 # create a key frame
 midKeyFrame = CompositeKeyFrame()
 midKeyFrame.KeyTime = 0.5
-midKeyFrame.KeyValues = 0.5
+midKeyFrame.KeyValues = 3.0
 
 # create a key frame
 endKeyFrame = CompositeKeyFrame()
@@ -392,18 +310,38 @@ endKeyFrame.KeyValues = 7.0
 # initialize the animation track
 slice1SliceTypeRadiusTrack.KeyFrames = [startKeyFrame, midKeyFrame, endKeyFrame]
 
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame0 = CameraKeyFrame()
+keyFrame0.Position = [0.0, 0.0, 30.74036927872979]
+keyFrame0.ParallelScale = 1.73
+keyFrame0.PositionPathPoints = [0.0, 0.0, 30.0, 23.31437884370913, 0.0, 18.879611731495125, 29.34442802201417, 0.0, -6.23735072453278, 13.619714992186408, 0.0, -26.730195725651036, -12.202099292274005, 0.0, -27.40636372927803, -28.97777478867205, 0.0, -7.7645713530756275, -24.27050983124843, 0.0, 17.633557568774194]
+keyFrame0.FocalPathPoints = [0.0, 0.0, 0.0]
+keyFrame0.ClosedPositionPath = 1
+
+# create a key frame
+keyFrame1 = CameraKeyFrame()
+keyFrame1.KeyTime = 1.0
+keyFrame1.Position = [0.0, 0.0, 30.74036927872979]
+keyFrame1.ParallelScale = 1.73
+
+# initialize the animation track
+cameraAnimationCue1.Mode = 'Path-based'
+cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
+
 # save animation
-SaveAnimation('/tmp/Mn2O3.png', renderView1, ImageResolution=[200, 200],
-    TransparentBackground=1,
-    FrameWindow=[0, 198])
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 198])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
 ```shell
-$ ffmpeg -i /tmp/Mn2O3.%04d.png Mn2O3_sphere.gif
+$ ffmpeg -i /tmp/CZO.%04d.png CZO_sphere.gif
 ```
 
-![Mn2O3 sphere](Mn2O3_sphere.gif)
+![Mn2O3 sphere](CZO_sphere.gif)
 
 ## Clipping
 
@@ -459,6 +397,90 @@ SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
 ![Mn2O3 clipping](Mn2O3_clipping.png)
 
 ## Surface
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+cZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
+
+# update the view to ensure updated data information
+renderView1 = GetActiveViewOrCreate('RenderView')
+
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# create a new 'Clip'
+clip1 = Clip(Input=cZOvts)
+clip1.ClipType = 'Sphere'
+clip1.InsideOut = 1
+clip1.ClipType.Radius = 5.5
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# create a new 'Threshold'
+threshold1 = Threshold(Input=clip1)
+threshold1.Scalars = ['CELLS', 'Scalars_']
+threshold1.ThresholdRange = [0.0001, 0.00015]
+
+# show data in view
+threshold1Display = Show(threshold1, renderView1)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0001, 0.00015)
+
+renderView1.CameraPosition = [12,12,12]
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+SaveScreenshot('CZO_surface.png', quality=100, view=renderView1)
+```
+
+![CZS surface](CZO_surface.png)
+
+### Animation
+
+```python
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 100
+
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame0 = CameraKeyFrame()
+keyFrame0.Position = [18.070469586479813, 11.122508098376553, 24.22512965224545]
+keyFrame0.ViewUp = [-0.1107991150353508, 0.9319516717246805, -0.3452385228750644]
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+keyFrame0.ParallelScale = 17.897536020732225
+keyFrame0.PositionPathPoints = [18.0705, 11.1225, 24.2251, 31.900984004759163, 4.236680533061291, 1.1985675946350902, 22.08006589656667, -5.790182976131775, -22.716481387808596, -4.111426156824759, -11.524582838410515, -29.790404937658643, -27.256188091070268, -8.71526885674823, -14.778884624511525, -30.195637300108398, 0.5550481525734821, 11.189150592783168, -10.750586017268908, 9.413733221835795, 28.862058435123746]
+keyFrame0.FocalPathPoints = [-0.00179458, 0.0, 0.0]
+keyFrame0.ClosedPositionPath = 1
+
+# create a key frame
+keyFrame1 = CameraKeyFrame()
+keyFrame1.KeyTime = 1.0
+keyFrame1.Position = [18.070469586479813, 11.122508098376553, 24.22512965224545]
+keyFrame1.ViewUp = [-0.1107991150353508, 0.9319516717246805, -0.3452385228750644]
+keyFrame1.ParallelScale = 17.897536020732225
+
+# initialize the animation track
+cameraAnimationCue1.Mode = 'Path-based'
+cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
+
+# save animation
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 100])
+
+```
 
 ## Volume
 
