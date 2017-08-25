@@ -552,6 +552,7 @@ renderView1.CameraPosition = [15, 8, 15]
 SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView1)
 ```
 
+![Mn2O3 volume](Mn2O3_volume.png)
 
 * * *
 #### Previous: [Matplotlib](matplotlib) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
