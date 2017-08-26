@@ -529,18 +529,20 @@ mn2O3_elastic_35vtiDisplay.SetRepresentationType('Volume')
 
 # get color transfer function/color map for 'Scalars_'
 scalars_LUT = GetColorTransferFunction('Scalars_')
-#scalars_LUT.RGBPoints = [-7.929198181955144e-05, 0.231373, 0.298039, 0.752941, 0.03102709207814769, 0.865003, 0.865003, 0.865003, 0.06213347613811493, 0.705882, 0.0156863, 0.14902]
-#scalars_LUT.ScalarRangeInitialized = 1.0
 
 # Rescale transfer function
-scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
+scalars_LUT.RescaleTransferFunction(2e-05, 4e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 # get opacity transfer function/opacity map for 'Scalars_'
 scalars_PWF = GetOpacityTransferFunction('Scalars_')
 # Rescale transfer function
-scalars_PWF.RescaleTransferFunction(0.0, 5e-05)
-
-scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0, 2.25e-5, 0.0, 0.5, 0.0, 5e-05, 1.0, 0.5, 0.0]
+#scalars_PWF.RescaleTransferFunction(2e-05, 5e-05)
+scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
+                      3e-05, 1.0, 0.5, 0.0,
+                      5e-05, 0.0, 0.5, 0.0]
 
 # current camera placement for renderView1
 renderView1.CameraPosition = [15, 8, 15]
