@@ -272,7 +272,7 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 animationScene1 = GetAnimationScene()
 
 # Properties modified on animationScene1
-animationScene1.NumberOfFrames = 9
+animationScene1.NumberOfFrames = 11
 
 # get animation track
 slice1track = GetAnimationTrack('Visibility', index=0, proxy=slice1)
@@ -285,13 +285,13 @@ keyFrame1_0.KeyValues = 0
 
 # create a key frame
 keyFrame1_1 = CompositeKeyFrame()
-keyFrame1_1.KeyTime = 0.125
+keyFrame1_1.KeyTime = 0.1
 keyFrame1_1.KeyValues = 1
 
 # create a key frame
 keyFrame1_2 = CompositeKeyFrame()
-keyFrame1_2.KeyTime = 0.875
-keyFrame1_2.KeyValues = 1
+keyFrame1_2.KeyTime = 0.9
+keyFrame1_2.KeyValues = 0
 
 # initialize the animation track
 slice1track.KeyFrames = [keyFrame1_0, keyFrame1_1, keyFrame1_2]
@@ -307,12 +307,12 @@ keyFrame2_0.KeyValues = 0
 
 # create a key frame
 keyFrame2_1 = CompositeKeyFrame()
-keyFrame2_1.KeyTime = 0.25
+keyFrame2_1.KeyTime = 0.2
 keyFrame2_1.KeyValues = 1
 
 # create a key frame
 keyFrame2_2 = CompositeKeyFrame()
-keyFrame2_2.KeyTime = 0.75
+keyFrame2_2.KeyTime = 0.8
 keyFrame2_2.KeyValues = 0
 
 # initialize the animation track
@@ -329,19 +329,19 @@ keyFrame3_0.KeyValues = 0
 
 # create a key frame
 keyFrame3_1 = CompositeKeyFrame()
-keyFrame3_1.KeyTime = 0.375
+keyFrame3_1.KeyTime = 0.3
 keyFrame3_1.KeyValues = 1
 
 # create a key frame
 keyFrame3_2 = CompositeKeyFrame()
-keyFrame3_2.KeyTime = 0.625
+keyFrame3_2.KeyTime = 0.7
 keyFrame3_2.KeyValues = 0
 
 # initialize the animation track
 slice3track.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2]
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[400, 400], FrameWindow=[0,4])
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[400, 400], FrameWindow=[0,10])
 ```
 
 ### Sphere
