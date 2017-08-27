@@ -559,10 +559,10 @@ cameraAnimationCue1 = GetCameraTrack(view=renderView1)
 keyFrame4863 = CameraKeyFrame()
 keyFrame4863.Position = [-20.0, 0.0, 0.0]
 keyFrame4863.ParallelScale = 1.73
-keyFrame4863.PositionPathPoints = [-20.0, 0.0, 25.0,
-                                   -20.0, 0.0, -25.0]
-keyFrame4863.FocalPathPoints = [0.0, 0.0, 25.0,
-                                0.0, 0.0, -25.0]
+keyFrame4863.PositionPathPoints = [-25.0, 0.0, 34.0,
+                                   -25.0, 0.0, -34.0]
+keyFrame4863.FocalPathPoints = [0.0, 0.0, 34.0,
+                                0.0, 0.0, -34.0]
 
 # create a key frame
 keyFrame4864 = CameraKeyFrame()
@@ -581,7 +581,7 @@ cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[600, 200], FrameWindow=[0, 99])
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[600, 150], FrameWindow=[0, 99])
 
 ```
 
