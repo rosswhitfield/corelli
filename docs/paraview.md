@@ -254,7 +254,7 @@ scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [-14, -14, -14]
+renderView1.CameraPosition = [-25, -25, -25]
 
 #### uncomment the following to render all views
 # RenderAllViews()
@@ -264,6 +264,80 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 ```
 
 ![CZO multiSlice](CZO_multiSlice.png)
+
+#### Animate
+
+```python
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 6
+
+# get animation track
+slice1track = GetAnimationTrack('Visibility', index=0, proxy=slice1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame1_0 = CompositeKeyFrame()
+keyFrame1_0.KeyValues = 0
+
+# create a key frame
+keyFrame1_1 = CompositeKeyFrame()
+keyFrame1_1.KeyTime = 0.2
+keyFrame1_1.KeyValues = 1
+
+# initialize the animation track
+slice1track.KeyFrames = [keyFrame1_0, keyFrame1_1]
+
+# get animation track
+slice2track = GetAnimationTrack('Visibility', index=0, proxy=slice2)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame2_0 = CompositeKeyFrame()
+keyFrame2_0.KeyValues = 0
+
+# create a key frame
+keyFrame2_1 = CompositeKeyFrame()
+keyFrame2_1.KeyTime = 0.4
+keyFrame2_1.KeyValues = 1
+
+# create a key frame
+keyFrame2_2 = CompositeKeyFrame()
+keyFrame2_2.KeyTime = 1.0
+keyFrame2_2.KeyValues = 0
+
+# initialize the animation track
+slice2track.KeyFrames = [keyFrame2_0, keyFrame2_1, keyFrame2_2]
+
+# get animation track
+slice3track = GetAnimationTrack('Visibility', index=0, proxy=slice3)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame3_0 = CompositeKeyFrame()
+keyFrame3_0.KeyValues = 0
+
+# create a key frame
+keyFrame3_1 = CompositeKeyFrame()
+keyFrame3_1.KeyTime = 0.6
+keyFrame3_1.KeyValues = 1
+
+# create a key frame
+keyFrame3_2 = CompositeKeyFrame()
+keyFrame3_2.KeyTime = 0.8
+keyFrame3_2.KeyValues = 0
+
+# initialize the animation track
+slice3track.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2]
+
+# save animation
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[400, 400], FrameWindow=[0,5])
+```
 
 ### Sphere
 
