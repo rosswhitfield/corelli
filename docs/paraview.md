@@ -417,7 +417,7 @@ SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
 
 ![Mn2O3 clipping](Mn2O3_clipping.png)
 
-### p
+### Pacman
 
 ```python
 #### import the simple module from the paraview
@@ -472,10 +472,126 @@ scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 renderView1.CameraPosition = [-20, 0, 0]
 
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 100
+
+# get animation track
+clip2ClipTypeRotationTrack = GetAnimationTrack('Rotation', index=0, proxy=clip2.ClipType)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame2_0 = CompositeKeyFrame()
+keyFrame2_0.KeyValues = [45.0]
+keyFrame2_1 = CompositeKeyFrame()
+keyFrame2_1.KeyTime = 0.125
+keyFrame2_1.KeyValues = [90.0]
+keyFrame2_2 = CompositeKeyFrame()
+keyFrame2_2.KeyTime = 0.25
+keyFrame2_2.KeyValues = [45.0]
+keyFrame2_3 = CompositeKeyFrame()
+keyFrame2_3.KeyTime = 0.375
+keyFrame2_3.KeyValues = [90.0]
+keyFrame2_4 = CompositeKeyFrame()
+keyFrame2_4.KeyTime = 0.5
+keyFrame2_4.KeyValues = [45.0]
+keyFrame2_5 = CompositeKeyFrame()
+keyFrame2_5.KeyTime = 0.625
+keyFrame2_5.KeyValues = [90.0]
+keyFrame2_6 = CompositeKeyFrame()
+keyFrame2_6.KeyTime = 0.75
+keyFrame2_6.KeyValues = [45.0]
+keyFrame2_7 = CompositeKeyFrame()
+keyFrame2_7.KeyTime = 0.875
+keyFrame2_7.KeyValues = [90.0]
+keyFrame2_8 = CompositeKeyFrame()
+keyFrame2_8.KeyTime = 1.0
+keyFrame2_8.KeyValues = [45.0]
+
+# initialize the animation track
+clip2ClipTypeRotationTrack.KeyFrames = [keyFrame2_0, keyFrame2_1, keyFrame2_2, keyFrame2_3, keyFrame2_4, keyFrame2_5, keyFrame2_6, keyFrame2_7, keyFrame2_8]
+
+# get animation track
+clip3ClipTypeRotationTrack = GetAnimationTrack('Rotation', index=0, proxy=clip3.ClipType)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame3_0 = CompositeKeyFrame()
+keyFrame3_0.KeyValues = [45.0]
+keyFrame3_1 = CompositeKeyFrame()
+keyFrame3_1.KeyTime = 0.125
+keyFrame3_1.KeyValues = [0.0]
+keyFrame3_2 = CompositeKeyFrame()
+keyFrame3_2.KeyTime = 0.25
+keyFrame3_2.KeyValues = [45.0]
+keyFrame3_3 = CompositeKeyFrame()
+keyFrame3_3.KeyTime = 0.375
+keyFrame3_3.KeyValues = [0.0]
+keyFrame3_4 = CompositeKeyFrame()
+keyFrame3_4.KeyTime = 0.5
+keyFrame3_4.KeyValues = [45.0]
+keyFrame3_5 = CompositeKeyFrame()
+keyFrame3_5.KeyTime = 0.625
+keyFrame3_5.KeyValues = [0.0]
+keyFrame3_6 = CompositeKeyFrame()
+keyFrame3_6.KeyTime = 0.75
+keyFrame3_6.KeyValues = [45.0]
+keyFrame3_7 = CompositeKeyFrame()
+keyFrame3_7.KeyTime = 0.875
+keyFrame3_7.KeyValues = [0.0]
+keyFrame3_8 = CompositeKeyFrame()
+keyFrame3_8.KeyTime = 1.0
+keyFrame3_8.KeyValues = [45.0]
+
+# initialize the animation track
+clip3ClipTypeRotationTrack.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2, keyFrame3_3, keyFrame3_4, keyFrame3_5, keyFrame3_6, keyFrame3_7, keyFrame3_8]
+
+# get camera animation track for the view
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame4863 = CameraKeyFrame()
+keyFrame4863.Position = [-20.0, 0.0, 0.0]
+keyFrame4863.ParallelScale = 1.73
+keyFrame4863.PositionPathPoints = [-20.0, 0.0, 25.0,
+                                   -20.0, 0.0, -25.0]
+keyFrame4863.FocalPathPoints = [0.0, 0.0, 25.0,
+                                0.0, 0.0, -25.0]
+
+# create a key frame
+keyFrame4864 = CameraKeyFrame()
+keyFrame4864.KeyTime = 1.0
+keyFrame4864.Position = [-20.0, 0.0, 0.0]
+keyFrame4864.ParallelScale = 1.73
+
+# initialize the animation track
+cameraAnimationCue1.Mode = 'Path-based'
+cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
+
+
+
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+# save animation
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[600, 200], FrameWindow=[0, 99])
+
 ```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/CZO.%04d.png CZO_pacman.gif
+```
+
+![CZO pacman](CZO_pacamn.gif)
+
 
 ## Surface
 
