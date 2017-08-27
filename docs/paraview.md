@@ -364,6 +364,8 @@ $ ffmpeg -i /tmp/CZO.%04d.png CZO_sphere.gif
 
 ## Clipping
 
+### Quarter
+
 ```python
 #### import the simple module from the paraview
 from paraview.simple import *
@@ -405,6 +407,70 @@ scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 renderView1.CameraPosition = [12, 12, 12]
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
+```
+
+![Mn2O3 clipping](Mn2O3_clipping.png)
+
+### p
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+mn2O3vts = XMLStructuredGridReader(FileName=['CZO.vts'])
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# Properties modified on renderView1
+renderView1.OrientationAxesVisibility = 0
+
+# create a new 'Clip'
+clip1 = Clip(Input=mn2O3vts)
+clip1.ClipType = 'Sphere'
+clip1.InsideOut = 1
+clip1.ClipType.Radius = 5.0
+
+# create a new 'Clip'
+clip2 = Clip(Input=clip1)
+clip2.ClipType = 'Box'
+clip2.ClipType.Position = [0, 0, -5]
+clip2.ClipType.Scale = [5, 5, 10]
+clip2.ClipType.Rotation = [60, 0, 0]
+
+# create a new 'Clip'
+clip3 = Clip(Input=clip1)
+clip3.ClipType = 'Box'
+clip3.ClipType.Position = [0, 0, -5]
+clip3.ClipType.Scale = [5, 5, 10]
+clip3.ClipType.Rotation  = [120, 0, 0]
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# show data in view
+clip2Display = Show(clip2, renderView1)
+
+# show data in view
+clip3Display = Show(clip3, renderView1)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+renderView1.CameraPosition = [20, 0, 0]
 
 #### uncomment the following to render all views
 # RenderAllViews()
