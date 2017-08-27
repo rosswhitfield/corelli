@@ -590,7 +590,7 @@ A series of images are created that you can them convert to an animated gif, _e.
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_pacman.gif
 ```
 
-![CZO pacman](CZO_pacamn.gif)
+![CZO pacman](CZO_pacman.gif)
 
 
 ## Surface
