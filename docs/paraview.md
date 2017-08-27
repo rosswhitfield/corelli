@@ -444,16 +444,16 @@ clip1.ClipType.Radius = 5.0
 # create a new 'Clip'
 clip2 = Clip(Input=clip1)
 clip2.ClipType = 'Box'
-clip2.ClipType.Position = [0, 0, -5]
-clip2.ClipType.Scale = [5, 5, 10]
+clip2.ClipType.Position = [-5, 0, 0]
+clip2.ClipType.Scale = [10, 5, 5]
 clip2.ClipType.Rotation = [60, 0, 0]
 
 # create a new 'Clip'
 clip3 = Clip(Input=clip1)
 clip3.ClipType = 'Box'
-clip3.ClipType.Position = [0, 0, -5]
-clip3.ClipType.Scale = [5, 5, 10]
-clip3.ClipType.Rotation  = [120, 0, 0]
+clip3.ClipType.Position = [-5, 0, 0]
+clip3.ClipType.Scale = [10, 5, 5]
+clip3.ClipType.Rotation  = [30, 0, 0]
 
 # get color transfer function/color map for 'Scalars_'
 scalars_LUT = GetColorTransferFunction('Scalars_')
@@ -470,16 +470,12 @@ scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [20, 0, 0]
+renderView1.CameraPosition = [-20, 0, 0]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
-
-SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
 ```
-
-![Mn2O3 clipping](Mn2O3_clipping.png)
 
 ## Surface
 
