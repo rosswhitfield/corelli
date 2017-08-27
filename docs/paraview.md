@@ -282,16 +282,19 @@ slice1track = GetAnimationTrack('Visibility', index=0, proxy=slice1)
 # create a key frame
 keyFrame1_0 = CompositeKeyFrame()
 keyFrame1_0.KeyValues = 0
+keyFrame1_0.Interpolation = 'Boolean'
 
 # create a key frame
 keyFrame1_1 = CompositeKeyFrame()
 keyFrame1_1.KeyTime = 0.1
 keyFrame1_1.KeyValues = 1
+keyFrame1_1.Interpolation = 'Boolean'
 
 # create a key frame
 keyFrame1_2 = CompositeKeyFrame()
 keyFrame1_2.KeyTime = 0.9
 keyFrame1_2.KeyValues = 0
+keyFrame1_2.Interpolation = 'Boolean'
 
 # initialize the animation track
 slice1track.KeyFrames = [keyFrame1_0, keyFrame1_1, keyFrame1_2]
@@ -304,16 +307,19 @@ slice2track = GetAnimationTrack('Visibility', index=0, proxy=slice2)
 # create a key frame
 keyFrame2_0 = CompositeKeyFrame()
 keyFrame2_0.KeyValues = 0
+keyFrame2_0.Interpolation = 'Boolean'
 
 # create a key frame
 keyFrame2_1 = CompositeKeyFrame()
 keyFrame2_1.KeyTime = 0.2
 keyFrame2_1.KeyValues = 1
+keyFrame2_1.Interpolation = 'Boolean'
 
 # create a key frame
 keyFrame2_2 = CompositeKeyFrame()
 keyFrame2_2.KeyTime = 0.8
 keyFrame2_2.KeyValues = 0
+keyFrame2_2.Interpolation = 'Boolean'
 
 # initialize the animation track
 slice2track.KeyFrames = [keyFrame2_0, keyFrame2_1, keyFrame2_2]
@@ -326,16 +332,19 @@ slice3track = GetAnimationTrack('Visibility', index=0, proxy=slice3)
 # create a key frame
 keyFrame3_0 = CompositeKeyFrame()
 keyFrame3_0.KeyValues = 0
+keyFrame3_0.Interpolation = 'Boolean'
 
 # create a key frame
 keyFrame3_1 = CompositeKeyFrame()
 keyFrame3_1.KeyTime = 0.3
 keyFrame3_1.KeyValues = 1
+keyFrame3_1.Interpolation = 'Boolean'
 
 # create a key frame
 keyFrame3_2 = CompositeKeyFrame()
 keyFrame3_2.KeyTime = 0.7
 keyFrame3_2.KeyValues = 0
+keyFrame3_2.Interpolation = 'Boolean'
 
 # initialize the animation track
 slice3track.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2]
@@ -343,6 +352,13 @@ slice3track.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2]
 # save animation
 SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[400, 400], FrameWindow=[0,10])
 ```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/CZO.%04d.png CZO_multiSlice.gif
+```
+
+![CZO multiSlice](CZO_multiSlice.gif)
 
 ### Sphere
 
