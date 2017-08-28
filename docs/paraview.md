@@ -317,7 +317,7 @@ animationScene1 = GetAnimationScene()
 animationScene1.NumberOfFrames = 11
 
 # get animation track
-slice1track = GetAnimationTrack('Visibility', index=0, proxy=slice1)
+slice1track = GetAnimationTrack('Visibility', proxy=slice1)
 
 # create keyframes for this animation track
 
@@ -342,7 +342,7 @@ keyFrame1_2.Interpolation = 'Boolean'
 slice1track.KeyFrames = [keyFrame1_0, keyFrame1_1, keyFrame1_2]
 
 # get animation track
-slice2track = GetAnimationTrack('Visibility', index=0, proxy=slice2)
+slice2track = GetAnimationTrack('Visibility', proxy=slice2)
 
 # create keyframes for this animation track
 
@@ -367,7 +367,7 @@ keyFrame2_2.Interpolation = 'Boolean'
 slice2track.KeyFrames = [keyFrame2_0, keyFrame2_1, keyFrame2_2]
 
 # get animation track
-slice3track = GetAnimationTrack('Visibility', index=0, proxy=slice3)
+slice3track = GetAnimationTrack('Visibility', proxy=slice3)
 
 # create keyframes for this animation track
 
