@@ -21,7 +21,7 @@ To use paraview first save the data as a VTK file, see
 ## Converting to Image Data
 
 By converting the data to Image data performace, particularly for
-volume rendering, can be greatly improved.
+[volume rendering](#volume), can be greatly improved.
 
 ```python
 #### import the simple module from the paraview
