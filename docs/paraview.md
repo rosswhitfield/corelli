@@ -974,9 +974,9 @@ scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 # get opacity transfer function/opacity map for 'Scalars_'
 scalars_PWF = GetOpacityTransferFunction('Scalars_')
 scalars_PWF.RescaleTransferFunction(3e-05, 1e-04)
-#scalars_PWF.Points = [0, 0, 0, 0,
-#                      3e-05, 0.0, 0.5, 0.0,
-#                      1e-04, 1.0, 0.5, 0.0]
+scalars_PWF.Points = [0, 0, 0, 0,
+                      3e-05, 0.0, 0.5, 0.0,
+                      1e-04, 1.0, 0.5, 0.0]
 
 renderView1.CameraPosition = [30, 10, 10]
 
