@@ -871,6 +871,8 @@ $ ffmpeg -i /tmp/CZO.%04d.png CZO_surface.gif
 
 ## Volume
 
+### Mn2O3
+
 I suggest first [converting the data to Image Data](#converting-to-image-data).
 
 ```python
@@ -934,6 +936,89 @@ SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView1)
 ```
 
 ![Mn2O3 volume](Mn2O3_volume2.png)
+
+### CZO
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Image Data Reader'
+czovti = XMLImageDataReader(FileName=['CZO.vti'])
+
+# get active view
+renderView1 = GetActiveViewOrCreate('RenderView')
+# uncomment following to set a specific view size
+renderView1.ViewSize = [400, 400]
+
+# Properties modified on renderView1
+renderView1.OrientationAxesVisibility = 0
+
+# create a new 'Extract Subset'
+extractSubset1 = ExtractSubset(Input=czovti)
+extractSubset1.VOI = [50, 200, 50, 200, 50, 200]
+extractSubset1Display = Show(extractSubset1, renderView1)
+
+# change representation type
+extractSubset1Display.SetRepresentationType('Volume')
+
+# get color transfer function/color map for 'Scalars_'
+scalars_LUT = GetColorTransferFunction('Scalars_')
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0, 1e-04)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+# get opacity transfer function/opacity map for 'Scalars_'
+scalars_PWF = GetOpacityTransferFunction('Scalars_')
+scalars_PWF.RescaleTransferFunction(3e-05, 1e-04)
+#scalars_PWF.Points = [0, 0, 0, 0,
+#                      3e-05, 0.0, 0.5, 0.0,
+#                      1e-04, 1.0, 0.5, 0.0]
+
+renderView1.CameraPosition = [30, 10, 10]
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+SaveScreenshot('CZO_volume.png', quality=100, view=renderView1)
+```
+
+![CZO volume](CZO_volume.png)
+
+#### Animate VOI
+
+```python
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 100
+
+extractSubset1VOITrack = GetAnimationTrack('VOI', index=1, proxy=extractSubset1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame0 = CompositeKeyFrame()
+keyFrame1.KeyValues = [52.0]
+
+# create a key frame
+keyFrame1 = CompositeKeyFrame()
+keyFrame1.KeyTime = 1.0
+keyFrame1.KeyValues = [200.0]
+
+# initialize the animation track
+extractSubset1VOITrack.KeyFrames = [keyFrame0, keyFrame1]
+
+# save animation
+SaveAnimation('/tmp/CZO_volume.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 99])
+```
+
+![CZO volume](CZO_volume.gif)
 
 * * *
 #### Previous: [Matplotlib](matplotlib) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
