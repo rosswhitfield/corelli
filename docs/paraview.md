@@ -107,7 +107,7 @@ SaveScreenshot('benzil_hk4.png', quality=100, view=renderView1)
 
 ![Benzil_HK4](benzil_hk4.png)
 
-### Animation
+### Animate Origin
 
 ```python
 # hide color bar/color legend
@@ -208,6 +208,48 @@ SaveScreenshot('Mn2O3_multiSlice.png', quality=100, view=renderView1)
 
 ![Mn2O3 multiSlice](Mn2O3_multiSlice.png)
 
+#### Animate Origin
+
+```python
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 50
+
+# get animation track
+track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
+
+# create keyframes for this animation track
+
+# create a key frame
+startKeyFrame = CompositeKeyFrame()
+startKeyFrame.KeyValues = 1
+
+# create a key frame
+midKeyFrame = CompositeKeyFrame()
+midKeyFrame.KeyTime = 0.5
+midKeyFrame.KeyValues = 3
+
+# create a key frame
+endKeyFrame = CompositeKeyFrame()
+endKeyFrame.KeyTime = 1.0
+endKeyFrame.KeyValues = 1
+
+# initialize the animation track
+track.KeyFrames = [startKeyFrame, midKeyFrame, endKeyFrame]
+
+# save animation
+SaveAnimation('/tmp/Mn2O3_multiSlice.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 49])
+```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -r 10 -i /tmp/Mn2O3_multiSlice.%04d.png Mn2O3_multiSlice.gif
+```
+
+![Mn2O3 multiSlice](Mn2O3_multiSlice.gif)
+
 ### CZO showing 0KL, H1L and HK2
 
 ```python
@@ -265,7 +307,7 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 
 ![CZO multiSlice](CZO_multiSlice.png)
 
-#### Animate
+#### Animate Visibility
 
 ```python
 # get animation scene
@@ -362,7 +404,7 @@ $ ffmpeg -r 4 -i /tmp/CZO.%04d.png CZO_multiSlice.gif
 
 ### Sphere
 
-#### Changing radius while rotating
+#### Animate radius while rotating camera
 
 ```python
 #### import the simple module from the paraview
@@ -459,7 +501,7 @@ $ ffmpeg -i /tmp/CZO.%04d.png CZO_sphere.gif
 
 ## Clipping
 
-### Quarter
+### Eighth
 
 ```python
 #### import the simple module from the paraview
@@ -493,7 +535,7 @@ clip2.ClipType.Scale = [5, 5, 5]
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-clipDisplay = Show(clip2, renderView1)
+clip2Display = Show(clip2, renderView1)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
@@ -511,6 +553,59 @@ SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
 ```
 
 ![Mn2O3 clipping](Mn2O3_clipping.png)
+
+#### Animate Opacity
+
+```python
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 50
+    
+# show data in view
+clip1Display = Show(clip1, renderView1)
+
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
+
+# get animation track
+clip1track = GetAnimationTrack('Opacity', index=0, proxy=clip1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame0 = CompositeKeyFrame()
+keyFrame0.KeyValues = 1
+
+# create a key frame
+keyFrame1 = CompositeKeyFrame()
+keyFrame1.KeyTime = 0.25
+keyFrame1.KeyValues = 0
+
+# create a key frame
+keyFrame2 = CompositeKeyFrame()
+keyFrame2.KeyTime = 0.50
+keyFrame2.KeyValues = 0
+
+# create a key frame
+keyFrame3 = CompositeKeyFrame()
+keyFrame3.KeyTime = 0.75
+keyFrame3.KeyValues = 1
+
+# initialize the animation track
+clip1track.KeyFrames = [keyFrame0, keyFrame1, keyFrame2, keyFrame3]
+
+SaveAnimation('/tmp/Mn2O3_clipping.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 49])
+```
+
+A series of images are created that you can them convert to an animated gif, e.g. using `ffmpeg`:
+
+```shell
+$ ffmpeg -i /tmp/Mn2O3_clipping.%04d.png Mn2O3_clipping.gif
+```
+
+![Mn2O3 clipping](Mn2O3_clipping.gif)
 
 ### Pacman
 
@@ -560,7 +655,7 @@ clip2Display = Show(clip2, renderView1)
 clip3Display = Show(clip3, renderView1)
 
 # Rescale transfer function
-scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
+scalars_LUT.RescaleTransferFunction(0.0, 1e-04)
 
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
@@ -653,7 +748,6 @@ cameraAnimationCue1 = GetCameraTrack(view=renderView1)
 # create a key frame
 keyFrame4863 = CameraKeyFrame()
 keyFrame4863.Position = [-20.0, 0.0, 0.0]
-keyFrame4863.ParallelScale = 1.73
 keyFrame4863.PositionPathPoints = [-25.0, 0.0, 34.0,
                                    -25.0, 0.0, -34.0]
 keyFrame4863.FocalPathPoints = [0.0, 0.0, 34.0,
@@ -663,21 +757,17 @@ keyFrame4863.FocalPathPoints = [0.0, 0.0, 34.0,
 keyFrame4864 = CameraKeyFrame()
 keyFrame4864.KeyTime = 1.0
 keyFrame4864.Position = [-20.0, 0.0, 0.0]
-keyFrame4864.ParallelScale = 1.73
 
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
-
-
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[600, 150], FrameWindow=[0, 99])
-
+SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[600, 150], FrameWindow=[0, 49])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -737,7 +827,7 @@ SaveScreenshot('CZO_surface.png', quality=100, view=renderView1)
 
 ![CZS surface](CZO_surface.png)
 
-### Animation
+### Animate camera
 
 ```python
 # get animation scene
@@ -795,6 +885,9 @@ renderView1 = GetActiveViewOrCreate('RenderView')
 # uncomment following to set a specific view size
 renderView1.ViewSize = [400, 400]
 
+# set background color
+renderView1.Background = [0, 0, 0]
+
 mn2O3_elastic_35vtiDisplay = Show(mn2O3_elastic_35vti, renderView1)
 
 # change representation type
@@ -804,13 +897,18 @@ mn2O3_elastic_35vtiDisplay.SetRepresentationType('Volume')
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # Rescale transfer function
-scalars_LUT.RescaleTransferFunction(2e-05, 4e-05)
+scalars_LUT.RescaleTransferFunction(0, 5e-05)
+
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 # get opacity transfer function/opacity map for 'Scalars_'
 scalars_PWF = GetOpacityTransferFunction('Scalars_')
 
 # Rescale transfer function
 scalars_PWF.RescaleTransferFunction(2e-05, 5e-05)
+scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
+                      5e-05, 1.0, 0.5, 0.0]
 
 # current camera placement for renderView1
 renderView1.CameraPosition = [15, 8, 15]
@@ -825,13 +923,12 @@ SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView1)
 ![Mn2O3 volume](Mn2O3_volume.png)
 
 ```python
-# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
-
 # Rescale transfer function
 scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
-                      3e-05, 1.0, 0.5, 0.0,
+                      4e-05, 1.0, 0.5, 0.0,
                       5e-05, 0.0, 0.5, 0.0]
+
+scalars_LUT.RescaleTransferFunction(2e-5, 4e-05)
 
 SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView1)
 ```
