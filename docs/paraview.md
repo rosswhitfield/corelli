@@ -1004,7 +1004,7 @@ extractSubset1VOITrack = GetAnimationTrack('VOI', index=1, proxy=extractSubset1)
 
 # create a key frame
 keyFrame0 = CompositeKeyFrame()
-keyFrame1.KeyValues = [52.0]
+keyFrame0.KeyValues = [52.0]
 
 # create a key frame
 keyFrame1 = CompositeKeyFrame()
