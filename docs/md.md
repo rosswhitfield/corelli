@@ -48,7 +48,7 @@ sv.saveImage('md_lab.png')
 
 ## Q sample
 
-In order to comvert it too Q sample you need to specify which
+In order to convert it to Q sample you need to specify which
 goniometer to use with [SetGoniometer]. This will depend on what
 sample enviroment you are using.
 
