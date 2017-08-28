@@ -355,7 +355,7 @@ SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[400, 400], FrameWind
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
 ```shell
-$ ffmpeg -i /tmp/CZO.%04d.png CZO_multiSlice.gif
+$ ffmpeg -r 4 -i /tmp/CZO.%04d.png CZO_multiSlice.gif
 ```
 
 ![CZO multiSlice](CZO_multiSlice.gif)
@@ -806,16 +806,11 @@ scalars_LUT = GetColorTransferFunction('Scalars_')
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(2e-05, 4e-05)
 
-# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
-scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
-
 # get opacity transfer function/opacity map for 'Scalars_'
 scalars_PWF = GetOpacityTransferFunction('Scalars_')
+
 # Rescale transfer function
-#scalars_PWF.RescaleTransferFunction(2e-05, 5e-05)
-scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
-                      3e-05, 1.0, 0.5, 0.0,
-                      5e-05, 0.0, 0.5, 0.0]
+scalars_PWF.RescaleTransferFunction(2e-05, 5e-05)
 
 # current camera placement for renderView1
 renderView1.CameraPosition = [15, 8, 15]
@@ -828,6 +823,20 @@ SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView1)
 ```
 
 ![Mn2O3 volume](Mn2O3_volume.png)
+
+```python
+# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
+
+# Rescale transfer function
+scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
+                      3e-05, 1.0, 0.5, 0.0,
+                      5e-05, 0.0, 0.5, 0.0]
+
+SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView1)
+```
+
+![Mn2O3 volume](Mn2O3_volume2.png)
 
 * * *
 #### Previous: [Matplotlib](matplotlib) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
