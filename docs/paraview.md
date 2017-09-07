@@ -162,6 +162,35 @@ $ ffmpeg -i /tmp/benzil.%04d.png benzil.gif
 
 ![Benzil Animation](benzil.gif)
 
+### Animate LUT
+
+This is done using custom Python Animtaion Cue
+```python
+scene = GetAnimationScene()
+scene.NumberOfFrames = 11
+
+PythonAnimationCue = PythonAnimationCue()
+PythonAnimationCue.Script = """
+def start_cue(self):
+    scalars_LUT.RescaleTransferFunction(0.0, 1e-3)
+
+def tick(self):
+    time = scene.TimeKeeper.Time
+    scalars_LUT.RescaleTransferFunction(0.0, 1e-03-time*9.9e-4)
+
+def end_cue(self):
+    scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
+"""
+
+scene.Cues.append(PythonAnimationCue)
+
+# save animation
+SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[400, 400],
+    TransparentBackground=1,
+    FrameWindow=[0, 10])
+
+```
+
 ## Multiple slices
 
 ### Mn2O3 showing 0KL, H1L and HK2
