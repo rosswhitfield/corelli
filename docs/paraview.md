@@ -47,16 +47,16 @@ from paraview.simple import *
 benzilvts = XMLStructuredGridReader(FileName=['benzil.vts'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
 #change interaction mode for render view
-renderView1.InteractionMode = '2D'
+renderView.InteractionMode = '2D'
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Slice'
 slice1 = Slice(Input=benzilvts)
@@ -66,25 +66,38 @@ slice1.SliceType.Normal = [0.0, 0.0, 1.0]
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-slice1Display = Show(slice1, renderView1)
+slice1Display = Show(slice1, renderView)
 
 # show color bar/color legend
-slice1Display.SetScalarBarVisibility(renderView1, True)
+slice1Display.SetScalarBarVisibility(renderView, True)
 
 # Rescale transfer function
-scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
+scalars_LUT.RescaleTransferFunction(0.0, 1e-03)
 
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-# current camera placement for renderView1
-renderView1.CameraParallelScale = 10
+# current camera placement for renderView
+renderView.CameraParallelScale = 10
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('benzil_hk0.png', quality=100, view=renderView1)
+SaveScreenshot('benzil_hk0_0.png', quality=100, view=renderView)
+```
+
+![Benzil_HK0](benzil_hk0_0.png)
+
+```python
+# Rescale transfer function
+scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
+
+#### uncomment the following to render all views
+# RenderAllViews()
+# alternatively, if you want to write images, you can use SaveScreenshot(...).
+
+SaveScreenshot('benzil_hk0.png', quality=100, view=renderView)
 ```
 
 ![Benzil_HK0](benzil_hk0.png)
@@ -93,7 +106,7 @@ SaveScreenshot('benzil_hk0.png', quality=100, view=renderView1)
 
 ```python
 slice1.SliceType.Origin = [0.0, 0.0, 1.0]
-SaveScreenshot('benzil_hk1.png', quality=100, view=renderView1)
+SaveScreenshot('benzil_hk1.png', quality=100, view=renderView)
 ```
 
 ![Benzil_HK1](benzil_hk1.png)
@@ -102,7 +115,7 @@ SaveScreenshot('benzil_hk1.png', quality=100, view=renderView1)
 
 ```python
 slice1.SliceType.Origin = [0.0, 0.0, 4.0]
-SaveScreenshot('benzil_hk4.png', quality=100, view=renderView1)
+SaveScreenshot('benzil_hk4.png', quality=100, view=renderView)
 ```
 
 ![Benzil_HK4](benzil_hk4.png)
@@ -111,13 +124,13 @@ SaveScreenshot('benzil_hk4.png', quality=100, view=renderView1)
 
 ```python
 # hide color bar/color legend
-slice1Display.SetScalarBarVisibility(renderView1, False)
+slice1Display.SetScalarBarVisibility(renderView, False)
 
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 100
+# Properties modified on scene
+scene.NumberOfFrames = 100
 
 # get animation track
 track = GetAnimationTrack('Origin', index=2, proxy=slice1.SliceType)
@@ -137,7 +150,7 @@ endKeyFrame.KeyValues = [4]
 track.KeyFrames = [startKeyFrame, endKeyFrame]
 
 # save animation
-SaveAnimation('/tmp/benzil.png', renderView1, ImageResolution=[200, 200],
+SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[200, 200],
     TransparentBackground=1,
     FrameWindow=[0, 99])
 ```
@@ -161,13 +174,13 @@ from paraview.simple import *
 mn2O3_elasticvts = XMLStructuredGridReader(FileName=['Mn2O3_elastic.vts'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Slice'
 slice1 = Slice(Input=mn2O3_elasticvts)
@@ -187,9 +200,9 @@ slice3.SliceType.Origin = [0.0, 0.0, 2.0]
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-slice1Display = Show(slice1, renderView1)
-slice2Display = Show(slice2, renderView1)
-slice3Display = Show(slice3, renderView1)
+slice1Display = Show(slice1, renderView)
+slice2Display = Show(slice2, renderView)
+slice3Display = Show(slice3, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 3e-05)
@@ -197,13 +210,13 @@ scalars_LUT.RescaleTransferFunction(0.0, 3e-05)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [-14, -14, -14]
+renderView.CameraPosition = [-14, -14, -14]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('Mn2O3_multiSlice.png', quality=100, view=renderView1)
+SaveScreenshot('Mn2O3_multiSlice.png', quality=100, view=renderView)
 ```
 
 ![Mn2O3 multiSlice](Mn2O3_multiSlice.png)
@@ -212,10 +225,10 @@ SaveScreenshot('Mn2O3_multiSlice.png', quality=100, view=renderView1)
 
 ```python
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 50
+# Properties modified on scene
+scene.NumberOfFrames = 50
 
 # get animation track
 track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
@@ -240,7 +253,7 @@ endKeyFrame.KeyValues = 1
 track.KeyFrames = [startKeyFrame, midKeyFrame, endKeyFrame]
 
 # save animation
-SaveAnimation('/tmp/Mn2O3_multiSlice.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 49])
+SaveAnimation('/tmp/Mn2O3_multiSlice.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 49])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -260,13 +273,13 @@ from paraview.simple import *
 CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Slice'
 slice1 = Slice(Input=CZOvts)
@@ -286,9 +299,9 @@ slice3.SliceType.Origin = [0.0, 0.0, 2.0]
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-slice1Display = Show(slice1, renderView1)
-slice2Display = Show(slice2, renderView1)
-slice3Display = Show(slice3, renderView1)
+slice1Display = Show(slice1, renderView)
+slice2Display = Show(slice2, renderView)
+slice3Display = Show(slice3, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
@@ -296,13 +309,13 @@ scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [-25, -25, -25]
+renderView.CameraPosition = [-25, -25, -25]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
+SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView)
 ```
 
 ![CZO multiSlice](CZO_multiSlice.png)
@@ -311,10 +324,10 @@ SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView1)
 
 ```python
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 11
+# Properties modified on scene
+scene.NumberOfFrames = 11
 
 # get animation track
 slice1track = GetAnimationTrack('Visibility', proxy=slice1)
@@ -392,7 +405,7 @@ keyFrame3_2.Interpolation = 'Boolean'
 slice3track.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2]
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[400, 400], FrameWindow=[0,10])
+SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[400, 400], FrameWindow=[0,10])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -414,13 +427,13 @@ from paraview.simple import *
 CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Slice'
 slice1 = Slice(Input=CZOvts)
@@ -431,7 +444,7 @@ slice1.SliceType.Radius = 7.0
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-slice1Display = Show(slice1, renderView1)
+slice1Display = Show(slice1, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
@@ -440,10 +453,10 @@ scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 200
+# Properties modified on scene
+scene.NumberOfFrames = 200
 
 # get animation track
 slice1SliceTypeRadiusTrack = GetAnimationTrack('Radius', index=0, proxy=slice1.SliceType)
@@ -466,7 +479,7 @@ endKeyFrame.KeyValues = 7.0
 # initialize the animation track
 slice1SliceTypeRadiusTrack.KeyFrames = [startKeyFrame, midKeyFrame, endKeyFrame]
 
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
 # create keyframes for this animation track
 
@@ -489,7 +502,7 @@ cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 198])
+SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 198])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -511,13 +524,13 @@ from paraview.simple import *
 mn2O3vts = XMLStructuredGridReader(FileName=['Mn2O3.vts'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Clip'
 clip1 = Clip(Input=mn2O3vts)
@@ -535,7 +548,7 @@ clip2.ClipType.Scale = [5, 5, 5]
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-clip2Display = Show(clip2, renderView1)
+clip2Display = Show(clip2, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
@@ -543,13 +556,13 @@ scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [12, 12, 12]
+renderView.CameraPosition = [12, 12, 12]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
+SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView)
 ```
 
 ![Mn2O3 clipping](Mn2O3_clipping.png)
@@ -558,13 +571,13 @@ SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView1)
 
 ```python
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 50
+# Properties modified on scene
+scene.NumberOfFrames = 50
     
 # show data in view
-clip1Display = Show(clip1, renderView1)
+clip1Display = Show(clip1, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 5e-05)
@@ -596,7 +609,7 @@ keyFrame3.KeyValues = 1
 # initialize the animation track
 clip1track.KeyFrames = [keyFrame0, keyFrame1, keyFrame2, keyFrame3]
 
-SaveAnimation('/tmp/Mn2O3_clipping.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 49])
+SaveAnimation('/tmp/Mn2O3_clipping.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 49])
 ```
 
 A series of images are created that you can them convert to an animated gif, e.g. using `ffmpeg`:
@@ -617,13 +630,13 @@ from paraview.simple import *
 mn2O3vts = XMLStructuredGridReader(FileName=['CZO.vts'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Clip'
 clip1 = Clip(Input=mn2O3vts)
@@ -649,10 +662,10 @@ clip3.ClipType.Rotation  = [30, 0, 0]
 scalars_LUT = GetColorTransferFunction('Scalars_')
 
 # show data in view
-clip2Display = Show(clip2, renderView1)
+clip2Display = Show(clip2, renderView)
 
 # show data in view
-clip3Display = Show(clip3, renderView1)
+clip3Display = Show(clip3, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 1e-04)
@@ -660,13 +673,13 @@ scalars_LUT.RescaleTransferFunction(0.0, 1e-04)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [-20, 0, 0]
+renderView.CameraPosition = [-20, 0, 0]
 
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 100
+# Properties modified on scene
+scene.NumberOfFrames = 100
 
 # get animation track
 clip2ClipTypeRotationTrack = GetAnimationTrack('Rotation', index=0, proxy=clip2.ClipType)
@@ -741,7 +754,7 @@ keyFrame3_8.KeyValues = [45.0]
 clip3ClipTypeRotationTrack.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2, keyFrame3_3, keyFrame3_4, keyFrame3_5, keyFrame3_6, keyFrame3_7, keyFrame3_8]
 
 # get camera animation track for the view
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
 # create keyframes for this animation track
 
@@ -767,7 +780,7 @@ cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[600, 150], FrameWindow=[0, 49])
+SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[600, 150], FrameWindow=[0, 49])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -788,10 +801,10 @@ from paraview.simple import *
 cZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
 
 # update the view to ensure updated data information
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
 # create a new 'Clip'
 clip1 = Clip(Input=cZOvts)
@@ -808,7 +821,7 @@ threshold1.Scalars = ['CELLS', 'Scalars_']
 threshold1.ThresholdRange = [0.0001, 0.00015]
 
 # show data in view
-threshold1Display = Show(threshold1, renderView1)
+threshold1Display = Show(threshold1, renderView)
 
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0001, 0.00013)
@@ -816,13 +829,13 @@ scalars_LUT.RescaleTransferFunction(0.0001, 0.00013)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView1.CameraPosition = [12,12,12]
+renderView.CameraPosition = [12,12,12]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('CZO_surface.png', quality=100, view=renderView1)
+SaveScreenshot('CZO_surface.png', quality=100, view=renderView)
 ```
 
 ![CZS surface](CZO_surface.png)
@@ -831,12 +844,12 @@ SaveScreenshot('CZO_surface.png', quality=100, view=renderView1)
 
 ```python
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 100
+# Properties modified on scene
+scene.NumberOfFrames = 100
 
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
 # create keyframes for this animation track
 
@@ -859,7 +872,7 @@ cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
 
 # save animation
-SaveAnimation('/tmp/CZO.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 99])
+SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -883,14 +896,14 @@ from paraview.simple import *
 mn2O3_elastic_35vti = XMLImageDataReader(FileName=['Mn2O3_elastic_3.5.vti'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
 # set background color
-renderView1.Background = [0, 0, 0]
+renderView.Background = [0, 0, 0]
 
-mn2O3_elastic_35vtiDisplay = Show(mn2O3_elastic_35vti, renderView1)
+mn2O3_elastic_35vtiDisplay = Show(mn2O3_elastic_35vti, renderView)
 
 # change representation type
 mn2O3_elastic_35vtiDisplay.SetRepresentationType('Volume')
@@ -912,14 +925,14 @@ scalars_PWF.RescaleTransferFunction(2e-05, 5e-05)
 scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
                       5e-05, 1.0, 0.5, 0.0]
 
-# current camera placement for renderView1
-renderView1.CameraPosition = [15, 8, 15]
+# current camera placement for renderView
+renderView.CameraPosition = [15, 8, 15]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView1)
+SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView)
 ```
 
 ![Mn2O3 volume](Mn2O3_volume.png)
@@ -934,7 +947,7 @@ scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
 
 scalars_LUT.RescaleTransferFunction(2e-5, 4e-05)
 
-SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView1)
+SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView)
 ```
 
 ![Mn2O3 volume](Mn2O3_volume2.png)
@@ -943,17 +956,17 @@ SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView1)
 
 ```python
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 100
+# Properties modified on scene
+scene.NumberOfFrames = 100
 
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
 # create keyframes for this animation track
 
 # get camera animation track for the view
-cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
 # create keyframes for this animation track
 
@@ -976,7 +989,7 @@ cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
 
 # save animation
-SaveAnimation('/tmp/Mn2O3_volume.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 99])
+SaveAnimation('/tmp/Mn2O3_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -996,17 +1009,17 @@ from paraview.simple import *
 czovti = XMLImageDataReader(FileName=['CZO.vti'])
 
 # get active view
-renderView1 = GetActiveViewOrCreate('RenderView')
+renderView = GetActiveViewOrCreate('RenderView')
 # uncomment following to set a specific view size
-renderView1.ViewSize = [400, 400]
+renderView.ViewSize = [400, 400]
 
-# Properties modified on renderView1
-renderView1.OrientationAxesVisibility = 0
+# Properties modified on renderView
+renderView.OrientationAxesVisibility = 0
 
 # create a new 'Extract Subset'
 extractSubset1 = ExtractSubset(Input=czovti)
 extractSubset1.VOI = [50, 200, 50, 200, 50, 200]
-extractSubset1Display = Show(extractSubset1, renderView1)
+extractSubset1Display = Show(extractSubset1, renderView)
 
 # change representation type
 extractSubset1Display.SetRepresentationType('Volume')
@@ -1027,13 +1040,13 @@ scalars_PWF.Points = [0, 0, 0, 0,
                       3e-05, 0.0, 0.5, 0.0,
                       1e-04, 1.0, 0.5, 0.0]
 
-renderView1.CameraPosition = [30, 10, 10]
+renderView.CameraPosition = [30, 10, 10]
 
 #### uncomment the following to render all views
 # RenderAllViews()
 # alternatively, if you want to write images, you can use SaveScreenshot(...).
 
-SaveScreenshot('CZO_volume.png', quality=100, view=renderView1)
+SaveScreenshot('CZO_volume.png', quality=100, view=renderView)
 ```
 
 ![CZO volume](CZO_volume.png)
@@ -1042,10 +1055,10 @@ SaveScreenshot('CZO_volume.png', quality=100, view=renderView1)
 
 ```python
 # get animation scene
-animationScene1 = GetAnimationScene()
+scene = GetAnimationScene()
 
-# Properties modified on animationScene1
-animationScene1.NumberOfFrames = 100
+# Properties modified on scene
+scene.NumberOfFrames = 100
 
 extractSubset1VOITrack = GetAnimationTrack('VOI', index=1, proxy=extractSubset1)
 
@@ -1064,7 +1077,7 @@ keyFrame1.KeyValues = [200.0]
 extractSubset1VOITrack.KeyFrames = [keyFrame0, keyFrame1]
 
 # save animation
-SaveAnimation('/tmp/CZO_volume.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 99])
+SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
 ![CZO volume](CZO_volume.gif)
