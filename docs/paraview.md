@@ -924,6 +924,8 @@ SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView1)
 
 ![Mn2O3 volume](Mn2O3_volume.png)
 
+#### Change PWF
+
 ```python
 # Rescale transfer function
 scalars_PWF.Points = [2e-05, 0.0, 0.5, 0.0,
@@ -936,6 +938,53 @@ SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView1)
 ```
 
 ![Mn2O3 volume](Mn2O3_volume2.png)
+
+#### Animate camera
+
+```python
+# get animation scene
+animationScene1 = GetAnimationScene()
+
+# Properties modified on animationScene1
+animationScene1.NumberOfFrames = 100
+
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+# create keyframes for this animation track
+
+# get camera animation track for the view
+cameraAnimationCue1 = GetCameraTrack(view=renderView1)
+
+# create keyframes for this animation track
+
+# create a key frame
+keyFrame0 = CameraKeyFrame()
+keyFrame0.Position = [15.0, 8.0, 15.0]
+keyFrame0.ParallelScale = 1.73
+keyFrame0.PositionPathPoints = [15.0, 8.0, 15.0, 21.096995287602127, 8.0, -2.217383556107002, 11.553538648740696, 8.0, -17.790889373273476, -6.555240366732316, 8.0, -20.174955358918723, -19.80423151077602, 8.0, -7.602132218502013, -18.37117307087384, 8.0, 10.606601717798213, -3.3184761312371176, 8.0, 20.952033700011313]
+keyFrame0.FocalPathPoints = [0.0, 0.0, 0.0]
+keyFrame0.ClosedPositionPath = 1
+
+# create a key frame
+keyFrame1 = CameraKeyFrame()
+keyFrame1.KeyTime = 1.0
+keyFrame1.Position = [15.0, 8.0, 15.0]
+keyFrame1.ParallelScale = 1.73
+
+# initialize the animation track
+cameraAnimationCue1.Mode = 'Path-based'
+cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
+
+# save animation
+SaveAnimation('/tmp/Mn2O3_volume.png', renderView1, ImageResolution=[200, 200], FrameWindow=[0, 99])
+```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -i /tmp/Mn2O3_volume.%04d.png Mn2O3_volume2.gif
+```
+
+![Mn2O3 volume](Mn2O3_volume2.gif)
 
 ### CZO
 
