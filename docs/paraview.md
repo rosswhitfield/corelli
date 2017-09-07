@@ -149,9 +149,25 @@ endKeyFrame.KeyValues = [4]
 # initialize the animation track
 track.KeyFrames = [startKeyFrame, endKeyFrame]
 
+# Add text
+text = Text()
+text.Text = ''
+textDisplay = Show(text, renderView)
+textDisplay.FontSize = 50
+
+# get animation track for text
+PythonAnimationCue = PythonAnimationCue()
+PythonAnimationCue.Script = """
+def start_cue(self): pass
+def tick(self):
+    text.Text = 'HK'+str(round(slice1.SliceType.Origin[2],1))
+def end_cue(self): pass
+"""
+
+scene.Cues.append(PythonAnimationCue)
+
 # save animation
 SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[200, 200],
-    TransparentBackground=1,
     FrameWindow=[0, 99])
 ```
 
@@ -164,7 +180,7 @@ $ ffmpeg -i /tmp/benzil.%04d.png benzil.gif
 
 ### Animate LUT
 
-This is done using custom Python Animtaion Cue
+This is done using custom Python Animation Cue
 ```python
 scene = GetAnimationScene()
 scene.NumberOfFrames = 11
@@ -176,7 +192,7 @@ def start_cue(self):
 
 def tick(self):
     time = scene.TimeKeeper.Time
-    scalars_LUT.RescaleTransferFunction(0.0, 1e-03-time*9.9e-4)
+    scalars_LUT.RescaleTransferFunction(0.0, 1e-03*100**-time)
 
 def end_cue(self):
     scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
@@ -186,10 +202,15 @@ scene.Cues.append(PythonAnimationCue)
 
 # save animation
 SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[400, 400],
-    TransparentBackground=1,
     FrameWindow=[0, 10])
-
 ```
+
+A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+```shell
+$ ffmpeg -r 4 -i /tmp/benzil.%04d.png benzil_LUT.gif
+```
+
+![Benzil LUT](benzil_LUT.gif)
 
 ## Multiple slices
 
