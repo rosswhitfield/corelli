@@ -42,7 +42,7 @@ To use paraview first save the data as a VTK file, see
   * [CZO](#czo)
   * [Animate VOI](#animate-voi)
 * [Converting to Image Data](#converting-to-image-data)
-* [Controlling VSI](#controlling-vsi)
+* [Scripting VSI](#scripting-vsi)
 
 ## Slices
 
@@ -203,8 +203,7 @@ def end_cue(self): pass
 scene.Cues.append(PythonAnimationCue)
 
 # save animation
-SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[400, 400],
-    FrameWindow=[0, 10])
+SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[400, 400], FrameWindow=[0, 10])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -1171,6 +1170,10 @@ SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], Fra
 
 ![CZO volume](CZO_volume.gif)
 
+## Creating animations
+
+
+
 ## Converting to Image Data
 
 By converting the data to Image data performace, particularly for
@@ -1190,7 +1193,7 @@ resampleToImage1.SamplingDimensions = [351, 351, 351]
 SaveData('Mn2O3_elastic_3.5.vti', proxy=resampleToImage1)
 ```
 
-## Controlling VSI
+## Scripting VSI
 
 The [VATES Simple
 Interface](https://www.mantidproject.org/VatesSimpleInterface) (VSI)
