@@ -1305,7 +1305,7 @@ Render()
 While controlling VSI from Mantid you need to make sure you're doing
 it in a threadsafe way. This can be done either by setting the `Mode`
 in the `Script Windows` to `Serialised`,
-(*Execute->Mode->Serialised*), or by running everything throught
+(*Execute->Mode->Serialised*), or by running everything through
 [threadsafe_call](http://docs.mantidproject.org/nightly/api/python/mantidplot/threadsafe_call.html).
 
 The example above can be done with [threadsafe_call](http://docs.mantidproject.org/nightly/api/python/mantidplot/threadsafe_call.html) by
