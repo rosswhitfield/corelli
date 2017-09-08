@@ -18,26 +18,34 @@ To use paraview first save the data as a VTK file, see
 [here](export#vtk). The following scripts can be run from ParaView
 (_Tools->Python Shell->Run Script_) or by running in `pvpython`.
 
-## Converting to Image Data
-
-By converting the data to Image data performace, particularly for
-[volume rendering](#volume), can be greatly improved.
-
-```python
-#### import the simple module from the paraview
-from paraview.simple import *
-
-# create a new 'XML Structured Grid Reader'
-mn2O3_elastic_35vts = XMLStructuredGridReader(FileName=['Mn2O3_elastic_3.5.vts'])
-
-# create a new 'Resample To Image'
-resampleToImage1 = ResampleToImage(Input=mn2O3_elastic_35vts)
-resampleToImage1.SamplingDimensions = [351, 351, 351]
-
-SaveData('Mn2O3_elastic_3.5.vti', proxy=resampleToImage1)
-```
+### Contents:
+* [Slices](#slices)
+  * [Benzil HK0](#benzil-hk0)
+  * [Benzil HK1](#hk1)
+  * [Benzil HK4](#hk4)
+  * [Animate Origin](#animate-origin)
+  * [Animate LUT](#animate-lut)
+* [Multiple slices](#multiple-slices)
+  * [Mn2O3 showing 0KL, H1L and HK2](#mn2o3-showing-0kl-h1l-and-hk2)
+  * [Animate Origin](#animate-origin-1)
+  * [CZO showing 0KL, H1L and HK2](#czo-showing-0kl-h1l-and-hk2)
+  * [Animate Visibility](#animate-visibility)
+* [Clipping](#clipping)
+  * [Eighth](#eighth)
+  * [Animate Opacity](#animate-opacity)
+  * [Pacman](#pacman)
+* [Surface](#surface)
+  * [Animate camera](#animate-camera)
+* [Volume](#Volume)
+  * [Mn2O3](#mn2o3)
+  * [Animate camera](#animate-camera-1)
+  * [CZO](#czo)
+  * [Animate VOI](#animate-voi)
+* [Converting to Image Data](#converting-to-image-data)
 
 ## Slices
+
+### Benzil HK0
 
 ```python
 #### import the simple module from the paraview
@@ -150,21 +158,22 @@ text = Text()
 text.Text = ''
 textDisplay = Show(text, renderView)
 textDisplay.FontSize = 50
+textDisplay.WindowLocation = "UpperCenter"
+textDisplay.FontFamily = 'Courier'
 
 # get animation track for text
 PythonAnimationCue = PythonAnimationCue()
 PythonAnimationCue.Script = """
 def start_cue(self): pass
 def tick(self):
-    text.Text = 'HK'+str(round(slice1.SliceType.Origin[2],1))
+    text.Text = 'HK{:+.1f}'.format(slice1.SliceType.Origin[2])
 def end_cue(self): pass
 """
 
 scene.Cues.append(PythonAnimationCue)
 
 # save animation
-SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[200, 200],
-    FrameWindow=[0, 99])
+SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
@@ -574,7 +583,7 @@ import numpy as np
 def start_cue(self): pass
 def tick(self):
     p = renderView.CameraPosition
-    text2.Text = 'Angle = {:.0f}'.format(np.mod(np.arctan2(p[0],p[2])*180/np.pi,360))
+    text2.Text = 'Angle = {:3.0f}°'.format(np.mod(np.arctan2(p[0],p[2])*180/np.pi,360))
 def end_cue(self): pass
 """
 
@@ -1160,6 +1169,25 @@ SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], Fra
 ```
 
 ![CZO volume](CZO_volume.gif)
+
+## Converting to Image Data
+
+By converting the data to Image data performace, particularly for
+[volume rendering](#volume), can be greatly improved.
+
+```python
+#### import the simple module from the paraview
+from paraview.simple import *
+
+# create a new 'XML Structured Grid Reader'
+mn2O3_elastic_35vts = XMLStructuredGridReader(FileName=['Mn2O3_elastic_3.5.vts'])
+
+# create a new 'Resample To Image'
+resampleToImage1 = ResampleToImage(Input=mn2O3_elastic_35vts)
+resampleToImage1.SamplingDimensions = [351, 351, 351]
+
+SaveData('Mn2O3_elastic_3.5.vti', proxy=resampleToImage1)
+```
 
 * * *
 #### Previous: [Matplotlib](matplotlib) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Benzil](benzil)
