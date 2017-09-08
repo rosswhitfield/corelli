@@ -93,10 +93,6 @@ SaveScreenshot('benzil_hk0_0.png', quality=100, view=renderView)
 # Rescale transfer function
 scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
 
-#### uncomment the following to render all views
-# RenderAllViews()
-# alternatively, if you want to write images, you can use SaveScreenshot(...).
-
 SaveScreenshot('benzil_hk0.png', quality=100, view=renderView)
 ```
 
@@ -187,15 +183,11 @@ scene.NumberOfFrames = 11
 
 PythonAnimationCue = PythonAnimationCue()
 PythonAnimationCue.Script = """
-def start_cue(self):
-    scalars_LUT.RescaleTransferFunction(0.0, 1e-3)
-
+def start_cue(self): pass
 def tick(self):
     time = scene.TimeKeeper.Time
     scalars_LUT.RescaleTransferFunction(0.0, 1e-03*100**-time)
-
-def end_cue(self):
-    scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
+def end_cue(self): pass
 """
 
 scene.Cues.append(PythonAnimationCue)
@@ -207,7 +199,7 @@ SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[400, 400],
 
 A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
 ```shell
-$ ffmpeg -r 4 -i /tmp/benzil.%04d.png benzil_LUT.gif
+$ ffmpeg -r 2 -i /tmp/benzil.%04d.png benzil_LUT.gif
 ```
 
 ![Benzil LUT](benzil_LUT.gif)
@@ -550,6 +542,43 @@ keyFrame1.ParallelScale = 1.73
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
+
+# Add text for radius
+text = Text()
+text.Text = ''
+textDisplay = Show(text, renderView)
+textDisplay.FontSize = 50
+
+# get animation track for text
+PythonAnimationCue1 = PythonAnimationCue()
+PythonAnimationCue1.Script = """
+def start_cue(self): pass
+def tick(self):
+    text.Text = 'Radius = {:.1f}'.format(slice1.SliceType.Radius)
+def end_cue(self): pass
+"""
+
+scene.Cues.append(PythonAnimationCue1)
+
+# Add text for angle
+text2 = Text()
+text2.Text = ''
+text2Display = Show(text2, renderView)
+text2Display.FontSize = 50
+text2Display.WindowLocation = "LowerLeftCorner"
+
+# get animation track for text
+PythonAnimationCue2 = PythonAnimationCue()
+PythonAnimationCue2.Script = """
+import numpy as np
+def start_cue(self): pass
+def tick(self):
+    p = renderView.CameraPosition
+    text2.Text = 'Angle = {:.0f}'.format(np.mod(np.arctan2(p[0],p[2])*180/np.pi,360))
+def end_cue(self): pass
+"""
+
+scene.Cues.append(PythonAnimationCue2)
 
 # save animation
 SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 198])
