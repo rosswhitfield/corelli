@@ -42,6 +42,7 @@ To use paraview first save the data as a VTK file, see
   * [CZO](#czo)
   * [Animate VOI](#animate-voi)
 * [Converting to Image Data](#converting-to-image-data)
+* [Controlling VSI](#controlling-vsi)
 
 ## Slices
 
@@ -1187,6 +1188,59 @@ resampleToImage1 = ResampleToImage(Input=mn2O3_elastic_35vts)
 resampleToImage1.SamplingDimensions = [351, 351, 351]
 
 SaveData('Mn2O3_elastic_3.5.vti', proxy=resampleToImage1)
+```
+
+## Controlling VSI
+
+The [VATES Simple
+Interface](https://www.mantidproject.org/VatesSimpleInterface) (VSI)
+is a way of viewing your data in ParaView directly from Mantid without
+first converting it to vtk format.
+
+The scripts above should work with some modifications. First you must
+run `from paraview.simple import *` **only after** opening VSI!
+
+Next you don't need to load the data or create the render view. You
+can get both from VSI via
+
+```python
+from paraview.simple import *
+
+# Get VSI view
+renderView=GetActiveView()
+
+# Get source from VSI
+source=GetActiveSource()
+```
+
+Then you can do things like
+```python
+renderView.InteractionMode = '2D'
+Render()
+
+scalars_LUT = GetColorTransferFunction('signal')
+scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
+Render()
+```
+
+While controlling VSI from Mantid you need to make sure you're doing
+it in a threadsafe way. This can be done either by setting the `Mode`
+in the `Script Windows` to `Serialised`,
+(*Execute->Mode->Serialised*), or by running everything throught
+[threadsafe_call](http://docs.mantidproject.org/nightly/api/python/mantidplot/threadsafe_call.html).
+
+The example above can be done with [threadsafe_call](http://docs.mantidproject.org/nightly/api/python/mantidplot/threadsafe_call.html) by
+```python
+from paraview.simple import *
+renderView=threadsafe_call(GetActiveView)
+source=threadsafe_call(GetActiveSource)
+
+threadsafe_call(setattr, renderView, 'InteractionMode', '2D')
+threadsafe_call(Render)
+
+scalars_LUT = threadsafe_call(GetColorTransferFunction, 'signal')
+threadsafe_call(scalars_LUT.RescaleTransferFunction, 0.0, 1e-05)
+threadsafe_call(Render)
 ```
 
 * * *
