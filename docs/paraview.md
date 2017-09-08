@@ -41,6 +41,7 @@ To use paraview first save the data as a VTK file, see
   * [Animate camera](#animate-camera-1)
   * [CZO](#czo)
   * [Animate VOI](#animate-voi)
+* [Creating Animations](#creating-animations)
 * [Converting to Image Data](#converting-to-image-data)
 * [Scripting VSI](#scripting-vsi)
 
@@ -177,7 +178,7 @@ scene.Cues.append(PythonAnimationCue)
 SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -i /tmp/benzil.%04d.png benzil.gif
 ```
@@ -206,7 +207,7 @@ scene.Cues.append(PythonAnimationCue)
 SaveAnimation('/tmp/benzil.png', renderView, ImageResolution=[400, 400], FrameWindow=[0, 10])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -r 2 -i /tmp/benzil.%04d.png benzil_LUT.gif
 ```
@@ -307,7 +308,7 @@ track.KeyFrames = [startKeyFrame, midKeyFrame, endKeyFrame]
 SaveAnimation('/tmp/Mn2O3_multiSlice.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 49])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -r 10 -i /tmp/Mn2O3_multiSlice.%04d.png Mn2O3_multiSlice.gif
 ```
@@ -459,7 +460,7 @@ slice3track.KeyFrames = [keyFrame3_0, keyFrame3_1, keyFrame3_2]
 SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[400, 400], FrameWindow=[0,10])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -r 4 -i /tmp/CZO.%04d.png CZO_multiSlice.gif
 ```
@@ -593,7 +594,7 @@ scene.Cues.append(PythonAnimationCue2)
 SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 198])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_sphere.gif
 ```
@@ -700,7 +701,7 @@ clip1track.KeyFrames = [keyFrame0, keyFrame1, keyFrame2, keyFrame3]
 SaveAnimation('/tmp/Mn2O3_clipping.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 49])
 ```
 
-A series of images are created that you can them convert to an animated gif, e.g. using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 
 ```shell
 $ ffmpeg -i /tmp/Mn2O3_clipping.%04d.png Mn2O3_clipping.gif
@@ -871,7 +872,7 @@ cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[600, 150], FrameWindow=[0, 49])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_pacman.gif
 ```
@@ -963,7 +964,7 @@ cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
 SaveAnimation('/tmp/CZO.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_surface.gif
 ```
@@ -1080,7 +1081,7 @@ cameraAnimationCue1.KeyFrames = [keyFrame0, keyFrame1]
 SaveAnimation('/tmp/Mn2O3_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
-A series of images are created that you can them convert to an animated gif, _e.g._ using `ffmpeg`:
+Create animated gif, see [Creating animations](#creating-animations)
 ```shell
 $ ffmpeg -i /tmp/Mn2O3_volume.%04d.png Mn2O3_volume2.gif
 ```
@@ -1172,7 +1173,82 @@ SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], Fra
 
 ## Creating animations
 
+The follow examples uses the [CZO Animate VOI](#animate-voi) animation
+above.
 
+`SaveAnimation` is used to save an animation as a movie file (avi or
+ogv) or a series of images.
+
+> Supported extensions are `png`,
+> `jpg`, `tif`, `bmp`, and `ppm`. Based on platform (and build)
+> configuration, `avi` and `ogv` may be supported as well.
+
+You can possibly save directly to a video with file extension `.avi`
+or `.ogv`. _e.g._ saving an `.ogv` video:
+
+```python
+# save animation
+SaveAnimation('CZO_volume.ogv', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
+```
+
+The alternative is to save an series of images then convert them to an
+animated gif or video file.
+
+### FFmpeg
+
+A series of images can be converted to an animated gif or video using
+[FFmpeg](http://ffmpeg.org).
+
+Save a series of `.png` images:
+
+```python
+# save animation
+SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
+```
+
+Use `ffmpeg` to create an animated gif:
+
+```shell
+$ ffmpeg -i /tmp/CZO_volume.%04d.png CZO_volume.gif
+```
+
+The frame rate can be set with `-r n`, _e.g._ for 4 fps:
+```shell
+$ ffmpeg -r 4 -i /tmp/CZO_volume.%04d.png CZO_volume.gif
+```
+
+Use `ffmpeg` to create an `.mp4` video
+
+```shell
+$ ffmpeg -i /tmp/CZO_volume.%04d.png CZO_volume.mp4
+```
+
+### ImageMagick convert
+
+If FFmpeg isn't aviable you can use
+[convert](https://imagemagick.org/script/convert.php) from ImageMagick
+to convert a series of images to an animated gif.
+
+Save a series of `.png` images:
+
+```python
+# save animation
+SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
+```
+
+Use `convert` to create an animated gif:
+
+```shell
+$ convert /tmp/CZO_volume.*.png CZO_volume.gif
+```
+
+The frame rate can be set with the option `-delay {time}`. It sets the
+time delay (in 1/100th of a second) to pause after drawing the images.
+_e.g._ for 4 fps:
+
+```shell
+$ convert -delay 1x4 /tmp/CZO_volume.*.png CZO_volume.gif
+```
 
 ## Converting to Image Data
 
