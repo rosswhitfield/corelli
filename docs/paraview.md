@@ -41,6 +41,7 @@ To use paraview first save the data as a VTK file, see
   * [Animate camera](#animate-camera-1)
   * [CZO](#czo)
   * [Animate VOI](#animate-voi)
+  * [Animate PWF](#animate-pwf)
 * [Creating Animations](#creating-animations)
 * [Converting to Image Data](#converting-to-image-data)
 * [Scripting VSI](#scripting-vsi)
