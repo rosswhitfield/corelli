@@ -1149,7 +1149,7 @@ scene = GetAnimationScene()
 # Properties modified on scene
 scene.NumberOfFrames = 100
 
-extractSubset1VOITrack = GetAnimationTrack('VOI', index=1, proxy=extractSubset1)
+extractSubset1VOITrack = GetAnimationTrack('VOI', index=3, proxy=extractSubset1)
 
 # create keyframes for this animation track
 
@@ -1159,17 +1159,61 @@ keyFrame0.KeyValues = [52.0]
 
 # create a key frame
 keyFrame1 = CompositeKeyFrame()
-keyFrame1.KeyTime = 1.0
+keyFrame1.KeyTime = 0.5
 keyFrame1.KeyValues = [200.0]
 
+# create a key frame
+keyFrame2 = CompositeKeyFrame()
+keyFrame2.KeyTime = 1.0
+keyFrame2.KeyValues = [52.0]
+
 # initialize the animation track
-extractSubset1VOITrack.KeyFrames = [keyFrame0, keyFrame1]
+extractSubset1VOITrack.KeyFrames = [keyFrame0, keyFrame1, keyFrame2]
 
 # save animation
 SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
+Create animated gif, see [Creating animations](#creating-animations)
+```shell
+$ ffmpeg -r 10 -i /tmp/CZO_volume.%04d.png CZO_volume.gif
+```
+
 ![CZO volume](images/CZO_volume.gif)
+
+### Animate PWF
+
+```python
+extractSubset1.VOI = [100, 151, 100, 151, 100, 151]
+renderView.CameraPosition = [10, 5, 5]
+
+scene = GetAnimationScene()
+scene.StartTime = -1.0
+scene.NumberOfFrames = 51
+
+PythonAnimationCue = PythonAnimationCue()
+PythonAnimationCue.Script = """
+def start_cue(self): pass
+def tick(self):
+    time = scene.TimeKeeper.Time
+    scalars_PWF.Points =[0.0, 0.0, 0.5, 0.0,
+                         2e-04*100**-(1-abs(time)), 0.0, 0.5, 0.0,
+                         2e-04, 1.0, 0.5, 0.0]
+def end_cue(self): pass
+"""
+
+scene.Cues.append(PythonAnimationCue)
+
+# save animation
+SaveAnimation('/tmp/CZO_volume2.png', renderView, ImageResolution=[200, 200])
+```
+
+Create animated gif, see [Creating animations](#creating-animations)
+```shell
+$ ffmpeg -r 15 -i /tmp/CZO_volume2.%04d.png CZO_volume2.gif
+```
+
+![CZO volume](images/CZO_volume2.gif)
 
 ## Creating animations
 
