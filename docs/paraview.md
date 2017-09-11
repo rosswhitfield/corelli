@@ -97,7 +97,7 @@ renderView.CameraParallelScale = 10
 SaveScreenshot('benzil_hk0_0.png', quality=100, view=renderView)
 ```
 
-![Benzil_HK0](benzil_hk0_0.png)
+![Benzil_HK0](images/benzil_hk0_0.png)
 
 ```python
 # Rescale transfer function
@@ -106,7 +106,7 @@ scalars_LUT.RescaleTransferFunction(0.0, 1e-05)
 SaveScreenshot('benzil_hk0.png', quality=100, view=renderView)
 ```
 
-![Benzil_HK0](benzil_hk0.png)
+![Benzil_HK0](images/benzil_hk0.png)
 
 ### HK1
 
@@ -115,7 +115,7 @@ slice1.SliceType.Origin = [0.0, 0.0, 1.0]
 SaveScreenshot('benzil_hk1.png', quality=100, view=renderView)
 ```
 
-![Benzil_HK1](benzil_hk1.png)
+![Benzil_HK1](images/benzil_hk1.png)
 
 ### HK4
 
@@ -124,7 +124,7 @@ slice1.SliceType.Origin = [0.0, 0.0, 4.0]
 SaveScreenshot('benzil_hk4.png', quality=100, view=renderView)
 ```
 
-![Benzil_HK4](benzil_hk4.png)
+![Benzil_HK4](images/benzil_hk4.png)
 
 ### Animate Origin
 
@@ -183,7 +183,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -i /tmp/benzil.%04d.png benzil.gif
 ```
 
-![Benzil Animation](benzil.gif)
+![Benzil Animation](images/benzil.gif)
 
 ### Animate LUT
 
@@ -212,7 +212,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -r 2 -i /tmp/benzil.%04d.png benzil_LUT.gif
 ```
 
-![Benzil LUT](benzil_LUT.gif)
+![Benzil LUT](images/benzil_LUT.gif)
 
 ## Multiple slices
 
@@ -271,7 +271,7 @@ renderView.CameraPosition = [-14, -14, -14]
 SaveScreenshot('Mn2O3_multiSlice.png', quality=100, view=renderView)
 ```
 
-![Mn2O3 multiSlice](Mn2O3_multiSlice.png)
+![Mn2O3 multiSlice](images/Mn2O3_multiSlice.png)
 
 #### Animate Origin
 
@@ -313,7 +313,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -r 10 -i /tmp/Mn2O3_multiSlice.%04d.png Mn2O3_multiSlice.gif
 ```
 
-![Mn2O3 multiSlice](Mn2O3_multiSlice.gif)
+![Mn2O3 multiSlice](images/Mn2O3_multiSlice.gif)
 
 ### CZO showing 0KL, H1L and HK2
 
@@ -370,7 +370,7 @@ renderView.CameraPosition = [-25, -25, -25]
 SaveScreenshot('CZO_multiSlice.png', quality=100, view=renderView)
 ```
 
-![CZO multiSlice](CZO_multiSlice.png)
+![CZO multiSlice](images/CZO_multiSlice.png)
 
 #### Animate Visibility
 
@@ -465,7 +465,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -r 4 -i /tmp/CZO.%04d.png CZO_multiSlice.gif
 ```
 
-![CZO multiSlice](CZO_multiSlice.gif)
+![CZO multiSlice](images/CZO_multiSlice.gif)
 
 ### Sphere
 
@@ -599,7 +599,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_sphere.gif
 ```
 
-![Mn2O3 sphere](CZO_sphere.gif)
+![Mn2O3 sphere](images/CZO_sphere.gif)
 
 ## Clipping
 
@@ -654,7 +654,7 @@ renderView.CameraPosition = [12, 12, 12]
 SaveScreenshot('Mn2O3_clipping.png', quality=100, view=renderView)
 ```
 
-![Mn2O3 clipping](Mn2O3_clipping.png)
+![Mn2O3 clipping](images/Mn2O3_clipping.png)
 
 #### Animate Opacity
 
@@ -707,7 +707,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -i /tmp/Mn2O3_clipping.%04d.png Mn2O3_clipping.gif
 ```
 
-![Mn2O3 clipping](Mn2O3_clipping.gif)
+![Mn2O3 clipping](images/Mn2O3_clipping.gif)
 
 ### Pacman
 
@@ -877,7 +877,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_pacman.gif
 ```
 
-![CZO pacman](CZO_pacman.gif)
+![CZO pacman](images/CZO_pacman.gif)
 
 
 ## Surface
@@ -927,7 +927,7 @@ renderView.CameraPosition = [12,12,12]
 SaveScreenshot('CZO_surface.png', quality=100, view=renderView)
 ```
 
-![CZS surface](CZO_surface.png)
+![CZS surface](images/CZO_surface.png)
 
 ### Animate camera
 
@@ -969,7 +969,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -i /tmp/CZO.%04d.png CZO_surface.gif
 ```
 
-![CZO surface](CZO_surface.gif)
+![CZO surface](images/CZO_surface.gif)
 
 ## Volume
 
@@ -1024,7 +1024,7 @@ renderView.CameraPosition = [15, 8, 15]
 SaveScreenshot('Mn2O3_volume.png', quality=100, view=renderView)
 ```
 
-![Mn2O3 volume](Mn2O3_volume.png)
+![Mn2O3 volume](images/Mn2O3_volume.png)
 
 #### Change PWF
 
@@ -1039,7 +1039,7 @@ scalars_LUT.RescaleTransferFunction(2e-5, 4e-05)
 SaveScreenshot('Mn2O3_volume2.png', quality=100, view=renderView)
 ```
 
-![Mn2O3 volume](Mn2O3_volume2.png)
+![Mn2O3 volume](images/Mn2O3_volume2.png)
 
 #### Animate camera
 
@@ -1086,7 +1086,7 @@ Create animated gif, see [Creating animations](#creating-animations)
 $ ffmpeg -i /tmp/Mn2O3_volume.%04d.png Mn2O3_volume2.gif
 ```
 
-![Mn2O3 volume](Mn2O3_volume2.gif)
+![Mn2O3 volume](images/Mn2O3_volume2.gif)
 
 ### CZO
 
@@ -1138,7 +1138,7 @@ renderView.CameraPosition = [30, 10, 10]
 SaveScreenshot('CZO_volume.png', quality=100, view=renderView)
 ```
 
-![CZO volume](CZO_volume.png)
+![CZO volume](images/CZO_volume.png)
 
 #### Animate VOI
 
@@ -1169,7 +1169,7 @@ extractSubset1VOITrack.KeyFrames = [keyFrame0, keyFrame1]
 SaveAnimation('/tmp/CZO_volume.png', renderView, ImageResolution=[200, 200], FrameWindow=[0, 99])
 ```
 
-![CZO volume](CZO_volume.gif)
+![CZO volume](images/CZO_volume.gif)
 
 ## Creating animations
 

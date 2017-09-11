@@ -97,7 +97,7 @@ sv.setRebinNumBins(300,300)
 sv.saveImage('hkl.png')
 ```
 
-![HKL](hkl.png)
+![HKL](images/hkl.png)
 
 * * *
 #### Previous: [Finding Peaks](peaks) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Normalisation and symmetry](reduction)

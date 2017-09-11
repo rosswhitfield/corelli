@@ -33,7 +33,7 @@ p=plotSpectrum(('vanadium_q','vanadium_elastic_q'),0)
 p.activeLayer().setTitle("Vanadium elastic vs total")
 p.exportImage('vanadium_elastic_vs_total.png',50)
 ```
-![Vanadium](vanadium_elastic_vs_total.png)
+![Vanadium](images/vanadium_elastic_vs_total.png)
 
 ### C60
 
@@ -58,7 +58,7 @@ p=plotSpectrum(('c60_q','c60_elastic_q'),0)
 p.activeLayer().setTitle("C60 elastic vs total")
 p.exportImage('c60_elastic_vs_total.png',50)
 ```
-![C60](c60_elastic_vs_total.png)
+![C60](images/c60_elastic_vs_total.png)
 
 ### Silicon
 
@@ -83,7 +83,7 @@ p=plotSpectrum(('si_q','si_elastic_q'),0)
 p.activeLayer().setTitle("Silicon elastic vs total")
 p.exportImage('si_elastic_vs_total.png',50)
 ```
-![Silicon](si_elastic_vs_total.png)
+![Silicon](images/si_elastic_vs_total.png)
 
 ## Auto-reduction
 

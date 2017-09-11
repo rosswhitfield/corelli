@@ -37,7 +37,7 @@ sv=plotSlice('output_data',colormax=5e2,limits=[-10,10,-10,10])
 sv.saveImage('output_data.png')
 ```
 
-![output_data](output_data.png)
+![output_data](images/output_data.png)
 
 If you have a look at the normalization workspace you will see how the
 is correctly normalized for the overlapping data.
@@ -47,7 +47,7 @@ sv=plotSlice('output_normalization',colormax=1e8,limits=[-10,10,-10,10])
 sv.saveImage('output_normalization.png')
 ```
 
-![output_normalization](output_normalization.png)
+![output_normalization](images/output_normalization.png)
 
 The correctly normalized output is the data divided by the
 normalization.
@@ -57,7 +57,7 @@ sv=plotSlice('output',colormax=1e-5,limits=[-10,10,-10,10])
 sv.saveImage('output.png')
 ```
 
-![output](output.png)
+![output](images/output.png)
 
 * * *
 #### Previous: [Finding the UB Matrix](ub) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Exporting Data](export)

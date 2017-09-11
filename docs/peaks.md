@@ -37,7 +37,7 @@ pp.getPeaksPresenter('peaks').setForegroundColor(QtGui.QColor(0, 0, 0, 255))
 sv.saveImage('md_peaks.png')
 ```
 
-![MD Peaks](md_peaks.png)
+![MD Peaks](images/md_peaks.png)
 
 ## Saving and Loading
 

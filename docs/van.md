@@ -41,7 +41,7 @@ render.setScaleType(GraphOptions.Log10)
 render.saveImage('sa.png')
 ```
 
-![SolidAngle](sa.png)
+![SolidAngle](images/sa.png)
 
 ### Plot the flux workspace
 ```python
@@ -49,7 +49,7 @@ p=plotSpectrum('flux',0)
 p.exportImage('flux.png',50)
 ```
 
-![Flux](flux.png)
+![Flux](images/flux.png)
 
 * * *
 #### Up: [Normalisation and symmetry](reduction)

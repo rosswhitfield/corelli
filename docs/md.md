@@ -44,7 +44,7 @@ sv.setRebinNumBins(300,300)
 sv.saveImage('md_lab.png')
 ```
 
-![MD Q Lab](md_lab.png)
+![MD Q Lab](images/md_lab.png)
 
 ## Q sample
 
@@ -74,7 +74,7 @@ sv.setRebinNumBins(300,300)
 sv.saveImage('md_sample.png')
 ```
 
-![MD Q Sample](md_sample.png)
+![MD Q Sample](images/md_sample.png)
 
 ## HKL
 
@@ -103,7 +103,7 @@ sv.setRebinNumBins(300,300)
 sv.saveImage('md_hkl.png')
 ```
 
-![MD HKL](md_hkl.png)
+![MD HKL](images/md_hkl.png)
 
 
 # Multiple files
@@ -143,7 +143,7 @@ sv.setRebinNumBins(300,300)
 sv.saveImage('md.png')
 ```
 
-![MD Q Sample](md.png)
+![MD Q Sample](images/md.png)
 
 ## HKL
 
@@ -166,7 +166,7 @@ sv.setRebinNumBins(300,300)
 sv.saveImage('md2.png')
 ```
 
-![MD HKL](md2.png)
+![MD HKL](images/md2.png)
 
 # Slicing
 

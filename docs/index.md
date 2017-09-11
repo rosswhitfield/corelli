@@ -5,7 +5,7 @@ Information about Corelli can be found [here](https://neutrons.ornl.gov/corelli)
 Live data collection information can be found [here](https://monitor.sns.gov/dasmon/corelli)
 
 ## Visual Overview of the CORELLI Instrument
-![Corelli](BL-9-CORELLI-Instrument-Diagram.png)
+![Corelli](images/BL-9-CORELLI-Instrument-Diagram.png)
 
 ## Single Crystal Diffuse Scattering Reduction
 
