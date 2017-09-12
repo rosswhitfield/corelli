@@ -25,7 +25,6 @@ The data reduction for Corelli is done using [Mantid](http://www.mantidproject.o
 * Visualization: [Paraview](paraview)
 * Example: [Benzil](benzil)
 * Example: [15%Ca doped ZrO2](czo)
-* Example: [Mn2O3](mn2o3)
 * [List of Mantid Algorithms and Concepts](algorithms)
 
 ## Single Crystal Diffuse Scattering Analysis

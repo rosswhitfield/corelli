@@ -113,5 +113,5 @@ SaveMDWorkspaceToVTK(InputWorkspace='CZO_elastic', Filename='CZO_elastic.vts')
 ```
 
 * * *
-#### Previous: [Benzil](benzil)  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Next: [Mn2O3](mn2o3)
+#### Previous: [Benzil](benzil)
 #### Up: [Index](index)
