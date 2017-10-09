@@ -16,10 +16,10 @@ inst = corelli.getInstrument()
 def make_fityk_cmd(run, bank, tube):
     fityk_cmd = """@0 < 'COR_{0}_{1}_{2}.txt'
 @0: A = a and not (-1 < x and x < 12.5)
-@0: A = a and not (242.5 < x and x < 256)
-$a = ~0.0
-$b = ~282.0
-$c = ~128.0
+@0: A = a and not (240.5 < x and x < 256)
+$a = 0.0
+$b = 282.0
+$c = ~127.0
 F += Lorentzian(height={3}, center=(-0.396*$b+$c)/(-0.396*$a+1), hwhm=~1.28083)
 F += Lorentzian(height={3}, center=(-0.3432*$b+$c)/(-0.3432*$a+1), hwhm=~1.28083)
 F += Lorentzian(height={3}, center=(-0.2904*$b+$c)/(-0.2904*$a+1), hwhm=~1.28083)
@@ -36,9 +36,15 @@ F += Lorentzian(height={3}, center=(0.2376*$b+$c)/(0.2376*$a+1), hwhm=~1.28083)
 F += Lorentzian(height={3}, center=(0.2904*$b+$c)/(0.2904*$a+1), hwhm=~1.28083)
 F += Lorentzian(height={3}, center=(0.3432*$b+$c)/(0.3432*$a+1), hwhm=~1.28083)
 F += Lorentzian(height={3}, center=(0.396*$b+$c)/(0.396*$a+1), hwhm=~1.28083)
-$_hwhm = ~1.28083
+$_hwhm = 1.28083
 %*.hwhm = $_hwhm
 @0: guess Quadratic
+@0: fit
+$_hwhm = ~1.28083
+%*.hwhm = $_hwhm
+@0: fit
+$a = ~0.0
+$b = ~282.0
 @0: fit
 %*.height = ~{3}
 @0: fit
@@ -70,8 +76,8 @@ for run, banks, height in ws_list:
         bank_pos = inst.getComponentByName('bank'+str(bank)+'/sixteenpack').getPos()
         for tube in range(16):
             filename = 'COR_{}_{}_{}'.format(run, bank, tube+1)
-            #p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
-            #p.communicate(make_fityk_cmd(run, bank, tube))
+            p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
+            p.communicate(make_fityk_cmd(run, bank, tube))
             param = np.genfromtxt(filename+'.param4', usecols=4)
             if np.abs(param[0]) > 0.5:
                 continue
