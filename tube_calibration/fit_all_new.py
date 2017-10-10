@@ -76,10 +76,11 @@ for run, banks, height in ws_list:
         bank_pos = inst.getComponentByName('bank'+str(bank)+'/sixteenpack').getPos()
         for tube in range(16):
             filename = 'COR_{}_{}_{}'.format(run, bank, tube+1)
-            p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
-            p.communicate(make_fityk_cmd(run, bank, tube))
+            #p = subprocess.Popen(['/usr/bin/cfityk', '-n'], stdin=subprocess.PIPE)
+            #p.communicate(make_fityk_cmd(run, bank, tube))
             param = np.genfromtxt(filename+'.param4', usecols=4)
             if np.abs(param[0]) > 0.5:
+                print("Skipping bank:{} tube{}".format(bank,tube+1))
                 continue
             for pixel in range(256):
                 detID = (bank-1)*256*16+(tube)*256+pixel
