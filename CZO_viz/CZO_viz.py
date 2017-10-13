@@ -11,10 +11,11 @@ renderView.ViewSize = [1280, 720]
 
 # Properties modified on renderView
 renderView.OrientationAxesVisibility = 0
+renderView.Background = [0.0, 0.0, 0.0]
 
 # create a new 'Extract Subset'
 extractSubset1 = ExtractSubset(Input=CZOvts)
-extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
+extractSubset1.VOI = [25, 226, 25, 226, 25, 226]
 
 # create a new 'Slice'
 slice1 = Slice(Input=extractSubset1)
@@ -63,8 +64,6 @@ def end_cue(self): pass
 
 scene.Cues.append(PythonAnimationCue)
 
-
-
 # get animation track
 track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
 
@@ -78,5 +77,41 @@ frame3 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [0.0])
 
 # initialize the animation track
 track.KeyFrames = [frame0, frame1, frame2, frame3]
+
+extractSubset1VOITrack0 = GetAnimationTrack('VOI', index=0, proxy=extractSubset1)
+extractSubset1VOITrack1 = GetAnimationTrack('VOI', index=1, proxy=extractSubset1)
+extractSubset1VOITrack2 = GetAnimationTrack('VOI', index=2, proxy=extractSubset1)
+extractSubset1VOITrack3 = GetAnimationTrack('VOI', index=3, proxy=extractSubset1)
+extractSubset1VOITrack4 = GetAnimationTrack('VOI', index=4, proxy=extractSubset1)
+extractSubset1VOITrack5 = GetAnimationTrack('VOI', index=5, proxy=extractSubset1)
+
+
+trackKeyFrame0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
+trackKeyFrame1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
+
+trackKeyFrame2 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
+trackKeyFrame3 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
+
+extractSubset1VOITrack0.KeyFrames = [trackKeyFrame0, trackKeyFrame1]
+extractSubset1VOITrack1.KeyFrames = [trackKeyFrame2, trackKeyFrame3]
+extractSubset1VOITrack2.KeyFrames = [trackKeyFrame0, trackKeyFrame1]
+extractSubset1VOITrack3.KeyFrames = [trackKeyFrame2, trackKeyFrame3]
+extractSubset1VOITrack4.KeyFrames = [trackKeyFrame0, trackKeyFrame1]
+extractSubset1VOITrack5.KeyFrames = [trackKeyFrame2, trackKeyFrame3]
+
+
+# Zoom to volume
+
+
+# Change to volume
+
+
+# Change PWF
+
+
+# Rotate
+
+
+# ORNL logo
 
 SaveAnimation('/tmp/CZO.png', renderView)
