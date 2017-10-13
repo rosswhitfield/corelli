@@ -61,7 +61,7 @@ scalars_PWF.Points = [0, 0, 0, 0,
 renderView.CameraPosition = [-20, -20, -20]
 
 scene = GetAnimationScene()
-scene.NumberOfFrames = 1000
+scene.NumberOfFrames = 200
 
 cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
@@ -145,17 +145,18 @@ cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 
 # Change to volume
 
+sliceOKeyFrame0=CompositeKeyFrame(KeyTime = 0, KeyValues = 1)
+sliceOKeyFrame1=CompositeKeyFrame(KeyTime = 0.4, KeyValues = 1)
+sliceOKeyFrame2=CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0)
+
 slice1track = GetAnimationTrack('Opacity', proxy=slice1)
-slice1track.KeyFrames = [CompositeKeyFrame(KeyTime = 0, KeyValues = 1, Interpolation = 'Boolean'),
-                         CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0, Interpolation = 'Boolean')]
+slice1track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
 
 slice2track = GetAnimationTrack('Opacity', proxy=slice2)
-slice2track.KeyFrames = [CompositeKeyFrame(KeyTime = 0, KeyValues = 1, Interpolation = 'Boolean'),
-                         CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0, Interpolation = 'Boolean')]
+slice2track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
 
 slice3track = GetAnimationTrack('Opacity', proxy=slice3)
-slice3track.KeyFrames = [CompositeKeyFrame(KeyTime = 0, KeyValues = 1, Interpolation = 'Boolean'),
-                         CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0, Interpolation = 'Boolean')]
+slice3track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
 
 # Change PWF
 
@@ -172,7 +173,7 @@ def tick(self):
     elif time > 0.5 and time <=0.6:
         time = (time - 0.5) * 50
         scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
-                             2e-04*10**-time, 0.0, 0.5, 0.0,
+                             2e-04*10**(5-time), 0.0, 0.5, 0.0,
                              2e-04, 1.0, 0.5, 0.0]
 def end_cue(self): pass
 """
