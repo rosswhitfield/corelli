@@ -12,18 +12,22 @@ renderView.ViewSize = [1280, 720]
 # Properties modified on renderView
 renderView.OrientationAxesVisibility = 0
 
+# create a new 'Extract Subset'
+extractSubset1 = ExtractSubset(Input=CZOvts)
+extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
+
 # create a new 'Slice'
-slice1 = Slice(Input=CZOvts)
+slice1 = Slice(Input=extractSubset1)
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
 slice1.SliceType.Origin = [1.0, 0.0, 0.0]
 
 # create a new 'Slice'
-slice2 = Slice(Input=CZOvts)
+slice2 = Slice(Input=extractSubset1)
 slice2.SliceType.Normal = [0.0, 1.0, 0.0]
 slice2.SliceType.Origin = [0.0, 2.0, 0.0]
 
 # create a new 'Slice'
-slice3 = Slice(Input=CZOvts)
+slice3 = Slice(Input=extractSubset1)
 slice3.SliceType.Normal = [0.0, 0.0, 1.0]
 slice3.SliceType.Origin = [0.0, 0.0, 0.0]
 
@@ -41,19 +45,18 @@ slice3Display = Show(slice3, renderView)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
-renderView.CameraPosition = [-25, -25, -25]
+renderView.CameraPosition = [-20, -20, -20]
 
 scene = GetAnimationScene()
-scene.StartTime = 0.0
-scene.EndTime = 2.0
-scene.NumberOfFrames = 200
+scene.NumberOfFrames = 1000
 
 PythonAnimationCue = PythonAnimationCue()
 PythonAnimationCue.Script = """
 def start_cue(self): pass
 def tick(self):
     time = scene.TimeKeeper.Time
-    if time <=1:
+    if time <=0.1:
+        time *= 10
         scalars_LUT.RescaleTransferFunction(0.0, 1e-02*100**-time)
 def end_cue(self): pass
 """
@@ -68,23 +71,10 @@ track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
 # create keyframes for this animation track
 
 # create a key frame
-frame0 = CompositeKeyFrame()
-frame0.KeyTime = 0.0
-frame0.KeyValues = [0.0]
-
-frame1 = CompositeKeyFrame()
-frame1.KeyTime = 1.0
-frame1.KeyValues = [0.0]
-
-# create a key frame
-frame2 = CompositeKeyFrame()
-frame2.KeyTime = 1.5
-frame2.KeyValues = [5.0]
-
-# create a key frame
-frame3 = CompositeKeyFrame()
-frame3.KeyTime = 2.0
-frame3.KeyValues = [0.0]
+frame0 = CompositeKeyFrame(KeyTime = 0.0, KeyValues = [0.0])
+frame1 = CompositeKeyFrame(KeyTime = 0.1, KeyValues = [0.0])
+frame2 = CompositeKeyFrame(KeyTime = 0.15, KeyValues = [4.0])
+frame3 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [0.0])
 
 # initialize the animation track
 track.KeyFrames = [frame0, frame1, frame2, frame3]
