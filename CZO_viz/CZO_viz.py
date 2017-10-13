@@ -52,13 +52,21 @@ slice3Display = Show(slice3, renderView)
 # Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
+# get opacity transfer function/opacity map for 'Scalars_'
+scalars_PWF = GetOpacityTransferFunction('Scalars_')
+scalars_PWF.Points = [0, 0, 0, 0,
+                      0, 0.0, 0.5, 0.0,
+                      1e-04, 0.0, 0.5, 0.0]
+
 renderView.CameraPosition = [-20, -20, -20]
 
 scene = GetAnimationScene()
 scene.NumberOfFrames = 1000
 
-PythonAnimationCue = PythonAnimationCue()
-PythonAnimationCue.Script = """
+cameraAnimationCue1 = GetCameraTrack(view=renderView)
+
+PythonAnimationCue1 = PythonAnimationCue()
+PythonAnimationCue1.Script = """
 def start_cue(self): pass
 def tick(self):
     time = scene.TimeKeeper.Time
@@ -68,7 +76,7 @@ def tick(self):
 def end_cue(self): pass
 """
 
-scene.Cues.append(PythonAnimationCue)
+scene.Cues.append(PythonAnimationCue1)
 
 # get animation track
 track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
@@ -113,13 +121,63 @@ extractSubset1VOITrack4.KeyFrames = [trackKeyFrame4_0, trackKeyFrame4_1]
 extractSubset1VOITrack5.KeyFrames = [trackKeyFrame5_0, trackKeyFrame5_1]
 
 
+# get camera animation track for the view
+#cameraAnimationCue1 = GetCameraTrack(view=renderView)
+
 # Zoom to volume
+keyFrame4863 = CameraKeyFrame()
+keyFrame4863.KeyTime = 0.3
+keyFrame4863.Position = [-20.0, -20.0, -20.0]
+keyFrame4863.PositionPathPoints = [-20.0, -20.0, -20.0,
+                                   -10.0, -5.0, -5.0]
+keyFrame4863.FocalPathPoints = [0.0, 0.0, 0.0,
+                                0.0, 0.0, 0.0]
+
+# create a key frame
+keyFrame4864 = CameraKeyFrame()
+keyFrame4864.KeyTime = 0.4
+keyFrame4864.Position = [-10.0, -5.0, -5.0]
+
+# initialize the animation track
+cameraAnimationCue1.Mode = 'Path-based'
+cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 
 
 # Change to volume
 
+slice1track = GetAnimationTrack('Opacity', proxy=slice1)
+slice1track.KeyFrames = [CompositeKeyFrame(KeyTime = 0, KeyValues = 1, Interpolation = 'Boolean'),
+                         CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0, Interpolation = 'Boolean')]
+
+slice2track = GetAnimationTrack('Opacity', proxy=slice2)
+slice2track.KeyFrames = [CompositeKeyFrame(KeyTime = 0, KeyValues = 1, Interpolation = 'Boolean'),
+                         CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0, Interpolation = 'Boolean')]
+
+slice3track = GetAnimationTrack('Opacity', proxy=slice3)
+slice3track.KeyFrames = [CompositeKeyFrame(KeyTime = 0, KeyValues = 1, Interpolation = 'Boolean'),
+                         CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0, Interpolation = 'Boolean')]
 
 # Change PWF
+
+PythonAnimationCue2 = PythonAnimationCue()
+PythonAnimationCue2.Script = """
+def start_cue(self): pass
+def tick(self):
+    time = scene.TimeKeeper.Time
+    if time > 0.4 and time <=0.5:
+        time = (time - 0.4) * 10
+        scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
+                             0.0, 0.0, 0.5, 0.0,
+                             2e-04, time, 0.5, 0.0]
+    elif time > 0.5 and time <=0.6:
+        time = (time - 0.5) * 50
+        scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
+                             2e-04*10**-time, 0.0, 0.5, 0.0,
+                             2e-04, 1.0, 0.5, 0.0]
+def end_cue(self): pass
+"""
+
+scene.Cues.append(PythonAnimationCue2)
 
 
 # Rotate
