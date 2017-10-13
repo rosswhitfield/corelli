@@ -15,16 +15,17 @@ renderView.OrientationAxesVisibility = 0
 # create a new 'Slice'
 slice1 = Slice(Input=CZOvts)
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
+slice1.SliceType.Origin = [1.0, 0.0, 0.0]
 
 # create a new 'Slice'
 slice2 = Slice(Input=CZOvts)
-slice2.SliceType.Normal= [0.0, 1.0, 0.0]
+slice2.SliceType.Normal = [0.0, 1.0, 0.0]
 slice2.SliceType.Origin = [0.0, 2.0, 0.0]
 
 # create a new 'Slice'
 slice3 = Slice(Input=CZOvts)
 slice3.SliceType.Normal = [0.0, 0.0, 1.0]
-slice3.SliceType.Origin = [0.0, 0.0, 2.0]
+slice3.SliceType.Origin = [0.0, 0.0, 0.0]
 
 # get color transfer function/color map for 'Scalars_'
 scalars_LUT = GetColorTransferFunction('Scalars_')
@@ -43,10 +44,9 @@ scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 renderView.CameraPosition = [-25, -25, -25]
 
 scene = GetAnimationScene()
+scene.StartTime = 0.0
 scene.EndTime = 2.0
 scene.NumberOfFrames = 200
-
-
 
 PythonAnimationCue = PythonAnimationCue()
 PythonAnimationCue.Script = """
@@ -70,21 +70,21 @@ track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
 # create a key frame
 frame0 = CompositeKeyFrame()
 frame0.KeyTime = 0.0
-frame0.KeyValues = 1
+frame0.KeyValues = 0.0
 
 frame1 = CompositeKeyFrame()
 frame1.KeyTime = 1.0
-frame1.KeyValues = 1
+frame1.KeyValues = 0.0
 
 # create a key frame
 frame2 = CompositeKeyFrame()
 frame2.KeyTime = 1.5
-frame2.KeyValues = 3
+frame2.KeyValues = 5.0
 
 # create a key frame
 frame3 = CompositeKeyFrame()
 frame3.KeyTime = 2.0
-frame3.KeyValues = 1
+frame3.KeyValues = 0.0
 
 # initialize the animation track
 track.KeyFrames = [frame0, frame1, frame2, frame3]
