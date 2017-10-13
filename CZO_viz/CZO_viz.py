@@ -1,7 +1,8 @@
 from paraview.simple import *
 
 # create a new 'XML Structured Grid Reader'
-CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
+#CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
+CZOvts = XMLImageDataReader(FileName=['CZO.vti'])
 
 # get active view
 renderView = GetActiveViewOrCreate('RenderView')
@@ -16,6 +17,11 @@ renderView.Background = [0.0, 0.0, 0.0]
 # create a new 'Extract Subset'
 extractSubset1 = ExtractSubset(Input=CZOvts)
 extractSubset1.VOI = [25, 226, 25, 226, 25, 226]
+extractSubset1Display = Show(extractSubset1, renderView)
+
+# change representation type
+extractSubset1Display.SetRepresentationType('Volume')
+extractSubset1Display.Opacity = 0.0
 
 # create a new 'Slice'
 slice1 = Slice(Input=extractSubset1)
@@ -86,18 +92,25 @@ extractSubset1VOITrack4 = GetAnimationTrack('VOI', index=4, proxy=extractSubset1
 extractSubset1VOITrack5 = GetAnimationTrack('VOI', index=5, proxy=extractSubset1)
 
 
-trackKeyFrame0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
-trackKeyFrame1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
+trackKeyFrame0_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
+trackKeyFrame0_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
+trackKeyFrame1_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
+trackKeyFrame1_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
+trackKeyFrame2_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
+trackKeyFrame2_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
+trackKeyFrame3_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
+trackKeyFrame3_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
+trackKeyFrame4_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
+trackKeyFrame4_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
+trackKeyFrame5_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
+trackKeyFrame5_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
 
-trackKeyFrame2 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
-trackKeyFrame3 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
-
-extractSubset1VOITrack0.KeyFrames = [trackKeyFrame0, trackKeyFrame1]
-extractSubset1VOITrack1.KeyFrames = [trackKeyFrame2, trackKeyFrame3]
-extractSubset1VOITrack2.KeyFrames = [trackKeyFrame0, trackKeyFrame1]
-extractSubset1VOITrack3.KeyFrames = [trackKeyFrame2, trackKeyFrame3]
-extractSubset1VOITrack4.KeyFrames = [trackKeyFrame0, trackKeyFrame1]
-extractSubset1VOITrack5.KeyFrames = [trackKeyFrame2, trackKeyFrame3]
+extractSubset1VOITrack0.KeyFrames = [trackKeyFrame0_0, trackKeyFrame0_1]
+extractSubset1VOITrack1.KeyFrames = [trackKeyFrame1_0, trackKeyFrame1_1]
+extractSubset1VOITrack2.KeyFrames = [trackKeyFrame2_0, trackKeyFrame2_1]
+extractSubset1VOITrack3.KeyFrames = [trackKeyFrame3_0, trackKeyFrame3_1]
+extractSubset1VOITrack4.KeyFrames = [trackKeyFrame4_0, trackKeyFrame4_1]
+extractSubset1VOITrack5.KeyFrames = [trackKeyFrame5_0, trackKeyFrame5_1]
 
 
 # Zoom to volume
