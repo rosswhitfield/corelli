@@ -70,21 +70,21 @@ track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
 # create a key frame
 frame0 = CompositeKeyFrame()
 frame0.KeyTime = 0.0
-frame0.KeyValues = 0.0
+frame0.KeyValues = [0.0]
 
 frame1 = CompositeKeyFrame()
 frame1.KeyTime = 1.0
-frame1.KeyValues = 0.0
+frame1.KeyValues = [0.0]
 
 # create a key frame
 frame2 = CompositeKeyFrame()
 frame2.KeyTime = 1.5
-frame2.KeyValues = 5.0
+frame2.KeyValues = [5.0]
 
 # create a key frame
 frame3 = CompositeKeyFrame()
 frame3.KeyTime = 2.0
-frame3.KeyValues = 0.0
+frame3.KeyValues = [0.0]
 
 # initialize the animation track
 track.KeyFrames = [frame0, frame1, frame2, frame3]
