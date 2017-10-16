@@ -146,8 +146,8 @@ cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 # Change to volume
 
 sliceOKeyFrame0=CompositeKeyFrame(KeyTime = 0, KeyValues = 1)
-sliceOKeyFrame1=CompositeKeyFrame(KeyTime = 0.4, KeyValues = 1)
-sliceOKeyFrame2=CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0)
+sliceOKeyFrame1=CompositeKeyFrame(KeyTime = 0.5, KeyValues = 1)
+sliceOKeyFrame2=CompositeKeyFrame(KeyTime = 0.6, KeyValues = 0)
 
 slice1track = GetAnimationTrack('Opacity', proxy=slice1)
 slice1track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
@@ -168,9 +168,9 @@ def tick(self):
     if time > 0.4 and time <=0.5:
         time = (time - 0.4) * 10
         scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
-                             0.0, 0.0, 0.5, 0.0,
+                             0.0, time*0.5, 0.5, 0.0,
                              2e-04, time, 0.5, 0.0]
-    elif time > 0.5 and time <=0.6:
+    elif time > 0.6 and time <=0.7:
         time = (time - 0.5) * 50
         scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
                              2e-04*10**(5-time), 0.0, 0.5, 0.0,
