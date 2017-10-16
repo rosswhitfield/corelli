@@ -26,12 +26,12 @@ extractSubset1Display.Opacity = 0.0
 # create a new 'Slice'
 slice1 = Slice(Input=extractSubset1)
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
-slice1.SliceType.Origin = [1.0, 0.0, 0.0]
+slice1.SliceType.Origin = [-1.0, 0.0, 0.0]
 
 # create a new 'Slice'
 slice2 = Slice(Input=extractSubset1)
 slice2.SliceType.Normal = [0.0, 1.0, 0.0]
-slice2.SliceType.Origin = [0.0, 2.0, 0.0]
+slice2.SliceType.Origin = [0.0, -2.0, 0.0]
 
 # create a new 'Slice'
 slice3 = Slice(Input=extractSubset1)
@@ -58,7 +58,7 @@ scalars_PWF.Points = [0, 0, 0, 0,
                       0, 0.0, 0.5, 0.0,
                       1e-04, 0.0, 0.5, 0.0]
 
-renderView.CameraPosition = [-20, -20, -20]
+renderView.CameraPosition = [20, 20, 20]
 
 scene = GetAnimationScene()
 scene.NumberOfFrames = 200
@@ -86,7 +86,7 @@ track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
 # create a key frame
 frame0 = CompositeKeyFrame(KeyTime = 0.0, KeyValues = [0.0])
 frame1 = CompositeKeyFrame(KeyTime = 0.1, KeyValues = [0.0])
-frame2 = CompositeKeyFrame(KeyTime = 0.15, KeyValues = [4.0])
+frame2 = CompositeKeyFrame(KeyTime = 0.15, KeyValues = [-4.0])
 frame3 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [0.0])
 
 # initialize the animation track
@@ -127,27 +127,22 @@ extractSubset1VOITrack5.KeyFrames = [trackKeyFrame5_0, trackKeyFrame5_1]
 # Zoom to volume
 keyFrame4863 = CameraKeyFrame()
 keyFrame4863.KeyTime = 0.3
-keyFrame4863.Position = [-20.0, -20.0, -20.0]
-keyFrame4863.PositionPathPoints = [-20.0, -20.0, -20.0,
-                                   -10.0, -5.0, -5.0]
+keyFrame4863.Position = [20.0, 20.0, 20.0]
+keyFrame4863.PositionPathPoints = [20.0, 20.0, 20.0,
+                                   10.0, 5.0, 5.0]
 keyFrame4863.FocalPathPoints = [0.0, 0.0, 0.0,
                                 0.0, 0.0, 0.0]
 
-# create a key frame
-keyFrame4864 = CameraKeyFrame()
-keyFrame4864.KeyTime = 0.4
-keyFrame4864.Position = [-10.0, -5.0, -5.0]
-
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
-cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
+cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864, keyFrame4580, keyFrame4581]
 
 
 # Change to volume
 
 sliceOKeyFrame0=CompositeKeyFrame(KeyTime = 0, KeyValues = 1)
-sliceOKeyFrame1=CompositeKeyFrame(KeyTime = 0.5, KeyValues = 1)
-sliceOKeyFrame2=CompositeKeyFrame(KeyTime = 0.6, KeyValues = 0)
+sliceOKeyFrame1=CompositeKeyFrame(KeyTime = 0.4, KeyValues = 1)
+sliceOKeyFrame2=CompositeKeyFrame(KeyTime = 0.5, KeyValues = 0)
 
 slice1track = GetAnimationTrack('Opacity', proxy=slice1)
 slice1track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
@@ -157,6 +152,7 @@ slice2track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
 
 slice3track = GetAnimationTrack('Opacity', proxy=slice3)
 slice3track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
+
 
 # Change PWF
 
@@ -168,12 +164,17 @@ def tick(self):
     if time > 0.4 and time <=0.5:
         time = (time - 0.4) * 10
         scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
-                             0.0, time*0.5, 0.5, 0.0,
+                             2e-06, 0.0, 0.5, 0.0,
                              2e-04, time, 0.5, 0.0]
-    elif time > 0.6 and time <=0.7:
-        time = (time - 0.5) * 50
+    elif time > 0.5 and time <=0.6:
+        time = (time - 0.5) * 10
         scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
-                             2e-04*10**(5-time), 0.0, 0.5, 0.0,
+                             2e-06*100**time, 0.0, 0.5, 0.0,
+                             2e-04, 1.0, 0.5, 0.0]
+    elif time > 0.6 and time <=0.7:
+        time = (time - 0.6) * 10
+        scalars_PWF.Points = [0.0, 0.0, 0.5, 0.0,
+                             2e-04*10**-time, 0.0, 0.5, 0.0,
                              2e-04, 1.0, 0.5, 0.0]
 def end_cue(self): pass
 """
