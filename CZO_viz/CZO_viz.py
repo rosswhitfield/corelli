@@ -14,6 +14,12 @@ renderView.ViewSize = [1920, 1080]
 renderView.OrientationAxesVisibility = 0
 renderView.Background = [0.0, 0.0, 0.0]
 
+# ORNL logo
+txt = servermanager.rendering.ImageTexture()
+txt.FileName = "SNS_white_1080.jpg"
+renderView.BackgroundTexture = txt
+renderView.UseTexturedBackground = 1
+
 # create a new 'Extract Subset'
 extractSubset1 = ExtractSubset(Input=CZOvts)
 extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
@@ -61,7 +67,7 @@ scalars_PWF.Points = [0, 0, 0, 0,
 renderView.CameraPosition = [20, 20, 20]
 
 scene = GetAnimationScene()
-scene.NumberOfFrames = 200
+scene.NumberOfFrames = 1000
 
 cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
@@ -124,24 +130,49 @@ extractSubset1VOITrack5.KeyFrames = [trackKeyFrame5_0, trackKeyFrame5_1]
 # get camera animation track for the view
 #cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
-# Zoom to volume
-keyFrame4863 = CameraKeyFrame()
-keyFrame4863.KeyTime = 0.3
-keyFrame4863.Position = [20.0, 20.0, 20.0]
-keyFrame4863.PositionPathPoints = [20.0, 20.0, 20.0,
+cameraKeyFrame0 = CameraKeyFrame()
+cameraKeyFrame0.KeyTime = 0.3
+cameraKeyFrame0.Position = [20.0, 20.0, 20.0]
+cameraKeyFrame0.PositionPathPoints = [20.0, 20.0, 20.0,
                                    10.0, 5.0, 5.0]
-keyFrame4863.FocalPathPoints = [0.0, 0.0, 0.0,
+cameraKeyFrame0.FocalPathPoints = [0.0, 0.0, 0.0,
                                 0.0, 0.0, 0.0]
 
+cameraKeyFrame1 = CameraKeyFrame()
+cameraKeyFrame1.KeyTime = 0.4
+cameraKeyFrame1.Position = [10.0, 5.0, 5.0]
+cameraKeyFrame1.PositionPathPoints = [10.0, 5.0, 5.0]
+cameraKeyFrame1.FocalPathPoints = [0.0, 0.0, 0.0]
+
+cameraKeyFrame2 = CameraKeyFrame()
+cameraKeyFrame2.KeyTime = 0.7
+cameraKeyFrame2.Position = [10.0, 5.0, 5.0]
+cameraKeyFrame2.PositionPathPoints = [10.0, 5.0, 5.0]
+cameraKeyFrame2.FocalPathPoints = [0.0, 0.0, 0.0]
+
+cameraKeyFrame3 = CameraKeyFrame()
+cameraKeyFrame3.KeyTime = 0.7
+cameraKeyFrame3.Position = [10.0, 5.0, 5.0]
+cameraKeyFrame3.PositionPathPoints = [10.0, 5.0, 5.0,
+                                   10.17893371778323, 5.0, -4.624857659320521,
+                                   2.8116210954914362, 5.0, -10.821034461426855,
+                                   -6.640112743185945, 5.0, -8.99493761833731,
+                                   -11.169137791805014, 5.0, -0.5003608574550045,
+                                   -7.417819582470554, 5.0, 8.36516303737808,
+                                   1.832767551049991, 5.0, 11.029096205211845]
+cameraKeyFrame3.FocalPathPoints = [0.0, 0.0, 0.0]
+cameraKeyFrame3.ClosedPositionPath = 1
+
 # create a key frame
-keyFrame4864 = CameraKeyFrame()
-keyFrame4864.KeyTime = 0.4
-keyFrame4864.Position = [-10.0, -5.0, -5.0]
+cameraKeyFrame4 = CameraKeyFrame()
+cameraKeyFrame4.KeyTime = 1.0
+cameraKeyFrame4.Position = [10.0, 5.0, 5.0]
+cameraKeyFrame4.ParallelScale = 5.1151572410577275
 
 
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
-cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
+cameraAnimationCue1.KeyFrames = [cameraKeyFrame0, cameraKeyFrame1, cameraKeyFrame2, cameraKeyFrame3, cameraKeyFrame4]
 
 
 # Change to volume
@@ -186,10 +217,5 @@ def end_cue(self): pass
 """
 
 scene.Cues.append(PythonAnimationCue2)
-
-
-# Rotate
-
-# ORNL logo
 
 SaveAnimation('/tmp/CZO.png', renderView)
