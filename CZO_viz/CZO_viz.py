@@ -2,7 +2,7 @@ from paraview.simple import *
 
 # create a new 'XML Structured Grid Reader'
 #CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
-CZOvts = XMLImageDataReader(FileName=['CZO.vti'])
+CZOvts = XMLImageDataReader(FileName=['CZO_elastic.vti'])
 
 # get active view
 renderView = GetActiveViewOrCreate('RenderView')
