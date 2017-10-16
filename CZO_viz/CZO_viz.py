@@ -8,7 +8,7 @@ CZOvts = XMLImageDataReader(FileName=['CZO.vti'])
 renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView.ViewSize = [1280, 720]
+renderView.ViewSize = [640, 360]
 
 # Properties modified on renderView
 renderView.OrientationAxesVisibility = 0
@@ -16,25 +16,29 @@ renderView.Background = [0.0, 0.0, 0.0]
 
 # create a new 'Extract Subset'
 extractSubset1 = ExtractSubset(Input=CZOvts)
-extractSubset1.VOI = [25, 226, 25, 226, 25, 226]
-extractSubset1Display = Show(extractSubset1, renderView)
+extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
+
+#extractSubset1Display = Show(extractSubset1, renderView)
+
+transform1 = Transform(Input=extractSubset1)
+transform1Display = Show(transform1, renderView)
 
 # change representation type
-extractSubset1Display.SetRepresentationType('Volume')
-extractSubset1Display.Opacity = 0.0
+transform1Display.SetRepresentationType('Volume')
+transform1Display.Opacity = 0.0
 
 # create a new 'Slice'
-slice1 = Slice(Input=extractSubset1)
+slice1 = Slice(Input=transform1)
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
 slice1.SliceType.Origin = [-1.0, 0.0, 0.0]
 
 # create a new 'Slice'
-slice2 = Slice(Input=extractSubset1)
+slice2 = Slice(Input=transform1)
 slice2.SliceType.Normal = [0.0, 1.0, 0.0]
 slice2.SliceType.Origin = [0.0, -2.0, 0.0]
 
 # create a new 'Slice'
-slice3 = Slice(Input=extractSubset1)
+slice3 = Slice(Input=transform1)
 slice3.SliceType.Normal = [0.0, 0.0, 1.0]
 slice3.SliceType.Origin = [0.0, 0.0, 0.0]
 
@@ -61,7 +65,7 @@ scalars_PWF.Points = [0, 0, 0, 0,
 renderView.CameraPosition = [20, 20, 20]
 
 scene = GetAnimationScene()
-scene.NumberOfFrames = 200
+scene.NumberOfFrames = 100
 
 cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
@@ -102,16 +106,16 @@ extractSubset1VOITrack5 = GetAnimationTrack('VOI', index=5, proxy=extractSubset1
 
 trackKeyFrame0_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
 trackKeyFrame0_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
-trackKeyFrame1_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
-trackKeyFrame1_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
+trackKeyFrame1_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [225.0])
+trackKeyFrame1_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [150.0])
 trackKeyFrame2_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
 trackKeyFrame2_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
-trackKeyFrame3_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
-trackKeyFrame3_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
+trackKeyFrame3_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [225.0])
+trackKeyFrame3_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [150.0])
 trackKeyFrame4_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
 trackKeyFrame4_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
-trackKeyFrame5_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [226.0])
-trackKeyFrame5_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [151.0])
+trackKeyFrame5_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [225.0])
+trackKeyFrame5_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [150.0])
 
 extractSubset1VOITrack0.KeyFrames = [trackKeyFrame0_0, trackKeyFrame0_1]
 extractSubset1VOITrack1.KeyFrames = [trackKeyFrame1_0, trackKeyFrame1_1]
@@ -133,9 +137,15 @@ keyFrame4863.PositionPathPoints = [20.0, 20.0, 20.0,
 keyFrame4863.FocalPathPoints = [0.0, 0.0, 0.0,
                                 0.0, 0.0, 0.0]
 
+# create a key frame
+keyFrame4864 = CameraKeyFrame()
+keyFrame4864.KeyTime = 0.4
+keyFrame4864.Position = [-10.0, -5.0, -5.0]
+
+
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
-cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864, keyFrame4580, keyFrame4581]
+cameraAnimationCue1.KeyFrames = [keyFrame4863, keyFrame4864]
 
 
 # Change to volume
@@ -184,6 +194,13 @@ scene.Cues.append(PythonAnimationCue2)
 
 # Rotate
 
+transform1TransformRotationTrack = GetAnimationTrack('Rotation', index=1, proxy=transform1.Transform)
+
+transformKeyFrame0 = CompositeKeyFrame(KeyTime = 0.7, KeyValues = 0)
+transformKeyFrame1 = CompositeKeyFrame(KeyTime = 1.0, KeyValues = 720)
+
+# initialize the animation track
+transform1TransformRotationTrack.KeyFrames = [transformKeyFrame0, transformKeyFrame1]
 
 # ORNL logo
 
