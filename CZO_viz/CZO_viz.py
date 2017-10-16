@@ -8,7 +8,7 @@ CZOvts = XMLImageDataReader(FileName=['CZO.vti'])
 renderView = GetActiveViewOrCreate('RenderView')
 
 # uncomment following to set a specific view size
-renderView.ViewSize = [640, 360]
+renderView.ViewSize = [1920, 1080]
 
 # Properties modified on renderView
 renderView.OrientationAxesVisibility = 0
@@ -17,28 +17,24 @@ renderView.Background = [0.0, 0.0, 0.0]
 # create a new 'Extract Subset'
 extractSubset1 = ExtractSubset(Input=CZOvts)
 extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
-
-#extractSubset1Display = Show(extractSubset1, renderView)
-
-transform1 = Transform(Input=extractSubset1)
-transform1Display = Show(transform1, renderView)
+extractSubset1Display = Show(extractSubset1, renderView)
 
 # change representation type
-transform1Display.SetRepresentationType('Volume')
-transform1Display.Opacity = 0.0
+extractSubset1Display.SetRepresentationType('Volume')
+extractSubset1Display.Opacity = 0.0
 
 # create a new 'Slice'
-slice1 = Slice(Input=transform1)
+slice1 = Slice(Input=extractSubset1)
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
 slice1.SliceType.Origin = [-1.0, 0.0, 0.0]
 
 # create a new 'Slice'
-slice2 = Slice(Input=transform1)
+slice2 = Slice(Input=extractSubset1)
 slice2.SliceType.Normal = [0.0, 1.0, 0.0]
 slice2.SliceType.Origin = [0.0, -2.0, 0.0]
 
 # create a new 'Slice'
-slice3 = Slice(Input=transform1)
+slice3 = Slice(Input=extractSubset1)
 slice3.SliceType.Normal = [0.0, 0.0, 1.0]
 slice3.SliceType.Origin = [0.0, 0.0, 0.0]
 
@@ -65,7 +61,7 @@ scalars_PWF.Points = [0, 0, 0, 0,
 renderView.CameraPosition = [20, 20, 20]
 
 scene = GetAnimationScene()
-scene.NumberOfFrames = 100
+scene.NumberOfFrames = 200
 
 cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
@@ -193,14 +189,6 @@ scene.Cues.append(PythonAnimationCue2)
 
 
 # Rotate
-
-transform1TransformRotationTrack = GetAnimationTrack('Rotation', index=1, proxy=transform1.Transform)
-
-transformKeyFrame0 = CompositeKeyFrame(KeyTime = 0.7, KeyValues = 0)
-transformKeyFrame1 = CompositeKeyFrame(KeyTime = 1.0, KeyValues = 720)
-
-# initialize the animation track
-transform1TransformRotationTrack.KeyFrames = [transformKeyFrame0, transformKeyFrame1]
 
 # ORNL logo
 
