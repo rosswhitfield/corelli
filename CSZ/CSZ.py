@@ -1,7 +1,7 @@
 from paraview.simple import *
 
-#CZO = XMLStructuredGridReader(FileName=['CZO.vts'])
-CZO = XMLImageDataReader(FileName=['CZO.vti'])
+#CSZ = XMLStructuredGridReader(FileName=['CSZ.vts'])
+CSZ = XMLImageDataReader(FileName=['CSZ.vti'])
 
 renderView = GetActiveViewOrCreate('RenderView')
 renderView.ViewSize = [1920, 1080]
@@ -15,7 +15,7 @@ renderView.BackgroundTexture = txt
 renderView.UseTexturedBackground = 1
 
 # Extract Subset
-extractSubset1 = ExtractSubset(Input=CZO)
+extractSubset1 = ExtractSubset(Input=CSZ)
 extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
 extractSubset1Display = Show(extractSubset1, renderView)
 
@@ -186,4 +186,6 @@ def end_cue(self): pass
 
 scene.Cues.append(PythonAnimationCue2)
 
-SaveAnimation('/tmp/CZO.png', renderView)
+SaveAnimation('/tmp/CSZ.png', renderView)
+
+# ffmpeg -i /tmp/CSZ.%04d.png CSZ.mp4
