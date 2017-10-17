@@ -1,16 +1,10 @@
 from paraview.simple import *
 
-# create a new 'XML Structured Grid Reader'
-#CZOvts = XMLStructuredGridReader(FileName=['CZO.vts'])
-CZOvts = XMLImageDataReader(FileName=['CZO_elastic.vti'])
+#CZO = XMLStructuredGridReader(FileName=['CZO.vts'])
+CZO = XMLImageDataReader(FileName=['CZO.vti'])
 
-# get active view
 renderView = GetActiveViewOrCreate('RenderView')
-
-# uncomment following to set a specific view size
 renderView.ViewSize = [1920, 1080]
-
-# Properties modified on renderView
 renderView.OrientationAxesVisibility = 0
 renderView.Background = [0.0, 0.0, 0.0]
 
@@ -20,42 +14,33 @@ txt.FileName = "SNS_white_1080.jpg"
 renderView.BackgroundTexture = txt
 renderView.UseTexturedBackground = 1
 
-# create a new 'Extract Subset'
-extractSubset1 = ExtractSubset(Input=CZOvts)
+# Extract Subset
+extractSubset1 = ExtractSubset(Input=CZO)
 extractSubset1.VOI = [25, 225, 25, 225, 25, 225]
 extractSubset1Display = Show(extractSubset1, renderView)
 
-# change representation type
+# change representation to volume
 extractSubset1Display.SetRepresentationType('Volume')
 extractSubset1Display.Opacity = 0.0
 
-# create a new 'Slice'
 slice1 = Slice(Input=extractSubset1)
 slice1.SliceType.Normal = [1.0, 0.0, 0.0]
 slice1.SliceType.Origin = [-1.0, 0.0, 0.0]
 
-# create a new 'Slice'
 slice2 = Slice(Input=extractSubset1)
 slice2.SliceType.Normal = [0.0, 1.0, 0.0]
 slice2.SliceType.Origin = [0.0, -2.0, 0.0]
 
-# create a new 'Slice'
 slice3 = Slice(Input=extractSubset1)
 slice3.SliceType.Normal = [0.0, 0.0, 1.0]
 slice3.SliceType.Origin = [0.0, 0.0, 0.0]
 
-# get color transfer function/color map for 'Scalars_'
-scalars_LUT = GetColorTransferFunction('Scalars_')
-
-# show data in view
 slice1Display = Show(slice1, renderView)
 slice2Display = Show(slice2, renderView)
 slice3Display = Show(slice3, renderView)
 
-# Rescale transfer function
-#scalars_LUT.RescaleTransferFunction(0.0, 8e-05)
 
-# Apply a preset using its name. Note this may not work as expected when presets have duplicate names.
+scalars_LUT = GetColorTransferFunction('Scalars_')
 scalars_LUT.ApplyPreset('Viridis (matplotlib)', True)
 
 # get opacity transfer function/opacity map for 'Scalars_'
@@ -71,6 +56,7 @@ scene.NumberOfFrames = 1000
 
 cameraAnimationCue1 = GetCameraTrack(view=renderView)
 
+# Change LUT
 PythonAnimationCue1 = PythonAnimationCue()
 PythonAnimationCue1.Script = """
 def start_cue(self): pass
@@ -84,20 +70,17 @@ def end_cue(self): pass
 
 scene.Cues.append(PythonAnimationCue1)
 
-# get animation track
+# Change slice origin
 track = GetAnimationTrack('Origin', index=2, proxy=slice3.SliceType)
 
-# create keyframes for this animation track
-
-# create a key frame
 frame0 = CompositeKeyFrame(KeyTime = 0.0, KeyValues = [0.0])
 frame1 = CompositeKeyFrame(KeyTime = 0.1, KeyValues = [0.0])
 frame2 = CompositeKeyFrame(KeyTime = 0.15, KeyValues = [-4.0])
 frame3 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [0.0])
 
-# initialize the animation track
 track.KeyFrames = [frame0, frame1, frame2, frame3]
 
+# Change Subset VOI
 extractSubset1VOITrack0 = GetAnimationTrack('VOI', index=0, proxy=extractSubset1)
 extractSubset1VOITrack1 = GetAnimationTrack('VOI', index=1, proxy=extractSubset1)
 extractSubset1VOITrack2 = GetAnimationTrack('VOI', index=2, proxy=extractSubset1)
@@ -105,30 +88,19 @@ extractSubset1VOITrack3 = GetAnimationTrack('VOI', index=3, proxy=extractSubset1
 extractSubset1VOITrack4 = GetAnimationTrack('VOI', index=4, proxy=extractSubset1)
 extractSubset1VOITrack5 = GetAnimationTrack('VOI', index=5, proxy=extractSubset1)
 
-
 trackKeyFrame0_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
 trackKeyFrame0_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
 trackKeyFrame1_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [225.0])
 trackKeyFrame1_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [150.0])
-trackKeyFrame2_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
-trackKeyFrame2_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
-trackKeyFrame3_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [225.0])
-trackKeyFrame3_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [150.0])
-trackKeyFrame4_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [25.0])
-trackKeyFrame4_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [100.0])
-trackKeyFrame5_0 = CompositeKeyFrame(KeyTime = 0.2, KeyValues = [225.0])
-trackKeyFrame5_1 = CompositeKeyFrame(KeyTime = 0.3, KeyValues = [150.0])
 
 extractSubset1VOITrack0.KeyFrames = [trackKeyFrame0_0, trackKeyFrame0_1]
 extractSubset1VOITrack1.KeyFrames = [trackKeyFrame1_0, trackKeyFrame1_1]
-extractSubset1VOITrack2.KeyFrames = [trackKeyFrame2_0, trackKeyFrame2_1]
-extractSubset1VOITrack3.KeyFrames = [trackKeyFrame3_0, trackKeyFrame3_1]
-extractSubset1VOITrack4.KeyFrames = [trackKeyFrame4_0, trackKeyFrame4_1]
-extractSubset1VOITrack5.KeyFrames = [trackKeyFrame5_0, trackKeyFrame5_1]
+extractSubset1VOITrack2.KeyFrames = [trackKeyFrame0_0, trackKeyFrame0_1]
+extractSubset1VOITrack3.KeyFrames = [trackKeyFrame1_0, trackKeyFrame1_1]
+extractSubset1VOITrack4.KeyFrames = [trackKeyFrame0_0, trackKeyFrame0_1]
+extractSubset1VOITrack5.KeyFrames = [trackKeyFrame1_0, trackKeyFrame1_1]
 
-
-# get camera animation track for the view
-#cameraAnimationCue1 = GetCameraTrack(view=renderView)
+# Camera
 
 cameraKeyFrame0 = CameraKeyFrame()
 cameraKeyFrame0.KeyTime = 0.3
@@ -163,17 +135,14 @@ cameraKeyFrame3.PositionPathPoints = [10.0, 5.0, 5.0,
 cameraKeyFrame3.FocalPathPoints = [0.0, 0.0, 0.0]
 cameraKeyFrame3.ClosedPositionPath = 1
 
-# create a key frame
 cameraKeyFrame4 = CameraKeyFrame()
 cameraKeyFrame4.KeyTime = 1.0
 cameraKeyFrame4.Position = [10.0, 5.0, 5.0]
 cameraKeyFrame4.ParallelScale = 5.1151572410577275
 
-
 # initialize the animation track
 cameraAnimationCue1.Mode = 'Path-based'
 cameraAnimationCue1.KeyFrames = [cameraKeyFrame0, cameraKeyFrame1, cameraKeyFrame2, cameraKeyFrame3, cameraKeyFrame4]
-
 
 # Change to volume
 
@@ -189,7 +158,6 @@ slice2track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
 
 slice3track = GetAnimationTrack('Opacity', proxy=slice3)
 slice3track.KeyFrames = [sliceOKeyFrame0, sliceOKeyFrame1, sliceOKeyFrame2]
-
 
 # Change PWF
 
