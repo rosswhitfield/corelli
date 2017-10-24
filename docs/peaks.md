@@ -1,5 +1,11 @@
 # Finding Peaks
 
+* [Find peaks from MD workspace](#find-peaks-from-md-workspace)
+* [Find peaks from TOF workspace](#find-peaks-from-tof-workspace)
+* [Saving and Loading](#saving-and-loading)
+
+## Find peaks from MD workspace
+
 You will need convert to the event workspace into a multi-dimensional
 (MD) workspace in Q_sample units. See [Convert To MD/Q
 Sample](md#q-sample-1).
@@ -13,9 +19,7 @@ ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817:10',
                                      OutputWorkspace='md')
 ```
 
-## Finding Peaks
-
-The peak in a MD workspace can be found using [FindPeaksMD]
+The peaks in a MD workspace can be found using [FindPeaksMD]
 
 ```python
 FindPeaksMD(InputWorkspace='md',
@@ -39,6 +43,10 @@ sv.saveImage('md_peaks.png')
 
 ![MD Peaks](images/md_peaks.png)
 
+## Find peaks from TOF workspace
+
+You can find the peaks in a TOF workspace by using [FindSXPeaks]
+
 ## Saving and Loading
 
 The PeaksWorkspace can be saved using [SaveIsawPeaks]
@@ -56,6 +64,7 @@ LoadIsawPeaks(Filename='benzil.peaks',OutputWorkspace='peaks')
 #### Up: [Index](index)
 
 [FindPeaksMD]: http://docs.mantidproject.org/nightly/algorithms/FindPeaksMD.html
+[FindSXPeaks]: http://docs.mantidproject.org/nightly/algorithms/FindSXPeaks.html
 [PeaksWorkspace]: http://docs.mantidproject.org/nightly/concepts/PeaksWorkspace.html
 [SaveIsawPeaks]: http://docs.mantidproject.org/nightly/algorithms/SaveIsawPeaks.html
 [LoadIsawPeaks]: http://docs.mantidproject.org/nightly/algorithms/LoadIsawPeaks.html
