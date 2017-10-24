@@ -45,7 +45,7 @@ sv.saveImage('md_peaks.png')
 
 ## Find peaks from TOF workspace
 
-Alternativly you can find the peaks from a TOF workspace without
+Alternatively you can find the peaks from a TOF workspace without
 converting to MD workspace by using [FindSXPeaks].
 
 ```python

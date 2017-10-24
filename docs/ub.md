@@ -46,6 +46,34 @@ SelectCellOfType-[Notice] Re-indexed the peaks with the new UB.
 SelectCellOfType-[Notice] Now, 319 are indexed with average error 0.0253924
 ```
 
+## Optimize Cell
+
+After finding the UB matrix you can optimize it to a particular cell
+type with [OptimizeLatticeForCellType].
+
+```python
+OptimizeLatticeForCellType(PeaksWorkspace='peaks', CellType='Hexagonal')
+```
+Output
+```
+OptimizeLatticeForCellType-[Notice] peaks  Lattice Parameters:    8.433992    8.433992   13.928352   90.000000   90.000000  120.000000   858.018661
+OptimizeLatticeForCellType-[Notice] Parameter Errors  :    0.001476    0.001476    0.004896    0.000000    0.000000    0.000000    0.368849
+```
+
+## Alternative method
+
+You can use [IndexSXPeaks] to index a peaks workspace with known
+lattace parameters then calculate the UB using [CalculateUMatrix].
+
+```python
+IndexSXPeaks(PeaksWorkspace='peaks', a=8.4, b=8.4, c=13.655, alpha=90, beta=90, gamma=120)
+CalculateUMatrix(PeaksWorkspace='peaks', a=8.4, b=8.4, c=13.655, alpha=90, beta=90, gamma=120)
+```
+Output
+```
+
+```
+
 ## Saving and Loading
 
 Once you have the desired UB save it with [SaveIsawUB]
@@ -111,3 +139,6 @@ sv.saveImage('hkl.png')
 [SelectCellWithForm]: http://docs.mantidproject.org/nightly/algorithms/SelectCellWithForm.html
 [SaveIsawUB]: http://docs.mantidproject.org/nightly/algorithms/SaveIsawUB.html
 [LoadIsawUB]: http://docs.mantidproject.org/nightly/algorithms/LoadIsawUB.html
+[IndexSXPeaks]: http://docs.mantidproject.org/nightly/algorithms/IndexSXPeaks.html
+[CalculateUMatrix]: http://docs.mantidproject.org/nightly/algorithms/CalculateUMatrix.html
+[OptimizeLatticeForCellType]: http://docs.mantidproject.org/nightly/algorithms/OptimizeLatticeForCellType.html
