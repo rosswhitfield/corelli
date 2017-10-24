@@ -45,7 +45,20 @@ sv.saveImage('md_peaks.png')
 
 ## Find peaks from TOF workspace
 
-You can find the peaks in a TOF workspace by using [FindSXPeaks]
+Alternativly you can find the peaks from a TOF workspace without
+converting to MD workspace by using [FindSXPeaks].
+
+```python
+for run in range(29782,29817,10):
+    Load(Filename='CORELLI_'+str(run), OutputWorkspace='ws')
+    SetGoniometer('ws',Axis0="BL9:Mot:Sample:Axis1,0,1,0,1")
+    Rebin(InputWorkspace='ws', OutputWorkspace='ws', Params='10')
+    FindSXPeaks(InputWorkspace='ws', OutputWorkspace='peaks_tmp', RangeLower=4000, RangeUpper=16660,PeakFindingStrategy="AllPeaks",AbsoluteBackground=100)
+    if 'peaks' in mtd:
+        CombinePeaksWorkspaces(LHSWorkspace='peaks', RHSWorkspace='peaks_tmp',OutputWorkspace= 'peaks')
+    else:
+        RenameWorkspace('peaks_tmp', 'peaks')
+```
 
 ## Saving and Loading
 
