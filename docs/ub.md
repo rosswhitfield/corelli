@@ -63,11 +63,14 @@ OptimizeLatticeForCellType-[Notice] Parameter Errors  :    0.001476    0.001476 
 ## Alternative method
 
 You can use [IndexSXPeaks] to index a peaks workspace with known
-lattace parameters then calculate the UB using [CalculateUMatrix].
+lattace parameters then calculate the UB using
+[CalculateUMatrix]. This examples uses the peaks workspace produced
+from [Find peaks from TOF workspace](peaks#find-peaks-from-tof-workspace).
 
 ```python
-IndexSXPeaks(PeaksWorkspace='peaks', a=8.4, b=8.4, c=13.655, alpha=90, beta=90, gamma=120)
-CalculateUMatrix(PeaksWorkspace='peaks', a=8.4, b=8.4, c=13.655, alpha=90, beta=90, gamma=120)
+IndexSXPeaks(PeaksWorkspace='peaks', a=8.43, b=8.43, c=13.9, alpha=90, beta=90, gamma=120)
+CalculateUMatrix(PeaksWorkspace='peaks', a=8.43, b=8.43, c=13.9, alpha=90, beta=90, gamma=120)
+ShowPossibleCells(PeaksWorkspace='peaks')
 ```
 Output
 ```
@@ -84,11 +87,11 @@ SaveIsawUB(InputWorkspace='peaks', Filename='benzil.mat')
 
 ```
 $ cat benzil.mat
- 0.07262451 -0.11609529  0.00529399
- 0.13675388  0.00487304  0.00455592
--0.00276429  0.00104644  0.07143654
-     8.4288      8.4365     13.9873     89.4900     90.5385    120.0325    861.0393
-     0.0034      0.0037      0.0118      0.0545      0.0537      0.0293      0.8884
+ 0.07256016 -0.11598998  0.00507761
+ 0.13673627  0.00494716  0.00481186
+-0.00257959  0.00152651  0.07173340
+     8.4340      8.4340     13.9284     90.0000     90.0000    120.0000    858.0187
+     0.0015      0.0015      0.0049      0.0000      0.0000      0.0000      0.3688
 
 
 The above matrix is the Transpose of the UB Matrix. The UB matrix maps the column
