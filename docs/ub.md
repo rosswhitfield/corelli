@@ -60,23 +60,6 @@ OptimizeLatticeForCellType-[Notice] peaks  Lattice Parameters:    8.433992    8.
 OptimizeLatticeForCellType-[Notice] Parameter Errors  :    0.001476    0.001476    0.004896    0.000000    0.000000    0.000000    0.368849
 ```
 
-## Alternative method
-
-You can use [IndexSXPeaks] to index a peaks workspace with known
-lattace parameters then calculate the UB using
-[CalculateUMatrix]. This examples uses the peaks workspace produced
-from [Find peaks from TOF workspace](peaks#find-peaks-from-tof-workspace).
-
-```python
-IndexSXPeaks(PeaksWorkspace='peaks', a=8.43, b=8.43, c=13.9, alpha=90, beta=90, gamma=120)
-CalculateUMatrix(PeaksWorkspace='peaks', a=8.43, b=8.43, c=13.9, alpha=90, beta=90, gamma=120)
-ShowPossibleCells(PeaksWorkspace='peaks')
-```
-Output
-```
-
-```
-
 ## Saving and Loading
 
 Once you have the desired UB save it with [SaveIsawUB]
