@@ -1,11 +1,13 @@
 # Create solid angle and flux workspaces for normalisation
 
 The reduced vanadium solid angle and flux should be provided by the
-instrument scientist for your particular sample environment. This is
-just an exmaple of how they are created.
+instrument scientist for your particular sample environment. It can be
+created using
+[MDNormSCDPreprocessIncoherent](http://docs.mantidproject.org/nightly/algorithms/MDNormSCDPreprocessIncoherent.html).
 
-There is an example of creating the SolidAngle and Flux workspaces in
-the
+This is just an example of how they are created without the workflow
+algorithm. There is another example of creating the SolidAngle and Flux
+workspaces in the
 [MDNormSCD](http://docs.mantidproject.org/nightly/algorithms/MDNormSCD.html)
 usage examples
 [here](http://docs.mantidproject.org/nightly/algorithms/MDNormSCD-v1.html#usage)
