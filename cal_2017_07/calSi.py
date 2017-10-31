@@ -61,7 +61,7 @@ for run in range(47327,47335):
                 MaskWorkspace='mask')
 
 # Average
-Load(Filename='CORELLI_47327,47334', OutputWorkspace='rawSi')
+Load(Filename='CORELLI_47327-47334', OutputWorkspace='rawSi')
 SetInstrumentParameter(Workspace="rawSi",ParameterName="t0_formula",Value="(23.5 * exp(-incidentEnergy/205.8))")
 ModeratorTzero(InputWorkspace="rawSi",OutputWorkspace="rawSi",EMode="Elastic")
     
