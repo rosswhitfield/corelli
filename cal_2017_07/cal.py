@@ -5,9 +5,12 @@ from mantid.simpleapi import (CreateEmptyTableWorkspace,
                               MaskBTP, ConvertUnits, Rebin,
                               SumNeighbours, GetDetOffsetsMultiPeaks,
                               SaveCalFile, MaskDetectors, mtd, Load)
+import sys
 import tube
 tube.readCalibrationFile('CalibTable',
                          '/SNS/users/rwp/corelli/tube_calibration/CalibTableNew.txt')
+
+run_dict = {'Si': (47327, 47334), 'C60': (47367, 47374), 'Diamond': (47344, 47351)}
 
 sample = 'Si'
 first = 47327
@@ -17,14 +20,17 @@ sample = 'C60'
 first = 47367
 last = 47374
 
-"""
 sample = 'Diamond'
 first = 47344
 last = 47351
-"""
 
 tube_cal = False
 tube_cal = True
+
+if len(sys.argv) > 1:
+    sample = sys.argv[1]
+    first, last = run_dict[sample]
+    tube_cal = bool(sys.argv[2])
 
 tube_string = "_TubeCal" if tube_cal else ""
 
