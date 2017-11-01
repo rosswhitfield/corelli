@@ -18,7 +18,7 @@ FinalDReference = sorted(fitwindict.keys())
 
 fitwinws = CreateEmptyTableWorkspace()
 fitwinws.addColumn("int", "spectrum")
-for ipk in xrange(len(FinalDReference)):
+for ipk in range(len(FinalDReference)):
     fitwinws.addColumn("double", "Peak_%d_Left"%(ipk))
     fitwinws.addColumn("double", "Peak_%d_Right"%(ipk))
 
