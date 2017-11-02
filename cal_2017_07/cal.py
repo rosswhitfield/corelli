@@ -30,7 +30,7 @@ tube_cal = True
 if len(sys.argv) > 1:
     sample = sys.argv[1]
     first, last = run_dict[sample]
-    tube_cal = bool(sys.argv[2])
+    tube_cal = bool(int(sys.argv[2]))
 
 tube_string = "_TubeCal" if tube_cal else ""
 
