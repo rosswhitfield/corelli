@@ -32,7 +32,7 @@ if len(sys.argv) > 1:
     first, last = run_dict[sample]
     tube_cal = bool(int(sys.argv[2]))
     try:
-        SumY = int(sys.argv[2])
+        SumY = int(sys.argv[3])
     except IndexError:
         SumY = 16
 
