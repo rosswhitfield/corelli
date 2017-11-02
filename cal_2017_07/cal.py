@@ -31,6 +31,10 @@ if len(sys.argv) > 1:
     sample = sys.argv[1]
     first, last = run_dict[sample]
     tube_cal = bool(int(sys.argv[2]))
+    try:
+        SumY = int(sys.argv[2])
+    except IndexError:
+        SumY = 16
 
 tube_string = "_TubeCal" if tube_cal else ""
 
@@ -78,7 +82,7 @@ for run in range(first, last+1):
           Params='0.5,-0.004,10')
     SumNeighbours(InputWorkspace="data",
                   OutputWorkspace="data",
-                  SumX=1, SumY=16)
+                  SumX=1, SumY=SumY)
     GetDetOffsetsMultiPeaks(
         InputWorkspace='data',
         DReference=FinalDReference,
@@ -89,12 +93,12 @@ for run in range(first, last+1):
         OutputWorkspace='offset',
         MaskWorkspace='mask')
     # Save calibration
-    SaveCalFile(Filename='cal_'+sample+'_'+str(run)+tube_string+'_sum16.cal',
+    SaveCalFile(Filename='cal_'+sample+'_'+str(run)+tube_string+'_sum'+str(SumY)+'.cal',
                 OffsetsWorkspace="offset",
                 MaskWorkspace='mask')
     maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() < 3)
     MaskDetectors('mask', DetectorList=maskNumberPeaksFitted[0])
-    SaveCalFile(Filename='cal_'+sample+'_'+str(run)+tube_string+'_sum16_mask_lt_3.cal',
+    SaveCalFile(Filename='cal_'+sample+'_'+str(run)+tube_string+'_sum'+str(SumY)+'_mask_lt_3.cal',
                 OffsetsWorkspace="offset",
                 MaskWorkspace='mask')
 
@@ -127,11 +131,11 @@ GetDetOffsetsMultiPeaks(
         OutputWorkspace='offset',
         MaskWorkspace='mask')
 # Save calibration
-SaveCalFile(Filename='cal_'+sample+'_'+str(first)+'-'+str(last)+tube_string+'_sum16.cal',
+SaveCalFile(Filename='cal_'+sample+'_'+str(first)+'-'+str(last)+tube_string+'_sum'+str(SumY)+'.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() < 3)
 MaskDetectors('mask', DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='cal_'+sample+'_'+str(first)+'-'+str(last)+tube_string+'_sum16_mask_lt_3.cal',
+SaveCalFile(Filename='cal_'+sample+'_'+str(first)+'-'+str(last)+tube_string+'_sum'+str(SumY)+'_mask_lt_3.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='mask')
