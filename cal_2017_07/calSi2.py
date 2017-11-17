@@ -12,14 +12,16 @@ ModeratorTzero(InputWorkspace="rawSi",OutputWorkspace="rawSi",EMode="Elastic")
     
 MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
 ConvertUnits(InputWorkspace='rawSi',OutputWorkspace='siliconD',Target='dSpacing')
-Rebin(InputWorkspace='siliconD',OutputWorkspace='siliconD',Params='0.5,-0.004,3.5')
 SumNeighbours(InputWorkspace="siliconD", OutputWorkspace="siliconD", SumX=1, SumY=16)
+Rebin(InputWorkspace='siliconD',OutputWorkspace='siliconD',Params='0.5,-0.004,3.5')
+
+
 GetDetOffsetsMultiPeaks(
     InputWorkspace = 'siliconD',
     DReference = FinalDReference,
     FitwindowTableWorkspace='fitwinws',
     PeakFunction = "Gaussian",
-    BackgroundType = "Linear",
+    BackgroundType = "Flat",
     HighBackground = True,
     OutputWorkspace = 'offset',
     MaskWorkspace='mask')
