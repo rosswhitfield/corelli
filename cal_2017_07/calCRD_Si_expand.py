@@ -1,25 +1,29 @@
 from mantid.simpleapi import *
 
-COMPRESS_TOL_TOF = .01
+runNumber = 47327
 
-filename = '/SNS/CORELLI/IPTS-19545/nexus/CORELLI_47327.nxs.h5'
-wksp = samRun = wkspName = 'CORELLI_47327'
+outDir='/tmp/'
+
+filename = '/SNS/CORELLI/IPTS-19545/nexus/CORELLI_{}.nxs.h5'.format(runNumber)
+wksp = 'CORELLI_{}'.format(runNumber)
+
+calib = "CORELLI_calibrate_d_{}".format(runNumber)
+
+outfile = outDir + calib
 
 dvalues = [1.1085, 1.2458, 1.3576, 1.6374, 1.9200, 3.1353]
 
+LoadEventNexus(Filename=filename, OutputWorkspace=wksp, Precount=False)
+FilterBadPulses(InputWorkspace=wksp, OutputWorkspace=wksp)
+CompressEvents(InputWorkspace=wksp, OutputWorkspace=wksp, Tolerance=0.01)
 
-LoadEventNexus(Filename=filename, OutputWorkspace=wkspName, Precount=False)
-FilterBadPulses(InputWorkspace=wkspName, OutputWorkspace=wkspName)
-CompressEvents(InputWorkspace=wkspName, OutputWorkspace=wkspName, Tolerance=COMPRESS_TOL_TOF)
+CreateGroupingWorkspace(InputWorkspace=wksp,
+                        GroupDetectorsBy="All",
+                        OutputWorkspace=wksp+"group")
 
-(_, numGroupedSpectra, numGroups) = CreateGroupingWorkspace(InputWorkspace=wkspName,
-                                                            GroupDetectorsBy="All",
-                                                            OutputWorkspace=wkspName+"group")
+ConvertUnits(InputWorkspace=wksp, OutputWorkspace=wksp, Target="dSpacing")
 
-
-ConvertUnits(InputWorkspace=samRun, OutputWorkspace=samRun, Target="dSpacing")
-
-SumNeighbours(InputWorkspace=samRun, OutputWorkspace=samRun, SumX=1, SumY=16)
+SumNeighbours(InputWorkspace=wksp, OutputWorkspace=wksp, SumX=1, SumY=16)
 
 Rebin(InputWorkspace=wksp, OutputWorkspace=wksp, Params="0.5,-0.004,3.5")
 
@@ -34,6 +38,17 @@ GetDetOffsetsMultiPeaks(InputWorkspace=wksp,
                         MaxOffset=0.05,
                         NumberPeaksWorkspace=wksp+"peaks",
                         MaskWorkspace=wksp+"mask",
-                        InputResolutionWorkspace=resws,
                         MinimumResolutionFactor=0,
                         MaximumResolutionFactor=0)
+
+
+SaveCalFile(OffsetsWorkspace=wksp+"offset",
+            GroupingWorkspace=wksp+"group",
+            MaskWorkspace=wksp+"mask",
+            Filename=outfile+'.cal')
+ConvertDiffCal(OffsetsWorkspace=wksp+"offset",
+               OutputWorkspace=wksp+"cal")
+SaveDiffCal(CalibrationWorkspace=wksp+"cal",
+            GroupingWorkspace=wksp+"group",
+            MaskWorkspace=wksp+"mask",
+            Filename=outfile+'.h5')
