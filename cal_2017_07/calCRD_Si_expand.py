@@ -2,6 +2,8 @@ from mantid.simpleapi import *
 
 runNumber = 47327
 
+binning = "0.5,-0.004,3.5"
+
 outDir='/tmp/'
 
 filename = '/SNS/CORELLI/IPTS-19545/nexus/CORELLI_{}.nxs.h5'.format(runNumber)
@@ -17,15 +19,11 @@ LoadEventNexus(Filename=filename, OutputWorkspace=wksp, Precount=False)
 FilterBadPulses(InputWorkspace=wksp, OutputWorkspace=wksp)
 CompressEvents(InputWorkspace=wksp, OutputWorkspace=wksp, Tolerance=0.01)
 
-CreateGroupingWorkspace(InputWorkspace=wksp,
-                        GroupDetectorsBy="All",
-                        OutputWorkspace=wksp+"group")
-
 ConvertUnits(InputWorkspace=wksp, OutputWorkspace=wksp, Target="dSpacing")
 
 SumNeighbours(InputWorkspace=wksp, OutputWorkspace=wksp, SumX=1, SumY=16)
 
-Rebin(InputWorkspace=wksp, OutputWorkspace=wksp, Params="0.5,-0.004,3.5")
+Rebin(InputWorkspace=wksp, OutputWorkspace=wksp, Params=binning)
 
 
 GetDetOffsetsMultiPeaks(InputWorkspace=wksp,
@@ -52,3 +50,23 @@ SaveDiffCal(CalibrationWorkspace=wksp+"cal",
             GroupingWorkspace=wksp+"group",
             MaskWorkspace=wksp+"mask",
             Filename=outfile+'.h5')
+
+
+
+# Test cal
+
+LoadEventNexus(Filename=filename, OutputWorkspace=wksp, Precount=False)
+FilterBadPulses(InputWorkspace=wksp, OutputWorkspace=wksp)
+CompressEvents(InputWorkspace=wksp, OutputWorkspace=wksp, Tolerance=0.01)
+
+MaskDetectors(Workspace=wksp, MaskedWorkspace=str(wksp)+"mask")
+AlignDetectors(InputWorkspace=wksp, OutputWorkspace=wksp+'_calab',
+                      CalibrationWorkspace=str(wksp)+"cal")
+DiffractionFocussing(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_calab',
+                            GroupingWorkspace=str(wksp)+"group")
+Rebin(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_calab', Params=binning)
+
+ConvertUnits(InputWorkspace=wksp, OutputWorkspace=wksp, Target="dSpacing")
+Rebin(InputWorkspace=wksp, OutputWorkspace=wksp, Params=binning)
+DiffractionFocussing(InputWorkspace=wksp, OutputWorkspace=wksp+'_d',
+                     GroupingWorkspace=str(wksp)+"group")
