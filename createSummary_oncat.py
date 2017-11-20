@@ -57,14 +57,15 @@ def get_client():
     return auto_refresh_client
 
 
-SAMPLEENV = ['CCR', 'SlimSAM', 'dilfridge', 'dilfridge.SilmSAM', 'OC', 'He3insert']
+SAMPLEENV = ['CCR', 'SlimSAM', 'dilfridge', 'dilfridge.SilmSAM', 'OC', 'He3insert', 'Micas70mm']
 
 title = {'CCR': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE OMEGA,CCR-ColdTip,CCR-Sample\n",
          'SlimSAM': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,OC-COLD-TIP,OC-SAMPLE,Mag-Field\n",
          'dilfridge': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,DILFRIDGE-COLD-TIP,DILFRIDGE-SAMPE\n",
          'dilfridge.SilmSAM': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,DILFRIDGE-COLD-TIP,DILFRIDGE-SAMPE,Mag-Field\n",
          'OC': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,OC-COLD-TIP,OC-SAMPE\n",
-         'He3insert': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,He3Sample,He3VTI\n"}
+         'He3insert': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,He3Sample,He3VTI\n",
+         'Micas70mm': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE OMEGA,MicasSamp,MicasOT\n"}
 
 projections = {'CCR': ['metadata.entry.run_number',
                        'metadata.entry.experiment_identifier',
@@ -133,7 +134,18 @@ projections = {'CCR': ['metadata.entry.run_number',
                              'metadata.entry.total_counts',
                              'metadata.entry.daslogs.bl9:mot:sample:axis2.average_value',
                              'metadata.entry.daslogs.bl9:se:lakeshore:krdg0.average_value',
-                             'metadata.entry.daslogs.bl9:se:lakeshore:krdg2.average_value']}
+                             'metadata.entry.daslogs.bl9:se:lakeshore:krdg2.average_value'],
+               'Micas70mm': ['metadata.entry.run_number',
+                             'metadata.entry.experiment_identifier',
+                             'metadata.entry.start_time',
+                             'metadata.entry.end_time',
+                             'metadata.entry.duration',
+                             'metadata.entry.proton_charge',
+                             'metadata.entry.title',
+                             'metadata.entry.total_counts',
+                             'metadata.entry.daslogs.bl9:mot:sample:axis1.average_value',
+                             'metadata.entry.daslogs.bl9:se:nd1:ch1:pv.average_value',
+                             'metadata.entry.daslogs.bl9:se:nd1:ch2:pv.average_value']}
 
 
 def extract_value(datafile, proj):
