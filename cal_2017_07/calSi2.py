@@ -24,21 +24,21 @@ GetDetOffsetsMultiPeaks(
 
 SaveCalFile(Filename='cal_Si2_47327-47334_sum16.cal',
             OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
+            MaskWorkspace='Mask')
 ConvertDiffCal(OffsetsWorkspace="offset",
                OutputWorkspace="cal")
 SaveDiffCal(CalibrationWorkspace="cal",
-            MaskWorkspace="mask",
+            MaskWorkspace="Mask",
             Filename='cal_Si2_47327-47334_sum16.h5')
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
-MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+MaskDetectors('Mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='cal_Si2_47327-47334_sum16_mask_lt_3.cal',
             OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
+            MaskWorkspace='Mask')
 ConvertDiffCal(OffsetsWorkspace="offset",
                OutputWorkspace="cal")
 SaveDiffCal(CalibrationWorkspace="cal",
-            MaskWorkspace="mask",
+            MaskWorkspace="Mask",
             Filename='cal_Si2_47327-47334_sum16_mask_lt_3.h5')
 
 # With tube cal
@@ -59,18 +59,17 @@ GetDetOffsetsMultiPeaks(
     DReference = DReference,
     FitWindowMaxWidth=0.1,
     BackgroundType = "Flat",
-    OutputWorkspace = 'offset',
-    MaskWorkspace='mask')
+    OutputWorkspace = 'offset')
 
 
 SaveCalFile(Filename='cal_Si2_47327-47334_sum16.cal',
             OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
+            MaskWorkspace='Mask')
 ConvertDiffCal(OffsetsWorkspace="offset",
                OutputWorkspace="cal")
 SaveDiffCal(CalibrationWorkspace="cal",
             GroupingWorkspace="group",
-            MaskWorkspace="mask",
+            MaskWorkspace="Mask",
             Filename='cal_Si2_47327-47334_sum16.h5')
 
 
@@ -78,7 +77,7 @@ maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
 MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='cal_Si2_47327-47334_sum16_mask_lt_3.cal',
             OffsetsWorkspace="offset",
-            MaskWorkspace='mask')
+            MaskWorkspace='Mask')
 
 
 
