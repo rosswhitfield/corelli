@@ -62,7 +62,7 @@ CompressEvents(InputWorkspace=wksp, OutputWorkspace=wksp, Tolerance=0.01)
 MaskDetectors(Workspace=wksp, MaskedWorkspace=str(wksp)+"mask")
 AlignDetectors(InputWorkspace=wksp, OutputWorkspace=wksp+'_calab',
                       CalibrationWorkspace=str(wksp)+"cal")
-DiffractionFocussing(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_calab',
+DiffractionFocussing(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_focus',
                             GroupingWorkspace=str(wksp)+"group")
 Rebin(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_calab', Params=binning)
 

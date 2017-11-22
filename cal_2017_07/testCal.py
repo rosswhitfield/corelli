@@ -3,23 +3,23 @@ from mantid.simpleapi import *
 sam = 'Si2'
 runs = '47327-47334'
 
+wksp =  'CORELLI_'+runs
+cal = 'SiCal'
 
-LoadDiffCall(Filename='cal_'+sam+'_'+runs+'_TubeCal_sum16_mask_lt_3.h5',
+binning = '0.5,-0.004,3.5'
+
+LoadDiffCal(Filename='cal_'+sam+'_'+runs+'_TubeCal_sum16_mask_lt_3.h5',
              InstrumentName='CORELLI',
-             WorkspaceName='SiCal')
+             WorkspaceName=cal)
 
-wksp = 
+Load(Filename='CORELLI_'+runs, OutputWorkspace=wksp, Precount=False)
 
-Load(Filename='CORELLI_'+runs, OutputWorkspace=wksp, Precount=False) 
+MaskDetectors(Workspace=wksp, MaskedWorkspace=cal+"_mask")
 
-MaskDetectors(Workspace=wksp, MaskedWorkspace="cal_mask")
-AlignDetectors(InputWorkspace=wksp, OutputWorkspace='cal',
-                      CalibrationWorkspace=str(wksp)+"cal")
-DiffractionFocussing(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_calab',
-                            GroupingWorkspace=str(wksp)+"group")
+AlignDetectors(InputWorkspace=wksp, OutputWorkspace=wksp+'_calab',
+               CalibrationWorkspace=cal+"_cal")
+ConvertUnits(InputWorkspace=wksp, OutputWorkspace=wksp+'_d', Target="dSpacing")
+
 Rebin(InputWorkspace=wksp+'_calab', OutputWorkspace=wksp+'_calab', Params=binning)
+Rebin(InputWorkspace=wksp+'_d', OutputWorkspace=wksp+'_d', Params=binning)
 
-ConvertUnits(InputWorkspace=wksp, OutputWorkspace=wksp, Target="dSpacing")
-Rebin(InputWorkspace=wksp, OutputWorkspace=wksp, Params=binning)
-DiffractionFocussing(InputWorkspace=wksp, OutputWorkspace=wksp+'_d',
-                     GroupingWorkspace=str(wksp)+"group")
