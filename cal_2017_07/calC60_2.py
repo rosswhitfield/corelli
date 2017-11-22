@@ -7,15 +7,14 @@ tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration/C
 # DReference = [1.1085, 1.2458, 1.3576, 1.6374, 1.9200, 3.1353] # Si
 # runs = '47327-47334' # Si
 
+# 73661
 DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]  # C60
 
 runs='47367-47374' # long
 runs='47375-47382' # short
-#runs='47367-47382' # all
+runs='47367-47382' # all
 
-binning = '0.5,-0.004,10'
-
-
+binning = '2,-0.004,10'
 
 Load(Filename='CORELLI_'+runs, OutputWorkspace='data')
 SetInstrumentParameter(Workspace="data",ParameterName="t0_formula",Value="(23.5 * exp(-incidentEnergy/205.8))")

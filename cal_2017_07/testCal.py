@@ -3,6 +3,7 @@ from mantid.simpleapi import *
 sam = 'Si2'
 runs = '47327-47334'
 
+
 LoadDiffCall(Filename='cal_'+sam+'_'+runs+'_TubeCal_sum16_mask_lt_3.h5',
              InstrumentName='CORELLI',
              WorkspaceName='SiCal')
