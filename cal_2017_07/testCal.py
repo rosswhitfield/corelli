@@ -1,0 +1,2 @@
+from mantid.simpleapi import *
+
