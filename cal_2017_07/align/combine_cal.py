@@ -9,3 +9,9 @@ LoadDiffCal(Filename='../cal_Si_C60/cal_C60_2_47367-47382_TubeCal_sum16_mask_lt_
             InstrumentName='CORELLI',
             WorkspaceName='c60')
 
+si=mtd['si_cal']
+c60=mtd['c60_cal']
+
+plt.plot(si.column(0),si.column(1))
+plt.plot(c60.column(0),c60.column(1))
+plt.show()
