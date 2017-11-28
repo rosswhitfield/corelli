@@ -60,3 +60,8 @@ plt.show()
 Si 1-16, 30-47 , 62-78
 C60 17-29, 48-61, 79-91
 """
+c60_banks=list(range(17,30))+list(range(48,62))+list(range(79,91))
+
+CloneWorkspace(InputWorkspace='si_cal', OutputWorkspace='combined')
+com = mtd['combined']
+
