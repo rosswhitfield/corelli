@@ -1,5 +1,5 @@
-from mantid.simpleapi import LoadDiffCal, mtd, LoadEmptyInstrument, CalculateDIFC
-import matplotlib.pyplot as plt
+from mantid.simpleapi import LoadDiffCal, mtd, LoadEmptyInstrument, CalculateDIFC, MaskBTP, CloneWorkspace, SaveDiffCal, ApplyCalibration
+#import matplotlib.pyplot as plt
 import tube
 import numpy as np
 import numpy.ma as ma
@@ -31,30 +31,26 @@ c60=mtd['c60_cal']
 si_mask=mtd['si_mask']
 c60_mask=mtd['c60_mask']
 
-plt.plot(corelli.extractY())
-plt.plot(si.column(0),si.column(1))
-plt.plot(c60.column(0),c60.column(1))
-plt.show()
+#plt.plot(corelli.extractY())
+#plt.plot(si.column(0),si.column(1))
+#plt.plot(c60.column(0),c60.column(1))
+#plt.show()
 
-plt.plot(si.column(0),(si.column(1)-difc)/difc)
-plt.plot(c60.column(0),(c60.column(1)-difc)/difc)
-plt.show()
-
+#plt.plot(si.column(0),(si.column(1)-difc)/difc)
+#plt.plot(c60.column(0),(c60.column(1)-difc)/difc)
+#plt.show()
 
 def bank2pixel(bank):
     return range((bank-1)*4096,bank*4096)
-
 
 # Masked
 si_ma = ma.masked_array(si.column(1), si_mask.extractY())
 c60_ma = ma.masked_array(c60.column(1), c60_mask.extractY())
 ave = (si_ma+c60_ma)/2
-plt.plot((si_ma-difc)/difc)
-plt.plot((c60_ma-difc)/difc)
-plt.plot((ave-difc)/difc)
-plt.show()
-
-
+#plt.plot((si_ma-difc)/difc)
+#plt.plot((c60_ma-difc)/difc)
+#plt.plot((ave-difc)/difc)
+#plt.show()
 
 """
 Si 1-16, 30-47 , 62-78
@@ -63,5 +59,25 @@ C60 17-29, 48-61, 79-91
 c60_banks=list(range(17,30))+list(range(48,62))+list(range(79,91))
 
 CloneWorkspace(InputWorkspace='si_cal', OutputWorkspace='combined')
-com = mtd['combined']
+CloneWorkspace(InputWorkspace='si_mask', OutputWorkspace='combined_mask')
 
+com = mtd['combined']
+mask = mtd['combined_mask']
+
+for bank in c60_banks:
+    for pixel in bank2pixel(bank):
+        mask.setY(pixel, c60_mask.dataY(pixel))
+        for i in range(4):
+            com.setCell(pixel, i, c60.cell(pixel, i))
+
+
+com_ma = ma.masked_array(com.column(1), mask.extractY())
+
+#plt.plot((si_ma-difc)/difc)
+#plt.plot((c60_ma-difc)/difc)
+#plt.plot((com_ma-difc)/difc)
+#plt.show()
+
+SaveDiffCal(CalibrationWorkspace='combined',
+            MaskWorkspace='combined_mask',
+            Filename='combined_Si_C60.h5')
