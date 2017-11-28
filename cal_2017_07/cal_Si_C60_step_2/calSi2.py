@@ -24,21 +24,21 @@ GetDetOffsetsMultiPeaks(
     BackgroundType = "Flat",
     OutputWorkspace = 'offset')
 
-SaveCalFile(Filename='cal_Si2_47327-47334_sum16.cal',
+SaveCalFile(Filename='cal_Si2_47327-47334_sum16_step2.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='Mask')
 ConvertDiffCal(OffsetsWorkspace="offset",
                OutputWorkspace="cal")
 SaveDiffCal(CalibrationWorkspace="cal",
             MaskWorkspace="Mask",
-            Filename='cal_Si2_47327-47334_sum16.h5')
+            Filename='cal_Si2_47327-47334_sum16_step2.h5')
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
 MaskDetectors('Mask',DetectorList=maskNumberPeaksFitted[0])
-SaveCalFile(Filename='cal_Si2_47327-47334_sum16_mask_lt_3.cal',
+SaveCalFile(Filename='cal_Si2_47327-47334_sum16_step2_mask_lt_3.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='Mask')
 ConvertDiffCal(OffsetsWorkspace="offset",
                OutputWorkspace="cal")
 SaveDiffCal(CalibrationWorkspace="cal",
             MaskWorkspace="Mask",
-            Filename='cal_Si2_47327-47334_sum16_mask_lt_3.h5')
+            Filename='cal_Si2_47327-47334_sum16_step2_mask_lt_3.h5')
