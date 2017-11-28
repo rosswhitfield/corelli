@@ -32,5 +32,5 @@ print(componentList)
 AlignComponents(CalibrationTable="cal_cal",MaskWorkspace="cal_mask",Workspace='corelli',
                 EulerConvention='YXZ',ComponentList=componentList,Xposition=True,Zposition=True,AlphaRotation=True)
 
-ExportGeometry(InputWorkspace='corelli',Filename='AlignSi.xml',EulerConvention='YXZ',Components=componentList)
-SaveNexus(InputWorkspace='corelli',Filename='AlignSi.nxs')
+ExportGeometry(InputWorkspace='corelli',Filename='AlignCombined.xml',EulerConvention='YXZ',Components=componentList)
+SaveNexus(InputWorkspace='corelli',Filename='AlignCombined.nxs')
