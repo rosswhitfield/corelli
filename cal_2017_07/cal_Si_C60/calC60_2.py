@@ -40,6 +40,18 @@ ConvertDiffCal(OffsetsWorkspace="offset",
 SaveDiffCal(CalibrationWorkspace="cal",
             MaskWorkspace="Mask",
             Filename='cal_C60_2_'+runs+'_sum16.h5')
+
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <2)
+MaskDetectors('Mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='cal_C60_2_'+runs+'_sum16_mask_lt_2.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='Mask')
+ConvertDiffCal(OffsetsWorkspace="offset",
+               OutputWorkspace="cal")
+SaveDiffCal(CalibrationWorkspace="cal",
+            MaskWorkspace="Mask",
+            Filename='cal_C60_2_'+runs+'_sum16_mask_lt_2.h5')
+
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
 MaskDetectors('Mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='cal_C60_2_'+runs+'_sum16_mask_lt_3.cal',
@@ -80,8 +92,19 @@ SaveDiffCal(CalibrationWorkspace="cal",
             MaskWorkspace="Mask",
             Filename='cal_C60_2_'+runs+'_TubeCal_sum16.h5')
 
+maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <2)
+MaskDetectors('Mask',DetectorList=maskNumberPeaksFitted[0])
+SaveCalFile(Filename='cal_C60_2_'+runs+'_TubeCal_sum16_mask_lt_2.cal',
+            OffsetsWorkspace="offset",
+            MaskWorkspace='Mask')
+ConvertDiffCal(OffsetsWorkspace="offset",
+               OutputWorkspace="cal")
+SaveDiffCal(CalibrationWorkspace="cal",
+            MaskWorkspace="Mask",
+            Filename='cal_C60_2_'+runs+'_TubeCal_sum16_mask_lt_2.h5')
+
 maskNumberPeaksFitted = np.where(mtd['NumberPeaksFitted'].extractY() <3)
-MaskDetectors('mask',DetectorList=maskNumberPeaksFitted[0])
+MaskDetectors('Mask',DetectorList=maskNumberPeaksFitted[0])
 SaveCalFile(Filename='cal_C60_2_'+runs+'_TubeCal_sum16_mask_lt_3.cal',
             OffsetsWorkspace="offset",
             MaskWorkspace='Mask')
