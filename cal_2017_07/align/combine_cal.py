@@ -16,7 +16,7 @@ difc = corelli.extractY().flatten()
 #plt.plot(difc/difc0)
 #plt.show()
 
-LoadDiffCal(Filename='../cal_Si_C60/cal_Si2_47327-47334_TubeCal_sum16.cal',
+LoadDiffCal(Filename='../cal_Si_C60/cal_Si2_47327-47334_TubeCal_sum16.h5',
             InstrumentName='CORELLI',
             WorkspaceName='si')
 MaskBTP(Workspace='si_mask',Pixel="1-16,241-256")
