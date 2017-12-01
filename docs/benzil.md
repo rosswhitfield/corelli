@@ -7,7 +7,7 @@ This is an example for the data reduction done for
 ```python
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_29782:29817',
                                      SetGoniometer=True,
-				     FilterByTimeStop=300,
+                                     FilterByTimeStop=300,
                                      Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
                                      MinValues='-10,-10,-10',
                                      MaxValues='10,10,10',
