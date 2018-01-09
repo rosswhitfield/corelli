@@ -42,14 +42,17 @@ for mev, offset, x_offset in [(12,45,-0.05), (15,45,0.03), (20,45,-0.18), (25,40
     dEs = (ef-ei)/1.602e-19*1000 - x_offset
     ints = total[int((y-offset)/10),ix]
     e = np.sqrt(error[ix])
-    np.savetxt("Ei_"+str(mev)+"_meV.xye",np.array([dEs,ints,e]).T)
+    mask = np.abs(dEs) < 10
+    np.savetxt("Ei_"+str(mev)+"_meV.xye",np.array([dEs[mask],ints[mask],e[mask]]).T)
     dEs = (dEs[::2]+dEs[1::2])/2
     ints = ints[::2]+ints[1::2]
     e_tmp = error[ix]
     e = np.sqrt(e_tmp[::2]+e_tmp[1::2])
-    np.savetxt("Ei_"+str(mev)+"_meV_x2.xye",np.array([dEs,ints,e]).T)
+    mask = np.abs(dEs) < 10
+    np.savetxt("Ei_"+str(mev)+"_meV_x2.xye",np.array([dEs[mask],ints[mask],e[mask]]).T)
     dEs = (dEs[::2]+dEs[1::2])/2
     ints = ints[::2]+ints[1::2]
     e_tmp = error[ix]
     e = np.sqrt(e_tmp[::4]+e_tmp[1::4]+e_tmp[2::4]+e_tmp[3::4])
-    np.savetxt("Ei_"+str(mev)+"_meV_x4.xye",np.array([dEs,ints,e]).T)
+    mask = np.abs(dEs) < 10
+    np.savetxt("Ei_"+str(mev)+"_meV_x4.xye",np.array([dEs[mask],ints[mask],e[mask]]).T)
