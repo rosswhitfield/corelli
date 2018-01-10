@@ -34,7 +34,7 @@ for bin_size in range(1,21):
     error_tmp = error.reshape(-1, bin_size).sum(axis=1)
     total_tmp = total.reshape((341, -1, bin_size)).sum(axis=2)
     xx_tmp = np.average(xx.reshape(-1, bin_size), axis=1)
-    for mev, offset, x_offset in [(12,45,0.05), (15,45,-0.03), (20,45,0.18), (25,40,0.3), (30,40,0.26), (50,50,-0.03), (75,50,-0.3)]:
+    for mev, offset, x_offset in [(12,45,0.05)]: #, (15,45,-0.03), (20,45,0.18), (25,40,0.3), (30,40,0.26), (50,50,-0.03), (75,50,-0.3)]:
         print(mev,offset)    
         ei = mev/1e3 * 1.602e-19
         vi = np.sqrt(2*ei/m)
@@ -49,5 +49,5 @@ for bin_size in range(1,21):
         dEs = (ei-ef)/1.602e-19*1000 - x_offset
         ints = total_tmp[int((y-offset)/10),:]
         e = np.sqrt(error_tmp)
-        mask = np.logical_and(np.abs(dEs) < 10, xx_tmp - xi < 1000)
+        mask = np.logical_and(np.abs(dEs) < 10, np.abs(xx_tmp - xx_tmp[xi]) < 1000)
         np.savetxt("Ei_"+str(mev)+"_meV_"+str(bin_size)+"us.xye",np.array([dEs[mask],ints[mask],e[mask]]).T)
