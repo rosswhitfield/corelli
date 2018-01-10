@@ -13,11 +13,11 @@ for bank in range(31,62):
         error += temp
 
 
-total = total[:,:15120]
-error = error[:15120]
+total = total[:,1000:16120]
+error = error[1000:16120]
 
 y,x = total.shape
-xx=np.array(range(x))*1
+xx=np.array(range(x))*1+1000
         
 
 L1=20.0
@@ -34,7 +34,7 @@ for bin_size in range(1,21):
     error_tmp = error.reshape(-1, bin_size).sum(axis=1)
     total_tmp = total.reshape((341, -1, bin_size)).sum(axis=2)
     xx_tmp = np.average(xx.reshape(-1, bin_size), axis=1)
-    for mev, offset, x_offset in [(12,45,0.05)]: #, (15,45,-0.03), (20,45,0.18), (25,40,0.3), (30,40,0.26), (50,50,-0.03), (75,50,-0.3)]:
+    for mev, offset, x_offset in [(12,45,0.05), (15,45,-0.03), (20,45,0.18), (25,40,0.3), (30,40,0.26), (50,50,-0.03), (75,50,-0.3)]:
         print(mev,offset)    
         ei = mev/1e3 * 1.602e-19
         vi = np.sqrt(2*ei/m)
@@ -49,5 +49,5 @@ for bin_size in range(1,21):
         dEs = (ei-ef)/1.602e-19*1000 - x_offset
         ints = total_tmp[int((y-offset)/10),:]
         e = np.sqrt(error_tmp)
-        mask = np.logical_and(np.abs(dEs) < 10, np.abs(xx_tmp - xx_tmp[xi]) < 1000)
+        mask = np.logical_and(np.abs(dEs) < 10, np.abs(xx_tmp - xx_tmp[xi]) < 2000)
         np.savetxt("Ei_"+str(mev)+"_meV_"+str(bin_size)+"us.xye",np.array([dEs[mask],ints[mask],e[mask]]).T)
