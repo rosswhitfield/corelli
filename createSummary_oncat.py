@@ -57,12 +57,12 @@ def get_client():
     return auto_refresh_client
 
 
-SAMPLEENV = ['CCR', 'SlimSAM', 'dilfridge', 'dilfridge.SilmSAM', 'OC', 'He3insert', 'Micas70mm']
+SAMPLEENV = ['CCR', 'SlimSAM', 'dilfridge', 'dilfridge.SlimSAM', 'OC', 'He3insert', 'Micas70mm']
 
 title = {'CCR': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE OMEGA,CCR-ColdTip,CCR-Sample\n",
          'SlimSAM': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,OC-COLD-TIP,OC-SAMPLE,Mag-Field\n",
          'dilfridge': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,DILFRIDGE-COLD-TIP,DILFRIDGE-SAMPE\n",
-         'dilfridge.SilmSAM': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,DILFRIDGE-COLD-TIP,DILFRIDGE-SAMPE,Mag-Field\n",
+         'dilfridge.SlimSAM': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,DILFRIDGE-COLD-TIP,DILFRIDGE-SAMPE,Mag-Field\n",
          'OC': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,OC-COLD-TIP,OC-SAMPE\n",
          'He3insert': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE PHI,He3Sample,He3VTI\n",
          'Micas70mm': "RUN,IPTS,START TIME,END TIME,DURATION,PROTON CHARGE,TITLE,TOTAL COUNTS,SAMPLE OMEGA,MicasSamp,MicasOT\n"}
@@ -101,7 +101,7 @@ projections = {'CCR': ['metadata.entry.run_number',
                              'metadata.entry.daslogs.bl9:mot:sample:axis2.average_value',
                              'metadata.entry.daslogs.bl9:se:dilfridge:temperature5.average_value',
                              'metadata.entry.daslogs.bl9:se:dilfridge:temperature5.average_value'],
-               'dilfridge.SilmSAM': ['metadata.entry.run_number',
+               'dilfridge.SlimSAM': ['metadata.entry.run_number',
                                      'metadata.entry.experiment_identifier',
                                      'metadata.entry.start_time',
                                      'metadata.entry.end_time',
