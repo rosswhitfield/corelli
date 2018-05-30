@@ -11,6 +11,11 @@ rawSi_org=CloneWorkspace('rawSi')
 ApplyCalibration('rawSi','CalibTable')
 
 
+rawSi_difc = CalculateDIFC('rawSi')
+rawSi_org_difc = CalculateDIFC('rawSi_org')
+SaveCSV('rawSi_difc', '/SNS/users/rwp/corelli/cal_2018_05/difc.txt')
+SaveCSV('rawSi_org_difc', '/SNS/users/rwp/corelli/cal_2018_05/difc_org.txt')
+
 #MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
 #MaskBTP(Workspace='rawSi',Bank="1-6,29,30,62-67,91")
 
@@ -20,6 +25,19 @@ PDCalibration(InputWorkspace='rawSi',
               TofBinning='3000,-0.001,16660',
               BackgroundType='Flat',
               PeakPositions=DReference,
-              MinimumPeakHeight=2,
+              MinimumPeakHeight=5,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
+
+cal = mtd['cal']
+np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/cal_difc.txt',cal.column(1))
+
+SaveNexus(cal, '/SNS/users/rwp/corelli/cal_2018_05/cal.nxs')
+SaveDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/cal.h5',
+            CalibrationWorkspace="cal",
+            MaskWorkspace='cal_mask')
+
+
+# Check
+ConvertUnits(InputWorkspace='rawSi', OutputWorkspace='rawSi_d', Target='dSpacing')
+AlignDetectors(InputWorkspace='rawSi', OutputWorkspace='rawSi_d_aligned', CalibrationWorkspace='cal')
