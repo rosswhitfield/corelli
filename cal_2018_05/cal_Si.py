@@ -7,4 +7,14 @@ DReference = [1.1085, 1.2458, 1.3576, 1.6374, 1.9200, 3.1353]
 
 Load(Filename='CORELLI_59313-59320', OutputWorkspace='rawSi')
 
+ApplyCalibration('rawSi','CalibTable')
+
+
 MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
+
+
+PDCalibration(InputWorkspace='rawSi',
+              TofBinning='3400,10,16660',
+              PeakPositions=DReference,
+              OutputCalibrationTable='cal',
+              DiagnosticWorkspaces='diagnostic')
