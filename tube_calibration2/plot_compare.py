@@ -14,8 +14,8 @@ for bank in banks:
             tube = i+4*j+1
             old = np.genfromtxt('../tube_calibration/COR_{}_{}_{}.txt'.format(map1[bank],bank,tube))
             new = np.genfromtxt('COR_{}_{}_{}.txt'.format(map2[bank],bank,tube))
-            #new[:,1] *= old[:,1].min()/new[:,1].min()
-            new[:,1] *= 2
+            new[:,1] *= old[:,1].min()/new[:,1].min()
+            #new[:,1] *= 2
             axarr[i, j].plot(old[:,0], old[:,1])
             axarr[i, j].plot(new[:,0], new[:,1])
             axarr[i, j].set_title('bank{}'.format(bank))
