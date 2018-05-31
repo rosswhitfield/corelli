@@ -15,11 +15,14 @@ ApplyCalibration('rawC60','CalibTable')
 PDCalibration(InputWorkspace='rawC60',
               #TofBinning='3400,10,16660',
               TofBinning='3000,-0.001,16660',
-              BackgroundType='Flat',
               PeakPositions=DReference,
               MinimumPeakHeight=5,
+              PeakWindow=0.5,
+              PeakWidthPercent=0.1,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
+
+
 
 cal = mtd['cal']
 np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/C60cal_difc.txt',cal.column(1))
