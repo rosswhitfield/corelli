@@ -13,8 +13,8 @@ ApplyCalibration('rawSi','CalibTable')
 
 rawSi_difc = CalculateDIFC('rawSi')
 rawSi_org_difc = CalculateDIFC('rawSi_org')
-SaveCSV('rawSi_difc', '/SNS/users/rwp/corelli/cal_2018_05/difc.txt')
-SaveCSV('rawSi_org_difc', '/SNS/users/rwp/corelli/cal_2018_05/difc_org.txt')
+np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/difc.txt',rawSi_difc.extractY())
+np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/difc_org.txt',rawSi_org_difc.extractY())
 
 #MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
 #MaskBTP(Workspace='rawSi',Bank="1-6,29,30,62-67,91")
