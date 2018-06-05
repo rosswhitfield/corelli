@@ -5,39 +5,33 @@ tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/
 
 DReference = [1.1085, 1.2458, 1.3576, 1.6374, 1.9200, 3.1353]
 
-Load(Filename='CORELLI_59313-59320', OutputWorkspace='rawSi')
-rawSi_org=CloneWorkspace('rawSi')
+Load(Filename='CORELLI_59313-59320', OutputWorkspace='rawSi', BankName='bank50')
 
 ApplyCalibration('rawSi','CalibTable')
 
-
-rawSi_difc = CalculateDIFC('rawSi')
-rawSi_org_difc = CalculateDIFC('rawSi_org')
-np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/difc.txt',rawSi_difc.extractY())
-np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/difc_org.txt',rawSi_org_difc.extractY())
-
-#MaskBTP(Workspace='rawSi',Pixel="1-16,241-256")
-#MaskBTP(Workspace='rawSi',Bank="1-6,29,30,62-67,91")
-
+TofBinning='3000,-0.001,16660'
 
 PDCalibration(InputWorkspace='rawSi',
-              #TofBinning='3400,10,16660',
-              TofBinning='3000,-0.001,16660',
-              BackgroundType='Flat',
+              TofBinning=TofBinning,
               PeakPositions=DReference,
               MinimumPeakHeight=5,
-              OutputCalibrationTable='cal',
-              DiagnosticWorkspaces='diag')
+              PeakWidthPercent=0.01,
+              OutputCalibrationTable='cal2',
+              DiagnosticWorkspaces='diag2')
 
-cal = mtd['cal']
-np.savetxt('/SNS/users/rwp/corelli/cal_2018_05/cal_difc.txt',cal.column(1))
+rawSi_binned = Rebin('rawSi',Params=TofBinning,PreserveEvents=False)
 
-SaveNexus(cal, '/SNS/users/rwp/corelli/cal_2018_05/cal.nxs')
-SaveDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/cal.h5',
-            CalibrationWorkspace="cal",
-            MaskWorkspace='cal_mask')
+Y = rawSi_binned.extractY()
+Y_sum = Y[::8]+Y[1::8]+Y[2::8]+Y[3::8]+Y[4::8]+Y[5::8]+Y[6::8]+Y[7::8]
 
+for n in range(rawSi_binned.getNumberHistograms()):
+    rawSi_binned.setY(n, Y_sum[n//8])
 
-# Check
-ConvertUnits(InputWorkspace='rawSi', OutputWorkspace='rawSi_d', Target='dSpacing')
-AlignDetectors(InputWorkspace='rawSi', OutputWorkspace='rawSi_d_aligned', CalibrationWorkspace='cal')
+PDCalibration(InputWorkspace='rawSi_binned',
+                            TofBinning=TofBinning,
+                            PeakPositions=DReference,
+                            MinimumPeakHeight=5,
+                            PeakWidthPercent=0.01,
+                            OutputCalibrationTable='cal2B',
+                            DiagnosticWorkspaces='diag2B')
+
