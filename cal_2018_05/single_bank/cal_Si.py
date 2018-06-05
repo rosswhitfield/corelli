@@ -28,10 +28,45 @@ for n in range(rawSi_binned.getNumberHistograms()):
     rawSi_binned.setY(n, Y_sum[n//8])
 
 PDCalibration(InputWorkspace='rawSi_binned',
-                            TofBinning=TofBinning,
-                            PeakPositions=DReference,
-                            MinimumPeakHeight=5,
-                            PeakWidthPercent=0.01,
-                            OutputCalibrationTable='cal2B',
-                            DiagnosticWorkspaces='diag2B')
+              TofBinning=TofBinning,
+              PeakPositions=DReference,
+              MinimumPeakHeight=5,
+              PeakWidthPercent=0.01,
+              OutputCalibrationTable='cal2B',
+              DiagnosticWorkspaces='diag2B')
 
+PDCalibration(InputWorkspace='rawSi_binned',
+              TofBinning=TofBinning,
+              PeakPositions=DReference,
+              MinimumPeakHeight=5,
+              PeakWidthPercent=0.01,
+              PeakFunction='Lorentzian',
+              OutputCalibrationTable='cal2BL',
+              DiagnosticWorkspaces='diag2BL')
+
+
+# Compare in d
+
+CreateGroupingWorkspace(InputWorkspace='rawSi', GroupDetectorsBy='All', OutputWorkspace='group')
+
+
+ConvertUnits(InputWorkspace='rawSi', OutputWorkspace='rawSid', Target='dSpacing')
+DiffractionFocussing('rawSid', OutputWorkspace='rawSid', GroupingWorkspace='group')
+
+AlignDetectors('rawSi', OutputWorkspace='rawSi_d_2', CalibrationWorkspace='cal2')
+DiffractionFocussing('rawSi_d_2', OutputWorkspace='rawSi_d_2', GroupingWorkspace='group')
+AlignDetectors('rawSi', OutputWorkspace='rawSi_d_2B', CalibrationWorkspace='cal2B')
+DiffractionFocussing('rawSi_d_2B', OutputWorkspace='rawSi_d_2B', GroupingWorkspace='group')
+AlignDetectors('rawSi', OutputWorkspace='rawSi_d_2BL', CalibrationWorkspace='cal2BL')
+DiffractionFocussing('rawSi_d_2BL', OutputWorkspace='rawSi_d_2BL', GroupingWorkspace='group')
+
+
+import matplotlib.pyplot as plt
+from mantid import plots
+fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
+ax.plot(mtd['rawSid'])
+ax.plot(mtd['rawSi_d_2'])
+ax.plot(mtd['rawSi_d_2B'])
+ax.plot(mtd['rawSi_d_2BL'])
+ax.axvlines(x=DReference[-1],linewidth=4)
+plt.show()
