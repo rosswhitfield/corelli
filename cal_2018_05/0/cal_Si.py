@@ -3,10 +3,9 @@ from mantid.simpleapi import *
 import tube
 tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/CalibTable2_combined.txt')
 
-DReference = [1.1085, 1.2458, 1.3576, 1.6374, 1.9200, 3.1353]
 DReference = [0.9179, 0.9600, 1.0451, 1.1085, 1.2458, 1.3576, 1.6374, 1.9200, 3.1353]
 
-Load(Filename='CORELLI_59313-59320', OutputWorkspace='rawSi', BankName='bank50')
+Load(Filename='CORELLI_59313-59320', OutputWorkspace='rawSi')
 
 ApplyCalibration('rawSi','CalibTable')
 
@@ -17,8 +16,8 @@ PDCalibration(InputWorkspace='rawSi',
               PeakPositions=DReference,
               MinimumPeakHeight=5,
               PeakWidthPercent=0.01,
-              OutputCalibrationTable='cal2',
-              DiagnosticWorkspaces='diag2')
+              OutputCalibrationTable='cal',
+              DiagnosticWorkspaces='diag')
 
 rawSi_binned = Rebin('rawSi',Params=TofBinning,PreserveEvents=False)
 
@@ -33,8 +32,8 @@ PDCalibration(InputWorkspace='rawSi_binned',
               PeakPositions=DReference,
               MinimumPeakHeight=5,
               PeakWidthPercent=0.01,
-              OutputCalibrationTable='cal2B',
-              DiagnosticWorkspaces='diag2B')
+              OutputCalibrationTable='calB',
+              DiagnosticWorkspaces='diagB')
 
 PDCalibration(InputWorkspace='rawSi_binned',
               TofBinning=TofBinning,
@@ -42,8 +41,8 @@ PDCalibration(InputWorkspace='rawSi_binned',
               MinimumPeakHeight=5,
               PeakWidthPercent=0.01,
               PeakFunction='Lorentzian',
-              OutputCalibrationTable='cal2BL',
-              DiagnosticWorkspaces='diag2BL')
+              OutputCalibrationTable='calBL',
+              DiagnosticWorkspaces='diagBL')
 
 
 # Compare in d
