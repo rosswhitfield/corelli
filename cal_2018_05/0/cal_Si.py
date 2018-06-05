@@ -35,15 +35,8 @@ PDCalibration(InputWorkspace='rawSi_binned',
               OutputCalibrationTable='calB',
               DiagnosticWorkspaces='diagB')
 
-PDCalibration(InputWorkspace='rawSi_binned',
-              TofBinning=TofBinning,
-              PeakPositions=DReference,
-              MinimumPeakHeight=5,
-              PeakWidthPercent=0.01,
-              PeakFunction='Lorentzian',
-              OutputCalibrationTable='calBL',
-              DiagnosticWorkspaces='diagBL')
 
+SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/0/calB_si.h5')
 
 # Compare in d
 
@@ -53,21 +46,18 @@ CreateGroupingWorkspace(InputWorkspace='rawSi', GroupDetectorsBy='All', OutputWo
 ConvertUnits(InputWorkspace='rawSi', OutputWorkspace='rawSid', Target='dSpacing')
 DiffractionFocussing('rawSid', OutputWorkspace='rawSid', GroupingWorkspace='group')
 
-AlignDetectors('rawSi', OutputWorkspace='rawSi_d_2', CalibrationWorkspace='cal2')
-DiffractionFocussing('rawSi_d_2', OutputWorkspace='rawSi_d_2', GroupingWorkspace='group')
-AlignDetectors('rawSi', OutputWorkspace='rawSi_d_2B', CalibrationWorkspace='cal2B')
-DiffractionFocussing('rawSi_d_2B', OutputWorkspace='rawSi_d_2B', GroupingWorkspace='group')
-AlignDetectors('rawSi', OutputWorkspace='rawSi_d_2BL', CalibrationWorkspace='cal2BL')
-DiffractionFocussing('rawSi_d_2BL', OutputWorkspace='rawSi_d_2BL', GroupingWorkspace='group')
+AlignDetectors('rawSi', OutputWorkspace='rawSi_d', CalibrationWorkspace='cal')
+DiffractionFocussing('rawSi_d', OutputWorkspace='rawSi_d', GroupingWorkspace='group')
+AlignDetectors('rawSi', OutputWorkspace='rawSi_dB', CalibrationWorkspace='calB')
+DiffractionFocussing('rawSi_dB', OutputWorkspace='rawSi_dB', GroupingWorkspace='group')
 
 
 import matplotlib.pyplot as plt
 from mantid import plots
 fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
 ax.plot(mtd['rawSid'])
-ax.plot(mtd['rawSi_d_2'])
-ax.plot(mtd['rawSi_d_2B'])
-ax.plot(mtd['rawSi_d_2BL'])
+ax.plot(mtd['rawSi_d'])
+ax.plot(mtd['rawSi_dB'])
 for d in DReference:
-    ax.axvline(d,linewidth=1)
+    ax.axvline(d)
 plt.show()
