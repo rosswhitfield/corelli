@@ -4,6 +4,7 @@ import tube
 tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/CalibTable2_combined.txt')
 
 DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]
+DReference = [4.2694,5.0063,8.1753]
 
 Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60')
 
@@ -16,6 +17,7 @@ PDCalibration(InputWorkspace='rawC60',
               PeakPositions=DReference,
               MinimumPeakHeight=5,
               PeakWidthPercent=0.01,
+              PeakWindow=0.5,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
 
@@ -31,6 +33,7 @@ PDCalibration(InputWorkspace='rawC60_binned',
               TofBinning=TofBinning,
               PeakPositions=DReference,
               MinimumPeakHeight=5,
+              PeakWindow=0.5,
               PeakWidthPercent=0.01,
               OutputCalibrationTable='calB',
               DiagnosticWorkspaces='diagB')
