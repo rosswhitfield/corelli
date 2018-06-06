@@ -4,7 +4,7 @@ import tube
 tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/CalibTable2_combined.txt')
 
 DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]
-DReference = [4.2694,5.0063,8.1753]
+#DReference = [4.2694,5.0063,8.1753]
 
 Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60')
 
@@ -21,6 +21,8 @@ PDCalibration(InputWorkspace='rawC60',
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
 
+SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/0/cal_c60.h5')
+
 rawC60_binned = Rebin('rawC60',Params=TofBinning,PreserveEvents=False)
 
 Y = rawC60_binned.extractY()
@@ -32,7 +34,7 @@ for n in range(rawC60_binned.getNumberHistograms()):
 PDCalibration(InputWorkspace='rawC60_binned',
               TofBinning=TofBinning,
               PeakPositions=DReference,
-              MinimumPeakHeight=5,
+              MinimumPeakHeight=50,
               PeakWindow=0.5,
               PeakWidthPercent=0.01,
               OutputCalibrationTable='calB',
