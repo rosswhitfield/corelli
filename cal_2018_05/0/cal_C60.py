@@ -22,10 +22,10 @@ PDCalibration(InputWorkspace='rawC60',
 rawC60_binned = Rebin('rawC60',Params=TofBinning,PreserveEvents=False)
 
 Y = rawC60_binned.extractY()
-Y_sum = Y[::8]+Y[1::8]+Y[2::8]+Y[3::8]+Y[4::8]+Y[5::8]+Y[6::8]+Y[7::8]
+Y_sum = Y[::4]+Y[1::4]+Y[2::4]+Y[3::4]
 
 for n in range(rawC60_binned.getNumberHistograms()):
-    rawC60_binned.setY(n, Y_sum[n//8])
+    rawC60_binned.setY(n, Y_sum[n//4])
 
 PDCalibration(InputWorkspace='rawC60_binned',
               TofBinning=TofBinning,
