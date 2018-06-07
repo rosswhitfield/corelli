@@ -21,6 +21,16 @@ difc_c60B=CalculateDIFC('corelli',CalibrationWorkspace='c60B_cal')
 diff_c60B = difc_c60B/difc
 
 
+LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/0/cal_si_c60.h5',InstrumentName='CORELLI',WorkspaceName='si_c60')
+difc_si_c60=CalculateDIFC('corelli',CalibrationWorkspace='si_c60_cal')
+diff_si_c60 = difc_si_c60/difc
+
+
+
+
+
+
+
 
 corelli_y2=LoadEmptyInstrument(InstrumentName='CORELLI')
 ApplyCalibration('corelli_y2','CalibTable')

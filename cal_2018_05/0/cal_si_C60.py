@@ -21,7 +21,7 @@ PDCalibration(InputWorkspace='rawC60',
               PeakPositions=DReference,
               MinimumPeakHeight=10,
               PeakWidthPercent=0.01,
-              PeakWindow=0.2,
+              PeakWindow=0.5,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
 
