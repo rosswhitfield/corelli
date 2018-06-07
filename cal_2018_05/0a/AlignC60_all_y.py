@@ -13,3 +13,9 @@ AlignComponents(Workspace='corelli',CalibrationTable="c60_cal",MaskWorkspace="c6
 print(mtd['corelli'].getInstrument().getComponentByName('A row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('B row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('C row').getPos())
+
+# rows - Y
+AlignComponents(Workspace='corelli',CalibrationTable="c60_cal",MaskWorkspace="c60_mask",ComponentList="A row,B row,C row",Yposition=True,AlphaRotation=True)
+print(mtd['corelli'].getInstrument().getComponentByName('A row').getPos())
+print(mtd['corelli'].getInstrument().getComponentByName('B row').getPos())
+print(mtd['corelli'].getInstrument().getComponentByName('C row').getPos())

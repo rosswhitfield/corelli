@@ -68,3 +68,12 @@ RotateInstrumentComponent(Workspace='corelli_a_{}'.format(angle),ComponentName='
 RotateInstrumentComponent(Workspace='corelli_a_{}'.format(angle),ComponentName='C row',Y=1,Angle=angle,RelativeRotation=False)
 CalculateDIFC('corelli_a_{}'.format(angle), OutputWorkspace='difc_a_{}'.format(angle))
 Divide('difc_a_{}'.format(angle),difc,OutputWorkspace='diff_a_{}'.format(angle))
+
+for angle in np.arange(-5.,6.,1.):
+    LoadEmptyInstrument(InstrumentName='CORELLI',OutputWorkspace='corelli_a_{}'.format(angle))
+    ApplyCalibration('corelli_a_{}'.format(angle),'CalibTable')
+    RotateInstrumentComponent(Workspace='corelli_a_{}'.format(angle),ComponentName='A row',Y=1,Angle=angle,RelativeRotation=False)
+    RotateInstrumentComponent(Workspace='corelli_a_{}'.format(angle),ComponentName='B row',Y=1,Angle=angle,RelativeRotation=False)
+    RotateInstrumentComponent(Workspace='corelli_a_{}'.format(angle),ComponentName='C row',Y=1,Angle=angle,RelativeRotation=False)
+    CalculateDIFC('corelli_a_{}'.format(angle), OutputWorkspace='difc_a_{}'.format(angle))
+    Divide('difc_a_{}'.format(angle),difc,OutputWorkspace='diff_a_{}'.format(angle))

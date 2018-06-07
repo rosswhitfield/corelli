@@ -27,7 +27,7 @@ PDCalibration(InputWorkspace='rawC60',
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
 
-SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/0/cal_c60.h5')
+SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/0/cal_c60_y_0.02.h5')
 
 rawC60_binned = Rebin('rawC60',Params=TofBinning,PreserveEvents=False)
 
@@ -46,7 +46,7 @@ PDCalibration(InputWorkspace='rawC60_binned',
               OutputCalibrationTable='calB',
               DiagnosticWorkspaces='diagB')
 
-SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/0/calB_c60.h5')
+SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/0/calB_c60_y_0.02.h5')
 
 # Compare in d
 
