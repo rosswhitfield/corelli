@@ -14,8 +14,15 @@ print(mtd['corelli'].getInstrument().getComponentByName('A row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('B row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('C row').getPos())
 
-# rows - Y
+# Kick them so they start moving
+RotateInstrumentComponent('corelli', ComponentName='A row',Y=1,angle=0.01)
+RotateInstrumentComponent('corelli', ComponentName='B row',Y=1,angle=0.01)
+RotateInstrumentComponent('corelli', ComponentName='C row',Y=1,angle=0.01)
+
 AlignComponents(Workspace='corelli',CalibrationTable="c60_cal",MaskWorkspace="c60_mask",ComponentList="A row,B row,C row",Yposition=True,AlphaRotation=True)
 print(mtd['corelli'].getInstrument().getComponentByName('A row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('B row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('C row').getPos())
+print(mtd['corelli'].getInstrument().getComponentByName('A row').getRotation().getEulerAngles())
+print(mtd['corelli'].getInstrument().getComponentByName('B row').getRotation().getEulerAngles())
+print(mtd['corelli'].getInstrument().getComponentByName('C row').getRotation().getEulerAngles())
