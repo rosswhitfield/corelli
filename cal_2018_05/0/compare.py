@@ -10,13 +10,13 @@ LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/0/calB_si.h5',Instrumen
 difc=CalculateDIFC('corelli')
 difc_si=CalculateDIFC('corelli',CalibrationWorkspace='si_cal')
 
-diff_si = difc/difc_si
+diff_si = difc_si/difc
 
 
 LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/0/cal_c60.h5',InstrumentName='CORELLI',WorkspaceName='c60')
 
 difc_c60=CalculateDIFC('corelli',CalibrationWorkspace='c60_cal')
 
-diff_c60 = difc/difc_c60
+diff_c60 = difc_c60/difc
 
 
