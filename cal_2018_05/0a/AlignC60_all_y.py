@@ -26,3 +26,6 @@ print(mtd['corelli'].getInstrument().getComponentByName('C row').getPos())
 print(mtd['corelli'].getInstrument().getComponentByName('A row').getRotation().getEulerAngles())
 print(mtd['corelli'].getInstrument().getComponentByName('B row').getRotation().getEulerAngles())
 print(mtd['corelli'].getInstrument().getComponentByName('C row').getRotation().getEulerAngles())
+
+
+AlignComponents(Workspace='corelli',CalibrationTable="c60_cal",MaskWorkspace="c60_mask",ComponentList="A row,B row,C row",Xposition=True,Yposition=True,Zposition=True)
