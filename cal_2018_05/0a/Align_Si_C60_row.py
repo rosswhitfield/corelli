@@ -27,6 +27,8 @@ print(mtd['corelli'].getInstrument().getComponentByName('A row').getRotation().g
 print(mtd['corelli'].getInstrument().getComponentByName('B row').getRotation().getEulerAngles())
 print(mtd['corelli'].getInstrument().getComponentByName('C row').getRotation().getEulerAngles())
 
+SaveNexus('corelli','/SNS/users/rwp/corelli/cal_2018_05/0a/Aligned_row_si_c60.nxs')
+
 difc_new=CalculateDIFC('corelli')
 difc_diff = difc_new/difc_old
 
