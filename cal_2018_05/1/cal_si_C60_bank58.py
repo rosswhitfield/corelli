@@ -3,9 +3,11 @@ from mantid.simpleapi import *
 import tube
 tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/CalibTable2_combined.txt')
 
+LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/1/calB_si.h5',InstrumentName='CORELLI',WorkspaceName='si')
+
 DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]
 
-Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60')
+Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60',BankName='bank58')
 
 ApplyCalibration('rawC60','CalibTable')
 
@@ -15,14 +17,13 @@ TofBinning='3000,-0.001,16660'
 
 PDCalibration(InputWorkspace='rawC60',
               TofBinning=TofBinning,
+              PreviousCalibrationTable='si_cal',
               PeakPositions=DReference,
-              MinimumPeakHeight=10,
-              PeakWidthPercent=0.01,
+              MinimumPeakHeight=5,
+              PeakWidthPercent=0.03,
               PeakWindow=0.5,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
-
-SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/1/cal_c60.h5')
 
 rawC60_binned = Rebin('rawC60',Params=TofBinning,PreserveEvents=False)
 
@@ -34,14 +35,14 @@ for n in range(rawC60_binned.getNumberHistograms()):
 
 PDCalibration(InputWorkspace='rawC60_binned',
               TofBinning=TofBinning,
+              PreviousCalibrationTable='si_cal',
+              BackgroundType='Flat',
               PeakPositions=DReference,
               MinimumPeakHeight=50,
               PeakWindow=0.5,
               PeakWidthPercent=0.01,
               OutputCalibrationTable='calB',
               DiagnosticWorkspaces='diagB')
-
-SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/1/calB_c60.h5')
 
 # Compare in d
 

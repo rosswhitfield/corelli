@@ -21,6 +21,8 @@ PDCalibration(InputWorkspace='rawSi',
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
 
+SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/1/cal_si.h5')
+
 rawSi_binned = Rebin('rawSi',Params=TofBinning,PreserveEvents=False)
 
 Y = rawSi_binned.extractY()
@@ -37,8 +39,8 @@ PDCalibration(InputWorkspace='rawSi_binned',
               OutputCalibrationTable='calB',
               DiagnosticWorkspaces='diagB')
 
-
 SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/1/calB_si.h5')
+
 
 # Compare in d
 
