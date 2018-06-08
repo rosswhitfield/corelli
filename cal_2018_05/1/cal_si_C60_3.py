@@ -5,7 +5,7 @@ tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/
 
 LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/1/calB_si.h5',InstrumentName='CORELLI',WorkspaceName='si')
 
-DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]
+#DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]
 DReference = [4.2694,5.0063,8.1753]
 
 Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60')
@@ -21,7 +21,7 @@ PDCalibration(InputWorkspace='rawC60',
               PreviousCalibrationTable='si_cal',
               BackgroundType='Flat',
               PeakPositions=DReference,
-              MinimumPeakHeight=20,
+              MinimumPeakHeight=50,
               PeakWidthPercent=0.03,
               PeakWindow=0.5,
               OutputCalibrationTable='cal',
