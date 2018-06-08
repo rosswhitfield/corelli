@@ -21,9 +21,10 @@ PDCalibration(InputWorkspace='rawC60',
               PreviousCalibrationTable='si_cal',
               BackgroundType='Flat',
               PeakPositions=DReference,
-              MinimumPeakHeight=20,
+              MinimumPeakHeight=10,
               PeakWidthPercent=0.03,
               PeakWindow=0.5,
+              MaxChiSq=1000,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
 

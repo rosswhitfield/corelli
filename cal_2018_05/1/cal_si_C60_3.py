@@ -8,13 +8,13 @@ LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/1/calB_si.h5',Instrumen
 DReference = [2.7251,2.8904,4.2694,5.0063,8.1753]
 DReference = [4.2694,5.0063,8.1753]
 
-Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60',BankName='bank58')
+Load(Filename='CORELLI_59583-59590', OutputWorkspace='rawC60')
 
 ApplyCalibration('rawC60','CalibTable')
 
 LoadIsawDetCal('rawC60','/SNS/users/rwp/corelli/cal_2018_05/0a/Aligned_row_si_c60.nxs.detcal')
 
-TofBinning='3000,-0.01,12000'
+TofBinning='3000,-0.01,16660'
 
 PDCalibration(InputWorkspace='rawC60',
               TofBinning=TofBinning,
@@ -26,6 +26,8 @@ PDCalibration(InputWorkspace='rawC60',
               PeakWindow=0.5,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
+
+SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/1/cal_si_c60_3.h5')
 
 rawC60_binned = Rebin('rawC60',Params=TofBinning,PreserveEvents=False)
 
@@ -45,6 +47,8 @@ PDCalibration(InputWorkspace='rawC60_binned',
               PeakWidthPercent=0.01,
               OutputCalibrationTable='calB',
               DiagnosticWorkspaces='diagB')
+
+SaveDiffCal('calB',MaskWorkspace='calB_mask', Filename='/SNS/users/rwp/corelli/cal_2018_05/1/calB_si_c60_3.h5')
 
 # Compare in d
 
