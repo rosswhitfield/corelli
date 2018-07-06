@@ -57,7 +57,7 @@ DiffractionFocussing('rawC60d', OutputWorkspace='rawC60d', GroupingWorkspace='gr
 
 AlignDetectors('rawC60', OutputWorkspace='rawC60_d', CalibrationWorkspace='cal')
 DiffractionFocussing('rawC60_d', OutputWorkspace='rawC60_d', GroupingWorkspace='group')
-AlignDetectors('rawC60', OutputWorkspace='rawC60_dB', CalibrationWorkspace='cal2B')
+AlignDetectors('rawC60', OutputWorkspace='rawC60_dB', CalibrationWorkspace='calB')
 DiffractionFocussing('rawC60_dB', OutputWorkspace='rawC60_dB', GroupingWorkspace='group')
 
 
