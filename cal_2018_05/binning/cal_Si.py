@@ -15,13 +15,13 @@ for d in [-0.02, -0.01, -0.005, -0.002, -0.001]:
     Rebin(InputWorkspace='rawSi', OutputWorkspace='rawSi_{}'.format(d),Params=TofBinning)
             
 
-TofBinning='3000,-0.001,16660'
-
-PDCalibration(InputWorkspace='rawSi',
-              TofBinning=TofBinning,
-              PeakPositions=DReference,
-              MinimumPeakHeight=5,
-              PeakWidthPercent=0.01,
-              OutputCalibrationTable='cal',
-              DiagnosticWorkspaces='diag')
+for d in [-0.02, -0.01, -0.005, -0.002, -0.001]:
+    TofBinning='3000,{},16660'.format(d)
+    PDCalibration(InputWorkspace='rawSi',
+                  TofBinning=TofBinning,
+                  PeakPositions=DReference,
+                  MinimumPeakHeight=5,
+                  PeakWidthPercent=0.01,
+                  OutputCalibrationTable='cal',
+                  DiagnosticWorkspaces='diag')
 
