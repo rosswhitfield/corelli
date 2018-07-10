@@ -17,11 +17,14 @@ for d in [-0.02, -0.01, -0.005, -0.002, -0.001]:
 
 for d in [-0.02, -0.01, -0.005, -0.002, -0.001]:
     TofBinning='3000,{},16660'.format(d)
-    PDCalibration(InputWorkspace='rawSi',
-                  TofBinning=TofBinning,
-                  PeakPositions=DReference,
-                  MinimumPeakHeight=5,
-                  PeakWidthPercent=0.01,
-                  OutputCalibrationTable='cal',
-                  DiagnosticWorkspaces='diag')
+    try:
+        PDCalibration(InputWorkspace='rawSi',
+                      TofBinning=TofBinning,
+                      PeakPositions=DReference,
+                      MinimumPeakHeight=5,
+                      PeakWidthPercent=0.01,
+                      OutputCalibrationTable='cal_{}'.format(d),
+                      DiagnosticWorkspaces='diag_{}'.format(d))
+    except:
+        pass
 
