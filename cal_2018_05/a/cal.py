@@ -63,3 +63,7 @@ si_difc = CalculateDIFC('rawSi', CalibrationWorkspace='Si_cal')
 c60_difc = CalculateDIFC('rawSi', CalibrationWorkspace='C60_cal')
 si_diff = si_difc/difc
 c60_diff = c60_difc/difc
+
+
+combined_cal = CloneWorkspace('Si_cal')
+combined_mask = CloneWorkspace('Si_cal_mask')
