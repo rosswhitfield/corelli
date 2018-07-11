@@ -52,7 +52,7 @@ plt.legend()
 plt.show()
 
 
-plt.plot(si/difc,label='si')
-plt.plot(c60/difc,label='c60')
+plt.plot(si/difcc,label='si')
+plt.plot(c60/difcc,label='c60')
 plt.legend()
 plt.show()
