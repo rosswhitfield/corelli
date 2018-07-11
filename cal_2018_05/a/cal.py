@@ -56,3 +56,10 @@ plt.plot(si/difcc,label='si')
 plt.plot(c60/difcc,label='c60')
 plt.legend()
 plt.show()
+
+
+
+si_difc = CalculateDIFC('rawSi', CalibrationWorkspace='Si_cal')
+c60_difc = CalculateDIFC('rawSi', CalibrationWorkspace='C60_cal')
+si_diff = si_difc/difc
+c60_diff = c60_difc/difc
