@@ -35,3 +35,24 @@ PDCalibration(InputWorkspace='rawSi',
               PeakWidthPercent=0.01,
               OutputCalibrationTable='Si_cal',
               DiagnosticWorkspaces='Si_diag')
+
+difc=CalculateDIFC('rawSi')
+
+import matplotlib.pyplot as plt
+import numpy as np
+
+si = np.array(mtd['Si_cal'].column(1))
+c60 = np.array(mtd['C60_cal'].column(1))
+difcc = difc.extractY().flatten()
+
+plt.plot(difcc,label='difc')
+plt.plot(si,label='si')
+plt.plot(c60,label='c60')
+plt.legend()
+plt.show()
+
+
+plt.plot(si/difc,label='si')
+plt.plot(c60/difc,label='c60')
+plt.legend()
+plt.show()
