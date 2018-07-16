@@ -9,7 +9,7 @@ LoadIsawDetCal('corelli','/SNS/users/rwp/corelli/cal_2018_05/a/Aligned.nxs.detca
 
 difc_old=CalculateDIFC('corelli')
 
-LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/a/cal.h5',InstrumentName='CORELLI',WorkspaceName='cal')
+LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_05/a/cal2.h5',InstrumentName='CORELLI',WorkspaceName='cal')
 
 MaskBTP('cal_mask',Bank='26',Tube='1-8')
 MaskBTP('cal_mask',Bank='74',Tube='13')
