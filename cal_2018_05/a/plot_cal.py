@@ -15,6 +15,7 @@ with h5py.File('cal3.h5', 'r') as f:
 
 
 plt.plot(cal1/cal_org,label='cal1')
+plt.plot(cal2/cal_org,label='cal2')
 plt.plot(cal3/cal_org,label='cal3')
 plt.legend()
 plt.show()
