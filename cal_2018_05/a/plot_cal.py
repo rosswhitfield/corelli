@@ -19,3 +19,11 @@ plt.plot(cal2/cal_org,label='cal2')
 plt.plot(cal3/cal_org,label='cal3')
 plt.legend()
 plt.show()
+
+
+
+plt.plot(cal1/cal_org,label='cal1')
+plt.plot(cal2/cal1,label='cal2')
+plt.plot(cal3/cal2,label='cal3')
+plt.legend()
+plt.show()
