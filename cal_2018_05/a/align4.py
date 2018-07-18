@@ -20,7 +20,7 @@ componentList =  ','.join("bank"+str(i)+"/sixteenpack" for i in range(1,92))
 
 #AlignComponents(Workspace='corelli',CalibrationTable="cal_cal",MaskWorkspace="cal_mask",ComponentList=componentList,GammaRotation=True)
 #AlignComponents(Workspace='corelli',CalibrationTable="cal_cal",MaskWorkspace="cal_mask",ComponentList=componentList,GammaRotation=True,Xposition=True,YPosition=True,Zposition=True)
-AlignComponents(Workspace='corelli',CalibrationTable="cal_cal",MaskWorkspace="cal_mask",ComponentList=componentList,AlphaRotation=True,GammaRotation=True,Xposition=True,YPosition=True,Zposition=True)
+AlignComponents(Workspace='corelli',CalibrationTable="cal_cal",MaskWorkspace="cal_mask",ComponentList=componentList,AlphaRotation=True,GammaRotation=True,Xposition=True,Zposition=True)
 
 SaveNexus('corelli','/SNS/users/rwp/corelli/cal_2018_05/a/Aligned4.nxs')
 
