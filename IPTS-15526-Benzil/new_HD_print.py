@@ -1,4 +1,5 @@
 from mantid.simpleapi import *
+import numpy as np
 
 sa='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs'
 flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs'
@@ -41,14 +42,21 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_29782:29817',
                               SymmetryOps="P 31 2 1")
 SaveMD('output', Filename='/SNS/users/rwp/benzil/benzil_300K_volume_1251_1251.nxs')
 
-out=mtd['output'].getSignalArray()
+out=mtd['output'].getSignalArray().copy()
 
 import matplotlib
 matplotlib.image.imsave('benzil_300K_hk0.png', out[:,:,0], vmin=2.5e-6, vmax=1e-5)
 matplotlib.image.imsave('benzil_300K_hk1.png', out[:,:,5], vmin=2.5e-6, vmax=1e-5)
 
-
-
+hk0 = out[:,:,0]
+hk1 = out[:,:,5]
+lx, ly = out[:,:,0].shape
+X, Y = np.ogrid[0:lx, 0:ly]
+mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
+hk0[mask]=np.nan
+hk1[mask]=np.nan
+matplotlib.image.imsave('benzil_300K_hk0_mask.png', hk0, vmin=2.5e-6, vmax=1e-5)
+matplotlib.image.imsave('benzil_300K_hk1_mask.png', hk1, vmin=2.5e-6, vmax=1e-5)
 
 # 100K 
 
@@ -74,3 +82,11 @@ out=mtd['output'].getSignalArray()
 
 matplotlib.image.imsave('benzil_100K_hk0.png', out[:,:,0], vmin=2.5e-6, vmax=1e-5)
 matplotlib.image.imsave('benzil_100K_hk1.png', out[:,:,5], vmin=2.5e-6, vmax=1e-5)
+
+hk0 = out[:,:,0]
+hk1 = out[:,:,5]
+hk0[mask]=np.nan
+hk1[mask]=np.nan
+matplotlib.image.imsave('benzil_100K_hk0_mask.png', hk0, vmin=2.5e-6, vmax=1e-5)
+matplotlib.image.imsave('benzil_100K_hk1_mask.png', hk1, vmin=2.5e-6, vmax=1e-5)
+
