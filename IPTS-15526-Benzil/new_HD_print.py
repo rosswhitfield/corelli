@@ -67,9 +67,9 @@ import matplotlib
 matplotlib.image.imsave('benzil_300K_hk0.png', out[:,:,0], vmin=2.5e-6, vmax=1e-5)
 matplotlib.image.imsave('benzil_300K_hk1.png', out[:,:,5], vmin=2.5e-6, vmax=1e-5)
 
-hk0 = out[:,:,0].copy()
-hk1 = out[:,:,5].copy()
-lx, ly = out[:,:,0].shape
+hk0 = out[100:1901,100:1901,0].copy()
+hk1 = out[100:1901,100:1901,5].copy()
+lx, ly = hk0.shape
 X, Y = np.ogrid[0:lx, 0:ly]
 mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
 hk0[mask]=np.nan
