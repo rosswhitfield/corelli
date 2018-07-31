@@ -64,11 +64,11 @@ SaveMD('output', Filename='/SNS/users/rwp/benzil/benzil_300K_volume_1251_1251.nx
 out=mtd['output'].getSignalArray().copy()
 
 import matplotlib
-matplotlib.image.imsave('benzil_300K_hk0.png', out[:,:,0], vmin=2.5e-6, vmax=1e-5)
-matplotlib.image.imsave('benzil_300K_hk1.png', out[:,:,5], vmin=2.5e-6, vmax=1e-5)
+matplotlib.image.imsave('benzil_300K_hk0.png', out[200:1801,200:1801,0], vmin=2.5e-6, vmax=1e-5)
+matplotlib.image.imsave('benzil_300K_hk1.png', out[200:1801,200:1801,5], vmin=2.5e-6, vmax=1e-5)
 
-hk0 = out[100:1901,100:1901,0].copy()
-hk1 = out[100:1901,100:1901,5].copy()
+hk0 = out[200:1801,200:1801,0].copy()
+hk1 = out[200:1801,200:1801,5].copy()
 lx, ly = hk0.shape
 X, Y = np.ogrid[0:lx, 0:ly]
 mask = (X - lx / 2) ** 2 + (Y - ly / 2) ** 2 > lx * ly / 4
@@ -79,13 +79,13 @@ matplotlib.image.imsave('benzil_300K_hk1_mask.png', hk1, vmin=2.5e-6, vmax=1e-5)
 
 
 from scipy import ndimage
-hk0_smooth = out[:,:,0].copy()
+hk0_smooth = out[200:1801,200:1801,0].copy()
 hk0_smooth = ndimage.median_filter(hk0_smooth, 3)
 matplotlib.image.imsave('benzil_300K_hk0_smooth.png', hk0_smooth, vmin=2.5e-6, vmax=1e-5)
 hk0_smooth[mask]=np.nan
 matplotlib.image.imsave('benzil_300K_hk0_mask_smooth.png', hk0_smooth, vmin=2.5e-6, vmax=1e-5)
 
-hk1_smooth = out[:,:,5].copy()
+hk1_smooth = out[200:1801,200:1801,5].copy()
 hk1_smooth = ndimage.median_filter(hk1_smooth, 3)
 matplotlib.image.imsave('benzil_300K_hk1_smooth.png', hk1_smooth, vmin=2.5e-6, vmax=1e-5)
 hk1_smooth[mask]=np.nan
@@ -133,24 +133,24 @@ SaveMD('output', Filename='/SNS/users/rwp/benzil/benzil_100K_volume_2001_2001.nx
 
 out=mtd['output'].getSignalArray().copy()
 
-matplotlib.image.imsave('benzil_100K_hk0.png', out[:,:,0], vmin=2.5e-6, vmax=1e-5)
-matplotlib.image.imsave('benzil_100K_hk1.png', out[:,:,5], vmin=2.5e-6, vmax=1e-5)
+matplotlib.image.imsave('benzil_100K_hk0.png', out[200:1801,200:1801,0], vmin=2.5e-6, vmax=1e-5)
+matplotlib.image.imsave('benzil_100K_hk1.png', out[200:1801,200:1801,5], vmin=2.5e-6, vmax=1e-5)
 
-hk0 = out[:,:,0].copy()
-hk1 = out[:,:,5].copy()
+hk0 = out[200:1801,200:1801,0].copy()
+hk1 = out[200:1801,200:1801,5].copy()
 hk0[mask]=np.nan
 hk1[mask]=np.nan
 matplotlib.image.imsave('benzil_100K_hk0_mask.png', hk0, vmin=2.5e-6, vmax=1e-5)
 matplotlib.image.imsave('benzil_100K_hk1_mask.png', hk1, vmin=2.5e-6, vmax=1e-5)
 
 
-hk0_smooth = out[:,:,0].copy()
+hk0_smooth = out[200:1801,200:1801,0].copy()
 hk0_smooth = ndimage.median_filter(hk0_smooth, 3)
 matplotlib.image.imsave('benzil_100K_hk0_smooth.png', hk0_smooth, vmin=2.5e-6, vmax=1e-5)
 hk0_smooth[mask]=np.nan
 matplotlib.image.imsave('benzil_100K_hk0_mask_smooth.png', hk0_smooth, vmin=2.5e-6, vmax=1e-5)
 
-hk1_smooth = out[:,:,5].copy()
+hk1_smooth = out[200:1801,200:1801,5].copy()
 hk1_smooth = ndimage.median_filter(hk1_smooth, 3)
 matplotlib.image.imsave('benzil_100K_hk1_smooth.png', hk1_smooth, vmin=2.5e-6, vmax=1e-5)
 hk1_smooth[mask]=np.nan
