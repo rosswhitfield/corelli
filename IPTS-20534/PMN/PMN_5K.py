@@ -39,8 +39,14 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_82204:82232',
                               BinningDim0='-10.02,10.02,501',
                               BinningDim1='-10.02,10.02,501',
                               BinningDim2='-10.02,10.02,501')
+SaveMD('sym_all', '/SNS/users/rwp/corelli/IPTS-20534/PMN/sym_all.nxs')
 
+LoadMD(Filename='/SNS/users/rwp/corelli/IPTS-20534/PMN/sym_all.nxs', LoadHistory=False, OutputWorkspace='PMN_5k')
+SliceMDHisto(InputWorkspace='PMN_5k', Start='80,80,80', End='421,421,421', OutputWorkspace='slice')
+DeltaPDF3D(InputWorkspace='slice', IntermediateWorkspace='ints', OutputWorkspace='outs', Method='KAREN', SphereMin='8.98847e+307', SphereMax='8.98847e+307', Convolution=False)
+SaveMD('outs', '/SNS/users/rwp/corelli/IPTS-20534/PMN/sym_all_slice_pdf.nxs')
 
+SaveMDWorkspaceToVTK('outs', '/SNS/users/rwp/corelli/IPTS-20534/PMN/sym_all_slice_pdf.vts')
 
 # With background
 
@@ -82,7 +88,5 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_82204:82232',
                               SymmetryOps='225',
                               BinningDim0='-7.51,7.51,751',
                               BinningDim1='-7.51,7.51,751',
-                              BinningDim2='-7.51,7.51,751',
-                              KeepTemporaryWorkspaces=True)
-
-
+                              BinningDim2='-7.51,7.51,751')
+SaveMD('sym_all_subBkg', '/SNS/users/rwp/corelli/IPTS-20534/PMN/sym_all_subBkg.nxs')
