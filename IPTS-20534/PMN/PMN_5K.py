@@ -57,3 +57,32 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_82204:82232',
                               BinningDim2='-10.02,10.02,501',
                               KeepTemporaryWorkspaces=True)
 
+SingleCrystalDiffuseReduction(Filename='CORELLI_82204:82232',
+                              Background='CORELLI_82129',
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2018B_1019_CCR/SolidAngle_CCR_20181019tot.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2018B_1019_CCR/Spectrum_CCR_20181019tot.nxs',
+                              OutputWorkspace='output_subBkg_1000',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis3,0,1,0,1",
+                              UBMatrix="/SNS/users/rwp/corelli/IPTS-20534/PMN/PMN_5K.mat",
+                              BinningDim0='-10.01,10.01,1001',
+                              BinningDim1='-10.01,10.01,1001',
+                              BinningDim2='-10.01,10.01,1001',
+                              KeepTemporaryWorkspaces=True)
+
+
+SingleCrystalDiffuseReduction(Filename='CORELLI_82204:82232',
+                              Background='CORELLI_82129',
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2018B_1019_CCR/SolidAngle_CCR_20181019tot.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2018B_1019_CCR/Spectrum_CCR_20181019tot.nxs',
+                              OutputWorkspace='sym_all_subBkg',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis3,0,1,0,1",
+                              UBMatrix="/SNS/users/rwp/corelli/IPTS-20534/PMN/PMN_5K.mat",
+                              SymmetryOps='225',
+                              BinningDim0='-10.02,10.02,501',
+                              BinningDim1='-10.02,10.02,501',
+                              BinningDim2='-10.02,10.02,501')
+
+
+
