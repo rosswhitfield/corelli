@@ -31,7 +31,23 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_20153:20229',
                               OutputWorkspace='output',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-                              UBMatrix=outDir+'Ba3Co2O6_UB_300K.mat',
-                              BinningDim0='-10.02,10.02,501',
-                              BinningDim1='-10.02,10.02,501',
-                              BinningDim2='-10.02,10.02,501')
+                              UBMatrix=outDir+'Ba3Co2O6_300K_2.mat',
+                              BinningDim0='-15.02,15.02,751',
+                              BinningDim1='-15.02,15.02,751',
+                              BinningDim2='-15.02,15.02,751')
+
+
+
+# sym 152?
+SingleCrystalDiffuseReduction(Filename='CORELLI_20153:20229',
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2016B/Spectrum20160720NoCC.nxs',
+                              OutputWorkspace='sym',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              UBMatrix=outDir+'Ba3Co2O6_300K_2.mat',
+                              BinningDim0='-15.02,15.02,751',
+                              BinningDim1='-15.02,15.02,751',
+                              BinningDim2='-15.02,15.02,751',
+                              SymmetryOps=152)
+
