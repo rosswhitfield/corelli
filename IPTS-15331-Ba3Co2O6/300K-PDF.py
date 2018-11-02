@@ -11,15 +11,19 @@ SelectCellOfType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True)
 SaveIsawUB('peaks', outDir+'Ba3Co2O6_300K_H.mat')
 
 
-FindPeaksMD(InputWorkspace='md', MaxPeaks=1000, OutputWorkspace='peaks')
+FindPeaksMD(InputWorkspace='md', MaxPeaks=1000, DensityThresholdFactor=100, OutputWorkspace='peaks')
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=1, MaxD=15)
 ShowPossibleCells(PeaksWorkspace='peaks', AllowPermutations=False)
-SelectCellOfType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True, AllowPermutations=False)
+SelectCellOfType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True)
 IndexPeaks(PeaksWorkspace='peaks')
 OptimizeLatticeForCellType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True)
 
 SaveIsawUB('peaks', outDir+'Ba3Co2O6_300K.mat')
 
+peaks=mtd['peaks']
+ol=peaks.sample().getOrientedLattice()
+ol.setc(ol.c()*2)
+SaveIsawUB('peaks', outDir+'Ba3Co2O6_300K_2.mat')
 
 SingleCrystalDiffuseReduction(Filename='CORELLI_20153:20229',
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016B/SolidAngle20160720NoCC.nxs',
