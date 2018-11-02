@@ -1,6 +1,6 @@
-outDir = '/SNS/users/rwp/corelli/ZrO2/'
+outDir = '/SNS/users/rwp/corelli/ZrO2/IPTS-12310/'
 
-ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_8192:8246',SetGoniometer=True,Axis0='BL9:Mot:Sample:Axis1,0,1,0,1',OutputWorkspace='md',MinValues=[-15,-15,-15],MaxValues=[15,15,15])
+ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_8568:8601',SetGoniometer=True,Axis0='BL9:Mot:Sample:Axis1,0,1,0,1',OutputWorkspace='md',MinValues=[-15,-15,-15],MaxValues=[15,15,15])
 FindPeaksMD(InputWorkspace='md', PeakDistanceThreshold=0.25, DensityThresholdFactor=1000000, OutputWorkspace='peaks')
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=4, MaxD=6)
 ShowPossibleCells(PeaksWorkspace='peaks')
@@ -9,10 +9,9 @@ IndexPeaks(PeaksWorkspace='peaks')
 
 SaveIsawUB('peaks', outDir+'ZrO2_300K.mat')
 
-
 SingleCrystalDiffuseReduction(Filename='CORELLI_8192:8246',
-                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2015A/SolidAngle20150411.nxs',
-                              Flux='/SNS/CORELLI/shared/Vanadium/2015A/Spectrum20150411.nxs',
+                              SolidAngle=outDir+'SA.nxs',
+                              Flux=outDir+'Flux.nxs',
                               OutputWorkspace='output',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
