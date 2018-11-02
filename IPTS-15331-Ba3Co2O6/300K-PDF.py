@@ -49,5 +49,5 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_20153:20229',
                               BinningDim0='-15.02,15.02,751',
                               BinningDim1='-15.02,15.02,751',
                               BinningDim2='-15.02,15.02,751',
-                              SymmetryOps=152)
+                              SymmetryOps='152')
 
