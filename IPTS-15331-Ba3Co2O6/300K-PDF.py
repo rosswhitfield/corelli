@@ -1,15 +1,24 @@
 outDir = '/SNS/users/rwp/corelli/IPTS-15331-Ba3Co2O6/'
 
-"""
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_20153:20229',SetGoniometer=True,Axis0='BL9:Mot:Sample:Axis1,0,1,0,1',OutputWorkspace='md',MinValues=[-15,-15,-15],MaxValues=[15,15,15])
-FindPeaksMD(InputWorkspace='md', PeakDistanceThreshold=0.25, DensityThresholdFactor=500000, OutputWorkspace='peaks')
-FindUBUsingFFT(PeaksWorkspace='peaks', MinD=4, MaxD=12)
-ShowPossibleCells(PeaksWorkspace='peaks')
-SelectCellOfType(PeaksWorkspace='peaks', CellType='Orthorhombic', Centering='F', Apply=True)
-IndexPeaks(PeaksWorkspace='peaks')
 
-SaveIsawUB('peaks', outDir+'ZrO2_300K.mat')
-"""
+FindPeaksMD(InputWorkspace='md', MaxPeaks=500, DensityThresholdFactor=100, OutputWorkspace='peaks')
+FindUBUsingFFT(PeaksWorkspace='peaks', MinD=1, MaxD=15)
+SaveIsawUB('peaks', outDir+'Ba3Co2O6_300K.mat')
+
+ShowPossibleCells(PeaksWorkspace='peaks')
+SelectCellOfType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True)
+SaveIsawUB('peaks', outDir+'Ba3Co2O6_300K_H.mat')
+
+
+FindPeaksMD(InputWorkspace='md', MaxPeaks=1000, OutputWorkspace='peaks')
+FindUBUsingFFT(PeaksWorkspace='peaks', MinD=1, MaxD=15)
+ShowPossibleCells(PeaksWorkspace='peaks', AllowPermutations=False)
+SelectCellOfType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True, AllowPermutations=False)
+IndexPeaks(PeaksWorkspace='peaks')
+OptimizeLatticeForCellType(PeaksWorkspace='peaks', CellType='Hexagonal', Apply=True)
+
+SaveIsawUB('peaks', outDir+'Ba3Co2O6_300K.mat')
 
 
 SingleCrystalDiffuseReduction(Filename='CORELLI_20153:20229',
