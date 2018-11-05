@@ -16,7 +16,7 @@ OptimizeLatticeForCellType(PeaksWorkspace='peaks', Apply=True)
 
 SaveIsawUB('peaks', outDir+'ZrO2_300K.mat')
 
-SingleCrystalDiffuseReduction(Filename='CORELLI_8192:8246',
+SingleCrystalDiffuseReduction(Filename='CORELLI_8569:8601',
                               SolidAngle=outDir+'SA.nxs',
                               Flux=outDir+'Flux.nxs',
                               MaskFile=outDir+'mask.xml',
