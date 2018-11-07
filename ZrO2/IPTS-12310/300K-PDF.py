@@ -44,3 +44,18 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_8569:8601',
                               SymmetryOps='221') # Really 225
 
 SaveMD('sym', outDir+'ZrO2_300K_sym.nxs')
+#sym=LoadMD(outDir+'ZrO2_300K_sym.nxs')
+
+SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-12310/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(8569,8602)),
+                              SolidAngle=outDir+'SA.nxs',
+                              Flux=outDir+'Flux.nxs',
+                              OutputWorkspace='elastic',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              UBMatrix=outDir+'ZrO2_300K.mat',
+                              BinningDim0='-10.02,10.02,501',
+                              BinningDim1='-10.02,10.02,501',
+                              BinningDim2='-10.02,10.02,501')
+#SymmetryOps='221') # Really 225
+
+SaveMD('sym', outDir+'ZrO2_300K_elastic_sym.nxs')

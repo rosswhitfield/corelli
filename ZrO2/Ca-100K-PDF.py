@@ -2,7 +2,7 @@ outDir = '/SNS/users/rwp/corelli/ZrO2/'
 
 ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_2340:2360',
                                      SetGoniometer=True,
-                                     Axis0='BL9:Mot:Sample:Axis1,0,1,0,1',
+                                     Axis0='BL9:Mot:Sample:Axis1,0,1,0,1', # Something is wrong with the goniometer
                                      OutputWorkspace='md',
                                      MinValues=[-15,-15,-15],
                                      MaxValues=[15,15,15])
