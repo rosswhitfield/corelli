@@ -14,7 +14,7 @@ SaveMask('CORELLI', outDir+'mask_2432.xml')
 SA, Flux = MDNormSCDPreprocessIncoherent(Filename='CORELLI_2432',
                                          MomentumMin=2.5,
                                          MomentumMax=10,
-                                         MaskFile=outDir+'mask.xml')
+                                         MaskFile=outDir+'mask_2432.xml')
 
 
 SaveNexus(SA, outDir+'SA_2432.nxs')

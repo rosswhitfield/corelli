@@ -1,8 +1,8 @@
 outDir = '/SNS/users/rwp/corelli/ZrO2/'
 
-ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_2274:2318',
+ConvertMultipleRunsToSingleCrystalMD(Filename='CORELLI_8176:8190',
                                      SetGoniometer=True,
-                                     Axis0='BL9:Mot:Sample:Rot1,0,1,0,1',  # Something more is happening with the goniometers #######
+                                     Axis0='BL9:Mot:Sample:Axis1,0,1,0,1',
                                      OutputWorkspace='md',
                                      MinValues=[-15,-15,-15],
                                      MaxValues=[15,15,15])
@@ -13,29 +13,29 @@ SelectCellOfType(PeaksWorkspace='peaks', CellType='Cubic', Centering='F', Apply=
 IndexPeaks(PeaksWorkspace='peaks')
 OptimizeLatticeForCellType(PeaksWorkspace='peaks', Apply=True)
 
-SaveIsawUB('peaks', outDir+'CaZrO2_300K.mat')
+SaveIsawUB('peaks', outDir+'CaZrO2_300K-2.mat')
 
-SingleCrystalDiffuseReduction(Filename='CORELLI_2274:2318',
+SingleCrystalDiffuseReduction(Filename='CORELLI_8176:8190',
                               SolidAngle=outDir+'IPTS-12310/SA.nxs',
                               Flux=outDir+'IPTS-12310/Flux.nxs',
                               OutputWorkspace='output',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-                              UBMatrix=outDir+'CaZrO2_300K.mat',
+                              UBMatrix=outDir+'CaZrO2_300K-2.mat',
                               BinningDim0='-10.02,10.02,501',
                               BinningDim1='-10.02,10.02,501',
                               BinningDim2='-10.02,10.02,501')
 
-SingleCrystalDiffuseReduction(Filename='CORELLI_2274:2318',
+SingleCrystalDiffuseReduction(Filename='CORELLI_8176:8190',
                               SolidAngle=outDir+'IPTS-12310/SA.nxs',
                               Flux=outDir+'IPTS-12310/Flux.nxs',
                               OutputWorkspace='sym',
                               SetGoniometer=True,
                               Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
-                              UBMatrix=outDir+'CaZrO2_300K.mat',
+                              UBMatrix=outDir+'CaZrO2_300K-2.mat',
                               BinningDim0='-10.02,10.02,501',
                               BinningDim1='-10.02,10.02,501',
                               BinningDim2='-10.02,10.02,501',
                               SymmetryOps='221') # Really 225
 
-SaveMD('sym', outDir+'CaZrO2_300K_sym.nxs')
+SaveMD('sym', outDir+'CaZrO2_300K-2_sym.nxs')
