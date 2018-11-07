@@ -37,3 +37,5 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_8192:8246',
                               BinningDim1='-10.02,10.02,501',
                               BinningDim2='-10.02,10.02,501',
                               SymmetryOps='221') # Really 225
+
+SaveMD('sym', outDir+'ZrO2_300K_sym.nxs')
