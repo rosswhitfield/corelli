@@ -46,6 +46,11 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_8569:8601',
 SaveMD('sym', outDir+'ZrO2_300K_sym.nxs')
 #sym=LoadMD(outDir+'ZrO2_300K_sym.nxs')
 
+DeltaPDF3D(InputWorkspace='sym', IntermediateWorkspace='int', OutputWorkspace='out', Method='KAREN', Convolution=False)
+SaveMD('out', outDir+'ZrO2_300K_PDF.nxs')
+SaveMDWorkspaceToVTK('out', outDir+'ZrO2_300K_PDF.vts')
+
+
 SingleCrystalDiffuseReduction(Filename=','.join('/SNS/CORELLI/IPTS-12310/shared/autoreduce/CORELLI_'+str(run)+'_elastic.nxs' for run in range(8569,8602)),
                               SolidAngle=outDir+'SA.nxs',
                               Flux=outDir+'Flux.nxs',
