@@ -66,7 +66,7 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_8569:8601',
                               SymmetryOps='221') # Really 225
 
 SaveMD('sym', outDir+'ZrO2_300K_sym_1000.nxs')
-#sym=LoadMD(outDir+'ZrO2_300K_sym.nxs')
+#sym=LoadMD(outDir+'ZrO2_300K_sym_1000.nxs')
 
 DeltaPDF3D(InputWorkspace='sym', IntermediateWorkspace='int', OutputWorkspace='out', Method='KAREN', Convolution=False)
 SaveMD('out', outDir+'ZrO2_300K_PDF_1000.nxs')
@@ -88,7 +88,7 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_8569:8601',
                               SymmetryOps='221') # Really 225
 
 SaveMD('sym', outDir+'ZrO2_300K_sym_20.02.nxs')
-#sym=LoadMD(outDir+'ZrO2_300K_sym.nxs')
+#sym=LoadMD(outDir+'ZrO2_300K_sym_20.02.nxs')
 
 DeltaPDF3D(InputWorkspace='sym', IntermediateWorkspace='int', OutputWorkspace='out', Method='KAREN', Convolution=False)
 SaveMD('out', outDir+'ZrO2_300K_PDF_1000.nxs')
