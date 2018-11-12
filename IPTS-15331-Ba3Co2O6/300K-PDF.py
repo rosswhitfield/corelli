@@ -52,3 +52,4 @@ SingleCrystalDiffuseReduction(Filename='CORELLI_20153:20229',
                               SymmetryOps='152')
 
 SaveMD('sym', outDir+'Ba3Co2O6_sym.nxs')
+#sym=LoadMD(outDir+'Ba3Co2O6_sym.nxs')
