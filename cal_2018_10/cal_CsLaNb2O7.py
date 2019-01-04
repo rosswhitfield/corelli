@@ -36,6 +36,8 @@ DReference = [get_d(ol, 0, 0, 1), # 11.166629
 
 Load(Filename='CORELLI_81269-81280', OutputWorkspace='raw')
 
+# raw = LoadNexus('/SNS/users/rwp/corelli/cal_2018_10/raw.nxs')
+
 
 ApplyCalibration('raw','CalibTable')
 
