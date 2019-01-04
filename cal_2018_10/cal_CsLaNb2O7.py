@@ -31,6 +31,9 @@ DReference = [get_d(ol, 0, 0, 1), # 11.166629
               # 1.84307275
 ]
 
+DReference = [get_d(ol, 0, 0, 1), # 11.166629
+              get_d(ol, 1, 0, 0)] # 3.9050440
+
 Load(Filename='CORELLI_81269-81280', OutputWorkspace='raw')
 
 
@@ -48,7 +51,7 @@ TofBinning='3000,-0.01,16660'
 PDCalibration(InputWorkspace='raw',
               TofBinning=TofBinning,
               PeakPositions=DReference,
-              MinimumPeakHeight=10,
+              MinimumPeakHeight=50,
               PeakWidthPercent=0.01,
               PeakWindow=0.5,
               OutputCalibrationTable='cal',
