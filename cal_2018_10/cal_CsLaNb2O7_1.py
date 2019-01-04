@@ -70,6 +70,6 @@ corelli=LoadEmptyInstrument(InstrumentName='CORELLI')
 ApplyCalibration('corelli','CalibTable')
 difc0=CalculateDIFC('corelli')
 
-difc=CalculateDIFC('corelli',CalibrationWorkspace='cal_1_cal')
+difc=CalculateDIFC('corelli',CalibrationWorkspace='cal')
 
 diff = difc/difc0
