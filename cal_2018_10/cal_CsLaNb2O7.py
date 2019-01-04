@@ -45,14 +45,14 @@ ApplyCalibration('raw','CalibTable')
 
 #LoadIsawDetCal('raw','/SNS/users/rwp/corelli/cal_2018_05/0a/Aligned_row_si_c60.nxs.detcal')
 
-TofBinning='3000,-0.01,16660'
+TofBinning='3000,-0.005,16660'
 
 
 PDCalibration(InputWorkspace='raw',
               TofBinning=TofBinning,
               PeakPositions=DReference,
-              MinimumPeakHeight=50,
-              PeakWidthPercent=0.01,
-              PeakWindow=0.5,
+              MinimumPeakHeight=1,
+              PeakWidthPercent=0.05,
+              PeakWindow=2.0,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
