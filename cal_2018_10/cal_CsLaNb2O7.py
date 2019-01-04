@@ -51,8 +51,20 @@ TofBinning='3000,-0.005,16660'
 PDCalibration(InputWorkspace='raw',
               TofBinning=TofBinning,
               PeakPositions=DReference,
-              MinimumPeakHeight=1,
-              PeakWidthPercent=0.05,
+              MinimumPeakHeight=2,
+              PeakWidthPercent=0.1,
               PeakWindow=2.0,
               OutputCalibrationTable='cal',
               DiagnosticWorkspaces='diag')
+
+SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_10/cal.h5')
+
+#LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_10/cal.h5',InstrumentName='CORELLI',WorkspaceName='cal_loaded')
+
+corelli=LoadEmptyInstrument(InstrumentName='CORELLI')
+ApplyCalibration('corelli','CalibTable')
+difc0=CalculateDIFC('corelli')
+
+difc=CalculateDIFC('corelli',CalibrationWorkspace='cal')
+
+diff = difc/difc0
