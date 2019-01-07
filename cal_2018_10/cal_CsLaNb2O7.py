@@ -61,7 +61,17 @@ PDCalibration(InputWorkspace='raw',
 
 SaveDiffCal('cal',MaskWorkspace='cal_mask', Filename='/SNS/users/rwp/corelli/cal_2018_10/cal.h5')
 
-#LoadDiffCal(Filename='/SNS/users/rwp/corelli/cal_2018_10/cal.h5',InstrumentName='CORELLI',WorkspaceName='cal_loaded')
+PDCalibration(InputWorkspace='raw',
+              TofBinning=TofBinning,
+              PeakPositions=DReference,
+              MinimumPeakHeight=2,
+              PeakWidthPercent=0.1,
+              PeakWindow=2.0,
+              AllowSinglePeakCalibration=True,
+              OutputCalibrationTable='cal1',
+              DiagnosticWorkspaces='diag1')
+
+SaveDiffCal('cal1',MaskWorkspace='cal1_mask', Filename='/SNS/users/rwp/corelli/cal_2018_10/cal1.h5')
 
 corelli=LoadEmptyInstrument(InstrumentName='CORELLI')
 ApplyCalibration('corelli','CalibTable')
