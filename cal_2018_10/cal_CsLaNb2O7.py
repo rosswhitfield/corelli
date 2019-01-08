@@ -34,6 +34,9 @@ DReference = [get_d(ol, 0, 0, 1), # 11.166629
 DReference = [get_d(ol, 0, 0, 1), # 11.166629
               get_d(ol, 1, 0, 0)] # 3.9050440
 
+DReference = [get_d(ol, 0, 0, 1), # 11.166629
+              get_d(ol, 1, 0, 2)] # 3.2000186
+
 Load(Filename='CORELLI_81269-81280', OutputWorkspace='raw')
 
 # raw = LoadNexus('/SNS/users/rwp/corelli/cal_2018_10/raw.nxs')
