@@ -13,20 +13,41 @@ DReference = [get_d(ol, 0, 0, 1),
               get_d(ol, 0, 0, 2),
               get_d(ol, 1, 0, 0),
               get_d(ol, 0, 0, 3),
-              get_d(ol, 1, 0, 1),
+              #get_d(ol, 1, 0, 1), #0
               get_d(ol, 1, 0, 2),
-              get_d(ol, 0, 0, 4),
+              #get_d(ol, 0, 0, 4), #0
               get_d(ol, 1, 1, 0),
-              get_d(ol, 1, 0, 3),
-              get_d(ol, 1, 1, 1),
+              #get_d(ol, 1, 0, 3),
+              #get_d(ol, 1, 1, 1),
               get_d(ol, 1, 1, 2),
+              get_d(ol, 1, 0, 4),
+              get_d(ol, 0, 0, 5),
               get_d(ol, 1, 1, 3),
-
-
-
-
-
-              get_d(ol, 2, 0, 6),
+              #get_d(ol, 1, 1, 4),
+              #get_d(ol, 2, 0, 0),
+              #get_d(ol, 1, 0, 5),
+              #get_d(ol, 2, 0, 1),
+              #get_d(ol, 0, 0, 6),
+              #get_d(ol, 2, 0, 2),
+              #get_d(ol, 2, 1, 0),
+              #get_d(ol, 1, 1, 5),
+              #get_d(ol, 2, 0, 3),
+              #get_d(ol, 2, 1, 1), #0
+              #get_d(ol, 1, 0, 6), #0
+              #get_d(ol, 2, 1, 2),
+              #get_d(ol, 2, 0, 4), #0
+              #get_d(ol, 0, 0, 7), #0
+              #get_d(ol, 2, 1, 3), #0
+              #get_d(ol, 1, 1, 6),
+              #get_d(ol, 2, 1, 4),
+              #get_d(ol, 1, 0, 7),
+              #get_d(ol, 2, 0, 5),
+              #get_d(ol, 0, 0, 8),
+              #get_d(ol, 2, 2, 0),
+              #get_d(ol, 1, 1, 7),
+              #get_d(ol, 2, 1, 5),
+              #get_d(ol, 2, 2, 1),
+              #get_d(ol, 2, 0, 6),
 ]
 
 DReference = [get_d(ol, 0, 0, 1), # 11.166629
@@ -52,7 +73,7 @@ difc0=CalculateDIFC('corelli')
 
 #LoadIsawDetCal('raw','/SNS/users/rwp/corelli/cal_2018_05/0a/Aligned_row_si_c60.nxs.detcal')
 
-TofBinning='3000,-0.005,16660'
+TofBinning='3000,-0.001,16660'
 
 
 PDCalibration(InputWorkspace='raw',
