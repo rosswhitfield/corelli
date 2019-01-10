@@ -1,7 +1,7 @@
 import tube
 tube.readCalibrationFile('CalibTable','/SNS/users/rwp/corelli/tube_calibration2/CalibTable2_combined.txt')
 
-for run in range(81285,81405+1,10):
+for run in range(81285,81405+1):
     Load(Filename='CORELLI_{}'.format(run),
          OutputWorkspace='run',
          FilterByTofMin=1000,
@@ -25,9 +25,4 @@ SelectCellWithForm(PeaksWorkspace='peaks', FormNumber=26, Apply=True)
 IndexPeaks(PeaksWorkspace='peaks')
 
 
-SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2018_10_Natrolite/peaks_5.peaks')
-OptimizeLatticeForCellType(PeaksWorkspace='peaks', CellType='Orthorhombic', Apply=True, OutputDirectory='/SNS/users/rwp/.')
-SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2018_10_Natrolite/peaks_5_opt.peaks')
-
-# Lattice Parameters:    6.703017   18.304804   18.669009   90.000000   90.000000   90.000000  2290.639063
-
+SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2018_10_Natrolite/peaks_tubeCal.peaks')
