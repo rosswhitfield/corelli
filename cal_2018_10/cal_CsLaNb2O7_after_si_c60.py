@@ -47,7 +47,7 @@ PDCalibration(InputWorkspace='raw',
               OutputCalibrationTable='cal_after',
               DiagnosticWorkspaces='diag_after')
 
-difc1=CalculateDIFC('corelli',CalibrationWorkspace='cal1')
+difc1=CalculateDIFC('corelli',CalibrationWorkspace='cal_after')
 diff1 = difc1/difc0
 
 SaveDiffCal('cal1',MaskWorkspace='cal1_mask', Filename='/SNS/users/rwp/corelli/cal_2018_10/cal1.h5')
