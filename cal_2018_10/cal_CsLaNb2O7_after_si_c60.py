@@ -35,6 +35,7 @@ ApplyCalibration('corelli','CalibTable')
 LoadIsawDetCal('corelli','/SNS/users/rwp/corelli/cal_2018_05/a/Aligned3.nxs.detcal')
 difc0=CalculateDIFC('corelli')
 
+TofBinning='3000,-0.001,16660'
 
 PDCalibration(InputWorkspace='raw',
               TofBinning=TofBinning,
