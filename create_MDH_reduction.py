@@ -17,12 +17,12 @@ output['user'] = getpass.getuser()
 output['created'] = datetime.datetime.now().replace(microsecond=0).isoformat()
 
 
+output['input_files'] = []
+
 """
 f = h5py.File(output_file, 'r')
 
 history = f['/MDHistoWorkspace/process/MantidAlgorithm_1/data']
-
-output['input_files'] = []
 
 for hist in history:
     for prop in hist.decode().split('Name: '):
@@ -30,6 +30,18 @@ for hist in history:
             if part[0] == 'SolidAngle' or part[0] == 'Flux':
                 output['input_files'].append({'location':part[1], 'type':'type'})
 """
+
+def get_children_algs(history):
+    if history.childHistorySize() == 0:
+        return history
+    else:
+        return [get_children_algs(histories) for histories in history.getChildHistories()]
+
+history = md.getHistory()
+for hist in history.getAlgorithmHistories():
+    for alg in get_children_algs(hist):
+        if 'Load' in alg.name():
+            
 
 
 print(json.dumps(output))
