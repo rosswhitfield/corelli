@@ -33,7 +33,7 @@ for hist in history:
 
 def get_children_algs(history):
     if history.childHistorySize() == 0:
-        return history
+        return [history]
     else:
         return [get_children_algs(histories) for histories in history.getChildHistories()]
 
@@ -41,7 +41,9 @@ history = md.getHistory()
 for hist in history.getAlgorithmHistories():
     for alg in get_children_algs(hist):
         if 'Load' in alg.name():
-            
+            for prop in alg.getProperties():
+                if "Filename" in prop.name():
+                    output['input_files'].append({'location':prop.value(), 'type':'type'})
 
 
 print(json.dumps(output))
