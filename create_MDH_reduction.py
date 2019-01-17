@@ -31,15 +31,17 @@ for hist in history:
                 output['input_files'].append({'location':part[1], 'type':'type'})
 """
 
-def get_children_algs(history):
+def get_children_algs(history, result):
     if history.childHistorySize() == 0:
-        return [history]
+        result.append(history)
     else:
-        return [get_children_algs(histories) for histories in history.getChildHistories()]
+        result.append([get_children_algs(histories) for histories in history.getChildHistories()])
 
 history = md.getHistory()
 for hist in history.getAlgorithmHistories():
-    for alg in get_children_algs(hist):
+    algs = []
+    get_children_algs(hist, algs)
+    for alg in algs:
         if 'Load' in alg.name():
             for prop in alg.getProperties():
                 if "Filename" in prop.name():
