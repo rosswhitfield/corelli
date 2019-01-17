@@ -30,11 +30,11 @@ def get_children_algs(history, result):
             get_children_algs(histories,result)
 
 history = md.getHistory()
-for hist in history.getAlgorithmHistories():
+for hist in history.getAlgorithmHistories()[:-1]:
     algs = []
     get_children_algs(hist, algs)
     print(algs)
-    for alg in algs[:-1]:
+    for alg in algs:
         print(alg.name())
         if 'Load' in alg.name():
             print(alg.name())
