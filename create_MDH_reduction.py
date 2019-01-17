@@ -1,4 +1,5 @@
 from mantid.simpleapi import LoadMD
+from mantid.kernel import version_str
 import h5py
 import json
 import sys
@@ -10,26 +11,16 @@ output_file = sys.argv[1]
 
 md = LoadMD(output_file)
 
+if not md.isMDHistoWorkspace():
+    raise ValueError('Needs to be MDHistoWorkspace')
+
 output = {}
 
-output['output_files'] = [{'location':output_file, 'type':'MDHistoWorkspace'}]
+output['output_files'] = [{'location':output_file, 'type':'processed'}]
 output['user'] = getpass.getuser()
 output['created'] = datetime.datetime.now().replace(microsecond=0).isoformat()
 
-
 output['input_files'] = []
-
-"""
-f = h5py.File(output_file, 'r')
-
-history = f['/MDHistoWorkspace/process/MantidAlgorithm_1/data']
-
-for hist in history:
-    for prop in hist.decode().split('Name: '):
-        for part in prop.split(', '):
-            if part[0] == 'SolidAngle' or part[0] == 'Flux':
-                output['input_files'].append({'location':part[1], 'type':'type'})
-"""
 
 def get_children_algs(history, result):
     if history.childHistorySize() == 0:
@@ -42,7 +33,7 @@ history = md.getHistory()
 for hist in history.getAlgorithmHistories():
     algs = []
     get_children_algs(hist, algs)
-    for alg in algs:
+    for alg in algs[:-1]:
         if 'Load' in alg.name():
             file_type = 'user-provided'
             if alg.name() in ["Load", "LoadEventNexus"]:
@@ -66,9 +57,21 @@ for ndim in range(md.getNumDims()):
                                    'number_of_bins':dim.getNBins(),
                                    'bin_width':dim.getBinWidth()})
 
-metadata['sample']
+sample = {}
+sample['name'] = md.getExperimentInfo(0).sample().getName()
+ol=md.getExperimentInfo(0).sample().getOrientedLattice()
+sample['a'] = ol.a()
+sample['b'] = ol.b()
+sample['c'] = ol.c()
+sample['alpha'] = ol.alpha()
+sample['beta'] = ol.beta()
+sample['gamma'] = ol.gamma()
+sample['UB'] = str(ol.getUB())
+
+metadata['sample'] = sample
 
 output['metadata'] = metadata
+output['mantid_version'] = version_str()
 
 print(json.dumps(output))
 
