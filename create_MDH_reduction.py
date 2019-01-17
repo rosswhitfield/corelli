@@ -33,10 +33,13 @@ history = md.getHistory()
 for hist in history.getAlgorithmHistories():
     algs = []
     get_children_algs(hist, algs)
+    print(algs)
     for alg in algs[:-1]:
+        print(alg.name())
         if 'Load' in alg.name():
+            print(alg.name())
             file_type = 'user-provided'
-            if alg.name() in ["Load", "LoadEventNexus"]:
+            if alg.name() in ["Load", "LoadEventNexus", "LoadWANDSCD"]:
                 file_type = 'raw'
             elif alg.name() in ["LoadNexus"]:
                 file_type = 'processed'
