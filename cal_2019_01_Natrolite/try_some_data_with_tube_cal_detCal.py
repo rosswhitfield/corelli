@@ -22,7 +22,7 @@ SaveMD('output', '/SNS/CORELLI/IPTS-21655/shared/rwp/CORELLI_83349_83432_tubecal
 #output=LoadMD('/SNS/CORELLI/IPTS-21655/shared/rwp/CORELLI_83349_83432_tubecal_MDE.nxs')
 
 
-"""
+
 FindPeaksMD(InputWorkspace='output', PeakDistanceThreshold=0.5, MaxPeaks=2000, OutputWorkspace='peaks')
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=20)
 ShowPossibleCells(PeaksWorkspace='peaks')
@@ -35,5 +35,4 @@ SCDCalibratePanels(PeakWorkspace='peaks', a=6.56, b=18.27, c=18.587, alpha=90, b
 SCDCalibratePanels(PeakWorkspace='peaks', a=6.56, b=18.27, c=18.587, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor.nxs')
 
 
-SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2019_01_Natrolite/peaks_tubeCal.peaks')
-"""
+SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2019_01_Natrolite/peaks_tubeCal_detCal.peaks')
