@@ -26,8 +26,9 @@ SelectCellWithForm(PeaksWorkspace='peaks', FormNumber=26, Apply=True)
 IndexPeaks(PeaksWorkspace='peaks')
 
 
+SCDCalibratePanels(PeakWorkspace='peaks', a=6.56, b=18.27, c=18.587, alpha=90, beta=90, gamma=90, ChangeL1=False)
 
-SCDCalibratePanels(PeakWorkspace='peaks', a=6.56 b=18.27, c=18.587, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor.nxs')
+SCDCalibratePanels(PeakWorkspace='peaks', a=6.56, b=18.27, c=18.587, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor.nxs')
 
 
 SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2019_01_Natrolite/peaks_tubeCal.peaks')
