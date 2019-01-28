@@ -17,6 +17,7 @@ for run in range(83349,83432+1):
                 OverwriteExisting=False)
                 
 SaveMD('output', '/SNS/CORELLI/IPTS-21655/shared/rwp/CORELLI_83349_83432_tubecal_MDE.nxs')
+#output=LoadMD('/SNS/CORELLI/IPTS-21655/shared/rwp/CORELLI_83349_83432_tubecal_MDE.nxs')
 
 FindPeaksMD(InputWorkspace='output', PeakDistanceThreshold=0.5, MaxPeaks=2000, OutputWorkspace='peaks')
 FindUBUsingFFT(PeaksWorkspace='peaks', MinD=5, MaxD=20)
