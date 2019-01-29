@@ -45,4 +45,4 @@ SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2019_01_Natrolite/pe
 
 #SCDCalibratePanels(PeakWorkspace='peaks', a=6.586, b=18.2930, c=18.643, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor.nxs')
 
-SCDCalibratePanels(PeakWorkspace='peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor.nxs')
+SCDCalibratePanels(PeakWorkspace='peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate2.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor2.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor2.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor2.nxs')
