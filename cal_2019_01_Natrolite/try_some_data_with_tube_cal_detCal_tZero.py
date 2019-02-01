@@ -46,6 +46,9 @@ OptimizeLatticeForCellType(PeaksWorkspace='peaks2', CellType='Orthorhombic', App
 # 6.600936   18.253933   18.587679   90.000000   90.000000   90.000000
 
 
+SCDCalibratePanels(PeakWorkspace='filtered_peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrateF_redo.DetCal')
+
+
 # Try
 # 18.2930 18.6430 6.5860 90 90 90
 # 18.3720 18.5760 6.606 90 90 90
@@ -59,3 +62,4 @@ OptimizeLatticeForCellType(PeaksWorkspace='peaks2', CellType='Orthorhombic', App
 SCDCalibratePanels(PeakWorkspace='peaks3', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate3.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor3.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor3.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor3.nxs')
 
 SCDCalibratePanels(PeakWorkspace='filtered_peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrateF.DetCal')
+SCDCalibratePanels(PeakWorkspace='peaks2', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate2.DetCal')
