@@ -32,6 +32,8 @@ IndexPeaks(PeaksWorkspace='peaks')
 SaveIsawPeaks('peaks', Filename='/SNS/users/rwp/corelli/cal_2019_01_Natrolite/peaks_tubeCal_detCal_tzero.peaks')
 
 peaks2=CloneWorkspace('peaks')
+peaks3=CloneWorkspace('peaks')
+filtered_peaks = FilterPeaks('peaks',FilterVariable='h^2+k^2+l^2', FilterValue=0,Operator='!=')
 
 # 6.684847   18.301256   18.670389   90.003998   90.119247   89.780933 # without detCal
 # 6.625729   18.269036   18.640500   89.992889   89.956041   89.853691 # with detcal
@@ -53,3 +55,7 @@ OptimizeLatticeForCellType(PeaksWorkspace='peaks2', CellType='Orthorhombic', App
 #SCDCalibratePanels(PeakWorkspace='peaks', a=6.586, b=18.2930, c=18.643, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor.nxs')
 
 #SCDCalibratePanels(PeakWorkspace='peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate2.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor2.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor2.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor2.nxs')
+
+SCDCalibratePanels(PeakWorkspace='peaks3', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate3.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor3.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor3.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor3.nxs')
+
+SCDCalibratePanels(PeakWorkspace='filtered_peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrateF.DetCal')
