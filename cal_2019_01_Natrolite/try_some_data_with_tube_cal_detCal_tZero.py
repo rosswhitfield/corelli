@@ -62,4 +62,7 @@ SCDCalibratePanels(PeakWorkspace='filtered_peaks', a=6.606, b=18.372, c=18.576, 
 SCDCalibratePanels(PeakWorkspace='peaks3', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate3.DetCal', ColFilename='/SNS/users/rwp/ColCalcvsTheor3.nxs', RowFilename='/SNS/users/rwp/RowCalcvsTheor3.nxs', TofFilename='/SNS/users/rwp/TofCalcvsTheor3.nxs')
 
 SCDCalibratePanels(PeakWorkspace='filtered_peaks', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrateF.DetCal')
-SCDCalibratePanels(PeakWorkspace='peaks2', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate2.DetCal')
+
+
+SCDCalibratePanels(PeakWorkspace='peaks2', a=6.606, b=18.372, c=18.576, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate_1.DetCal')
+SCDCalibratePanels(PeakWorkspace='peaks3', a=6.586, b=18.2930, c=18.643, alpha=90, beta=90, gamma=90, ChangeL1=False, DetCalFilename='/SNS/users/rwp/SCDCalibrate_2.DetCal')
