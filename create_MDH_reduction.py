@@ -42,6 +42,8 @@ for hist in history.getAlgorithmHistories()[:-1]:
                 file_type = 'raw'
             elif alg.name() in ["LoadNexus"]:
                 file_type = 'processed'
+            elif alg.name() in ["LoadInstrument", "LoadIsawUB"]:
+                continue
             for prop in alg.getProperties():
                 if "Filename" in prop.name():
                     output['input_files'].append({'location': prop.value(),
