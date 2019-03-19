@@ -79,4 +79,5 @@ metadata['sample'] = sample
 output['metadata'] = metadata
 output['mantid_version'] = version_str()
 
-print(json.dumps(output))
+with open('out.json', 'w') as f:
+    json.dumps(output, f)
