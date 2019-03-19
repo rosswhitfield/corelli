@@ -38,17 +38,20 @@ for hist in history.getAlgorithmHistories()[:-1]:
     for alg in algs:
         if 'Load' in alg.name():
             file_type = 'user-provided'
+            purpose =  'sample-data'
             if alg.name() in ["Load", "LoadEventNexus", "LoadWANDSCD"]:
                 file_type = 'raw'
             elif alg.name() in ["LoadNexus"]:
                 file_type = 'processed'
+                purpose = 'intermediate'
+                continue
             elif alg.name() in ["LoadInstrument", "LoadIsawUB"]:
                 continue
             for prop in alg.getProperties():
                 if "Filename" in prop.name():
                     output['input_files'].append({'location': prop.value(),
                                                   'type': file_type,
-                                                  'purpose': 'sample-data'})
+                                                  'purpose': purpose})
 
 metadata = {}
 
@@ -77,7 +80,7 @@ sample['UB'] = str(ol.getUB())
 metadata['sample'] = sample
 
 output['metadata'] = metadata
-output['mantid_version'] = version_str()
+#output['mantid_version'] = version_str()
 
 with open('out.json', 'w') as f:
-    json.dumps(output, f)
+    json.dump(output, f)
