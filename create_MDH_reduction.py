@@ -18,7 +18,15 @@ output['output_files'] = [{'location': output_file,
                            'type': 'processed',
                            'purpose': 'reduced-data',
                            'fields':{'mdhistoworkspace.experiment0.sample.material.temperature':'temperature',
-                                     'mdhistoworkspace.data.signal@axes':'axes'}}]
+                                     'mdhistoworkspace.data.signal@axes':'axes',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.orientation_matrix':'orientation_matrix',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.unit_cell_a':'unit_cell_a',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.unit_cell_b':'unit_cell_b',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.unit_cell_c':'unit_cell_c',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.unit_cell_alpha':'unit_cell_alpha',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.unit_cell_beta':'unit_cell_beta',
+                                     'mdhistoworkspace.experiment0.sample.oriented_lattice.unit_cell_gamma':'unit_cell_gamma'
+                           }}]
 output['user'] = getpass.getuser()
 output['created'] = datetime.datetime.now().replace(microsecond=0).isoformat()+'.00-05:00'
 
