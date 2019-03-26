@@ -93,4 +93,4 @@ output['metadata'] = metadata
 #output['mantid_version'] = version_str()
 
 with open('out.json', 'w') as f:
-    json.dump(output, f)
+    json.dump(output, f, indent=1)
