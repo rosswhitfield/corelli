@@ -16,9 +16,10 @@ output = {}
 
 output['output_files'] = [{'location': output_file,
                            'type': 'processed',
-                           'purpose': 'reduced-data'}]
+                           'purpose': 'reduced-data',
+                           'fields':{'foo':'bar'}}]
 output['user'] = getpass.getuser()
-output['created'] = datetime.datetime.now().replace(microsecond=0).isoformat()
+output['created'] = datetime.datetime.now().replace(microsecond=0).isoformat()+'.00-05:00'
 
 output['input_files'] = []
 
@@ -55,6 +56,7 @@ for hist in history.getAlgorithmHistories()[:-1]:
 
 metadata = {}
 
+"""
 metadata['dimensions'] = []
 for ndim in range(md.getNumDims()):
     dim = md.getDimension(ndim)
@@ -65,7 +67,7 @@ for ndim in range(md.getNumDims()):
                                    'maximum': dim.getMaximum(),
                                    'number_of_bins': dim.getNBins(),
                                    'bin_width': dim.getBinWidth()})
-
+"""
 sample = {}
 sample['name'] = md.getExperimentInfo(0).sample().getName()
 ol = md.getExperimentInfo(0).sample().getOrientedLattice()
@@ -75,8 +77,9 @@ sample['c'] = ol.c()
 sample['alpha'] = ol.alpha()
 sample['beta'] = ol.beta()
 sample['gamma'] = ol.gamma()
+"""
 sample['UB'] = str(ol.getUB())
-
+"""
 metadata['sample'] = sample
 
 output['metadata'] = metadata
