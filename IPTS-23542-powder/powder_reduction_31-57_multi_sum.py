@@ -2,6 +2,7 @@ from mantid.simpleapi import *
 
 SNSPowderReduction(Filename="CORELLI_101848,CORELLI_101849",
                    BackgroundNumber=-1,
+                   Sum=True,
                    VanadiumNumber=96959,
                    VanadiumBackgroundNumber=-1,
                    CalibrationFile="/SNS/CORELLI/IPTS-22673/shared/mantid_reduce/calibration/CORELLI_d56271_2017_11_17_CCR.h5",
@@ -10,6 +11,6 @@ SNSPowderReduction(Filename="CORELLI_101848,CORELLI_101849",
                    CropWavelengthMax=2.5,
                    StripVanadiumPeaks=False,
                    GroupingFile="/SNS/users/rwp/corelli/IPTS-23542-powder/group_31-57.xml",
-                   OutputFilePrefix="31-57_multi_",
+                   OutputFilePrefix="31-57_sum_",
                    SaveAs='fullprof,nexus',
                    OutputDirectory="/SNS/users/rwp/corelli/IPTS-23542-powder/")
