@@ -4,7 +4,7 @@ import h5py
 import numpy as np
 import glob
 
-filenames = glob.glob('/SNS/CORELLI/IPTS-22211*/nexus/CORELLI_*.nxs.h5')
+filenames = glob.glob('/SNS/CORELLI/IPTS-23139/nexus/CORELLI_*.nxs.h5')
 filenames.sort()
 fout = open("stats.txt", "w")
 for filename in filenames:

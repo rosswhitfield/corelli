@@ -14,9 +14,10 @@ for filename in filenames:
         phaseDelay = f['entry/DASlogs/BL9:Chop:Skf4:PhaseTimeDelaySet/value'].value[0]
         diff = (tdc[1:] - tdc[:-1])/100
         plt.clf()
-        plt.plot(diff[:100], tdc[:100])
+        plt.scatter(diff, tdc[:-1])
         plt.xlabel("Chopper period (100ns)")
         plt.ylabel("Time (ns)")
         plt.title("{} - wavelength = {} - Phase Delay = {:.2f}".format(filename.split('/')[-1],wl, phaseDelay))
-        #plt.xlim(34060, 34100)
+        plt.xlim(3.4060e-5, 3.4100e-5)
+        plt.ylim(0,1)
         plt.savefig("images/"+filename.split('/')[-1]+"_p_v_t.png")
