@@ -18,5 +18,5 @@ for filename in filenames:
         plt.xlabel("Chopper period (100ns)")
         plt.ylabel("Time (ns)")
         plt.title("{} - wavelength = {} - Phase Delay = {:.2f}".format(filename.split('/')[-1],wl, phaseDelay))
-        plt.xlim(34060, 34100)
+        #plt.xlim(34060, 34100)
         plt.savefig("images/"+filename.split('/')[-1]+"_p_v_t.png")
