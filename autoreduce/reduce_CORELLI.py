@@ -1,8 +1,7 @@
 #!/usr/bin/env python
+from __future__ import (absolute_import, division, print_function, unicode_literals)
 
 import sys,os
-sys.path.append("/opt/mantidnightly/bin")
-
 from mantid.simpleapi import *
 from mantid import logger
 import numpy as np
@@ -15,11 +14,11 @@ import matplotlib.pyplot as plt
 class processInputs(object):
     def __init__(self):
         #templated stuff
-        self.ub_matrix_file='/SNS/CORELLI/IPTS-17922/shared/SaE/quickUB.mat'
-        self.vanadium_SA_file='/SNS/CORELLI/shared/Vanadium/2017A/SolidAngle_SlimSam_20170307_Central.nxs'
-        self.vanadium_flux_file='/SNS/CORELLI/shared/Vanadium/2017A/Spectrum_SlimSam_20170307_Central.nxs'
-        self.mask=[{'Bank': '1-6,29,30,62-68,91'}] #[{'Tube':'1,2,3,4','Bank':'','Pixel':''}]
-        self.plot_requests=[{'Minimum': '-0.15', 'PerpendicularTo': '[0,K,0]', 'Maximum': '0.15'}] #[{'PerpendicularTo':"[0,K,0]",'Minimum':'-0.05','Maximum':'0.05'},{'PerpendicularTo':"[0,K,0]",'Minimum':'10.95','Maximum':'11.05'},{'PerpendicularTo':"[0,K,0]",'Minimum':'0.95','Maximum':'1.05'}]
+        self.ub_matrix_file='SNS/CORELLI/IPTS-21454/shared/250mK/optub_250mK.mat' #'/SNS/CORELLI/IPTS-12310/shared/Sr214-Tb1000-2nd-20150512/UB-H0L-may12.mat'
+        self.vanadium_SA_file='/SNS/CORELLI/IPTS-21454/shared/scripts/SA_CC_tot.nxs' #'/SNS/CORELLI/shared/Vanadium/SolidAngle20150411.nxs'
+        self.vanadium_flux_file='/SNS/CORELLI/IPTS-21454/shared/scripts/Spec_OC_tot.nxs' #'/SNS/CORELLI/shared/Vanadium/Spectrum20150411.nxs'
+        self.mask=[] #[{'Tube':'1,2,3,4','Bank':'','Pixel':''}]
+        self.plot_requests=[{'Minimum': '-0.1', 'PerpendicularTo': '[0,K,0]', 'Maximum': '0.1'}] #[{'PerpendicularTo':"[0,K,0]",'Minimum':'-0.05','Maximum':'0.05'},{'PerpendicularTo':"[0,K,0]",'Minimum':'10.95','Maximum':'11.05'},{'PerpendicularTo':"[0,K,0]",'Minimum':'0.95','Maximum':'1.05'}]
         self.useCC='True' #"True"
         #other
         self.can_do_HKL=False
@@ -187,7 +186,7 @@ if __name__ == "__main__":
     # Do the cross-correlation and save the file
     try:
         cc=CorelliCrossCorrelate(raw,56000)
-    except RuntimeError, e:
+    except RuntimeError as e:
         logger.warning("Cross Correlation failed because: " + str(e))
         CCsucceded=False
     else:
