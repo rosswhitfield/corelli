@@ -2,7 +2,7 @@ from mantid.simpleapi import *
 import matplotlib.pyplot as plt
 from mantid import plots
 
-filename = 'CORELLI_29782'
+filename = 'CORELLI_29715'
 SingleCrystalDiffuseReduction(Filename=filename,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016/2016B/Spectrum20160720NoCC.nxs',
@@ -19,11 +19,11 @@ SingleCrystalDiffuseReduction(Filename=filename,
                               SymmetryOperations="P 31 2 1")
 
 fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
-c = ax.pcolormesh(mtd['output1'], vmin=4e-6, vmax=2e-5)
+c = ax.pcolormesh(mtd['output1'], vmin=2e-6, vmax=1e-5)
 fig.colorbar(c)
-fig.savefig(f'Benzil_300K_{filename}.png', dpi=300)
+fig.savefig(f'Benzil_100K_{filename}.png', dpi=300)
 
-filename = 'CORELLI_29782:29817'
+filename = 'CORELLI_29715:29750'
 SingleCrystalDiffuseReduction(Filename=filename,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016/2016B/Spectrum20160720NoCC.nxs',
@@ -40,6 +40,6 @@ SingleCrystalDiffuseReduction(Filename=filename,
                               SymmetryOperations="P 31 2 1")
 
 fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
-c = ax.pcolormesh(mtd['output'], vmin=4e-6, vmax=1e-5)
+c = ax.pcolormesh(mtd['output'], vmin=2e-6, vmax=1e-5)
 fig.colorbar(c)
-fig.savefig(f'Benzil_300K_{filename}.png', dpi=300)
+fig.savefig(f'Benzil_100K_{filename}.png', dpi=300)
