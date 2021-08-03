@@ -2,7 +2,7 @@ from mantid.simpleapi import *
 import matplotlib.pyplot as plt
 from mantid import plots
 
-filename = 'CORELLI_29715'
+filename = 'CORELLI_29782'
 SingleCrystalDiffuseReduction(Filename=filename,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016/2016B/Spectrum20160720NoCC.nxs',
@@ -46,7 +46,7 @@ c = ax.pcolormesh(mtd['output'], vmin=2e-6, vmax=1e-5)
 fig.colorbar(c)
 fig.savefig(f'Benzil_100K_{filename}.png', dpi=300)
 
-filename = 'CORELLI_29715'
+filename = 'CORELLI_29782'
 SingleCrystalDiffuseReduction(Filename=filename,
                               SolidAngle='/SNS/CORELLI/shared/Vanadium/2016/2016B/SolidAngle20160720NoCC.nxs',
                               Flux='/SNS/CORELLI/shared/Vanadium/2016/2016B/Spectrum20160720NoCC.nxs',
