@@ -13,10 +13,11 @@ SingleCrystalDiffuseReduction(Filename=filename,
                               QDimension0='1,1,0',
                               QDimension1='1,-1,0',
                               QDimension2='0,0,1',
-                              Dimension0Binning='-7.5375,0.025,7.5375',
-                              Dimension1Binning='-13.165625,0.04366708333,13.165625',
-                              Dimension2Binning='-0.1,0.1',
-                              SymmetryOperations="P 31 2 1")
+                              Dimension0Binning='-7.5375,0.05,7.5375',
+                              Dimension1Binning='-13.165625,0.08777,13.165625',
+                              Dimension2Binning='-0.1,0.1')
+
+SaveMD(mtd['output1'], f'Benzil_100K_{filename}.nxs')
 
 fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
 c = ax.pcolormesh(mtd['output1'], vmin=2e-6, vmax=1e-5)
@@ -34,12 +35,92 @@ SingleCrystalDiffuseReduction(Filename=filename,
                               QDimension0='1,1,0',
                               QDimension1='1,-1,0',
                               QDimension2='0,0,1',
-                              Dimension0Binning='-7.5375,0.025,7.5375',
-                              Dimension1Binning='-13.165625,0.04366708333,13.165625',
-                              Dimension2Binning='-0.1,0.1',
-                              SymmetryOperations="P 31 2 1")
+                              Dimension0Binning='-7.5375,0.05,7.5375',
+                              Dimension1Binning='-13.165625,0.08777,13.165625',
+                              Dimension2Binning='-0.1,0.1')
+
+SaveMD(mtd['output'], f'Benzil_100K_{filename}.nxs')
 
 fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
 c = ax.pcolormesh(mtd['output'], vmin=2e-6, vmax=1e-5)
 fig.colorbar(c)
 fig.savefig(f'Benzil_100K_{filename}.png', dpi=300)
+
+filename = 'CORELLI_29715'
+SingleCrystalDiffuseReduction(Filename=filename,
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016/2016B/SolidAngle20160720NoCC.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2016/2016B/Spectrum20160720NoCC.nxs',
+                              UBMatrix="/SNS/CORELLI/IPTS-15526/shared/benzil_Hexagonal.mat",
+                              OutputWorkspace='output1',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              QDimension0='1,1,0',
+                              QDimension1='1,-1,0',
+                              QDimension2='0,0,1',
+                              Dimension0Binning='-7.5375,0.05,7.5375',
+                              Dimension1Binning='-13.165625,0.08777,13.165625',
+                              Dimension2Binning='-0.1,0.1',
+                              SymmetryOperations="P 31 2 1")
+
+SaveMD(mtd['output1'], f'Benzil_100K_{filename}_sym.nxs')
+
+fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
+c = ax.pcolormesh(mtd['output1'], vmin=2e-6, vmax=1e-5)
+fig.colorbar(c)
+fig.savefig(f'Benzil_100K_{filename}_sym.png', dpi=300)
+
+filename = 'CORELLI_29715:29750'
+SingleCrystalDiffuseReduction(Filename=filename,
+                              SolidAngle='/SNS/CORELLI/shared/Vanadium/2016/2016B/SolidAngle20160720NoCC.nxs',
+                              Flux='/SNS/CORELLI/shared/Vanadium/2016/2016B/Spectrum20160720NoCC.nxs',
+                              UBMatrix="/SNS/CORELLI/IPTS-15526/shared/benzil_Hexagonal.mat",
+                              OutputWorkspace='output',
+                              SetGoniometer=True,
+                              Axis0="BL9:Mot:Sample:Axis1,0,1,0,1",
+                              QDimension0='1,1,0',
+                              QDimension1='1,-1,0',
+                              QDimension2='0,0,1',
+                              Dimension0Binning='-7.5375,0.05,7.5375',
+                              Dimension1Binning='-13.165625,0.08777,13.165625',
+                              Dimension2Binning='-0.1,0.1',
+                              SymmetryOperations="P 31 2 1")
+
+SaveMD(mtd['output'], f'Benzil_100K_{filename}_sym.nxs')
+
+fig, ax = plt.subplots(subplot_kw={'projection':'mantid'})
+c = ax.pcolormesh(mtd['output'], vmin=2e-6, vmax=1e-5)
+fig.colorbar(c)
+fig.savefig(f'Benzil_100K_{filename}_sym.png', dpi=300)
+
+from mantid import plots
+import matplotlib.pyplot as plt
+from mantid.simpleapi import *
+
+filename = 'CORELLI_29715'
+output1=LoadMD(f'Benzil_100K_{filename}.nxs')
+output2=LoadMD(f'Benzil_100K_{filename}_sym.nxs')
+
+filename = 'CORELLI_29715:29750'
+output3=LoadMD(f'Benzil_100K_{filename}.nxs')
+output4=LoadMD(f'Benzil_100K_{filename}_sym.nxs')
+
+fig = plt.figure()
+ax1 = fig.add_subplot(221, projection = 'mantid')
+ax2 = fig.add_subplot(222, projection = 'mantid', sharey=ax1)
+ax3 = fig.add_subplot(223, projection = 'mantid', sharex=ax1)
+ax4 = fig.add_subplot(224, projection = 'mantid', sharex=ax1, sharey=ax1)
+
+plt.setp(ax1.get_xticklabels(), visible=False)
+plt.setp(ax2.get_xticklabels(), visible=False)
+plt.setp(ax2.get_yticklabels(), visible=False)
+plt.setp(ax4.get_yticklabels(), visible=False)
+
+plt.subplots_adjust(wspace=0, hspace=0)
+
+ax1.pcolormesh(mtd['output1'], vmin=2e-6, vmax=1e-5)
+ax2.pcolormesh(mtd['output2'], vmin=2e-6, vmax=1e-5)
+ax3.pcolormesh(mtd['output3'], vmin=2e-6, vmax=1e-5)
+ax4.pcolormesh(mtd['output4'], vmin=2e-6, vmax=1e-5)
+fig.tight_layout()
+fig.savefig('Benzil_100K.png', dpi=300)
+
