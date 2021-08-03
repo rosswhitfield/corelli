@@ -137,4 +137,4 @@ ax4.text(0.85, 0.9, '(d)', transform=ax4.transAxes, size=15, color='white')
 plt.subplots_adjust(wspace=0, hspace=0)
 
 fig.savefig('Benzil_100K.png', dpi=300)
-
+fig.savefig('Benzil_100K.eps')
